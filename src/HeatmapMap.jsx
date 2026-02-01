@@ -6,7 +6,7 @@ import HeatmapLayer from './HeatmapLayer';
 
 function HeatmapMap({ points }) {
   return (
-    <div style={{ height: '500px', marginBottom: '2rem' }}>
+    <div style={{ height: '100%'}}>
       <MapContainer
         center={[32.7767, -96.7970]} // Dallas, TX
         zoom={11}

@@ -33,7 +33,6 @@ export default function Root() {
         <div id="content">
           <Outlet context={{ cities, profiles }} />
         </div>
-        <Footer />
       </div>
     </>
   );

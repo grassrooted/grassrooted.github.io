@@ -217,7 +217,6 @@ def extract_finance_data_from_table(pdf_path):
             print(f"Error in extract_amount_and_description: {e}")
             return None, None
 
-
     def parse_in_kind_contribution(table):
         try:
             results = []  # Initialize as a list to store the parsed records
@@ -455,4 +454,17 @@ def process_pdfs_from_links(related_tec_docs_filename, output_dir=f"downloaded_p
             with open(output_file, "w") as file:
                 json.dump(finance_data, file, indent=4)
 
-process_pdfs_from_links(related_tec_docs_filename)
+
+def parse_single_pdf(pdf_path: str):
+    """
+    Web-safe entry point.
+    Takes a local PDF path and returns parsed + audited data.
+    """
+
+    parsed_data = extract_finance_data_from_table(pdf_path)
+
+    return parsed_data
+
+# Only run batch data collection if running file as script
+if __name__ == "__main__":
+    process_pdfs_from_links(related_tec_docs_filename)
