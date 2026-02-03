@@ -4,7 +4,7 @@ import shutil
 import os
 import uuid
 
-from c_oh_batch_doc_parser import parse_single_pdf
+from pdfParser import parse_single_pdf
 
 app = FastAPI()
 

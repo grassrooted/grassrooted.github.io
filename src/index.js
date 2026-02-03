@@ -9,7 +9,7 @@ import CityLayout from './routes/CityLayout';
 import About from './routes/About';
 import Root from './routes/root';
 import Profile from './routes/Profile';
-
+import Upload from './routes/Upload';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -23,6 +23,7 @@ root.render(
             <Route path="profiles/:profileId" element={<Profile />} />
           </Route>
           <Route path="about" element={<About />} />
+          <Route path="upload" element={<Upload />} />
         </Route>
       </Routes>
     </HashRouter>
