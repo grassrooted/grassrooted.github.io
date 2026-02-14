@@ -1,91 +1,168 @@
+/* ============================================
+   Review Page – Civic Audit Interface
+   Grassrooted Dark Data Theme
+============================================ */
+
 .review-page {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 1.5rem 1rem 3rem;
+    margin: 2rem auto 3rem;
+    padding: 1.5rem;
+  
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
   }
-
-.document-header,
-.contribution-card {
-    background: #111;
-    border: 1px solid #2a2a2a;
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-}
   
-.document-header h4,
-.section-title {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+  /* ============================================
+     Shared Card Panels
+  ============================================ */
+  
+  .document-header,
+  .contribution-card {
+    background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
+    border: 1px solid rgba(0, 255, 163, 0.08);
+    border-radius: 14px;
+  
+    padding: 1.5rem 1.75rem;
+  
+    box-shadow:
+      0 0 0 1px rgba(0, 255, 163, 0.03),
+      0 12px 30px rgba(0, 0, 0, 0.6);
+  
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .document-header:hover,
+  .contribution-card:hover {
+    border-color: rgba(0, 255, 163, 0.18);
+    box-shadow:
+      0 0 20px rgba(0, 255, 163, 0.05),
+      0 16px 35px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* ============================================
+     Section Titles
+  ============================================ */
+  
+  .document-header h4,
+  .section-title {
+    margin-bottom: 1.25rem;
+  
+    font-size: 0.95rem;
     font-weight: 600;
-}
-
-.document-header {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  
+    color: #94a3b8;
   }
-
-label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    font-size: 0.8rem;
-    color: #9ca3af; /* gray-400 */
-}
-
-input {
-    padding: 0.5rem 0.6rem;
-    border-radius: 6px;
-    border: 1px solid #333;
-    background: #0b0b0b;
-    color: white;
-    font-size: 0.9rem;
-}
   
-input:focus {
-    outline: none;
-    border-color: #3b82f6; /* subtle blue focus */
-}
+  /* ============================================
+     Document Header Layout
+  ============================================ */
   
-.contribution-pane {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.contribution-grid {
+  .document-header {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.25rem;
-}
-
-.card-header {
+    gap: 1rem;
+  }
+  
+  /* ============================================
+     Form Elements
+  ============================================ */
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  
+    color: #94a3b8;
+  }
+  
+  input {
+    padding: 0.55rem 0.7rem;
+  
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 163, 0.12);
+  
+    background: #111827;
+    color: #f3f4f6;
+  
+    font-size: 0.9rem;
+  
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #00ffa3;
+    box-shadow: 0 0 0 3px rgba(0, 255, 163, 0.12);
+  }
+  
+  /* ============================================
+     Contribution Pane
+  ============================================ */
+  
+  .contribution-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .contribution-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* ============================================
+     Contribution Card Header
+  ============================================ */
+  
+  .card-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 1rem;
+  
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+  
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
   
-.donor-name {
+  .donor-name {
     font-weight: 600;
-    color: #e5e7eb; /* near-white */
-}
+    font-size: 0.95rem;
+    color: #e5e7eb;
+  }
   
-.amount {
+  .amount {
     font-weight: 700;
-    color: #4ade80; /* green accent */
-}
-
-.card-fields {
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+  
+    color: #00ffa3; /* consistent data accent */
+  }
+  
+  /* ============================================
+     Card Fields
+  ============================================ */
+  
+  .card-fields {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 1rem;
   }
   
-@media (min-width: 768px) {
+  /* ============================================
+     Responsive Layout
+  ============================================ */
+  
+  @media (min-width: 768px) {
+  
     .card-fields {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -93,24 +170,17 @@ input:focus {
     .card-fields label:last-child {
       grid-column: span 2;
     }
-}
   
-  
-  
-@media (min-width: 768px) {
     .contribution-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-}
   
-@media (min-width: 768px) {
     .document-header {
-        grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   
     .document-header label:last-child {
-        grid-column: span 2;
+      grid-column: span 2;
     }
-}
-
+  }
   

@@ -1,36 +1,139 @@
-#occupation-pie-chart-wrapper {
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    justify-content: center;
-    margin-top: 20px;
-  }
+/* =====================================
+   Donor Occupation Section
+   Dark Civic Tech – Data Transparency
+===================================== */
 
-#occupation-pie-chart{
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    height: 350px;
-    width: 350px;
+#occupation-pie-chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 2rem auto;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+
+  background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 163, 0.06);
+
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 163, 0.03),
+    0 10px 30px rgba(0, 0, 0, 0.55);
+
+  box-sizing: border-box;
 }
 
-#donor-occupation-table{
-    border-collapse: collapse;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin: 10px;
-    width: 100%;
-    max-width: 600px;
+/* Pie Chart Container */
+#occupation-pie-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 380px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2rem;
+
+  padding: 1rem;
+
+  background-color: #111827;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 163, 0.08);
+
+  transition: all 0.25s ease;
+}
+
+#occupation-pie-chart:hover {
+  border-color: rgba(0, 255, 163, 0.18);
+  box-shadow: 0 0 20px rgba(0, 255, 163, 0.08);
+}
+
+/* =====================================
+   Donor Occupation Table
+===================================== */
+
+#donor-occupation-table {
+  width: 100%;
+  max-width: 700px;
+  margin: 1rem auto;
+
+  border-collapse: collapse;
+  overflow: hidden;
+
+  background-color: #111827;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 163, 0.08);
+
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 163, 0.03),
+    0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Table Rows */
+#donor-occupation-table tr {
+  transition: background 0.2s ease;
+}
+
+#donor-occupation-table tr:hover {
+  background-color: rgba(0, 255, 163, 0.05);
+}
+
+/* Table Cells */
+#donor-occupation-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  font-size: 0.9rem;
+  color: #e6edf3;
+}
+
+/* Remove bottom border on last row */
+#donor-occupation-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Optional Header Styling (if you add <th>) */
+#donor-occupation-table th {
+  padding: 0.9rem 1rem;
+  text-align: left;
+
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  color: #94a3b8;
+  background-color: #0f172a;
+
+  border-bottom: 1px solid rgba(0, 255, 163, 0.12);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #occupation-pie-chart-wrapper {
+    padding: 1rem;
   }
-  
-  td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    color: white;
+
+  #occupation-pie-chart {
+    height: 340px;
+    max-width: 320px;
   }
-  
-  tr:last-child td {
-    border-bottom: none;
+
+  #donor-occupation-table {
+    font-size: 0.85rem;
   }
+}
+
+@media (max-width: 480px) {
+  #occupation-pie-chart {
+    height: 300px;
+    max-width: 280px;
+  }
+
+  #donor-occupation-table td {
+    padding: 0.7rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}

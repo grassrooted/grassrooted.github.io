@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { TabulatorFull as Tabulator } from "tabulator-tables";
 import 'tabulator-tables/dist/css/tabulator.min.css';
+import "./IndividualContributionsTable.css";
 import { CSVLink } from 'react-csv';
 
 function IndividualContributionsTable({ profile, selectedDateRange, contribution_data }) {
@@ -55,19 +56,9 @@ function IndividualContributionsTable({ profile, selectedDateRange, contribution
             columns: columns,
             renderHorizontal: "virtual",
             autoResize: true,
-            rowFormatter: (row) => {
-                const index = row.getPosition(true);
-                row.getElement().style.backgroundColor = index % 2 === 0 ? "#2c2c2c" : "#222";
-                row.getElement().style.color = "#fff";
-            },
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll(".tabulator .tabulator-header").forEach(header => {
-                header.style.backgroundColor = "#1a1a1a";
-                header.style.color = "white";
-            });
-        });
+
         
 
         return () => table.destroy();

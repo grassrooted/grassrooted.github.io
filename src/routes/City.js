@@ -114,7 +114,6 @@ function City() {
 
 
             
-            <StackedBarChartDonorSummary cityProfileData={cityProfileData} selectedDateRange={selectedDateRange} />
             <CumulativeContributionsTimeline cityProfileData={cityProfileData} selectedDateRange={selectedDateRange} />
 
             <PACFundingBarChart 

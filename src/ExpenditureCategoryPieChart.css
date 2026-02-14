@@ -1,22 +1,88 @@
+/* =====================================
+   Expenditure Category Section
+   Dark Civic Tech – Data Transparency
+===================================== */
+
 #expenditure-category-wrapper {
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  align-items: center;
   justify-content: center;
-  margin-top: 20px;
-  align-items: center; /* Center chart on wide screens */
-  overflow-x: hidden;   /* Prevent horizontal scroll just in case */
+
+  margin: 2rem auto;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+
+  background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 163, 0.06);
+
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 163, 0.03),
+    0 10px 30px rgba(0, 0, 0, 0.55);
+
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-  #expenditure-category-pie-chart {
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    justify-content: center;
-    margin-top: 20px;
-    padding: 5px;
-    height: 350px;
-    width: 100%;
-    max-width: 350px; /* This ensures it shrinks on small screens */
-    box-sizing: border-box;
+/* Pie Chart Container */
+#expenditure-category-pie-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 1.5rem;
+  padding: 1rem;
+
+  height: 380px;
+  width: 100%;
+  max-width: 400px;
+
+  background-color: #111827;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 163, 0.08);
+
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+/* Subtle interactive lift */
+#expenditure-category-pie-chart:hover {
+  border-color: rgba(0, 255, 163, 0.18);
+  box-shadow: 0 0 20px rgba(0, 255, 163, 0.08);
+}
+
+/* Optional Section Title */
+#expenditure-category-wrapper h2,
+#expenditure-category-wrapper h3 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #f3f4f6;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #expenditure-category-wrapper {
+    padding: 1rem;
   }
+
+  #expenditure-category-pie-chart {
+    height: 340px;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  #expenditure-category-wrapper {
+    padding: 0.75rem;
+    margin: 1.25rem auto;
+  }
+
+  #expenditure-category-pie-chart {
+    height: 300px;
+    max-width: 280px;
+    padding: 0.75rem;
+  }
+}

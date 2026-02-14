@@ -1,75 +1,104 @@
+/* =====================================
+   Sticky Filter / Dropdown Control
+   Dark Civic Tech – Data Transparency
+===================================== */
+
 /* Dropdown Container */
 .dropdown-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.75rem;
+
   position: sticky;
-  top: 15px;
-  z-index: 99; 
-  padding: 10px;
-  background-color: black;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Ensures it's full width on mobile */
-  box-sizing: border-box; /* Ensures padding is included in the width */
+  top: 20px;
+  z-index: 100;
+
+  padding: 1rem 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  background: rgba(13, 20, 32, 0.95);
+  backdrop-filter: blur(6px);
+
+  border: 1px solid rgba(0, 255, 163, 0.08);
+  border-radius: 12px;
+
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 163, 0.03),
+    0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Label */
+.dropdown-container label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.4px;
+  color: #cbd5e1;
+  text-transform: uppercase;
 }
 
 /* Dropdown */
 .dropdown {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  padding: 10px 15px;
-  width: 210px;
-  border: 2px solid #007BFF;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #333;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  font-size: 0.95rem;
+
+  padding: 0.65rem 0.9rem;
+  width: 220px;
+
+  background-color: #111827;
+  color: #f3f4f6;
+
+  border: 1px solid rgba(0, 255, 163, 0.15);
+  border-radius: 8px;
+
   cursor: pointer;
   appearance: none;
   outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
+
+  transition: all 0.25s ease;
 }
 
-/* Focus Effect for Dropdown */
+/* Hover State */
+.dropdown:hover {
+  border-color: rgba(0, 255, 163, 0.35);
+}
+
+/* Focus State – Data Accent Glow */
 .dropdown:focus {
-  border-color: #0056b3;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #00ffa3;
+  box-shadow: 0 0 0 3px rgba(0, 255, 163, 0.15);
 }
 
-/* Label for Dropdown */
-.dropdown-container label {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-/* Mobile-Specific Styles */
+/* Mobile Adjustments */
 @media (max-width: 768px) {
   .dropdown-container {
-      margin-top: 10px;
-      justify-content: flex-start; /* Align to the left for better readability */
+    justify-content: flex-start;
+    padding: 0.75rem 1rem;
   }
 
   .dropdown {
-      width: 100%; /* Make dropdown take up full width */
-      font-size: 14px; /* Slightly smaller font */
-      padding: 8px 12px; /* Reduced padding */
+    width: 100%;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   .dropdown-container {
-      padding: 8px; /* Reduced padding */
-      margin: 5px; /* Less margin for smaller devices */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
   }
 
   .dropdown {
-      width: 100%; /* Full width on mobile devices */
-      font-size: 14px; /* Slightly smaller text for better fit */
-      padding: 8px 12px; /* Reduced padding */
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.75rem;
   }
 
   .dropdown-container label {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 }

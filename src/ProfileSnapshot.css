@@ -1,69 +1,143 @@
+/* ==================================================
+   PROFILE MODULE – GRASSROOTED CIVIC SYSTEM
+================================================== */
+
+/* ==========================
+   Profile Headshot
+========================== */
+
 .profile-headshot {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
-    border-radius: 50%;
-    height: 240px;
-  }
+  display: block;
+  margin: 0 auto;
 
-  #profile-stream a{
-    text-decoration: none;
-  }
+  height: 240px;
+  width: 240px;
 
-  .profileSnapshot{
-      transition: all 0.2s ease;
-      border-radius: 5px;
-      margin: 5px;
-      align-items: center;
-      text-align: center;
-      border-color: white;
-      color: black;
-  }
+  object-fit: cover;
+  border-radius: 50%;
 
-  .profileSnapshot h1{
-    max-width: 300px;
-    margin: auto;
-    height: 100px;
-    padding-top: 10px;
-  }
+  border: 3px solid var(--border-subtle);
+  background-color: var(--bg-muted);
 
-  .profileSnapshot:hover {
-    border-radius: 5px;
-    border: 2px solid #eaeaea;
-    }
+  transition: transform 160ms ease,
+              border-color 160ms ease;
+}
 
-  .profileSnapshot p{
-    margin: 20px;
-  }
+.profile-headshot:hover {
+  transform: scale(1.02);
+  border-color: var(--accent-data);
+}
 
-  .profile-district-header{
-    color: #D7816A;
-    font-weight: 900;
-    font-size: 1.5rem;
-    margin-top: 2px;
+@media (max-width: 480px) {
+  .profile-headshot {
+    height: 180px;
+    width: 180px;
   }
+}
 
-  @media(max-width: 480px) {
-    .profile-headshot {
-        height: 180px;
-      }
-  }
+/* ==========================
+   Profile Stream Links
+========================== */
 
-  #first-election-wrapper{
-    background-color: #D7816A;
-    color: white;
-    padding: 3px;
-    border-radius: 8px;
-  }
+#profile-stream a {
+  text-decoration: none;
+  color: inherit;
+}
 
-  #next-election-wrapper{
-    background-color: #D7816A;
-    color: white;
-    padding: 3px;
-    border-radius: 8px;
-  }
+/* ==========================
+   Profile Snapshot Card
+========================== */
 
-  #first-election-wrapper h3, #next-election-wrapper h3 {
-    margin: auto;
-  }
+.profileSnapshot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  margin: 0.75rem;
+  padding: 1.5rem;
+
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+
+  background-color: var(--bg-panel);
+  color: var(--text-primary);
+
+  transition: transform 160ms ease,
+              border-color 160ms ease,
+              background-color 160ms ease;
+}
+
+.profileSnapshot:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-data);
+  background-color: var(--bg-muted);
+}
+
+.profileSnapshot h1 {
+  max-width: 320px;
+  margin: 0 auto 0.75rem auto;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.profileSnapshot p {
+  margin: 0.75rem 0;
+  color: var(--text-secondary);
+}
+
+/* ==========================
+   District Header
+========================== */
+
+.profile-district-header {
+  font-weight: 700;
+  font-size: 1.4rem;
+
+  color: var(--accent-data);
+  letter-spacing: 0.5px;
+
+  margin-top: 0.5rem;
+}
+
+/* ==========================
+   Election Info Panels
+========================== */
+
+/* Shared election panel style */
+.election-wrapper {
+  display: inline-block;
+
+  padding: 0.4rem 0.8rem;
+  margin-top: 0.5rem;
+
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+
+  background-color: var(--bg-muted);
+  color: var(--text-secondary);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  letter-spacing: 0.4px;
+}
+
+/* First election (historical context) */
+#first-election-wrapper {
+  border-left: 3px solid var(--accent-data);
+}
+
+/* Next election (forward-looking / risk indicator) */
+#next-election-wrapper {
+  border-left: 3px solid var(--accent-alert);
+}
+
+#first-election-wrapper h3,
+#next-election-wrapper h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}

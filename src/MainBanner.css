@@ -1,130 +1,277 @@
-.main-banner {
+/* ==================================================
+   GRASSROOTED.ORG – NAVIGATION (CIVIC TECH DARK)
+   Tone: Trustworthy • Analytical • Transparent
+================================================== */
+
+/* ==========================
+   Design System Variables
+========================== */
+:root {
+    --bg-header: #0B1622;
+    --bg-header-border: rgba(255, 255, 255, 0.06);
+    --bg-dropdown: #111F2E;
+    --bg-mobile-menu: #0E1C2A;
+  
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+  
+    --accent-data: #2A6DF4;        /* Trust blue */
+    --accent-alert: #BF2A2A;       /* Your highlight red */
+    --accent-hover-bg: rgba(42, 109, 244, 0.08);
+  
+    --radius: 6px;
+  
+    --space-xs: 0.4rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+  
+    --transition-fast: 160ms ease;
+  }
+  
+  /* ==========================
+     Header Banner
+  ========================== */
+  .main-banner {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding: 0 20px;
-    background-color: #F8F9FA;
+    justify-content: space-between;
+  
     height: 80px;
-    z-index: 11;
-    width: 100%;
-}
-
-#pages-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    gap: 20px;
-}
-
-.home-button {
+    padding: 0 var(--space-lg);
+  
+    background: var(--bg-header);
+    border-bottom: 1px solid var(--bg-header-border);
+  
+    backdrop-filter: blur(6px);
+  }
+  
+  /* ==========================
+     Logo / Brand
+  ========================== */
+  .home-button {
     display: flex;
     align-items: center;
     text-decoration: none;
-}
-
-.home-button-icon {
-    width: 250px;
-    height: 80px;
+  }
+  
+  .home-button-icon {
+    max-height: 60px;
+    max-width: 200px;
     object-fit: contain;
-}
-
-.hamburger-icon {
-    right: 0;
-    margin: 20px;
+  }
+  
+  /* Optional: subtle brand text style */
+  .brand-text {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-primary);
+  }
+  
+  /* ==========================
+     Navigation Layout
+  ========================== */
+  .nav-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+  
+  .main-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+  
+  /* ==========================
+     Menu Items
+  ========================== */
+  .menu-item {
+    position: relative;
+  
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  
+    color: var(--text-secondary);
+    text-decoration: none;
+  
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius);
+  
+    transition:
+      color var(--transition-fast),
+      background-color var(--transition-fast);
+  }
+  
+  /* Hover = subtle data highlight */
+  .menu-item:hover,
+  .menu-item:focus-visible {
+    color: var(--text-primary);
+    background-color: var(--accent-hover-bg);
+    outline: none;
+  }
+  
+  /* Active page indicator */
+  .menu-item.active::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-data);
+    border-radius: 2px;
+  }
+  
+  /* ==========================
+     Dropdown (Cities / Data Views)
+  ========================== */
+  .cities-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+  
+    display: none;
+    flex-direction: column;
+  
+    min-width: 200px;
+    padding: var(--space-xs) 0;
+  
+    background: var(--bg-dropdown);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+  
+    box-shadow:
+      0 12px 24px rgba(0, 0, 0, 0.35);
+  
+  }
+  
+  /* Accessible hover + keyboard */
+  .cities-dropdown:hover .dropdown-menu,
+  .cities-dropdown:focus-within .dropdown-menu {
+    display: flex;
+  }
+  
+  .dropdown-item {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.9rem;
+  
+    color: var(--text-secondary);
+    text-decoration: none;
+  
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+  
+  .dropdown-item:hover,
+  .dropdown-item:focus-visible {
+    background-color: rgba(42, 109, 244, 0.12);
+    color: var(--text-primary);
+    outline: none;
+  }
+  
+  /* ==========================
+     Hamburger Icon
+  ========================== */
+  .hamburger-icon {
     display: none;
     cursor: pointer;
-    color: #333;
-}
-
-.main-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.menu-item {
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
-    position: relative;
-}
-
-.menu-item:hover {
-    color: #007bff;
-}
-
-.cities-dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    display: flex;
-    top: 100%;
-    left: 0;
-    background-color: black;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    z-index: 10;
-    width: 150px;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    color: black;
-}
-
-.dropdown-item {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: left;
-    color: black;
-}
-
-.dropdown-item:hover {
-    background-color: #d3d3d3;
-}
-
-@media (max-width: 768px) {
-    .hamburger-icon {
-        display: block;
+    font-size: 1.6rem;
+    color: var(--text-primary);
+  }
+  
+/* ==========================
+   Desktop Navigation (Explicit)
+========================== */
+@media (min-width: 769px) {
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
     }
-
-    #pages-bar {
-        display: flex;
-        flex-direction: row;
-    }
-
+  
     .main-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 120px;
-        left: 0;
-        width: 100%;
-        background-color: black;
+      display: flex !important;          /* Force visible on desktop */
+      flex-direction: row;               /* Horizontal */
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--space-lg);
+      position: static;                  /* Remove mobile absolute positioning */
+      width: auto;
+      padding: 0;
+      background: transparent;
+      border: none;
     }
-
-    .main-menu.open {
-        display: flex;
-        top: 80px;
-        border-bottom: 1px solid rgba(54, 69, 79, 0.2);
-    }
-
+  
     .menu-item {
-        padding: 10px;
-        text-align: center;
-        width: 100%;
+      width: auto;                       /* Prevent full-width stacking */
     }
-
+  
     .dropdown-menu {
-        position: static;
-        box-shadow: none;
-        border: none;
-        background-color: transparent;
+      position: absolute;                /* Restore dropdown behavior */
     }
-}
+  }
+  
+
+  /* ==========================
+     Mobile Navigation
+  ========================== */
+  @media (max-width: 768px) {
+    .hamburger-icon {
+      display: block;
+    }
+  
+    .main-menu {
+      position: absolute;
+      top: 80px;
+      left: 0;
+  
+      width: 100%;
+      padding: var(--space-md);
+  
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-md);
+  
+      background: var(--bg-mobile-menu);
+      border-bottom: 1px solid var(--bg-header-border);
+  
+      display: none;
+    }
+  
+    .main-menu.open {
+      display: flex;
+    }
+  
+    .menu-item {
+      width: 100%;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+  
+    .menu-item:hover,
+    .menu-item:focus-visible {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+  
+    .dropdown-menu {
+      position: static;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding-left: var(--space-md);
+    }
+  }
+  
