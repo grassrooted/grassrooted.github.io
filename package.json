@@ -2,7 +2,7 @@
   "name": "dew",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://grassrooted.github.io/home",
+  "homepage": "https://grassrooted.org",
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
     "@react-google-maps/api": "^2.20.3",
