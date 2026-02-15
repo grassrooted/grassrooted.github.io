@@ -133,6 +133,7 @@
 /* Next election (forward-looking / risk indicator) */
 #next-election-wrapper {
   border-left: 3px solid var(--accent-alert);
+  margin-left: 4px;
 }
 
 #first-election-wrapper h3,
