@@ -78,14 +78,22 @@ const DonorVolunteerLineGraph = ({ expenditure_data }) => {
             }
         }
     };
+    const hasSufficientData = allDates.length > 2;
 
     return (
         <div className='section' id="donor-volunteer-line-container">
-            <h2>Donor vs Volunteer Spending</h2>
+          <h2>Donor vs Volunteer Spending</h2>
+      
+          {hasSufficientData ? (
             <div id="donor-volunteer-line-wrapper">
-                <Line data={chartData} options={options} />
+              <Line data={chartData} options={options} />
             </div>
+          ) : (
+            <div id="insufficient-data">
+              Insufficient data to establish a spending pattern.
+            </div>
+          )}
         </div>
-        );};
+      );};
 
 export default DonorVolunteerLineGraph;

@@ -65,7 +65,6 @@
 
   #expenditure-category-pie-chart {
     height: 340px;
-    max-width: 320px;
   }
 }
 
@@ -77,7 +76,6 @@
 
   #expenditure-category-pie-chart {
     height: 500px;
-    max-width: 280px;
     padding: 0.75rem;
     padding-top: 0;
   }
