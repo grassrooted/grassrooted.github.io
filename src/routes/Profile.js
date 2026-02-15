@@ -76,6 +76,19 @@ function Profile() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [mapMinimized, setMapMinimized] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -141,7 +154,11 @@ function Profile() {
     return (
         <div id="profile-page">
 
-            <div id="profile-content">
+            <div
+                id="profile-content"
+                className={mapMinimized && isMobile ? "full-height" : ""}
+                >
+
                 <ElectionCycleDropdown 
                     electionCycles={electionCycles} 
                     selectedDateRange={selectedDateRange} 
@@ -169,43 +186,37 @@ function Profile() {
                     contribution_data={profile.contributions}
                     expenditure_data={profile.expenditures}/>
 
-                <span className='side-by-side'>
-                    <AggregatedDataTable 
-                        profile={profile} 
-                        contribution_data={profile.contributions}
-                        selectedDateRange={selectedDateRange} />
+                <AggregatedDataTable 
+                    profile={profile} 
+                    contribution_data={profile.contributions}
+                    selectedDateRange={selectedDateRange} />
 
-                    <AggregatedExpendituresTable
-                        profile={profile}
-                        expenditure_data={profile.expenditures}
-                        selectedDateRange={selectedDateRange}/>
-                </span>
+                <AggregatedExpendituresTable
+                    profile={profile}
+                    expenditure_data={profile.expenditures}
+                    selectedDateRange={selectedDateRange}/>
 
                 <DonorVolunteerLineGraph
                     expenditure_data={profile.expenditures} />
 
-                <span className='side-by-side'>
-                    <ContributionPieChart
-                        profile={profile}
-                        contribution_data={profile.contributions}
-                        profiles={profiles} 
-                        selectedDateRange={selectedDateRange} />
+                <ContributionPieChart
+                    profile={profile}
+                    contribution_data={profile.contributions}
+                    profiles={profiles} 
+                    selectedDateRange={selectedDateRange} />
 
-                    <ExpendituresCategoryPieChart
-                        profile={profile}
-                        records={profile.expenditures} />
-                </span>
+                <ExpendituresCategoryPieChart
+                    profile={profile}
+                    records={profile.expenditures} />
 
-                <span className='side-by-side' id="text-data-box">
-                    <MembershipList 
-                        expenditure_data={profile.expenditures}/>
-                        
-                    <FoodExpenditureAnalysis
-                        expenditure_data={profile.expenditures} />
+                <MembershipList 
+                    expenditure_data={profile.expenditures}/>
+                    
+                <FoodExpenditureAnalysis
+                    expenditure_data={profile.expenditures} />
 
-                    <DonationList
-                        expenditure_data={profile.expenditures} />
-                </span>
+                <DonationList
+                    expenditure_data={profile.expenditures} />
 
                 <IndividualContributionsTable 
                     profile={profile} 
@@ -219,9 +230,22 @@ function Profile() {
 
             </div>
 
-            <div id="profile-map-container">
+            <div
+                id="profile-map-container"
+                className={mapMinimized && isMobile ? "minimized" : ""}
+                >
+                {isMobile && (
+                    <button
+                    id="map-toggle-btn"
+                    onClick={() => setMapMinimized(prev => !prev)}
+                    >
+                    {mapMinimized ? "Expand Map" : "Minimize Map"}
+                    </button>
+                )}
+
                 <HeatmapMap points={geocodedData2} />
             </div>
+
 
         </div>
     );

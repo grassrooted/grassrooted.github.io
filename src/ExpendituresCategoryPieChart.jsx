@@ -67,15 +67,11 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
 
     const options = {
     chart: {
-        height: null, // Auto height for responsiveness
-        width: null,  // Auto width for responsiveness
-        backgroundColor: "#000000",
-        spacing: [10, 10, 10, 10], // Consistent padding
-    },
-    title: {
-        text: "Top 5 Expense Categories and Vendors",
-        style: { color: "#ffffff", fontSize: "18px" }
-    },
+        backgroundColor: "transparent",
+        spacing: [0, 0, 0, 0],
+        margin: [0, 0, 0, 0],
+        },
+    title: {text: null},
     tooltip: {
         formatter: function () {
             return `<b>${this.point.name}</b>: $${this.value.toLocaleString()}`;
@@ -125,6 +121,9 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
     return (
         <div className="section" id="expenditure-category-wrapper">
             <div className="section" id="expenditure-category-pie-chart">
+                <div className="section-title">
+                    Top 5 Expense Categories and Vendors
+                </div>
                 <HighchartsReact highcharts={Highcharts} options={options} />
             </div>
         </div>
