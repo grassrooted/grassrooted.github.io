@@ -4,7 +4,6 @@ import { useOutletContext, useParams } from "react-router-dom";
 import ProfileStream from '../ProfileStream';
 import Header from '../Header';
 import { getCityProfiles } from "../Cities";
-import StackedBarChartDonorSummary from '../StackedBarChartDonorSummary';
 import ElectionCycleDropdown from '../ElectionCycleDropdown';
 import IndividualContributionsTable from '../IndividualContributionsTable';
 import CumulativeContributionsTimeline from '../CumulativeContributionsTimeline';
