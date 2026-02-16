@@ -3,6 +3,11 @@ import Highcharts from "highcharts";
 import HighchartsSunburst from "highcharts/modules/sunburst";
 import HighchartsReact from "highcharts-react-official";
 import './ExpenditureCategoryPieChart.css';
+import {
+    GRASSROOTED_VIZ_PALETTE,
+    GRASSROOTED_STATES
+  } from "./grassrootedVizTheme";
+  
 
 // Properly initialize the module
 if (typeof HighchartsSunburst === "function") {
@@ -10,14 +15,6 @@ if (typeof HighchartsSunburst === "function") {
 }
 
 const ExpendituresCategorySunburstChart = ({ records, profile }) => {
-    const civicCategoryColors = [
-        "#2F5D8A",
-        "#2C7A7B",
-        "#4B5C8A",
-        "#3E6C5A",
-        "#486C8C"
-      ];
-
     // Aggregate amounts by category
     const categoryTotals = records.reduce((acc, record) => {
         acc[record.Category] = (acc[record.Category] || 0) + Math.round(record.Amount);
@@ -39,7 +36,7 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
             parent: "root",
             name: category,
             value: amount,
-            color: civicCategoryColors[index % civicCategoryColors.length],
+            color: GRASSROOTED_VIZ_PALETTE[index % GRASSROOTED_VIZ_PALETTE.length],
         });
 
         // Aggregate records by Name within each category
@@ -86,9 +83,12 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
           borderColor: "#0b1220",
           states: {
             hover: {
-              brightness: 0.05,
+              brightness: GRASSROOTED_STATES.hoverBrightness
             },
-          },
+            inactive: {
+              opacity: GRASSROOTED_STATES.inactiveOpacity
+            }
+          }
         },
       },
     title: {text: null},
@@ -124,7 +124,7 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
             },
             {
               level: 2,
-              colorVariation: { key: "brightness", to: -0.25 },
+              colorVariation: { key: "brightness", to: -0.2 },
               dataLabels: {
                 color: "#cbd5e1",
                 style: {

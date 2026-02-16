@@ -2,6 +2,10 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import './DonorVolunteerLineGraph.css';
+import {
+    GRASSROOTED_VIZ_PALETTE,
+  } from "./grassrootedVizTheme";
+
 
 const DonorVolunteerLineGraph = ({ expenditure_data }) => {
     const filterAndAggregate = (keyword) => {
@@ -48,14 +52,14 @@ const DonorVolunteerLineGraph = ({ expenditure_data }) => {
                 label: 'Cumulative Donor Amount',
                 data: allDates.map(date => dateRecordMap.get(date)?.donor?.cumulativeSum || null),
                 fill: false,
-                borderColor: 'rgba(75,192,192,1)',
+                borderColor: GRASSROOTED_VIZ_PALETTE[1],
                 tension: 0.1
             },
             {
                 label: 'Cumulative Volunteer Amount',
                 data: allDates.map(date => dateRecordMap.get(date)?.volunteer?.cumulativeSum || null),
                 fill: false,
-                borderColor: 'rgba(255,99,132,1)',
+                borderColor: GRASSROOTED_VIZ_PALETTE[2],
                 tension: 0.1
             }
         ]

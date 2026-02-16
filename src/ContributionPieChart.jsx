@@ -2,6 +2,9 @@ import React, { useMemo } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import './ContributionPieChart.css';
+import {
+  GRASSROOTED_VIZ_PALETTE,
+} from "./grassrootedVizTheme";
 
 function ContributionPieChart({ profile, contribution_data, profiles, selectedDateRange }) {
     const filteredData = useMemo(() => {
@@ -58,14 +61,6 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
         return categoryTotals;
     }, [filteredData, profile, profiles]);
 
-    const civicPieColors = [
-        "#00FFA3", // Primary civic accent (small dollar)
-        "#3B82F6", // Institutional blue (large donor)
-        "#F59E0B", // Amber (PAC)
-        "#A78BFA", // Violet (self-funding)
-        "#F43F5E", // Controlled red (other candidates)
-        "#22D3EE", // Cyan (other)
-      ];
     const legend = [
         'Small Dollar (Individual Donations <$100)',
         `Large Dollar (Individual Donations of $${profile.individual_limit}+)`,
@@ -80,7 +75,7 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
     const pieChartData = legend.map((label, index) => ({
         name: label,
         y: categories[Object.keys(categories)[index]],
-        color: civicPieColors[index],
+        color: GRASSROOTED_VIZ_PALETTE[index],
     }));
 
     const options = {

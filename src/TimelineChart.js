@@ -2,6 +2,9 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import './TimelineChart.css';
+import {
+    GRASSROOTED_VIZ_PALETTE,
+  } from "./grassrootedVizTheme";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale);
 
@@ -31,20 +34,20 @@ function TimelineChart({ profile, contribution_data, expenditure_data }) {
             {
                 label: 'Cumulative Contributions ($)',
                 data: cumulativeContributions,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: GRASSROOTED_VIZ_PALETTE[0],
+                borderColor: GRASSROOTED_VIZ_PALETTE[0],
                 borderWidth: 1,
                 pointStyle: false,
-                fill: true
+                fill: false
             },
             {
                 label: 'Cumulative Expenditures ($)',
                 data: cumulativeExpenditures,
-                backgroundColor: 'rgba(192, 75, 75, 0.2)',
-                borderColor: 'rgba(192, 75, 75, 1)',
+                backgroundColor: GRASSROOTED_VIZ_PALETTE[4],
+                borderColor: GRASSROOTED_VIZ_PALETTE[4],
                 borderWidth: 1,
                 pointStyle: false,
-                fill: true
+                fill: false
             }
         ]
     };
