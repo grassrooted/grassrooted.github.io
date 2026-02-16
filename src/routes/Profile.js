@@ -5,8 +5,6 @@ import { getProfile, getProfiles } from '../Profiles';
 import TimelineChart from '../TimelineChart';
 import MembershipList from '../MembershipList';
 import Highlights from '../Highlights';
-import IndividualContributionsTable from '../IndividualContributionsTable';
-import IndividualExpendituresTable from '../IndividualExpendituresTable';
 import AggregatedDataTable from '../AggregatedDataTable';
 import AggregatedExpendituresTable from '../AggregatedExpendituresTable';
 import Header from '../Header';
@@ -19,6 +17,7 @@ import DonationList from '../DonationList';
 import DonorVolunteerLineGraph from '../DonorVolunteerLineGraph';
 import DonorOccupationPieChart from '../DonorOccupationPieChart';
 import HeatmapMap from '../HeatmapMap';
+import FinancialRecordsTable from '../FinancialRecordsTable';
 
 const aggregateDataByName = (data, profile) => {
     return data.reduce((acc, contribution) => {
@@ -205,16 +204,12 @@ function Profile() {
                 <DonationList
                     expenditure_data={profile.expenditures} />
 
-                <IndividualContributionsTable 
-                    profile={profile} 
+                <FinancialRecordsTable 
+                    profile={profile}
+                    selectedDateRange={selectedDateRange}
                     contribution_data={profile.contributions}
-                    selectedDateRange={selectedDateRange} />
-
-                <IndividualExpendituresTable 
-                    profile={profile} 
                     expenditure_data={profile.expenditures}
-                    selectedDateRange={selectedDateRange} />
-
+                    />
             </div>
 
             <div

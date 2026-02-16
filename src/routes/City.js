@@ -5,9 +5,9 @@ import ProfileStream from '../ProfileStream';
 import Header from '../Header';
 import { getCityProfiles } from "../Cities";
 import ElectionCycleDropdown from '../ElectionCycleDropdown';
-import IndividualContributionsTable from '../IndividualContributionsTable';
 import CumulativeContributionsTimeline from '../CumulativeContributionsTimeline';
 import PACFundingBarChart from '../PACFundingBarChart';
+import FinancialRecordsTable from '../FinancialRecordsTable';
 
 const generateElectionCycles = (profiles) => {
     const earliestFirstElection = Math.min(
@@ -93,6 +93,18 @@ function City() {
             : [];
     }, [cityProfileData]);
 
+    // Flatten expenditures
+    const allExpenditures = useMemo(() => {
+        return cityProfileData
+            ? cityProfileData.flatMap(profile =>
+                    profile.expenditures.map(expenditure => ({
+                        profileName: profile.name,
+                        ...expenditure,
+                    }))
+                )
+            : [];
+    }, [cityProfileData]);
+
     // Handle loading and error states
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -110,19 +122,23 @@ function City() {
                     setSelectedDateRange={setSelectedDateRange}
                 />
             </div>
-
-
             
-            <CumulativeContributionsTimeline cityProfileData={cityProfileData} selectedDateRange={selectedDateRange} />
+            <CumulativeContributionsTimeline
+                cityProfileData={cityProfileData}
+                selectedDateRange={selectedDateRange} />
 
             <PACFundingBarChart 
                 allContributions={allContributions} />
 
-            <ProfileStream cityId={cityId} cityProfileData={cityProfileData} />
-            <IndividualContributionsTable
+            <ProfileStream 
+                cityId={cityId}
+                cityProfileData={cityProfileData} />
+
+            <FinancialRecordsTable
                 profile={cityProfileData?.[0]}
-                contribution_data={allContributions}
                 selectedDateRange={selectedDateRange}
+                contribution_data={allContributions}
+                expenditure_data={allExpenditures}
             />
         </div>
     );

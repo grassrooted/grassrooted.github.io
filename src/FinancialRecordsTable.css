@@ -1,10 +1,10 @@
 /* ============================================
-   Individual Contributions – Data Ledger
+   financial records – Data Ledger
    Grassrooted Dark Civic Theme
 ============================================ */
 
 /* Outer Wrapper */
-#individual-contributions-wrapper {
+#financial-records-wrapper {
     margin: 2rem auto;
     padding: 1.75rem;
     max-width: 1200px;
@@ -22,25 +22,25 @@
   }
   
   /* Section Headings */
-  #individual-contributions-wrapper h1 {
+  #financial-records-wrapper h1 {
     font-size: 1.8rem;
     font-weight: 700;
     color: #f3f4f6;
     margin-bottom: 0.5rem;
   }
   
-  #individual-contributions-wrapper h4 {
+  #financial-records-wrapper h4 {
     font-size: 0.9rem;
     color: #94a3b8;
     margin-bottom: 1.25rem;
   }
   
-  #individual-contributions-wrapper i {
+  #financial-records-wrapper i {
     color: #9ca3af;
   }
   
   /* Download Button */
-  #individual-contributions-wrapper button {
+  #financial-records-wrapper button {
     align-self: flex-start;
   
     background: #111827;
@@ -57,7 +57,7 @@
     transition: all 0.2s ease;
   }
   
-  #individual-contributions-wrapper button:hover {
+  #financial-records-wrapper button:hover {
     border-color: #00ffa3;
     box-shadow: 0 0 0 3px rgba(0, 255, 163, 0.12);
   }
@@ -96,14 +96,19 @@
   
   /* Rows */
   .tabulator-row {
-    background-color: #111827;
+    background-color: #111827 !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     transition: background 0.15s ease;
   }
-  
-  .tabulator-row:nth-child(even) {
-    background-color: #0f1b2a;
+
+  .tabulator .tabulator-row {
+    background-color: #111 
   }
+
+  .tabulator .tabulator-row:nth-child(even) {
+    background-color: #0f1b2a !important;
+  }
+  
   
   .tabulator-row:hover {
     background-color: rgba(0, 255, 163, 0.05);
@@ -142,10 +147,38 @@
     border-color: #00ffa3;
     box-shadow: 0 0 0 2px rgba(0, 255, 163, 0.15);
   }
+
+  #financial-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  #financial-tabs button {
+    background: #111827;
+    color: #94a3b8;
+    border: 1px solid rgba(0, 255, 163, 0.15);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  #financial-tabs button.active {
+    background: rgba(0, 255, 163, 0.08);
+    border-color: #00ffa3;
+    color: #00ffa3;
+  }
+  
+  #financial-tabs button:hover {
+    border-color: #00ffa3;
+  }
+  
   
   /* Responsive */
   @media (max-width: 768px) {
-    #individual-contributions-wrapper {
+    #financial-records-wrapper {
       padding: 1rem;
     }
   
