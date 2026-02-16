@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div className="footer">
         <h1>
-            Texas Election Audits 
+            Grassrooted
         </h1>
         <p>
             est. 2025
