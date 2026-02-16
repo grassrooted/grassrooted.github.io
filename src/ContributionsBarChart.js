@@ -69,7 +69,7 @@ function ContributionsBarChart({ profile, selectedDateRange, contribution_data }
 
     return (
         <div className='section' id="contributions-chart-section">
-            <h1>Funding Breakdown</h1>
+            <h2>Funding Breakdown</h2>
             <h4><i>Showing data from {selectedDateRange.start.toLocaleDateString()} to {selectedDateRange.end.toLocaleDateString()}</i></h4>
             <div className="chart-container">
                 <Bar data={data} options={options} />

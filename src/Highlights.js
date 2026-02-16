@@ -80,7 +80,7 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
 
     return (
         <div className="section" id="highlights">
-            <h1>Highlights</h1>
+            <h2>Highlights</h2>
             <h4><i>Showing contributions from {selectedDateRange.start.toLocaleDateString()} to {selectedDateRange.end.toLocaleDateString()}</i></h4>
             <div className="box-container">
                 <div className="box-wrapper">

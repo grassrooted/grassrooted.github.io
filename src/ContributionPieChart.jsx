@@ -85,8 +85,7 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
             width: null,  // Auto width for responsiveness
         },
         title: {
-            text: 'Donor Summary',
-            style: { color: '#ffffff'}
+            text: null
         },
         tooltip: {
             formatter: function () {
@@ -130,6 +129,7 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
 
     return (
         <div className="section" id="contribution-pie-chart-wrapper">
+            <h2>Donor Summary</h2>
             <div id="funding-summary-pie-chart">
                 <HighchartsReact highcharts={Highcharts} options={options} />
             </div>

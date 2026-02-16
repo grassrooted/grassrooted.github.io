@@ -79,6 +79,7 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
     },
     series: [{
         type: "sunburst",
+        name: 'Data',
         data: sunburstData,
         allowDrillToNode: true,
         levels: [
@@ -120,10 +121,8 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
 
     return (
         <div className="section" id="expenditure-category-wrapper">
+            <h2>Top 5 Expense Categories & Vendors</h2>
             <div className="section" id="expenditure-category-pie-chart">
-                <div className="section-title">
-                    Top 5 Expense Categories and Vendors
-                </div>
                 <HighchartsReact highcharts={Highcharts} options={options} />
             </div>
         </div>

@@ -178,6 +178,12 @@ function Profile() {
                     contribution_data={profile.contributions}
                     selectedDateRange={selectedDateRange} />
 
+                <ContributionPieChart
+                    profile={profile}
+                    contribution_data={profile.contributions}
+                    profiles={profiles} 
+                    selectedDateRange={selectedDateRange} />
+
                 <AggregatedExpendituresTable
                     profile={profile}
                     expenditure_data={profile.expenditures}
@@ -185,12 +191,6 @@ function Profile() {
 
                 <DonorVolunteerLineGraph
                     expenditure_data={profile.expenditures} />
-
-                <ContributionPieChart
-                    profile={profile}
-                    contribution_data={profile.contributions}
-                    profiles={profiles} 
-                    selectedDateRange={selectedDateRange} />
 
                 <ExpendituresCategoryPieChart
                     profile={profile}

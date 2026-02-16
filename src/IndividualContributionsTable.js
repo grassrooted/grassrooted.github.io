@@ -32,11 +32,11 @@ function IndividualContributionsTable({ profile, selectedDateRange, contribution
         const tableData = Object.values(filteredData);
 
         const columns = [
-            { title: "Contributor", field: "Name", headerFilter: true },
+            { title: "Donor", field: "Name", headerFilter: true },
             { title: "Amount ($)", field: profile.contribution_fields.Amount, formatter: "money", headerFilter: true },
             { title: "Candidate", field: profile.contribution_fields.Recipient },
             {
-                title: "Transaction Date",
+                title: "Date",
                 field: profile.contribution_fields.Transaction_Date,
                 sorter: (a, b) => new Date(a) - new Date(b),
                 formatter: (cell) => {
@@ -72,7 +72,7 @@ function IndividualContributionsTable({ profile, selectedDateRange, contribution
 
     return (
         <div className='section'>
-            <h1>All Contributions</h1>
+            <h2>All Contributions</h2>
             <h4>
                 <i>Showing data from {selectedDateRange.start.toLocaleDateString()} to {selectedDateRange.end.toLocaleDateString()}</i>
             </h4>

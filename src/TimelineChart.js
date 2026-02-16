@@ -79,7 +79,7 @@ function TimelineChart({ profile, contribution_data, expenditure_data }) {
 
     return (
         <div className='section' id="timeline">
-            <h1>Cumulative Contributions vs Cumulative Expenditures</h1>
+            <h2>Cumulative Contributions vs Cumulative Expenditures</h2>
             <h4><i>Tracking cumulative totals over time.</i></h4>
             <div className="timeline-chart-container">
                 <Line data={data} options={options} />

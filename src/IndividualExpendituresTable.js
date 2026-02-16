@@ -36,7 +36,7 @@ function IndividualExpendituresTable({ profile, selectedDateRange, expenditure_d
             { title: "Category", field: "Category", headerFilter: true },
             { title: "Description", field: "Description", headerFilter: true },
             {
-                title: "Transaction Date",
+                title: "Date",
                 field: profile.contribution_fields.Transaction_Date,
                 sorter: (a, b) => new Date(a) - new Date(b),
                 formatter: (cell) => {
@@ -82,7 +82,7 @@ function IndividualExpendituresTable({ profile, selectedDateRange, expenditure_d
 
     return (
         <div className='section'>
-            <h1>All Expenditures</h1>
+            <h2>All Expenditures</h2>
             <h4>
                 <i>Showing data from {selectedDateRange.start.toLocaleDateString()} to {selectedDateRange.end.toLocaleDateString()}</i>
             </h4>

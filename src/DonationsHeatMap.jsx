@@ -94,7 +94,7 @@ function DonationsHeatMap({ city_config, contribution_data }) {
 
     return (
         <div className="section">
-            <h1>Donations Heatmap</h1>
+            <h2>Donations Heatmap</h2>
             <h4><i>Refers to all contribution data.</i></h4>
             <div ref={mapContainerRef} style={{ width: '100%', height: '500px' }} />
                 {errorCount > 0 && (
