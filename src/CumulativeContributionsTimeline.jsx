@@ -4,6 +4,17 @@ import 'chart.js/auto';
 import './CumulativeContributionsTimeline.css';
 
 function CumulativeContributionsTimeline({ cityProfileData, selectedDateRange }) {
+    const civicColorPalette = [
+        "#00FFA3", // primary accent green
+        "#3B82F6", // civic blue
+        "#F59E0B", // muted amber
+        "#A78BFA", // institutional violet
+        "#F43F5E", // restrained red
+        "#22D3EE", // cool cyan
+        "#84CC16", // analytical lime
+        "#FB7185", // soft rose
+      ];
+
     const chartData = useMemo(() => {
         const datasets = cityProfileData.map((profile, index) => {
             const contributions = profile.contributions || [];
@@ -30,10 +41,13 @@ function CumulativeContributionsTimeline({ cityProfileData, selectedDateRange })
             return {
                 label: profile.name,
                 data: cumulativeData,
-                borderColor: `hsl(${index * 60}, 70%, 50%)`,
-                backgroundColor: `hsla(${index * 60}, 70%, 50%, 0.2)`,
-                tension: 0.3,
-                fill: true,
+                borderColor: civicColorPalette[index % civicColorPalette.length],
+                backgroundColor: civicColorPalette[index % civicColorPalette.length] + "22", 
+                borderWidth: 3,
+                tension: 0.35,
+                fill: false,
+                pointRadius: 0,
+                pointHoverRadius: 4,
             };
         });
 
@@ -44,56 +58,73 @@ function CumulativeContributionsTimeline({ cityProfileData, selectedDateRange })
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
+      
+        interaction: {
+          mode: "index",
+          intersect: false,
+        },
+      
         plugins: {
-            legend: {
-                display: true,
-                position: 'bottom',  
-                labels: {
-                    usePointStyle: true,
-                },
+          legend: {
+            position: "bottom",
+            labels: {
+              color: "#cbd5e1",
+              usePointStyle: true,
+              pointStyle: "circle",
+              padding: 20,
             },
-            tooltip: {
-                callbacks: {
-                    label: context => {
-                        return `${context.dataset.label}: $${context.raw.y.toLocaleString()}`;
-                    },
-                },
+          },
+          tooltip: {
+            backgroundColor: "#0f172a",
+            borderColor: "rgba(0,255,163,0.3)",
+            borderWidth: 1,
+            titleColor: "#ffffff",
+            bodyColor: "#e6edf3",
+            callbacks: {
+              label: context =>
+                `${context.dataset.label}: $${context.raw.y.toLocaleString()}`,
             },
+          },
         },
+      
         scales: {
-            x: {
-                type: 'time',
-                time: {
-                    unit: 'month',
-                    tooltipFormat: 'MMM dd, yyyy',
-                },
-                title: {
-                    display: true,
-                    text: 'Date',
-                    color: '#555',
-                    font: {
-                        size: 14,
-                    },
-                },
-                grid: {
-                    color: '#e0e0e0',
-                },
+          x: {
+            type: "time",
+            time: {
+              unit: "month",
+              tooltipFormat: "MMM dd, yyyy",
             },
-            y: {
-                title: {
-                    display: true,
-                    text: 'Cumulative Contributions ($)',
-                    color: '#555',
-                    font: {
-                        size: 14,
-                    },
-                },
-                grid: {
-                    color: '#e0e0e0',
-                },
+            ticks: {
+              color: "#94a3b8",
             },
+            grid: {
+              color: "rgba(255,255,255,0.05)",
+            },
+            title: {
+              display: true,
+              text: "Date",
+              color: "#cbd5e1",
+            },
+          },
+      
+          y: {
+            ticks: {
+              color: "#94a3b8",
+              callback: value => "$" + value.toLocaleString(),
+            },
+            grid: {
+              color: "rgba(255,255,255,0.05)",
+            },
+            title: {
+              display: true,
+              text: "Cumulative Contributions ($)",
+              color: "#cbd5e1",
+            },
+          },
         },
-    };
+      };
+      
 
     return (
         <div id="timeline-graph-container">

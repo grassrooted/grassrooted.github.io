@@ -58,7 +58,14 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
         return categoryTotals;
     }, [filteredData, profile, profiles]);
 
-    const colors = ["#4E5D89", "#D7816A", "#ad6c6c", "#5C6B8A", "#A45C5C", "#8F8DA3", "#E3A87C"];
+    const civicPieColors = [
+        "#00FFA3", // Primary civic accent (small dollar)
+        "#3B82F6", // Institutional blue (large donor)
+        "#F59E0B", // Amber (PAC)
+        "#A78BFA", // Violet (self-funding)
+        "#F43F5E", // Controlled red (other candidates)
+        "#22D3EE", // Cyan (other)
+      ];
     const legend = [
         'Small Dollar (Individual Donations <$100)',
         `Large Dollar (Individual Donations of $${profile.individual_limit}+)`,
@@ -73,60 +80,85 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
     const pieChartData = legend.map((label, index) => ({
         name: label,
         y: categories[Object.keys(categories)[index]],
-        color: colors[index],
+        color: civicPieColors[index],
     }));
 
     const options = {
         chart: {
-            type: 'pie',
-            backgroundColor: 'transparent',
-            spacing: [10, 10, 10, 10],
-            height: null, // Auto height for responsiveness
-            width: null,  // Auto width for responsiveness
+          type: "pie",
+          backgroundColor: "transparent",
+          spacing: [10, 10, 10, 10],
         },
-        title: {
-            text: null
-        },
+      
+        title: { text: null },
+      
         tooltip: {
-            formatter: function () {
-                return `<b>${this.point.name}</b>: $${this.y.toLocaleString()} (${((this.y / totalAmount) * 100).toFixed(2)}%)`;
-            }
+          backgroundColor: "#0f172a",
+          borderColor: "rgba(0,255,163,0.3)",
+          borderWidth: 1,
+          style: { color: "#e6edf3" },
+          formatter: function () {
+            return `
+              <b>${this.point.name}</b><br/>
+              $${this.y.toLocaleString()} 
+              (${((this.y / totalAmount) * 100).toFixed(2)}%)
+            `;
+          },
         },
+      
         plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    inside: true,
-                    format: '{point.name}',
-                    color: 'black',
-                    style: { fontSize: '8px' }
-                }
-            }
+          pie: {
+            innerSize: "45%", // 👈 converts to donut (much cleaner)
+            borderColor: "#0b1220",
+            borderWidth: 2,
+            allowPointSelect: true,
+            cursor: "pointer",
+      
+            dataLabels: {
+              enabled: false, // 👈 remove tiny cluttered labels
+            },
+      
+            states: {
+              hover: {
+                brightness: 0.08,
+              },
+            },
+          },
         },
+      
         legend: {
-            itemStyle: { color: 'white', fontSize: '12px' },
-            align: 'center',
-            verticalAlign: 'bottom',
-            layout: 'horizontal'
+          align: "center",
+          verticalAlign: "bottom",
+          layout: "horizontal",
+          itemStyle: {
+            color: "#cbd5e1",
+            fontSize: "12px",
+            fontWeight: "500",
+          },
+          itemHoverStyle: {
+            color: "#ffffff",
+          },
         },
-        series: [{
-            name: 'Contributions',
-            data: pieChartData
-        }],
+      
+        series: [
+          {
+            name: "Contributions",
+            data: pieChartData,
+          },
+        ],
+      
         responsive: {
-            rules: [{
-                condition: { maxWidth: 480 },
-                chartOptions: {
-                    legend: { enabled: false }, // Hide legend on small screens
-                    plotOptions: {
-                        pie: { dataLabels: { enabled: false } } // Hide labels for smaller screens
-                    }
-                }
-            }]
-        }
-    };
-
+          rules: [
+            {
+              condition: { maxWidth: 480 },
+              chartOptions: {
+                legend: { enabled: false },
+              },
+            },
+          ],
+        },
+      };
+      
     return (
         <div className="section" id="contribution-pie-chart-wrapper">
             <h2>Donor Summary</h2>
