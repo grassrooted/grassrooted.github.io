@@ -25,7 +25,6 @@
     "jspdf": "^3.0.0",
     "leaflet": "^1.9.4",
     "leaflet-heatmap": "^1.0.0",
-    "luxon": "^3.5.0",
     "match-sorter": "^6.3.4",
     "pdfjs-dist": "^5.3.31",
     "react": "^18.3.1",

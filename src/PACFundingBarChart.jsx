@@ -36,17 +36,57 @@ const PACFundingBarChart = ({ allContributions }) => {
       {
         label: "Total PAC Contributions ($)",
         data: sortedRecipients.map(([_, amount]) => amount),
-        backgroundColor: "#4CAF50",
+        backgroundColor: "rgba(0, 255, 163, 0.8)",
+        borderRadius: 6,
+        barThickness: 18,
       },
     ],
   };
 
   return (
-    <div className="p-4 bg-gray-900 text-white rounded-xl shadow-lg" id="PACFundingBarChartWrapper">
-      <h2 className="text-xl font-bold mb-4">PAC Contributions by Recipient</h2>
+    <div id="PACFundingBarChartWrapper">
+      <h2>PAC Contributions by Recipient</h2>
       {sortedRecipients.length > 0 ? (
         <div className="chart-container">
-          <Bar data={chartData} options={{ responsive: true, maintainAspectRatio: false }} width="100%" />
+          <Bar 
+            data={chartData} 
+            options={{ 
+              responsive: true, 
+              maintainAspectRatio: false, 
+              indexAxis: "y", 
+              plugins: {
+                legend: {
+                  display: false, // cleaner look
+                },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      return `$${context.raw.toLocaleString()}`;
+                  },},
+                },
+              },
+              scales: {
+                x: {
+                  ticks: {
+                    color: "#e6edf3",
+                    callback: function (value) {
+                      return "$" + value.toLocaleString();
+                    },
+                  },
+                  grid: {
+                    color: "rgba(255,255,255,0.05)",
+                  },
+                },
+                y: {
+                  ticks: {
+                    color: "#e6edf3",
+                    autoSkip: false, // 👈 important for long lists
+                  },
+                  grid: {
+                    display: false,
+                  },
+                },
+              },}} width="100%" />
         </div>
       ) : (
         <p>No PAC contributions found.</p>
