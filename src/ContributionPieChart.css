@@ -1,21 +1,29 @@
 #contribution-pie-chart-wrapper {
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  padding: 10px;
+
   width: 100%;
+  margin: 2rem auto;
+  padding: 2rem;
+
+  background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
+  border: 1px solid rgba(0, 255, 163, 0.06);
+  border-radius: 12px;
+
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 163, 0.03),
+    0 10px 30px rgba(0, 0, 0, 0.6);
+
+  box-sizing: border-box;
 }
 
 #funding-summary-pie-chart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  height: 420px;
 }
+
 
 /* Mobile Styles */
 @media (max-width: 480px) {

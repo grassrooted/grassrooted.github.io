@@ -85,9 +85,9 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
 
     const options = {
         chart: {
-          type: "pie",
-          backgroundColor: "transparent",
-          spacing: [10, 10, 10, 10],
+            type: "pie",
+            backgroundColor: "transparent",
+            spacing: [10, 10, 10, 10],
         },
       
         title: { text: null },
@@ -140,12 +140,12 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
           },
         },
       
-        series: [
-          {
-            name: "Contributions",
-            data: pieChartData,
-          },
-        ],
+        series: [{
+                name: "Contributions",
+                data: pieChartData,
+                dataLabels: { enabled: false },
+                center: ['50%', '50%']
+        }],
       
         responsive: {
           rules: [
@@ -161,7 +161,7 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
       
     return (
         <div className="section" id="contribution-pie-chart-wrapper">
-            <h2>Donor Summary</h2>
+            <h2>Source of Contributions</h2>
             <div id="funding-summary-pie-chart">
                 <HighchartsReact highcharts={Highcharts} options={options} />
             </div>

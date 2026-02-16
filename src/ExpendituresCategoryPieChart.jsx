@@ -10,6 +10,14 @@ if (typeof HighchartsSunburst === "function") {
 }
 
 const ExpendituresCategorySunburstChart = ({ records, profile }) => {
+    const civicCategoryColors = [
+        "#2F5D8A",
+        "#2C7A7B",
+        "#4B5C8A",
+        "#3E6C5A",
+        "#486C8C"
+      ];
+
     // Aggregate amounts by category
     const categoryTotals = records.reduce((acc, record) => {
         acc[record.Category] = (acc[record.Category] || 0) + Math.round(record.Amount);
@@ -21,7 +29,7 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
 
     // Prepare Sunburst chart data
     let sunburstData = [
-        { id: "root", name: "Expenditures", color: "#ffffff" },
+        { id: "root", name: "Expenditures", color: "#0f172a" },
     ];
 
     topCategories.forEach(([category, amount], index) => {
@@ -31,7 +39,7 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
             parent: "root",
             name: category,
             value: amount,
-            color: ["#4E5D89", "#D7816A", "#7A3333", "#5C6B8A", "#A45C5C"][index],
+            color: civicCategoryColors[index % civicCategoryColors.length],
         });
 
         // Aggregate records by Name within each category
@@ -68,15 +76,34 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
     const options = {
     chart: {
         backgroundColor: "transparent",
-        spacing: [0, 0, 0, 0],
-        margin: [0, 0, 0, 0],
+        spacing: [10, 10, 10, 10],
+    },
+    plotOptions: {
+        sunburst: {
+          allowDrillToNode: true,
+          cursor: "pointer",
+          borderWidth: 2,
+          borderColor: "#0b1220",
+          states: {
+            hover: {
+              brightness: 0.05,
+            },
+          },
         },
+      },
     title: {text: null},
     tooltip: {
+        backgroundColor: "#0f172a",
+        borderColor: "rgba(0,255,163,0.3)",
+        borderWidth: 1,
+        style: { color: "#e6edf3" },
         formatter: function () {
-            return `<b>${this.point.name}</b>: $${this.value.toLocaleString()}`;
+          return `
+            <b>${this.point.name}</b><br/>
+            $${this.value.toLocaleString()}
+          `;
         }
-    },
+      },
     series: [{
         type: "sunburst",
         name: 'Data',
@@ -84,16 +111,29 @@ const ExpendituresCategorySunburstChart = ({ records, profile }) => {
         allowDrillToNode: true,
         levels: [
             {
-                level: 1,
-                colorByPoint: true,
-                dataLabels: { color: "#ffffff", style: { fontSize: "14px" } },
+              level: 1,
+              levelIsConstant: false,
+              dataLabels: {
+                color: "#ffffff",
+                style: {
+                  fontSize: "13px",
+                  fontWeight: "500",
+                  textOutline: "none",
+                },
+              },
             },
             {
-                level: 2,
-                colorVariation: { key: "brightness", to: -0.5 },
-                dataLabels: { color: "#ffffff", style: { fontSize: "12px" } },
+              level: 2,
+              colorVariation: { key: "brightness", to: -0.25 },
+              dataLabels: {
+                color: "#cbd5e1",
+                style: {
+                  fontSize: "11px",
+                  textOutline: "none",
+                },
+              },
             },
-        ],
+        ],          
     }],
     responsive: {
         rules: [{
