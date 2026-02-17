@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { TabulatorFull as Tabulator } from "tabulator-tables";
 import "tabulator-tables/dist/css/tabulator.min.css";
 import "./FinancialRecordsTable.css";
-import { CSVLink } from "react-csv";
 
 function FinancialRecordsTable({
     profile,
@@ -145,11 +144,6 @@ function FinancialRecordsTable({
         profile,
     ]);
 
-  const currentData =
-    activeTab === "contributions"
-      ? contribution_data
-      : expenditure_data;
-
   return (
     <div className="section" id="financial-records-wrapper">
       <h2>Financial Records</h2>
@@ -170,7 +164,7 @@ function FinancialRecordsTable({
           Expenditures
         </button>
       </div>
-      
+
       <div
         id="financial-records-table"
         style={{ height: "600px" }}
