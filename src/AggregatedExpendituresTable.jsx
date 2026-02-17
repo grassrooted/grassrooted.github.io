@@ -84,8 +84,7 @@ function AggregatedExpendituresTable({ profile, expenditure_data, selectedDateRa
 
     return (
         <div className='section'>
-            <h2>Top Expenditures</h2>
-            <h4><i>Showing data from {selectedDateRange.start.toLocaleDateString()} to {selectedDateRange.end.toLocaleDateString()}</i></h4>
+            <h2>Top 10 Expenditures from {selectedDateRange.start.toLocaleDateString("en-US",{year: "numeric"})} to {selectedDateRange.end.toLocaleDateString("en-US",{year: "numeric"})}</h2>
             <div id="aggregated-expenditures-table" style={style}></div>
             <h4><i>Expenditures made to the same person have been grouped together.</i></h4>
 

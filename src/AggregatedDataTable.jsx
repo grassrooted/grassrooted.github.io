@@ -84,8 +84,7 @@ function AggregatedDataTable({ profile, selectedDateRange, contribution_data }) 
 
     return (
         <div className='section'>
-            <h2>Top Contributors</h2>
-            <h4><i>Showing data from {selectedDateRange.start.toLocaleDateString()} to {selectedDateRange.end.toLocaleDateString()}</i></h4>
+            <h2>Top 10 Donors from {selectedDateRange.start.toLocaleDateString("en-US",{year: "numeric"})} to {selectedDateRange.end.toLocaleDateString("en-US",{year: "numeric"})}</h2>
             <div id="aggregated-contributions-table" style={style}></div>
             <h4><i>Contributions made by the same person have been grouped together.</i></h4>
 

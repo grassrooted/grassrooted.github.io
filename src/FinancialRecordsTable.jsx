@@ -80,30 +80,40 @@ function FinancialRecordsTable({
         }
 
         if (activeTab === "expenditures") {
-        const processed = preprocessExpenditureData(expenditure_data);
-        tableData = filterDataByDate(processed, "Transaction_Date");
+          const processed = preprocessExpenditureData(expenditure_data);
+          tableData = filterDataByDate(processed, "Transaction_Date");
 
-        columns = [
-            { 
-                title: "Vendor", 
-                field: "Name", 
-                headerFilter: true },
-            {
-                title: "Amount ($)",
-                field: "Amount",
-                formatter: "money",
-                headerFilter: true,
-            },
-            { 
-                title: "Category", 
-                field: "Category", 
-                headerFilter: true 
-            },
-            { 
-                title: "Description", 
-                field: "Description", 
-                headerFilter: true },
-            {
+          columns = [
+              { 
+                  title: "Vendor", 
+                  field: "Name", 
+                  headerFilter: true },
+              {
+                  title: "Amount ($)",
+                  field: "Amount",
+                  formatter: "money",
+                  headerFilter: true,
+              },
+              {
+                  title: "Candidate",
+                  field: "Recipient",
+              },
+              { 
+                  title: "Category", 
+                  field: "Category", 
+                  headerFilter: true 
+              },
+              { 
+                  title: "Description", 
+                  field: "Description", 
+                  headerFilter: true 
+              },
+              {
+                  title: "Transaction Type",
+                  field: "Transaction_Type",
+                  headerFilter: true
+              },
+              {
                 title: "Date",
                 field: "Transaction_Date",
                 sorter: (a, b) => {
@@ -113,18 +123,8 @@ function FinancialRecordsTable({
                   },
                 formatter: (cell) =>
                     cell.getValue()?.toLocaleDateString("en-US"),
-            },
-            {
-                title: "Transaction Type",
-                field: "Transaction_Type",
-                headerFilter: true
-            },
-            {
-                title: "Candidate",
-                field: "Recipient",
-            },
-        ];
-        }
+              }, 
+            ];}
 
         table = new Tabulator(tableElement, {
         data: tableData,

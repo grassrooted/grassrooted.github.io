@@ -11,7 +11,6 @@ import Header from '../Header';
 import ContributionPieChart from '../ContributionPieChart';
 import ElectionCycleDropdown from '../ElectionCycleDropdown';
 import '../index.css';
-import ExpendituresCategoryPieChart from '../ExpendituresCategoryPieChart';
 import FoodExpenditureAnalysis from '../FoodExpenditureAnalysis';
 import DonationList from '../DonationList';
 import DonorVolunteerLineGraph from '../DonorVolunteerLineGraph';
@@ -190,10 +189,6 @@ function Profile() {
 
                 <DonorVolunteerLineGraph
                     expenditure_data={profile.expenditures} />
-
-                <ExpendituresCategoryPieChart
-                    profile={profile}
-                    records={profile.expenditures} />
 
                 <MembershipList 
                     expenditure_data={profile.expenditures}/>
