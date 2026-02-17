@@ -170,14 +170,7 @@ function FinancialRecordsTable({
           Expenditures
         </button>
       </div>
-
-      <CSVLink
-        data={currentData}
-        filename={`${activeTab}_data.csv`}
-      >
-        <button>Download Data</button>
-      </CSVLink>
-
+      
       <div
         id="financial-records-table"
         style={{ height: "600px" }}
