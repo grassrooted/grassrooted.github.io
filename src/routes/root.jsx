@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import { getProfiles } from "../Profiles";
 import { getCities } from "../Cities";
 import MainBanner from "../MainBanner";
-import Footer from "../Footer";
 import React, { useEffect, useState } from 'react';
 import '../index.css';
 
