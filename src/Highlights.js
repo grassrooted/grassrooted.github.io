@@ -46,7 +46,7 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
             const transactionDate = new Date(record[profile.contribution_fields.Transaction_Date]);
             return transactionDate >= start && transactionDate <= end;
         });
-    }, [expenditure_data, profile, selectedDateRange]);
+    }, [expenditure_data, profile, selectedDateRange, contribution_data]);
 
     let total_contributions = 0
     contributions.forEach(record => {

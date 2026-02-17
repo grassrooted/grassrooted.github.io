@@ -4,18 +4,17 @@ import 'chart.js/auto';
 import './CumulativeContributionsTimeline.css';
 
 function CumulativeContributionsTimeline({ cityProfileData, selectedDateRange }) {
-    const civicColorPalette = [
-        "#00FFA3", // primary accent green
-        "#3B82F6", // civic blue
-        "#F59E0B", // muted amber
-        "#A78BFA", // institutional violet
-        "#F43F5E", // restrained red
-        "#22D3EE", // cool cyan
-        "#84CC16", // analytical lime
-        "#FB7185", // soft rose
-      ];
-
     const chartData = useMemo(() => {
+        const civicColorPalette = [
+          "#00FFA3", // primary accent green
+          "#3B82F6", // civic blue
+          "#F59E0B", // muted amber
+          "#A78BFA", // institutional violet
+          "#F43F5E", // restrained red
+          "#22D3EE", // cool cyan
+          "#84CC16", // analytical lime
+          "#FB7185", // soft rose
+        ];
         const datasets = cityProfileData.map((profile, index) => {
             const contributions = profile.contributions || [];
             const filteredContributions = selectedDateRange === 'all'
