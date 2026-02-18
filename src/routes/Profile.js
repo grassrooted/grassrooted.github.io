@@ -149,8 +149,8 @@ function Profile() {
                     selectedDateRange={selectedDateRange} 
                     setSelectedDateRange={setSelectedDateRange} />
                 <Header 
-                city={profile.city} 
-                profile={profile} />
+                    city={profile.city} 
+                    profile={profile} />
 
                 <ProfileSnapshot 
                     profile={profile} />
