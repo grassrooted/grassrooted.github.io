@@ -7,7 +7,7 @@ const PACFundingBarChart = ({ allContributions }) => {
   // Filter contributions that come from donors with "PAC" in their name
   const pacContributions = useMemo(() => {
     return allContributions.filter((contribution) =>
-      contribution.Name.toLowerCase().includes("pac")
+      contribution.Name.toLowerCase().includes("pac") || contribution.Name.toLowerCase().includes("committee")
     );
   }, [allContributions]);
 

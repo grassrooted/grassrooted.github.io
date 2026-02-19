@@ -35,19 +35,19 @@ function ContributionPieChart({ profile, contribution_data, profiles, selectedDa
 
         filteredData.forEach((contribution) => {
             const amount = contribution[profile.contribution_fields.Amount];
-            const donorName = contribution[profile.contribution_fields.Donor].toLowerCase();
+            const donorName = contribution[profile.contribution_fields.Donor].toUpperCase();
             const donorNameParts = donorName.split(",");
             const donorLastName = donorNameParts[0]?.trim();
             const donorFirstName = donorNameParts[1]?.trim();
-            const formattedDonorName = `${donorFirstName} ${donorLastName}`.toLowerCase();
+            const formattedDonorName = `${donorFirstName} ${donorLastName}`.toUpperCase();
 
             if (donorName === candidateName || formattedDonorName === candidateName) {
                 categoryTotals.selfFunding += amount;
             } else if (otherCandidateNames.includes(donorName) || otherCandidateNames.includes(formattedDonorName)) {
                 categoryTotals.otherCandidates += amount;
-            } else if (donorName.includes("pac") || donorName.includes("committee")) {
+            } else if (donorName.includes("PAC") || donorName.includes("COMMITTEE")) {
                 categoryTotals.pac += amount;
-            } else if (donorName.toUpperCase().includes("TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS") || donorName.toUpperCase().includes("TOTAL OFFICEHOLDER CONTRIBUTIONS OF $50 OR LESS")) {
+            } else if (donorName.includes("TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS") || donorName.toUpperCase().includes("TOTAL OFFICEHOLDER CONTRIBUTIONS OF $50 OR LESS")) {
                 categoryTotals.smallDollar += amount;
             } else if (amount < smallDollarLimit) {
                 categoryTotals.smallDollar += amount;
