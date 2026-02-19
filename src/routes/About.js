@@ -3,66 +3,113 @@ import '../About.css'
 function About() {
     return (
         <div className='about-detail'>
-            <h1>About</h1>
+            <h1>About Grassrooted</h1>
 
             <div className='about-section'>
-                <h3>
-                    Why Campaign Finance Transparency Matters
-                </h3>
+                <h3>Our Mission</h3>
                 <p>
-                    Campaign finance transparency is the cornerstone of a healthy democracy. It ensures voters know who is funding the campaigns that influence local policies, from city council decisions to school board budgets. By shedding light on the sources of financial support, we empower citizens to make informed decisions and hold candidates accountable. Local elections often have an outsized impact on everyday life, and understanding the money behind them is essential for fostering trust and integrity in the electoral process.
+                    Grassrooted is a city-level campaign finance transparency platform designed to transform municipal disclosure records into structured, accessible, and comparable civic data.
+                </p>
+                <p>
+                    Our mission is to lower the barrier to understanding local campaign finance while enabling journalists, researchers, and residents to identify funding patterns, financial concentration trends, and policy threshold exceedances within municipal elections.
+                </p>
+                <p className="emphasis">
+                    Grassrooted does not publish accusations. It publishes structured comparisons.
                 </p>
             </div>
 
             <div className='about-section'>
-                <h3>
-                    Methodology
-                </h3>
+                <h3>The Problem</h3>
                 <p>
-                    Our platform aggregates and organizes publicly available campaign finance data from city and state databases across Texas. We use automated tools to collect, validate, and standardize contributions data for clarity and accuracy. Visualizations, charts, and filters are designed to make complex information accessible to all users. Our methodology prioritizes transparency, ensuring every data point can be traced back to its source, so users can explore the facts confidently.
+                    Campaign finance records for city elections are public. However, in practice, they are fragmented across filings, inconsistently formatted, difficult to aggregate, and rarely compared across candidates.
+                </p>
+                <p>
+                    While national platforms such as OpenSecrets provide high-quality federal and state-level transparency infrastructure, comparable tools rarely exist at the municipal level.
+                </p>
+                <p>
+                    City councils shape zoning, housing, infrastructure, development, and public safety policy. Yet systematic, structured, and continuously updated analysis of city-level campaign finance remains limited. Grassrooted exists to fill that gap.
                 </p>
             </div>
 
             <div className='about-section'>
-                <h3>
-                    Who We Are
-                </h3>
+                <h3>What Makes Grassrooted Different</h3>
+                <ul>
+                    <li>PAC contribution comparisons</li>
+                    <li>Vendor aggregation and top-vendor comparisons</li>
+                    <li>Donor aggregation and average contribution analysis</li>
+                    <li>Detection of contribution threshold exceedances</li>
+                    <li>Geographic concentration mapping</li>
+                    <li>External (non-district) funding flow analysis</li>
+                    <li>Volunteer vs. donor expenditure comparisons</li>
+                    <li>Self-reimbursement pattern visibility</li>
+                </ul>
                 <p>
-                    We are a team of journalists, data analysts, and technologists dedicated to promoting transparency and accountability in local elections. Passionate about civic engagement, we created this platform to bridge the gap between voters and the financial dynamics of local campaigns. Our mission is to provide an unbiased, user-friendly resource that empowers Texans to understand how campaign contributions shape their communities.
+                    Each candidate is evaluated using identical metrics and standardized methodology. Grassrooted does not rank candidates by ideology or endorsement.
                 </p>
             </div>
 
             <div className='about-section'>
-                <h3>
-                    How It Works
-                </h3>
+                <h3>Methodology & Data Integrity</h3>
                 <p>
-                    Our website is powered by a robust system that collects data directly from government campaign finance databases. Contributions are categorized and displayed alongside key candidate information, such as donor types, contribution amounts, and funding trends. With search tools, interactive visualizations, and downloadable datasets, users can easily explore the financial landscape of local elections. Everything is updated regularly to ensure accuracy and relevance.
+                    All data published on Grassrooted originates from official municipal campaign finance disclosures across Texas.
+                </p>
+                <p>
+                    Our process includes structured data normalization, donor and vendor aggregation, calculation of policy threshold exceedances based on published limits, and standardized visual comparisons across candidates.
+                </p>
+                <p>
+                    Our methodology is publicly documented. If errors are identified in data processing or interpretation, corrections are issued and revisions are documented.
                 </p>
             </div>
 
             <div className='about-section'>
-                <h3>
-                    What Kind of Data Can I Find?
-                </h3>
+                <h3>On Threshold Exceedances & Financial Patterns</h3>
                 <p>
-                    Itemized contributions and expenditure data. For cities in Texas, that means Schedule A1 and F1.
+                    Grassrooted highlights statistical outliers, funding concentration patterns, and contribution amounts that exceed stated policy thresholds.
+                </p>
+                <p>
+                    Interpretation remains the responsibility of journalists, researchers, and readers. Legally compliant high-dollar campaigns are not penalized or labeled negatively. The platform distinguishes between lawful fundraising levels and measurable financial concentration patterns.
                 </p>
             </div>
 
             <div className='about-section'>
-                <h3>
-                    Commitment to Nonpartisanship
-                </h3>
+                <h3>Financial Concentration & Representation</h3>
                 <p>
-                    We are committed to maintaining a neutral and unbiased platform. Our goal is to provide factual information about campaign finance without endorsing any candidate, political party, or agenda. By focusing solely on transparency, we aim to serve all Texans, regardless of their political views, as they navigate their local elections. The integrity of our data and our dedication to objectivity guide everything we do.
+                    Grassrooted documents measurable financial dynamics such as concentration of donor wealth, geographic clustering of contributions, and external funding inflows.
+                </p>
+                <p>
+                    These metrics are presented to support informed evaluation of how campaign finance structures align with broad community participation.
+                </p>
+            </div>
+
+            <div className='about-section'>
+                <h3>Privacy & Data Use</h3>
+                <p>
+                    Grassrooted uses only information contained within official public campaign finance filings. No additional personal profiling is conducted.
+                </p>
+            </div>
+
+            <div className='about-section'>
+                <h3>Primary Audience</h3>
+                <p>
+                    Grassrooted is built primarily to support local journalists, investigative reporters, and policy researchers. Secondarily, it serves curious voters and civic observers seeking structured visibility into municipal elections.
+                </p>
+            </div>
+
+            <div className='about-section'>
+                <h3>Institutional Vision</h3>
+                <p>
+                    Grassrooted is being developed as sustainable civic infrastructure for municipal transparency. Long-term goals include expanding across additional Texas municipalities, supporting data-driven journalism, and maintaining open, reviewable analytical standards.
+                </p>
+            </div>
+
+            <div className='about-section'>
+                <h3>Commitment to Nonpartisanship</h3>
+                <p>
+                    Grassrooted does not endorse candidates, political parties, or policy positions. All candidates are evaluated using identical metrics. The platform is committed to neutrality, transparency, and methodological consistency.
                 </p>
             </div>
         </div>
     );
 }
-  
-  export default About;
-  
-  
-  
+
+export default About;
