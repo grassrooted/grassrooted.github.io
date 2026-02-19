@@ -85,6 +85,10 @@ function MainBanner({ cities, profiles }) {
                         About
                     </NavLink>
 
+                    <NavLink to="/methodology" className="menu-item" onClick={() => setMenuOpen(false)}>
+                        Methodology
+                    </NavLink>
+
                 <SearchBar profiles={profiles} />
             </nav>
         </div>

@@ -1,8 +1,75 @@
 import '../About.css'
+import { Helmet } from "react-helmet";
 
 function About() {
     return (
         <div className='about-detail'>
+            <Helmet>
+                <title>Municipal Campaign Finance Transparency | Grassrooted</title>
+
+                <meta 
+                    name="description" 
+                    content="Grassrooted is a municipal campaign finance transparency platform serving Dallas, Austin, and San Antonio. Analyze city council fundraising, PAC contributions, donor concentration, and campaign contribution limits with structured civic data." 
+                />
+
+                <meta 
+                    name="keywords" 
+                    content="municipal campaign finance, city council campaign finance, Texas campaign finance transparency, Dallas campaign finance, Austin campaign finance, San Antonio campaign finance, PAC contributions, campaign contribution limits, municipal elections data, civic transparency platform" 
+                />
+
+                <meta name="author" content="Grassrooted" />
+
+                {/* Open Graph for Facebook / LinkedIn */}
+                <meta property="og:title" content="Municipal Campaign Finance Transparency | Grassrooted" />
+                <meta 
+                    property="og:description" 
+                    content="Structured campaign finance transparency for Dallas, Austin, and San Antonio city council elections." 
+                />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://www.grassrootedtx.com/about" />
+                <meta property="og:site_name" content="Grassrooted" />
+
+                {/* Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Municipal Campaign Finance Transparency | Grassrooted" />
+                <meta 
+                    name="twitter:description" 
+                    content="Analyze municipal campaign finance data, PAC contributions, and city council fundraising patterns across Texas cities." 
+                />
+
+                {/* Canonical URL */}
+                <link rel="canonical" href="https://www.grassrootedtx.com/about" />
+
+                {/* Structured Data (JSON-LD) */}
+                <script type="application/ld+json">
+                    {`
+                    {
+                      "@context": "https://schema.org",
+                      "@type": "Organization",
+                      "name": "Grassrooted",
+                      "url": "https://www.grassrootedtx.com",
+                      "description": "Grassrooted is a municipal campaign finance transparency platform providing structured analysis of city council campaign finance data in Texas.",
+                      "areaServed": [
+                        {
+                          "@type": "AdministrativeArea",
+                          "name": "Dallas, Texas"
+                        },
+                        {
+                          "@type": "AdministrativeArea",
+                          "name": "Austin, Texas"
+                        },
+                        {
+                          "@type": "AdministrativeArea",
+                          "name": "San Antonio, Texas"
+                        }
+                      ],
+                      "foundingDate": "2025",
+                      "sameAs": []
+                    }
+                    `}
+                </script>
+
+            </Helmet>
             <h1>About Grassrooted</h1>
             <h2>Municipal Campaign Finance Transparency</h2>
 

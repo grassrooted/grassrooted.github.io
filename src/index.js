@@ -10,6 +10,7 @@ import About from './routes/About';
 import Root from './routes/root';
 import Profile from './routes/Profile';
 import Upload from './routes/Upload';
+import Methodology from './routes/Methodology';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -24,6 +25,7 @@ root.render(
           </Route>
           <Route path="about" element={<About />} />
           <Route path="upload" element={<Upload />} />
+          <Route path="methodology" element={<Methodology />} />
         </Route>
       </Routes>
     </HashRouter>
