@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
 import uuid
-
+from utils.geocode_dataset import geocode_dataset
 from pdfParser import parse_single_pdf
 
 app = FastAPI()
@@ -28,8 +28,10 @@ async def extract_pdf(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, buffer)
 
     try:
-        result = parse_single_pdf(file_path)
+        parsed = parse_single_pdf(file_path)
+        geocoded = geocode_dataset(parsed)
+
     finally:
         os.remove(file_path)
 
-    return result
+    return geocoded
