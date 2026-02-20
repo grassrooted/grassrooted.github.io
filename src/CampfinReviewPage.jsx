@@ -11,6 +11,11 @@ function hydrateFormState(parsedData) {
     ...c
   }));
 
+  const expendituresWithIds = (parsedData.expenditures || []).map((e) => ({
+    record_id: uuidv4(),
+    ...e
+  }));
+
   return {
     candidate_info: {
       first_name: parsedData.candidate_info.first_name || "",
@@ -19,7 +24,8 @@ function hydrateFormState(parsedData) {
       period_start: parsedData.candidate_info.period_start || "",
       period_end: parsedData.candidate_info.period_end || ""
     },
-    contributions: contributionsWithIds
+    contributions: contributionsWithIds,
+    expenditures: expendituresWithIds
   };
 }
 
@@ -41,6 +47,12 @@ function CampaignReviewPage({ parsedData }) {
       <ExtractedContributionPane  
         extractedContributions={extractedData.contributions}
         formContributions={formState.contributions}
+        setFormState={setFormState}
+      />
+
+      <ExtractedExpenditurePane  
+        extractedExpenditures={extractedData.expenditures}
+        formExpenditures={formState.expenditures}
         setFormState={setFormState}
       />
 
