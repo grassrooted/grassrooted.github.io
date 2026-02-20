@@ -13,7 +13,7 @@ const ExtractedContributionPane = ({
         <div className="contribution-grid">
           {formContributions.map((record, index) => (
             <ExtractedContributionRecord
-              key={record.id}
+              key={record.record_id}
               record={record}
               extractedRecord={extractedContributions[index]}
               index={index}
