@@ -6,11 +6,8 @@ const DownloadVerifiedDataset = ({
   parseVersion = "v1.0.0"
 }) => {
 
-  const generateEditLog = (originalRecords, editedRecords) => {
+  const generateEditLog = (originalRecords, editedRecords, recordType) => {
     const editLog = [];
-
-    console.log(originalRecords)
-    console.log(editedRecords)
 
     const originalMap = new Map(
       originalRecords.map(r => [r.record_id, r])
@@ -27,10 +24,11 @@ const DownloadVerifiedDataset = ({
         const originalValue = original[field] ?? null;
         const updatedValue = record[field] ?? null;
 
-        // On diff -> push an edit log with record UUID as breadcrumb
+        // On diff -> push an edit log with deterministic record ID as breadcrumb
         if (String(originalValue) !== String(updatedValue)) {
           editLog.push({
             record_id: record.record_id,
+            record_type: recordType,
             field,
             original_value: originalValue,
             updated_value: updatedValue,
@@ -49,14 +47,29 @@ const DownloadVerifiedDataset = ({
     const data = encoder.encode(JSON.stringify(dataset));
     const hashBuffer = await crypto.subtle.digest("SHA-256", data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    return hashArray
+      .map(b => b.toString(16).padStart(2, "0"))
+      .join("");
   };
 
   const handleDownload = async () => {
-    const edit_log = generateEditLog(
+
+    const contributionEdits = generateEditLog(
       extractedData.contributions,
-      formState.contributions
+      formState.contributions,
+      "contribution"
     );
+
+    const expenditureEdits = generateEditLog(
+      extractedData.expenditures || [],
+      formState.expenditures || [],
+      "expenditure"
+    );
+
+    const edit_log = [
+      ...contributionEdits,
+      ...expenditureEdits
+    ];
 
     const verification_timestamp = new Date().toISOString();
 
@@ -64,9 +77,13 @@ const DownloadVerifiedDataset = ({
       metadata: {
         verification_timestamp,
         parse_version: parseVersion,
-        total_records: formState.contributions.length
+        total_contributions: formState.contributions.length,
+        total_expenditures: formState.expenditures?.length || 0,
+        total_edits: edit_log.length
       },
+      candidate_info: formState.candidate_info,
       contributions: formState.contributions,
+      expenditures: formState.expenditures || [],
       edit_log
     };
 
@@ -82,7 +99,7 @@ const DownloadVerifiedDataset = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "verified_contributions_dataset.json";
+    a.download = "verified_campaign_dataset.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

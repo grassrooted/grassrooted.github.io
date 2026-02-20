@@ -1,19 +1,20 @@
 import { useState } from "react";
 import CampaignDetail from "./CampaignDetail";
 import ExtractedContributionPane from "./ExtractedContributionPane";
+import ExtractedExpenditurePane from "./ExtractedExpenditurePane";
 import DownloadVerifiedDataset from "./DownloadVerifiedDataset";
 import "./CampfinReviewPage.css";
-import { v4 as uuidv4 } from "uuid";
+import { generateRecordId } from "./utils/generateRecordId";
 
 function hydrateFormState(parsedData) {
   const contributionsWithIds = parsedData.contributions.map((c) => ({
-    record_id: uuidv4(),
-    ...c
+    ...c,
+    record_id: generateRecordId(c, "contribution")
   }));
 
   const expendituresWithIds = (parsedData.expenditures || []).map((e) => ({
-    record_id: uuidv4(),
-    ...e
+    ...e,
+    record_id: generateRecordId(e, "expenditure")
   }));
 
   return {
@@ -28,7 +29,6 @@ function hydrateFormState(parsedData) {
     expenditures: expendituresWithIds
   };
 }
-
 
 function CampaignReviewPage({ parsedData }) {
   const hydratedData = hydrateFormState(parsedData);
