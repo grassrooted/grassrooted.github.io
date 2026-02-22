@@ -1,58 +1,15 @@
-import React, { useMemo } from "react";
+import React from "react";
 import "./TotalsValidationPanel.css";
 
-function parseCurrency(value) {
-  if (!value) return 0;
-
-  // Remove $ , spaces etc
-  const cleaned = String(value).replace(/[^0-9.-]+/g, "");
-  return parseFloat(cleaned) || 0;
-}
-
 const TotalsValidationPanel = ({
-  reportTotals,
-  contributions,
-  expenditures,
-}) => {
-  const {
-    calculatedContributionTotal,
-    calculatedExpenditureTotal,
-    reportedContributionTotal,
-    reportedExpenditureTotal,
-    contributionsMatch,
-    expendituresMatch
-  } = useMemo(() => {
-    const reportedContributionTotal = parseCurrency(
-      reportTotals?.[
-        "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)"
-      ]
-    );
-
-    const reportedExpenditureTotal = parseCurrency(
-      reportTotals?.["TOTAL POLITICAL EXPENDITURES"]
-    );
-
-    const calculatedContributionTotal = contributions.reduce(
-      (sum, c) => sum + parseCurrency(c.Amount),
-      0
-    );
-
-    const calculatedExpenditureTotal = expenditures.reduce(
-      (sum, e) => sum + parseCurrency(e.Amount),
-      0
-    );
-
-    return {
-      reportedContributionTotal,
-      reportedExpenditureTotal,
-      calculatedContributionTotal,
-      calculatedExpenditureTotal,
-      contributionsMatch:
-        reportedContributionTotal === calculatedContributionTotal,
-      expendituresMatch:
-        reportedExpenditureTotal === calculatedExpenditureTotal
-    };
-  }, [reportTotals, contributions, expenditures]);
+  contributionSum,
+  expenditureSum,
+  officialContributionTotal,
+  officialExpenditureTotal
+  }) => {
+  const nearlyEqual = (a, b) => Math.abs(a - b) < 0.01;
+  const contributionsMatch = nearlyEqual(officialContributionTotal, contributionSum)
+  const expendituresMatch = nearlyEqual(officialExpenditureTotal, expenditureSum)
 
   return (
     <div className="totals-panel">
@@ -62,11 +19,11 @@ const TotalsValidationPanel = ({
         <h4>Contributions</h4>
         <div>
           <span>Reported:</span>
-          <strong>${reportedContributionTotal.toFixed(2)}</strong>
+          <strong>${officialContributionTotal}</strong>
         </div>
         <div>
           <span>Calculated:</span>
-          <strong>${calculatedContributionTotal.toFixed(2)}</strong>
+          <strong>${contributionSum}</strong>
         </div>
         <div
           className={
@@ -81,11 +38,11 @@ const TotalsValidationPanel = ({
         <h4>Expenditures</h4>
         <div>
           <span>Reported:</span>
-          <strong>${reportedExpenditureTotal.toFixed(2)}</strong>
+          <strong>${officialExpenditureTotal}</strong>
         </div>
         <div>
           <span>Calculated:</span>
-          <strong>${calculatedExpenditureTotal.toFixed(2)}</strong>
+          <strong>${expenditureSum}</strong>
         </div>
         <div
           className={

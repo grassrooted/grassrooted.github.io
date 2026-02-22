@@ -44,18 +44,20 @@ function CampaignReviewPage({ parsedData }) {
     ) || 0;
   };
 
+  const nearlyEqual = (a, b) => Math.abs(a - b) < 0.01;
+
   const contributionSum = useMemo(() => {
     return formState.contributions.reduce(
       (total, c) => total + parseMoney(c.Amount),
       0
-    );
+    ).toFixed(2);
   }, [formState.contributions]);
   
   const expenditureSum = useMemo(() => {
     return formState.expenditures.reduce(
       (total, e) => total + parseMoney(e.Amount),
       0
-    );
+    ).toFixed(2);
   }, [formState.expenditures]);
   
   const officialContributionTotal = parseMoney(
@@ -71,8 +73,8 @@ function CampaignReviewPage({ parsedData }) {
   );
 
   const isValidated =
-    contributionSum === officialContributionTotal &&
-    expenditureSum === officialExpenditureTotal;
+    nearlyEqual(contributionSum, officialContributionTotal) &&
+    nearlyEqual(expenditureSum, officialExpenditureTotal);
   
   return (
     <main className="review-page">
@@ -95,9 +97,10 @@ function CampaignReviewPage({ parsedData }) {
       />
 
       <TotalsValidationPanel
-        reportTotals={parsedData.candidate_info.report_totals}
-        contributions={formState.contributions}
-        expenditures={formState.expenditures}
+        contributionSum={contributionSum}
+        expenditureSum={expenditureSum}
+        officialContributionTotal={officialContributionTotal}
+        officialExpenditureTotal={officialExpenditureTotal}
       />
 
       <DownloadVerifiedDataset 
