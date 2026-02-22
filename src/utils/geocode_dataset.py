@@ -12,9 +12,6 @@ def geocode_dataset(dataset: dict) -> dict:
 
             lat, long = geocoder.geocode(address)
 
-            if index % 10 == 0:
-                print(f"Success @{index}: {lat} / {long} | {address}")
-
             record["latitude"] = lat
             record["longitude"] = long
 

@@ -81,7 +81,6 @@ class NominatimGeocoder:
         if zipcode:
             result = self._request(zipcode)
             if result:
-                print(f"Zipcode Fallback: {result} | {address} | {zipcode}")
                 return result
 
         return None, None
