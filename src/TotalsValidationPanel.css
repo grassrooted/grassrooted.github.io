@@ -1,0 +1,41 @@
+.totals-panel {
+    background: #1e3a5f;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    color: white;
+  }
+  
+  .totals-panel h3 {
+    margin-bottom: 1rem;
+    color: #ffffff;
+  }
+  
+  .totals-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .totals-section h4 {
+    margin-bottom: 0.5rem;
+    color: #bf2a2a;
+  }
+  
+  .totals-section div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+  }
+  
+  .status {
+    margin-top: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .success {
+    color: #00c853;
+  }
+  
+  .error {
+    color: #ff5252;
+  }
+  

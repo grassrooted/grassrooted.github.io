@@ -3,6 +3,7 @@ import React from "react";
 const DownloadVerifiedDataset = ({
   formState,
   extractedData,
+  disabled,
   parseVersion = "v1.0.0"
 }) => {
 
@@ -108,9 +109,17 @@ const DownloadVerifiedDataset = ({
 
   return (
     <div style={{ marginTop: "2rem" }}>
-      <button onClick={handleDownload}>
+        <button
+        onClick={handleDownload}
+        disabled={disabled}
+        style={{
+            opacity: disabled ? 0.5 : 1,
+            cursor: disabled ? "not-allowed" : "pointer"
+        }}
+        >
         Download Verified Dataset
-      </button>
+        </button>
+
     </div>
   );
 };

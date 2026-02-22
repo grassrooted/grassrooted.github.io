@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import CampaignDetail from "./CampaignDetail";
 import ExtractedContributionPane from "./ExtractedContributionPane";
 import ExtractedExpenditurePane from "./ExtractedExpenditurePane";
 import DownloadVerifiedDataset from "./DownloadVerifiedDataset";
 import "./CampfinReviewPage.css";
 import { generateRecordId } from "./utils/generateRecordId";
+import TotalsValidationPanel from "./TotalsValidationPanel";
+
+
+const REPORT_CONTRIBUTION_TOTAL_HEADER = "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)"
+const REPORT_EXPENDITURE_TOTAL_HEADER = "TOTAL POLITICAL EXPENDITURES"
 
 function hydrateFormState(parsedData) {
   const contributionsWithIds = parsedData.contributions.map((c) => ({
@@ -19,11 +24,7 @@ function hydrateFormState(parsedData) {
 
   return {
     candidate_info: {
-      first_name: parsedData.candidate_info.first_name || "",
-      last_name: parsedData.candidate_info.last_name || "",
-      office_sought: parsedData.candidate_info.office_sought || "",
-      period_start: parsedData.candidate_info.period_start || "",
-      period_end: parsedData.candidate_info.period_end || ""
+      ...parsedData.candidate_info
     },
     contributions: contributionsWithIds,
     expenditures: expendituresWithIds
@@ -36,6 +37,43 @@ function CampaignReviewPage({ parsedData }) {
   const [extractedData] = useState(hydratedData);
   const [formState, setFormState] = useState(hydratedData);
 
+  const parseMoney = (value) => {
+    if (!value) return 0;
+    return Number(
+      String(value).replace(/[$,]/g, "").trim()
+    ) || 0;
+  };
+
+  const contributionSum = useMemo(() => {
+    return formState.contributions.reduce(
+      (total, c) => total + parseMoney(c.Amount),
+      0
+    );
+  }, [formState.contributions]);
+  
+  const expenditureSum = useMemo(() => {
+    return formState.expenditures.reduce(
+      (total, e) => total + parseMoney(e.Amount),
+      0
+    );
+  }, [formState.expenditures]);
+  
+  const officialContributionTotal = parseMoney(
+    extractedData.candidate_info.report_totals?.[
+      REPORT_CONTRIBUTION_TOTAL_HEADER
+    ]
+  );
+  
+  const officialExpenditureTotal = parseMoney(
+    extractedData.candidate_info.report_totals?.[
+      REPORT_EXPENDITURE_TOTAL_HEADER
+    ]
+  );
+
+  const isValidated =
+    contributionSum === officialContributionTotal &&
+    expenditureSum === officialExpenditureTotal;
+  
   return (
     <main className="review-page">
       <CampaignDetail
@@ -56,10 +94,25 @@ function CampaignReviewPage({ parsedData }) {
         setFormState={setFormState}
       />
 
+      <TotalsValidationPanel
+        reportTotals={parsedData.candidate_info.report_totals}
+        contributions={formState.contributions}
+        expenditures={formState.expenditures}
+      />
+
       <DownloadVerifiedDataset 
         formState={formState}
         extractedData={extractedData}
+        disabled={!isValidated}
+        REPORT_CONTRIBUTION_TOTAL_HEADER={REPORT_CONTRIBUTION_TOTAL_HEADER}
+        REPORT_EXPENDITURE_TOTAL_HEADER={REPORT_EXPENDITURE_TOTAL_HEADER}
       />
+
+      {!isValidated && (
+        <p className="validation-warning">
+          Record totals do not match official report totals.
+        </p>
+      )}
     </main>
   );
 }
