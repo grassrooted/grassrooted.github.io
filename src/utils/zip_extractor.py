@@ -1,10 +1,10 @@
 import re
 
 ZIP_REGEX = re.compile(
-    r"\b(\d{5})(?:-\d{4})?\b"
+    r"\b(\d{5})(?:-\d{4})?\b$"
 )
 
-def extract_zipcode(address: str) -> str | None:
+def extract_zipcode(address: str):
     """
     Extracts a 5-digit ZIP code from an address string.
     Handles ZIP+4 but returns only first 5 digits.

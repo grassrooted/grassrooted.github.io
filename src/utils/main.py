@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
 import uuid
-from utils.geocode_dataset import geocode_dataset
+from geocode_dataset import geocode_dataset
 from pdfParser import parse_single_pdf
 
 app = FastAPI()

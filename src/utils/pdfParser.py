@@ -62,12 +62,10 @@ def extract_finance_data_from_table(pdf_path):
                 if cell and "3 CANDIDATE /\nOFFICEHOLDER\nNAME" in cell:
                     # Identify the row with the officeholder's name information
                     last_name_row = row
-                    print(f"Last Name Row: {last_name_row}")
         for cell in last_name_row:
             if cell and "NICKNAME LAST SUFFIX" in cell:
                 # Flatten the text in the cell
                 flat_text = cell.replace("\n", " ")
-                print(f"Last Name Flat Text: {flat_text}")
                 last_name = flat_text.split(" ")[-1]
                 return last_name
         return None
@@ -132,12 +130,10 @@ def extract_finance_data_from_table(pdf_path):
                 for cell in row:
                     if cell and '10 PERIOD\nCOVERED' in cell:
                         period_row = row  # Identify the correct row
-                        print(f"\nPeriod Row: {period_row}")
 
             for cell in period_row:
                 if cell and "Month Day Year" in cell:
                     flat_text = cell.replace("\n", " ")  # Flatten the text
-                    print(f"Flattened period text: {flat_text}")
                     extracted_period = extract_dates(flat_text)
                     if extracted_period:
                         return extracted_period
@@ -352,13 +348,11 @@ def extract_finance_data_from_table(pdf_path):
                         end_of_reporting_period = data["candidate_info"]["period_end"]
                     else:
                         end_of_reporting_period = "badly_formatted_period"
-                    print(f"Period: {end_of_reporting_period}")
                     data["candidate_info"]["report_totals"] = totals
                     non_itemized_contributions, non_itemized_expenditures = parse_non_itemized_totals_into_records(totals, end_of_reporting_period)
                     data["contributions"].extend(non_itemized_contributions)
                     data["expenditures"].extend(non_itemized_expenditures)
                     json_str = json.dumps(data["candidate_info"]["report_totals"], indent=4)
-                    print(json_str)
             elif page_num == 2:
                 for p in tables:
                     for row in p:
@@ -446,12 +440,10 @@ def process_pdfs_from_links(related_tec_docs_filename, output_dir=f"downloaded_p
 
 
             if (total_contributions_monetary_itemized - reported_total_contributions) != 0:
-                print(f"Diff: {abs(total_contributions_monetary_itemized - reported_total_contributions)}")
                 if round(abs(total_contributions_monetary_itemized - reported_total_contributions), 2) != finance_data["candidate_info"]["report_totals"]["TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED"]:
                     print("***MISMATCHING CONTRIBUTION TOTAL***\n\n")
                 finance_data["candidate_info"]["report_totals"]["Contribution Mismatch"] = True
             if (total_expenditures_monetary_itemized - reported_total_expenditures) != 0:
-                print(f"Diff: {abs(total_expenditures_monetary_itemized - reported_total_expenditures)}")
                 if round(abs(total_expenditures_monetary_itemized - reported_total_expenditures), 2) != finance_data["candidate_info"]["report_totals"]["TOTAL POLITICAL EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED"]:
                     print("***MISMATCHING EXPENDITURE TOTAL***\n\n")
                     finance_data["candidate_info"]["report_totals"]["Expenditure Mismatch"] = True

@@ -1,7 +1,7 @@
 import requests
 import time
-from utils.address_normalizer import normalize_address
-from utils.zip_extractor import extract_zipcode
+from address_normalizer import normalize_address
+from zip_extractor import extract_zipcode
 
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 
@@ -26,7 +26,8 @@ class NominatimGeocoder:
         params = {
             "q": query,
             "format": "json",
-            "limit": 1
+            "limit": 1,
+            "countrycodes": "us"
         }
 
         try:
@@ -69,17 +70,18 @@ class NominatimGeocoder:
 
         normalized = normalize_address(address)
 
-        # 1️⃣ Full address lookup
+        # 1Full address lookup
         result = self._request(normalized)
         if result:
             return result
 
-        # 2️⃣ Extract ZIP from address string
+        # Fallback: Extract ZIP from address string
         zipcode = extract_zipcode(address)
 
         if zipcode:
             result = self._request(zipcode)
             if result:
+                print(f"Zipcode Fallback: {result} | {address} | {zipcode}")
                 return result
 
         return None, None
