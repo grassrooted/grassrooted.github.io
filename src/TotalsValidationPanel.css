@@ -1,41 +1,78 @@
 .totals-panel {
-    background: #1e3a5f;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-    color: white;
-  }
-  
-  .totals-panel h3 {
-    margin-bottom: 1rem;
-    color: #ffffff;
-  }
-  
-  .totals-section {
-    margin-bottom: 1.5rem;
-  }
-  
-  .totals-section h4 {
-    margin-bottom: 0.5rem;
-    color: #bf2a2a;
-  }
-  
-  .totals-section div {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.25rem;
-  }
-  
-  .status {
-    margin-top: 0.5rem;
-    font-weight: bold;
-  }
-  
-  .success {
-    color: #00c853;
-  }
-  
-  .error {
-    color: #ff5252;
-  }
-  
+  background: linear-gradient(145deg, #13293d, #1e3a5f);
+  padding: 2rem;
+  border-radius: 14px;
+  margin-top: 2rem;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(191, 42, 42, 0.2);
+}
+
+/* Main Title */
+.panel-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  border-bottom: 2px solid #bf2a2a;
+  padding-bottom: 0.5rem;
+}
+
+/* Sections */
+.totals-section {
+  margin-bottom: 1.75rem;
+}
+
+.section-title {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Rows */
+.totals-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.totals-row strong {
+  font-weight: 600;
+}
+
+/* Divider */
+.totals-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 1.5rem 0;
+}
+
+/* Status */
+.status {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Success */
+.success {
+  color: #00e676;
+  background: rgba(0, 230, 118, 0.08);
+  border: 1px solid rgba(0, 230, 118, 0.25);
+}
+
+/* Error */
+.error {
+  color: #ff5252;
+  background: rgba(255, 82, 82, 0.08);
+  border: 1px solid rgba(255, 82, 82, 0.25);
+}
