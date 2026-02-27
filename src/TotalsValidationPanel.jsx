@@ -19,11 +19,16 @@ const TotalsValidationPanel = ({
     expenditureSum
   );
 
-  const formatCurrency = (value) =>
-    value?.toLocaleString("en-US", {
+  const formatCurrency = (value) =>{
+    const number = Number(value)
+
+    if (isNaN(number)) return "$0.00";
+
+    return number.toLocaleString("en-US", {
       style: "currency",
       currency: "USD"
-    });
+    })
+  };
 
   return (
     <div className="totals-panel">

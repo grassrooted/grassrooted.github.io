@@ -8,8 +8,8 @@ import { generateRecordId } from "./utils/generateRecordId";
 import TotalsValidationPanel from "./TotalsValidationPanel";
 
 
-const REPORT_CONTRIBUTION_TOTAL_HEADER = "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)"
-const REPORT_EXPENDITURE_TOTAL_HEADER = "TOTAL POLITICAL EXPENDITURES"
+const REPORT_CONTRIBUTION_TOTAL_HEADER = "Total Itemized Reported Contributions"
+const REPORT_EXPENDITURE_TOTAL_HEADER = "Total Itemized Reported Expenditures"
 
 function hydrateFormState(parsedData) {
   const contributionsWithIds = parsedData.contributions.map((c) => ({

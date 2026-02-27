@@ -9,6 +9,26 @@ from datetime import datetime
 FIRST_NAME_CONFIG = "Adriana"
 LAST_NAME_CONFIG = "Garcia"
 related_tec_docs_filename = f"{FIRST_NAME_CONFIG}_{LAST_NAME_CONFIG}_2016_2025.txt"
+
+REPORTED_TOTAL_PATTERNS = {
+    "Total Unitemized Reported Contributions": [
+        r"TOTAL POLITICAL CONTRIBUTIONS OF \$50 OR LESS[^$]*\$\s*([\d,]+(?:\.\d{2})?)",
+        r"TOTAL UNITEMIZED POLITICAL CONTRIBUTIONS[^$]*\$\s*([\d,]+(?:\.\d{2})?)",
+    ],
+
+    "Total Unitemized Reported Expenditures": [
+        r"TOTAL UNITEMIZED POLITICAL EXPENDITURES[^$]*\$\s*([\d,]+(?:\.\d{2})?)"
+    ],
+
+    "Total Itemized Reported Contributions": [
+        r"TOTAL POLITICAL CONTRIBUTIONS[^$]*\$\s*([\d,]+(?:\.\d{2})?)",
+    ],
+
+    "Total Itemized Reported Expenditures": [
+        r"TOTAL POLITICAL EXPENDITURES[^$]*\$\s*([\d,]+(?:\.\d{2})?)",
+    ],
+}
+
 def extract_filename_from_url(url):
     return url.split("/")[-1]
 
@@ -94,6 +114,34 @@ def extract_finance_data_from_table(pdf_path):
                 results[header] = 0.00
 
         return results
+    
+    def _extract_first_match(text, patterns):
+        """
+        Attempts multiple regex patterns in order.
+        Returns the first successfully parsed float.
+        Returns None if no match found.
+        """
+
+        for pattern in patterns:
+            match = re.search(pattern, text, re.IGNORECASE)            
+            if match:
+                try:
+                    raw_value = match.group(1)
+                    cleaned_value = raw_value.replace(",", "").strip()
+                    return float(cleaned_value)
+                except (ValueError, IndexError):
+                    continue
+
+        return 0.0
+
+    def extract_reported_totals(table):
+        reported_totals = {}
+        text = " ".join(filter(None, [str(item) for sublist in table for item in sublist])).replace("None", "").replace("\n","")
+        print(f"\n------\n{text}\n--------\n")
+        for total_key, pattern_list in REPORTED_TOTAL_PATTERNS.items():
+            reported_totals[total_key] = _extract_first_match(text, pattern_list)
+        print(f"\n\n\n{reported_totals}\n\n\n")
+        return reported_totals
     
     def extract_dates(text):
         """Extracts dates from a flattened text and returns them in startDate_endDate format."""
@@ -262,22 +310,22 @@ def extract_finance_data_from_table(pdf_path):
         contributions = []
         expenditures = []
 
-        political_contributions = data["TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED"]
-        political_expenditures = data["TOTAL POLITICAL EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED"]
+        political_contributions = data["Total Unitemized Reported Contributions"]
+        political_expenditures = data["Total Unitemized Reported Expenditures"]
 
-        if political_contributions > 0:
+        if political_contributions and political_contributions > 0:
             contributions.append({
                 "Transaction_Date": end_of_reporting_period,
-                "Name": "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS",
+                "Name": "Total Unitemized Reported Contributions",
                 "Address": "N/A",
                 "Amount": political_contributions,
                 "Transaction_Type": "Contribution",
                 "Source": pdf_path.split("/")[-1] if "/" in pdf_path else pdf_path
             })
-        if political_expenditures > 0:
+        if political_expenditures and political_expenditures> 0:
             expenditures.append({
                 "Transaction_Date": end_of_reporting_period,
-                "Name": "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED",
+                "Name": "Total Unitemized Reported Expenditures.",
                 "Address": "N/A",
                 "Amount": political_expenditures,
                 "Transaction_Type": "Expenditure",
@@ -342,7 +390,7 @@ def extract_finance_data_from_table(pdf_path):
                 if header:
                     data["candidate_info"] = header["candidate_info"]
             elif page_num == 1:
-                totals = parse_totals_page(tables[0])
+                totals = extract_reported_totals(tables[0])
                 if totals:
                     if data["candidate_info"]["period_end"]:   
                         end_of_reporting_period = data["candidate_info"]["period_end"]
