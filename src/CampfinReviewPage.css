@@ -18,7 +18,8 @@
   ============================================ */
   
   .document-header,
-  .contribution-card {
+  .contribution-card,
+  .expenditure-card {
     background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
     border: 1px solid rgba(0, 255, 163, 0.08);
     border-radius: 14px;
@@ -33,7 +34,8 @@
   }
   
   .document-header:hover,
-  .contribution-card:hover {
+  .contribution-card:hover,
+  .expenditure-card:hover {
     border-color: rgba(0, 255, 163, 0.18);
     box-shadow:
       0 0 20px rgba(0, 255, 163, 0.05),
@@ -106,13 +108,13 @@
      Contribution Pane
   ============================================ */
   
-  .contribution-pane {
+  .contribution-pane, .expenditure-pane {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
   
-  .contribution-grid {
+  .contribution-grid, .expenditure-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -171,7 +173,7 @@
       grid-column: span 2;
     }
   
-    .contribution-grid {
+    .contribution-grid, .expenditure-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   

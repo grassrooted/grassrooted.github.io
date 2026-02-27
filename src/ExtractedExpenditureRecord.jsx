@@ -25,7 +25,7 @@ const ExtractedExpenditureRecord = ({
     <div className="expenditure-card">
       <div className="card-header">
         <span className="vendor-name">
-          {record.Payee_Name || "Unnamed Vendor"}
+          {record.Name || "Unnamed Vendor"}
         </span>
         <span className="amount">
           ${record.Amount || "—"}
@@ -36,7 +36,7 @@ const ExtractedExpenditureRecord = ({
         <label>
           Payee Name
           <input
-            value={record.Payee_Name || ""}
+            value={record.Name || ""}
             onChange={e => updateField("Payee_Name", e.target.value)}
           />
         </label>
@@ -51,10 +51,10 @@ const ExtractedExpenditureRecord = ({
         </label>
 
         <label>
-          Purpose
+          Description
           <input
-            value={record.Purpose || ""}
-            onChange={e => updateField("Purpose", e.target.value)}
+            value={record.Description || ""}
+            onChange={e => updateField("Description", e.target.value)}
           />
         </label>
 

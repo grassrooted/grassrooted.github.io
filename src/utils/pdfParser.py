@@ -5,9 +5,9 @@ import os
 import requests
 from datetime import datetime
 
-# File containing the list of PDF links
 FIRST_NAME_CONFIG = "Adriana"
 LAST_NAME_CONFIG = "Garcia"
+# File containing the list of PDF links
 related_tec_docs_filename = f"{FIRST_NAME_CONFIG}_{LAST_NAME_CONFIG}_2016_2025.txt"
 
 REPORTED_TOTAL_PATTERNS = {
@@ -80,17 +80,14 @@ def extract_finance_data_from_table(pdf_path):
         for row in table:
             for cell in row:
                 if cell and "3 CANDIDATE /\nOFFICEHOLDER\nNAME" in cell:
-                    # Identify the row with the officeholder's name information
                     last_name_row = row
         for cell in last_name_row:
             if cell and "NICKNAME LAST SUFFIX" in cell:
-                # Flatten the text in the cell
                 flat_text = cell.replace("\n", " ")
                 last_name = flat_text.split(" ")[-1]
                 return last_name
         return None
     
-    # Function to extract financial data
     def parse_totals_page(table):
         flat_text = " ".join(filter(None, [str(item) for sublist in table for item in sublist])).replace("None", "").replace("\n","")
         patterns = {
@@ -101,13 +98,11 @@ def extract_finance_data_from_table(pdf_path):
             "TOTAL POLITICAL CONTRIBUTIONS MAINTAINED AS OF THE LAST DAY OF REPORTING PERIOD": r"REPORTING PERIOD\s+\$\s*([\d,]+\.\d{2})"
         }
 
-        # Extract and store values in a dictionary
         results = {}
 
         for header, pattern in patterns.items():
             match = re.search(pattern, flat_text)
             if match:
-                # Extract and clean the value
                 value = match.group(1).replace(",", "").strip()
                 results[header] = float(value)
             else:
@@ -116,12 +111,6 @@ def extract_finance_data_from_table(pdf_path):
         return results
     
     def _extract_first_match(text, patterns):
-        """
-        Attempts multiple regex patterns in order.
-        Returns the first successfully parsed float.
-        Returns None if no match found.
-        """
-
         for pattern in patterns:
             match = re.search(pattern, text, re.IGNORECASE)            
             if match:
@@ -144,10 +133,9 @@ def extract_finance_data_from_table(pdf_path):
         return reported_totals
     
     def extract_dates(text):
-        """Extracts dates from a flattened text and returns them in startDate_endDate format."""
         date_patterns = [
-            r'(\d{1,2}/\d{1,2}/\d{4})',  # Matches MM/DD/YYYY or M/D/YYYY
-            r'(\b\w+\s\d{1,2},\s\d{4}\b)' # Matches Month Day, Year (e.g., July 1, 2023)
+            r'(\d{1,2}/\d{1,2}/\d{4})',
+            r'(\b\w+\s\d{1,2},\s\d{4}\b)'
         ]
 
         dates = []
@@ -171,17 +159,17 @@ def extract_finance_data_from_table(pdf_path):
         return None
 
     def extract_period_covered(table):
-        """Extracts the period covered from a table and formats it as startDate_endDate."""
         try:
-            period_row = table[-5]  # Default to the 5th row from the end
+            # Default to the 5th row from the end
+            period_row = table[-5]
             for row in table:
                 for cell in row:
                     if cell and '10 PERIOD\nCOVERED' in cell:
-                        period_row = row  # Identify the correct row
+                        period_row = row
 
             for cell in period_row:
                 if cell and "Month Day Year" in cell:
-                    flat_text = cell.replace("\n", " ")  # Flatten the text
+                    flat_text = cell.replace("\n", " ")
                     extracted_period = extract_dates(flat_text)
                     if extracted_period:
                         return extracted_period
@@ -206,11 +194,9 @@ def extract_finance_data_from_table(pdf_path):
 
     def parse_contribution_record(row, next_row):
         try:
-            # Extract and parse the date and transaction type
             date_and_type = row[0].split("\n")
             date = date_and_type[1].strip() if len(date_and_type) > 1 else None
 
-            # Extract and parse the donor name and address
             donor_info = row[1].split("\n")
             donor_name = donor_info[1].strip() if len(donor_info) > 1 else None
             address = "NONE FOUND"
@@ -218,7 +204,6 @@ def extract_finance_data_from_table(pdf_path):
                 if "Zip Code" in cell:
                     address_begin_index = index + 1
                     address = " ".join(donor_info[address_begin_index:])
-            # Extract and parse the contribution amount
             amount_info = row[-1].split("\n")
             amount = float(amount_info[-1].strip()) if len(amount_info) > 0 else None
 
@@ -226,11 +211,9 @@ def extract_finance_data_from_table(pdf_path):
 
             employer = next_row[-2].split("\n")[-1]
 
-            # Return the parsed data as a dictionary if all fields are valid
             if date and donor_name and address and amount:
                 datetime_object = datetime.strptime(date, '%m/%d/%Y')
 
-                # Step 3: Format the datetime object into the new string format (%Y-%m-%d)
                 new_date_string_yyyymmdd = datetime_object.strftime('%Y-%m-%d')
                 return {
                     "Transaction_Date": new_date_string_yyyymmdd,
@@ -248,12 +231,10 @@ def extract_finance_data_from_table(pdf_path):
 
     def extract_amount_and_description(text):
         try:
-            # Pattern to extract the first number after "description"
             amount_pattern = r"description\s*([\d,]+\.\d{2})"
             amount_match = re.search(amount_pattern, text)
             amount = float(amount_match.group(1)) if amount_match else None
 
-            # Pattern to extract the text following the number until "Check if travel outside of Texas"
             if amount_match:
                 description_pattern = rf"{re.escape(amount_match.group(1))}\s+(.*?)\s+Check if travel outside of Texas"
                 description_match = re.search(description_pattern, text)
@@ -268,27 +249,22 @@ def extract_finance_data_from_table(pdf_path):
 
     def parse_in_kind_contribution(table):
         try:
-            results = []  # Initialize as a list to store the parsed records
+            results = []
             for row in table:
-                # Initialize fields as None
                 date, name, address, amount, description_line = None, None, None, None, None
 
-                # Extract Date
                 if row[0] and "Date" in row[0]:
                     date = row[0].split("\n")[1].strip()
 
-                # Extract Contributor Name and Address
                 if row[1] and "Full name of contributor" in row[1]:
                     lines = row[1].split("\n")
-                    name = lines[1].strip()  # Extract Name
-                    address = lines[-1].strip()  # Extract Address
+                    name = lines[1].strip()
+                    address = lines[-1].strip()
 
-                # Extract Amount and In-kind Contribution Description
                 if row[-1] and "Amount of" in row[-1]:
-                    lines = " ".join(row[-1].split("\n")).replace("○", "")  # Clean up text
+                    lines = " ".join(row[-1].split("\n")).replace("○", "")
                     amount, description_line = extract_amount_and_description(lines)
 
-                # Append to results if all fields are non-None
                 if date and name and address and amount and description_line:
                     results.append({
                         "Date": date,
@@ -337,23 +313,17 @@ def extract_finance_data_from_table(pdf_path):
 
     def parse_expenditure_record(record):
         try:
-            # Extract date and payee name
             date_and_payee = record[0][0].split("\n")
             date = date_and_payee[1]
             payee_name = record[0][1].split("\n")[1]
 
-            # Extract amount and transaction type
             amount_data = record[1][0]
-            #transaction_type = " ".join(amount_data.split("\n")[2:])
             
-            # Match the monetary value (handles both formats)
             match = re.search(r'\d+(?:,\d{3})*(?:\.\d{2})', amount_data)
             amount = round(float(match.group().replace(",", "")),2) if match else None
 
-            # Extract payee address
             payee_address = " ".join(record[1][1].split("\n")[1:]).strip('\n')
 
-            # Extract category and description
             category_data = record[2][1].split("\n")
             category = category_data[1] if len(category_data) > 1 else None
 
@@ -365,10 +335,12 @@ def extract_finance_data_from_table(pdf_path):
                 .replace("Description","")\
                 .strip()
 
-            # Return the parsed record
             if date and payee_name and amount and payee_address and category and description:
+                datetime_object = datetime.strptime(date, '%m/%d/%Y')
+                new_date_string_yyyymmdd = datetime_object.strftime('%Y-%m-%d')
+
                 return {
-                    "Transaction_Date": date,
+                    "Transaction_Date": new_date_string_yyyymmdd,
                     "Name": payee_name,
                     "Address": payee_address,
                     "Amount": amount,
