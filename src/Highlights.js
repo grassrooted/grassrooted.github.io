@@ -54,6 +54,8 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
     });
     total_contributions=Math.round(total_contributions)
 
+    const avg_contribution = total_contributions/contributions.length
+
     const in_city_sum = contributions
         .filter(item => (item[profile.contribution_fields.Address].includes(profile.city) || (profile.contribution_fields.City_State_Zip ? item[profile.contribution_fields.City_State_Zip].includes(profile.city) : false)))
         .reduce((total, item) => total + item[profile.contribution_fields.Amount], 0);
@@ -92,6 +94,14 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
                 <div className="box-wrapper">
                     <div id="TotalContributions">${total_contributions.toLocaleString()}</div>
                     <div className="box-title">TOTAL DONATIONS</div>
+                </div>
+
+                <div className="box-wrapper">
+                    <div id="AverageContributions">{avg_contribution.toLocaleString('en-US', {
+                        style: 'currency',
+                        currency: 'USD',})}
+                    </div>
+                    <div className="box-title">AVERAGE CONTRIBUTION</div>
                 </div>
 
                 <div className="box-wrapper">
