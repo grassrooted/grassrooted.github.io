@@ -192,6 +192,17 @@ def extract_finance_data_from_table(pdf_path):
         }
         return header
 
+
+    def parseEmployer(row):
+        return row[-2].split("\n")[-1]\
+            .replace("Employer (See instructions)", "")\
+            .replace("9", "")
+
+    def parseOccupation(row):
+        return row[0].split("\n")[-1]\
+            .replace("Principal occupation / Job title (See instructions)","")\
+            .replace("8", "")
+
     def parse_contribution_record(row, next_row):
         try:
             date_and_type = row[0].split("\n")
@@ -207,9 +218,9 @@ def extract_finance_data_from_table(pdf_path):
             amount_info = row[-1].split("\n")
             amount = float(amount_info[-1].strip()) if len(amount_info) > 0 else None
 
-            occupation = next_row[0].split("\n")[-1]
+            occupation = parseOccupation(next_row)
 
-            employer = next_row[-2].split("\n")[-1]
+            employer = parseEmployer(next_row)
 
             if date and donor_name and address and amount:
                 datetime_object = datetime.strptime(date, '%m/%d/%Y')
