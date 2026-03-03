@@ -159,6 +159,29 @@
     gap: 1rem;
   }
   
+/* ============================================
+   Empty Field Highlight – Civic Audit Warning
+============================================ */
+
+.input-empty {
+  border: 1px solid rgba(191, 42, 42, 0.55) !important;
+  background: linear-gradient(
+    180deg,
+    #1a0f14 0%,
+    #140b10 100%
+  );
+}
+
+.input-empty:focus {
+  border-color: #bf2a2a !important;
+  box-shadow: 0 0 0 3px rgba(191, 42, 42, 0.18);
+}
+
+/* Subtle label emphasis */
+.label-empty {
+  color: #bf2a2a;
+}
+
   /* ============================================
      Responsive Layout
   ============================================ */
