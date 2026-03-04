@@ -1,6 +1,6 @@
 import '../Upload.css'
 import React, {useState } from "react";
-import EditLogContext from '../EditLogContext';
+import CampfinReviewPage from '../CampfinReviewPage';
 
 function Upload() {
     const [file, setFile] = useState(null);
@@ -51,8 +51,7 @@ function Upload() {
             </button>
 
             {parsedData && 
-                <EditLogContext parsedData={parsedData}>
-                </EditLogContext>
+                <CampfinReviewPage parsedData={parsedData}/>
             }
         </div>
     );

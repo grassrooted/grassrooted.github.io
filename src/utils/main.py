@@ -29,9 +29,9 @@ async def extract_pdf(file: UploadFile = File(...)):
 
     try:
         parsed = parse_single_pdf(file_path)
-        geocoded = geocode_dataset(parsed)
+        #geocoded = geocode_dataset(parsed)
 
     finally:
         os.remove(file_path)
 
-    return geocoded
+    return parsed
