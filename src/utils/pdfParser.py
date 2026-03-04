@@ -197,13 +197,17 @@ def extract_finance_data_from_table(pdf_path):
         return row[-2].split("\n")[-1]\
             .replace("Employer (See instructions)", "")\
             .replace("9", "")\
-            .strip()
+            .strip()\
+            .title()\
+            .replace(".","")
 
     def parseOccupation(row):
         return row[0].split("\n")[-1]\
             .replace("Principal occupation / Job title (See instructions)","")\
             .replace("8", "")\
-            .strip()
+            .strip()\
+            .title()\
+            .replace(".","")
 
     def parse_contribution_record(row, next_row):
         try:

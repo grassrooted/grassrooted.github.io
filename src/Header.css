@@ -1,17 +1,17 @@
 #data-source-btn{
     text-decoration: none;
-    border: 1px solid #3e51b5;
+    border: 2px solid rgba(255, 255, 255, 0.06);
     border-radius: 10px;
     color: #ffffff;
-    background: #3e51b5;
-    padding: 3px;
+    background: #162737;
+    padding: 5px;
     font-size: 1rem;
 }
 #district-locator-btn {
     text-decoration: none;
     background-color: white;
-    color: #3e51b5;
-    border: 1px solid #3e51b5;
+    color: #0F325A;
+    border: 2px solid rgba(255, 255, 255, 0.06);
     border-radius: 10px;
     padding: 3px;
     font-size: 1rem;
