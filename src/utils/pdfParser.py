@@ -70,7 +70,9 @@ def extract_finance_data_from_table(pdf_path):
         match = re.search(r"CANDIDATE /OFFICEHOLDERNAME.*?\bFIRST MI\s*Mr\s+(\w+)", flat_text, re.IGNORECASE)
 
         if match:
-            first_name = match.group(1)
+            first_name = match.group(1)\
+                .title()\
+                .strip()
             return first_name
         else:
             return "Not Found"
@@ -84,7 +86,9 @@ def extract_finance_data_from_table(pdf_path):
         for cell in last_name_row:
             if cell and "NICKNAME LAST SUFFIX" in cell:
                 flat_text = cell.replace("\n", " ")
-                last_name = flat_text.split(" ")[-1]
+                last_name = flat_text.split(" ")[-1]\
+                    .title()\
+                    .strip()
                 return last_name
         return None
     
