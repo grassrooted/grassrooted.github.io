@@ -46,12 +46,18 @@ function CampaignReviewPage({ parsedData }) {
 
   const nearlyEqual = (a, b) => Math.abs(a - b) < 0.01;
 
+  const officialUnitemizedContributionTotal = parseMoney(
+    extractedData.candidate_info.report_totals?.[
+      "Total Unitemized Reported Contributions"
+    ]
+  )
+
   const contributionSum = useMemo(() => {
     return formState.contributions.reduce(
       (total, c) => total + parseMoney(c.Amount),
       0
     ).toFixed(2);
-  }, [formState.contributions]);
+  }, [formState.contributions]) - officialUnitemizedContributionTotal;
   
   const expenditureSum = useMemo(() => {
     return formState.expenditures.reduce(

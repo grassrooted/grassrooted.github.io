@@ -19,14 +19,6 @@ REPORTED_TOTAL_PATTERNS = {
     "Total Unitemized Reported Expenditures": [
         r"TOTAL UNITEMIZED POLITICAL EXPENDITURES[^$]*\$\s*([\d,]+(?:\.\d{2})?)"
     ],
-
-    "Total Itemized Reported Contributions": [
-        r"TOTAL POLITICAL CONTRIBUTIONS[^$]*\$\s*([\d,]+(?:\.\d{2})?)",
-    ],
-
-    "Total Itemized Reported Expenditures": [
-        r"TOTAL POLITICAL EXPENDITURES[^$]*\$\s*([\d,]+(?:\.\d{2})?)",
-    ],
 }
 
 def extract_filename_from_url(url):
@@ -92,28 +84,6 @@ def extract_finance_data_from_table(pdf_path):
                 return last_name
         return None
     
-    def parse_totals_page(table):
-        flat_text = " ".join(filter(None, [str(item) for sublist in table for item in sublist])).replace("None", "").replace("\n","")
-        patterns = {
-            "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": r"LOANS, OR GUARANTEES OF LOANS\), UNLESS ITEMIZED\s+\$\s*([\d,]+\.\d{2})",
-            "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": r"2\. TOTAL POLITICAL CONTRIBUTIONS\s*\(OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS\)\s+\$\s*([\d,]+\.\d{2})",
-            "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED": r"100 OR LESS, UNLESS ITEMIZED\s+\$\s*([\d,]+\.\d{2})",
-            "TOTAL POLITICAL EXPENDITURES": r"4\. TOTAL POLITICAL EXPENDITURES\s+\$\s*([\d,]+\.\d{2})",
-            "TOTAL POLITICAL CONTRIBUTIONS MAINTAINED AS OF THE LAST DAY OF REPORTING PERIOD": r"REPORTING PERIOD\s+\$\s*([\d,]+\.\d{2})"
-        }
-
-        results = {}
-
-        for header, pattern in patterns.items():
-            match = re.search(pattern, flat_text)
-            if match:
-                value = match.group(1).replace(",", "").strip()
-                results[header] = float(value)
-            else:
-                results[header] = 0.00
-
-        return results
-    
     def _extract_first_match(text, patterns):
         for pattern in patterns:
             match = re.search(pattern, text, re.IGNORECASE)            
@@ -127,7 +97,7 @@ def extract_finance_data_from_table(pdf_path):
 
         return 0.0
 
-    def extract_reported_totals(table):
+    def extract_unitemized_reported_totals(table):
         reported_totals = {}
         text = " ".join(filter(None, [str(item) for sublist in table for item in sublist])).replace("None", "").replace("\n","")
         print(f"\n------\n{text}\n--------\n")
@@ -273,7 +243,7 @@ def extract_finance_data_from_table(pdf_path):
             results = []
             for row in table:
                 date, name, address, amount, description_line = None, None, None, None, None
-
+                print(f"{row}\n\n")
                 if row[0] and "Date" in row[0]:
                     date = row[0].split("\n")[1].strip()
 
@@ -383,7 +353,7 @@ def extract_finance_data_from_table(pdf_path):
                 if header:
                     data["candidate_info"] = header["candidate_info"]
             elif page_num == 1:
-                totals = extract_reported_totals(tables[0])
+                totals = extract_unitemized_reported_totals(tables[0])
                 if totals:
                     if data["candidate_info"]["period_end"]:   
                         end_of_reporting_period = data["candidate_info"]["period_end"]
@@ -397,6 +367,7 @@ def extract_finance_data_from_table(pdf_path):
             elif page_num == 2:
                 for p in tables:
                     for row in p:
+                        print(f"{row}\n\n")
                         for cell in row:
                             if cell and "SCHEDULE A1" in cell:
                                 itemized_contrib_total = float(row[-1].replace("$","").replace(",",""))
@@ -404,7 +375,15 @@ def extract_finance_data_from_table(pdf_path):
                             elif cell and "SCHEDULE F1" in cell:
                                 itemized_expend_total = float(row[-1].replace("$","").replace(",",""))
                                 data["candidate_info"]["report_totals"]["Total Itemized Reported Expenditures"] = itemized_expend_total
-
+                            elif cell and "SCHEDULE A2" in cell:
+                                itemized_in_kind_contribution_total = float(row[-1].replace("$","").replace(",",""))
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported In Kind Contributions"] = itemized_in_kind_contribution_total
+                            elif cell and "SCHEDULE E" in cell:
+                                itemized_loans_total = float(row[-1].replace("$","").replace(",",""))
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Loans"] = itemized_loans_total
+                            elif cell and "SCHEDULE F4" in cell:
+                                itemized_credit_card_expenditures_total = float(row[-1].replace("$","").replace(",",""))
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Credit Card Expenditures"] = itemized_credit_card_expenditures_total
 
             page_title = "".join(page.extract_tables()[0][0][0])
 
@@ -432,7 +411,6 @@ def extract_finance_data_from_table(pdf_path):
                             expenditure_record = parse_expenditure_record(table[i:i + 5])
                             if expenditure_record:
                                 data["expenditures"].append(expenditure_record)
-
                 if "A2" in page_title:
                     in_kind_contribution = parse_in_kind_contribution(table)
                     if in_kind_contribution:
