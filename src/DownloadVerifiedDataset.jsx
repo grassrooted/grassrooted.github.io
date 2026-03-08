@@ -1,12 +1,16 @@
+import { upload } from "@testing-library/user-event/dist/upload";
 import React from "react";
 
 const DownloadVerifiedDataset = ({
   formState,
   extractedData,
   disabled,
-  parseVersion = "v1.0.0"
+  parseVersion = "v1.0.0",
+  uploadedFile
+
 }) => {
 
+    const saveFilename = uploadedFile.split(".")[0]  
   const generateEditLog = (originalRecords, editedRecords, recordType) => {
     const editLog = [];
 
@@ -100,7 +104,7 @@ const DownloadVerifiedDataset = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "verified_campaign_dataset.json";
+    a.download = saveFilename + ".json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

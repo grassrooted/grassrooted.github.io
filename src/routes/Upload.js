@@ -45,13 +45,12 @@ function Upload() {
             onChange={(e) => setFile(e.target.files[0])}
             
             />
-
             <button onClick={handleUpload} disabled={loading}>
             {loading ? "Processing..." : "Upload & Parse"}
             </button>
 
             {parsedData && 
-                <CampfinReviewPage parsedData={parsedData}/>
+                <CampfinReviewPage parsedData={parsedData} uploadedFile={file.name}/>
             }
         </div>
     );

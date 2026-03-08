@@ -31,7 +31,7 @@ function hydrateFormState(parsedData) {
   };
 }
 
-function CampaignReviewPage({ parsedData }) {
+function CampaignReviewPage({ parsedData, uploadedFile }) {
   const hydratedData = hydrateFormState(parsedData);
 
   const [extractedData] = useState(hydratedData);
@@ -65,7 +65,7 @@ function CampaignReviewPage({ parsedData }) {
       0
     ).toFixed(2);
   }, [formState.expenditures]);
-  
+
   const officialContributionTotal = parseMoney(
     extractedData.candidate_info.report_totals?.[
       REPORT_CONTRIBUTION_TOTAL_HEADER
@@ -115,6 +115,7 @@ function CampaignReviewPage({ parsedData }) {
         disabled={!isValidated}
         REPORT_CONTRIBUTION_TOTAL_HEADER={REPORT_CONTRIBUTION_TOTAL_HEADER}
         REPORT_EXPENDITURE_TOTAL_HEADER={REPORT_EXPENDITURE_TOTAL_HEADER}
+        uploadedFile = {uploadedFile}
       />
 
       {!isValidated && (
