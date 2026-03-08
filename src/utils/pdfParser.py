@@ -100,10 +100,8 @@ def extract_finance_data_from_table(pdf_path):
     def extract_unitemized_reported_totals(table):
         reported_totals = {}
         text = " ".join(filter(None, [str(item) for sublist in table for item in sublist])).replace("None", "").replace("\n","")
-        print(f"\n------\n{text}\n--------\n")
         for total_key, pattern_list in REPORTED_TOTAL_PATTERNS.items():
             reported_totals[total_key] = _extract_first_match(text, pattern_list)
-        print(f"\n\n\n{reported_totals}\n\n\n")
         return reported_totals
     
     def extract_dates(text):
@@ -169,21 +167,25 @@ def extract_finance_data_from_table(pdf_path):
 
     def parseEmployer(row):
         return row[-2].split("\n")[-1]\
-            .replace("Employer (See instructions)", "")\
+            .replace("Employer", "")\
+            .replace("(See Instructions)", "")\
             .replace("9", "")\
-            .strip()\
             .title()\
+            .strip()\
             .replace(".","")
 
     def parseOccupation(row):
         return row[0].split("\n")[-1]\
-            .replace("Principal occupation / Job title (See instructions)","")\
+            .replace("Principal occupation","")\
+            .replace("Job title", "")\
+            .replace("(See Instructions)", "")\
             .replace("8", "")\
-            .strip()\
+            .replace("/","")\
             .title()\
+            .strip()\
             .replace(".","")
 
-    def parse_contribution_record(row, next_row):
+    def parse_contribution_record(row, next_row, page_num):
         try:
             date_and_type = row[0].split("\n")
             date = date_and_type[1].strip() if len(date_and_type) > 1 else None
@@ -214,7 +216,8 @@ def extract_finance_data_from_table(pdf_path):
                     "Occupation": occupation,
                     "Employer": employer,
                     "Transaction_Type": "Contribution",
-                    "Source" : pdf_path.split("/")[-1] if "/" in pdf_path else pdf_path
+                    "Source" : pdf_path.split("/")[-1] if "/" in pdf_path else pdf_path,
+                    "Page" : page_num
                 }
             return None
         except Exception as e:
@@ -238,12 +241,11 @@ def extract_finance_data_from_table(pdf_path):
             print(f"Error in extract_amount_and_description: {e}")
             return None, None
 
-    def parse_in_kind_contribution(table):
+    def parse_in_kind_contribution(table, page_num):
         try:
             results = []
             for row in table:
                 date, name, address, amount, description_line = None, None, None, None, None
-                print(f"{row}\n\n")
                 if row[0] and "Date" in row[0]:
                     date = row[0].split("\n")[1].strip()
 
@@ -264,7 +266,8 @@ def extract_finance_data_from_table(pdf_path):
                         "Amount": amount,
                         "Transaction_Type": "In-Kind Contribution",
                         "Description": description_line,
-                        "Source" : pdf_path.split("/")[-1] if "/" in pdf_path else pdf_path
+                        "Source" : pdf_path.split("/")[-1] if "/" in pdf_path else pdf_path,
+                        "Page": page_num
                     })
 
             return results
@@ -302,7 +305,7 @@ def extract_finance_data_from_table(pdf_path):
             })
         return contributions, expenditures
 
-    def parse_expenditure_record(record):
+    def parse_expenditure_record(record, page_num):
         try:
             date_and_payee = record[0][0].split("\n")
             date = date_and_payee[1]
@@ -338,7 +341,8 @@ def extract_finance_data_from_table(pdf_path):
                     "Transaction_Type": "Expenditure",
                     "Category": category,
                     "Description": description,
-                    "Source" : pdf_path.split("/")[-1] if "/" in pdf_path else pdf_path
+                    "Source" : pdf_path.split("/")[-1] if "/" in pdf_path else pdf_path,
+                    "Page": page_num
                 }
             return None
         except Exception as e:
@@ -367,7 +371,6 @@ def extract_finance_data_from_table(pdf_path):
             elif page_num == 2:
                 for p in tables:
                     for row in p:
-                        print(f"{row}\n\n")
                         for cell in row:
                             if cell and "SCHEDULE A1" in cell:
                                 itemized_contrib_total = float(row[-1].replace("$","").replace(",",""))
@@ -392,7 +395,7 @@ def extract_finance_data_from_table(pdf_path):
                     for index,row in enumerate(table):
                         if index + 1 < len(table):
                             next_row = table[index + 1]
-                            record = parse_contribution_record(row, next_row)
+                            record = parse_contribution_record(row, next_row, page_num)
                         if record:
                             data["contributions"].append(record)
 
@@ -408,11 +411,11 @@ def extract_finance_data_from_table(pdf_path):
                             and isinstance(table[i][1], str)
                             and "Payee name" in table[i][1]
                         ):                        
-                            expenditure_record = parse_expenditure_record(table[i:i + 5])
+                            expenditure_record = parse_expenditure_record(table[i:i + 5], page_num)
                             if expenditure_record:
                                 data["expenditures"].append(expenditure_record)
                 if "A2" in page_title:
-                    in_kind_contribution = parse_in_kind_contribution(table)
+                    in_kind_contribution = parse_in_kind_contribution(table, page_num)
                     if in_kind_contribution:
                         data["in_kind_contributions"].extend(in_kind_contribution)
     return data
@@ -453,20 +456,6 @@ def process_pdfs_from_links(related_tec_docs_filename, output_dir=f"downloaded_p
             finance_data["candidate_info"]["report_totals"]["Total Parsed Contributions"] = total_contributions_monetary_itemized
             finance_data["candidate_info"]["report_totals"]["Total Parsed Expenditures"] = total_expenditures_monetary_itemized
 
-            reported_total_contributions = finance_data["candidate_info"]["report_totals"]["Total Itemized Reported Contributions"]
-            reported_total_expenditures = finance_data["candidate_info"]["report_totals"]["Total Itemized Reported Expenditures"]
-
-
-
-            if (total_contributions_monetary_itemized - reported_total_contributions) != 0:
-                if round(abs(total_contributions_monetary_itemized - reported_total_contributions), 2) != finance_data["candidate_info"]["report_totals"]["TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED"]:
-                    print("***MISMATCHING CONTRIBUTION TOTAL***\n\n")
-                finance_data["candidate_info"]["report_totals"]["Contribution Mismatch"] = True
-            if (total_expenditures_monetary_itemized - reported_total_expenditures) != 0:
-                if round(abs(total_expenditures_monetary_itemized - reported_total_expenditures), 2) != finance_data["candidate_info"]["report_totals"]["TOTAL POLITICAL EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED"]:
-                    print("***MISMATCHING EXPENDITURE TOTAL***\n\n")
-                    finance_data["candidate_info"]["report_totals"]["Expenditure Mismatch"] = True
-            print("\n\n\n\n")
             with open(output_file, "w") as file:
                 json.dump(finance_data, file, indent=4)
 
