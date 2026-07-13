@@ -4,8 +4,10 @@ import "./TotalsValidationPanel.css";
 const TotalsValidationPanel = ({
   contributionSum = 0,
   expenditureSum = 0,
+  personalFundsExpenditureSum = 0,
   officialContributionTotal = 0,
-  officialExpenditureTotal = 0
+  officialExpenditureTotal = 0,
+  officialPersonalFundsExpenditureTotal = 0
 }) => {
   const nearlyEqual = (a, b) => Math.abs(a - b) < 0.01;
 
@@ -17,6 +19,11 @@ const TotalsValidationPanel = ({
   const expendituresMatch = nearlyEqual(
     officialExpenditureTotal,
     expenditureSum
+  );
+
+  const personalFundsExpendituresMatch = nearlyEqual(
+    officialPersonalFundsExpenditureTotal,
+    personalFundsExpenditureSum
   );
 
   const formatCurrency = (value) =>{
@@ -77,6 +84,30 @@ const TotalsValidationPanel = ({
           }`}
         >
           {expendituresMatch ? "✓ Totals Match" : "✗ Totals Do Not Match"}
+        </div>
+      </div>
+
+      <div className="totals-divider" />
+
+      <div className="totals-section">
+        <h4 className="section-title">Personal Funds Expenditures</h4>
+
+        <div className="totals-row">
+          <span>Reported</span>
+          <strong>{formatCurrency(officialPersonalFundsExpenditureTotal)}</strong>
+        </div>
+
+        <div className="totals-row">
+          <span>Calculated</span>
+          <strong>{formatCurrency(personalFundsExpenditureSum)}</strong>
+        </div>
+
+        <div
+          className={`status ${
+            personalFundsExpendituresMatch ? "success" : "error"
+          }`}
+        >
+          {personalFundsExpendituresMatch ? "✓ Totals Match" : "✗ Totals Do Not Match"}
         </div>
       </div>
     </div>

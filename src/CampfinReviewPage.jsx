@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import CampaignDetail from "./CampaignDetail";
 import ExtractedContributionPane from "./ExtractedContributionPane";
 import ExtractedExpenditurePane from "./ExtractedExpenditurePane";
+import ExtractedPersonalFundsExpenditurePane from "./ExtractedPersonalFundsExpenditurePane";
 import DownloadVerifiedDataset from "./DownloadVerifiedDataset";
 import "./CampfinReviewPage.css";
 import { generateRecordId } from "./utils/generateRecordId";
@@ -10,6 +11,7 @@ import TotalsValidationPanel from "./TotalsValidationPanel";
 
 const REPORT_CONTRIBUTION_TOTAL_HEADER = "Total Itemized Reported Contributions"
 const REPORT_EXPENDITURE_TOTAL_HEADER = "Total Itemized Reported Expenditures"
+const REPORT_PERSONAL_FUNDS_EXPENDITURE_TOTAL_HEADER = "Total Itemized Reported Expenditures Made From Personal Funds"
 
 function hydrateFormState(parsedData) {
   const contributionsWithIds = parsedData.contributions.map((c) => ({
@@ -22,18 +24,23 @@ function hydrateFormState(parsedData) {
     record_id: generateRecordId(e, "expenditure")
   }));
 
+  const personalFundsExpendituresWithIds = (parsedData.personal_funds_expenditures || []).map((e) => ({
+    ...e,
+    record_id: generateRecordId(e, "personal_funds_expenditure")
+  }));
+
   return {
     candidate_info: {
       ...parsedData.candidate_info
     },
     contributions: contributionsWithIds,
-    expenditures: expendituresWithIds
+    expenditures: expendituresWithIds,
+    personal_funds_expenditures: personalFundsExpendituresWithIds
   };
 }
 
 function CampaignReviewPage({ parsedData, uploadedFile }) {
   const hydratedData = hydrateFormState(parsedData);
-
   const [extractedData] = useState(hydratedData);
   const [formState, setFormState] = useState(hydratedData);
 
@@ -66,6 +73,13 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     ).toFixed(2);
   }, [formState.expenditures]);
 
+  const personalFundsExpenditureSum = useMemo(() => {
+    return formState.personal_funds_expenditures.reduce(
+      (total, e) => total + parseMoney(e.Amount),
+      0
+    ).toFixed(2);
+  }, [formState.personal_funds_expenditures]);
+
   const officialContributionTotal = parseMoney(
     extractedData.candidate_info.report_totals?.[
       REPORT_CONTRIBUTION_TOTAL_HEADER
@@ -78,10 +92,18 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     ]
   );
 
+  const officialPersonalFundsExpenditureTotal = parseMoney(
+    extractedData.candidate_info.report_totals?.[
+      REPORT_PERSONAL_FUNDS_EXPENDITURE_TOTAL_HEADER
+    ]
+  );
+
   const isValidated =
     nearlyEqual(contributionSum, officialContributionTotal) &&
-    nearlyEqual(expenditureSum, officialExpenditureTotal);
-  
+    nearlyEqual(expenditureSum, officialExpenditureTotal) &&
+    nearlyEqual(personalFundsExpenditureSum, officialPersonalFundsExpenditureTotal);
+
+
   return (
     <main className="review-page">
       <CampaignDetail
@@ -102,11 +124,19 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
         setFormState={setFormState}
       />
 
+      <ExtractedPersonalFundsExpenditurePane
+        extractedPersonalFundsExpenditures={extractedData.personal_funds_expenditures}
+        formPersonalFundsExpenditures={formState.personal_funds_expenditures}
+        setFormState={setFormState}
+      />
+
       <TotalsValidationPanel
         contributionSum={contributionSum}
         expenditureSum={expenditureSum}
+        personalFundsExpenditureSum={personalFundsExpenditureSum}
         officialContributionTotal={officialContributionTotal}
         officialExpenditureTotal={officialExpenditureTotal}
+        officialPersonalFundsExpenditureTotal={officialPersonalFundsExpenditureTotal}
       />
 
       <DownloadVerifiedDataset 
