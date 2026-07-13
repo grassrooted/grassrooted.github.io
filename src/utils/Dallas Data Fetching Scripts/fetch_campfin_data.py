@@ -8,11 +8,11 @@ import time
 import json
 
 # Set search parameters
-search_first_name_query = "Zarin"
-search_last_name_query = "Gracey"
+search_first_name_query = "Gay"
+search_last_name_query = "Willis"
 transaction_type_queries = ["Contributions", "Expenditures"]
-start_year = "2019"
-end_year = "2025"
+start_year = "2025"
+end_year = "2026"
 
 output_data_sources_links = f"{search_first_name_query}_{search_last_name_query}_{start_year}_{end_year}.txt"
 

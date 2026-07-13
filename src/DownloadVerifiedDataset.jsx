@@ -1,4 +1,3 @@
-import { upload } from "@testing-library/user-event/dist/upload";
 import React from "react";
 
 const DownloadVerifiedDataset = ({
@@ -71,9 +70,16 @@ const DownloadVerifiedDataset = ({
       "expenditure"
     );
 
+    const personalFundsExpenditureEdits = generateEditLog(
+      extractedData.personal_funds_expenditures || [],
+      formState.personal_funds_expenditures || [],
+      "personal_funds_expenditure"
+    );
+
     const edit_log = [
       ...contributionEdits,
-      ...expenditureEdits
+      ...expenditureEdits,
+      ...personalFundsExpenditureEdits
     ];
 
     const verification_timestamp = new Date().toISOString();
@@ -84,11 +90,13 @@ const DownloadVerifiedDataset = ({
         parse_version: parseVersion,
         total_contributions: formState.contributions.length,
         total_expenditures: formState.expenditures?.length || 0,
+        total_personal_funds_expenditures: formState.personal_funds_expenditures?.length || 0,
         total_edits: edit_log.length
       },
       candidate_info: formState.candidate_info,
       contributions: formState.contributions,
       expenditures: formState.expenditures || [],
+      personal_funds_expenditures: formState.personal_funds_expenditures || [],
       edit_log
     };
 

@@ -43,11 +43,14 @@ class NominatimGeocoder:
 
             data = response.json()
 
+            print(f"Response: {data}")
+
             if not data:
                 return None
 
-            lat = round(float(data[0]["lat"]), 3)
-            lon = round(float(data[0]["lon"]), 3)
+            lat = round(float(data[0]["lat"]), 2)
+            lon = round(float(data[0]["lon"]), 2)
+
 
             result = (lat, lon)
             self.cache[query] = result
@@ -55,7 +58,8 @@ class NominatimGeocoder:
             time.sleep(REQUEST_DELAY)
             return result
 
-        except Exception:
+        except Exception as e:
+            print(f"Error during geocoding request for '{query}': {e}")
             return None
 
     def geocode(self, address: str):
