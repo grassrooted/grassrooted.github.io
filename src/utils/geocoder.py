@@ -21,6 +21,7 @@ class NominatimGeocoder:
             return None
 
         if query in self.cache:
+            print("Using cached geocode for query:", query)
             return self.cache[query]
 
         params = {
@@ -42,8 +43,6 @@ class NominatimGeocoder:
                 return None
 
             data = response.json()
-
-            print(f"Response: {data}")
 
             if not data:
                 return None
@@ -83,6 +82,7 @@ class NominatimGeocoder:
         zipcode = extract_zipcode(address)
 
         if zipcode:
+            print(f"Falling back to ZIP code lookup for address '{address}' (ZIP: {zipcode})")
             result = self._request(zipcode)
             if result:
                 return result

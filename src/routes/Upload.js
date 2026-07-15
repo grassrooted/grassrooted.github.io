@@ -28,12 +28,12 @@ function Upload() {
             method: "POST",
             body: cohFormData
             });
-
+            console.log("sent coh request")
             const supplementalResponse = await fetch("http://localhost:8000/extractSupplemental", {
                 method: "POST",
                 body: supplementalFormData
             })
-
+        console.log("sent supplemental request")
             const cohData = await cohResponse.json();
 
             const supplementalData = await supplementalResponse.json()

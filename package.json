@@ -24,7 +24,6 @@
     "highcharts-react-official": "^3.2.1",
     "html2canvas": "^1.4.1",
     "js-yaml": "^4.1.0",
-    "jspdf": "^3.0.0",
     "leaflet": "^1.9.4",
     "leaflet-heatmap": "^1.0.0",
     "match-sorter": "^6.3.4",

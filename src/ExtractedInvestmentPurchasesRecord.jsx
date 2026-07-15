@@ -1,6 +1,6 @@
 import React from "react";
 
-const ExtractedPersonalFundsExpenditureRecord = ({
+const ExtractedInvestmentPurchasesRecord = ({
   record,
   extractedRecord,
   setFormState
@@ -8,15 +8,15 @@ const ExtractedPersonalFundsExpenditureRecord = ({
 
   const updateField = (field, value) => {
     setFormState(prev => {
-      const updated = prev.personalFundsExpenditures.map(exp =>
-        exp.record_id === record.record_id
-          ? { ...exp, [field]: value }
-          : exp
+      const updated = prev.investment_purchases.map(investment_purchases =>
+        investment_purchases.record_id === record.record_id
+          ? { ...investment_purchases, [field]: value }
+          : investment_purchases
       );
 
       return {
         ...prev,
-        personalFundsExpenditures: updated
+        investment_purchases: updated
       };
     });
   };
@@ -30,10 +30,10 @@ const ExtractedPersonalFundsExpenditureRecord = ({
     isEmpty(value) ? "input-empty" : "";
 
   return (
-    <div className="expenditure-card">
+    <div className="investment-purchases-card">
       <div className="card-header">
-        <span className="vendor-name">
-          {record.Name || "Unnamed Vendor"}
+        <span className="lender-name">
+          {record.Name || "Unnamed Investment"}
         </span>
         <span className="amount">
           ${record.Amount || "—"}
@@ -42,7 +42,7 @@ const ExtractedPersonalFundsExpenditureRecord = ({
 
       <div className="card-fields">
         <label className={isEmpty(record.Name) ? "label-empty" : ""}>
-          Payee Name
+          Investment Name
           <input
             className={fieldClass(record.Name)}
             value={record.Name || ""}
@@ -59,6 +59,7 @@ const ExtractedPersonalFundsExpenditureRecord = ({
             onChange={e => updateField("Amount", e.target.value)}
           />
         </label>
+
 
         <label className={isEmpty(record.Description) ? "label-empty" : ""}>
           Description
@@ -98,4 +99,4 @@ const ExtractedPersonalFundsExpenditureRecord = ({
   );
 };
 
-export default ExtractedPersonalFundsExpenditureRecord;
+export default ExtractedInvestmentPurchasesRecord;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ExtractedPersonalFundsExpenditureRecord = ({
+const ExtractedInterestGainedRecord = ({
   record,
   extractedRecord,
   setFormState
@@ -8,15 +8,15 @@ const ExtractedPersonalFundsExpenditureRecord = ({
 
   const updateField = (field, value) => {
     setFormState(prev => {
-      const updated = prev.personalFundsExpenditures.map(exp =>
-        exp.record_id === record.record_id
-          ? { ...exp, [field]: value }
-          : exp
+      const updated = prev.interest_gained.map(interest_gained =>
+        interest_gained.record_id === record.record_id
+          ? { ...interest_gained, [field]: value }
+          : interest_gained
       );
 
       return {
         ...prev,
-        personalFundsExpenditures: updated
+        interest_gained: updated
       };
     });
   };
@@ -30,10 +30,10 @@ const ExtractedPersonalFundsExpenditureRecord = ({
     isEmpty(value) ? "input-empty" : "";
 
   return (
-    <div className="expenditure-card">
+    <div className="loans-card">
       <div className="card-header">
-        <span className="vendor-name">
-          {record.Name || "Unnamed Vendor"}
+        <span className="lender-name">
+          {record.Name || "Unnamed Lender"}
         </span>
         <span className="amount">
           ${record.Amount || "—"}
@@ -42,7 +42,7 @@ const ExtractedPersonalFundsExpenditureRecord = ({
 
       <div className="card-fields">
         <label className={isEmpty(record.Name) ? "label-empty" : ""}>
-          Payee Name
+          Lender Name
           <input
             className={fieldClass(record.Name)}
             value={record.Name || ""}
@@ -59,6 +59,7 @@ const ExtractedPersonalFundsExpenditureRecord = ({
             onChange={e => updateField("Amount", e.target.value)}
           />
         </label>
+
 
         <label className={isEmpty(record.Description) ? "label-empty" : ""}>
           Description
@@ -98,4 +99,4 @@ const ExtractedPersonalFundsExpenditureRecord = ({
   );
 };
 
-export default ExtractedPersonalFundsExpenditureRecord;
+export default ExtractedInterestGainedRecord;

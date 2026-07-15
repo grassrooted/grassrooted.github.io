@@ -1,6 +1,6 @@
 import React from "react";
 
-const ExtractedPersonalFundsExpenditureRecord = ({
+const ExtractedCreditCardExpenditureRecord = ({
   record,
   extractedRecord,
   setFormState
@@ -8,7 +8,7 @@ const ExtractedPersonalFundsExpenditureRecord = ({
 
   const updateField = (field, value) => {
     setFormState(prev => {
-      const updated = prev.personalFundsExpenditures.map(exp =>
+      const updated = prev.credit_card_expenditures.map(exp =>
         exp.record_id === record.record_id
           ? { ...exp, [field]: value }
           : exp
@@ -16,7 +16,7 @@ const ExtractedPersonalFundsExpenditureRecord = ({
 
       return {
         ...prev,
-        personalFundsExpenditures: updated
+        credit_card_expenditures: updated
       };
     });
   };
@@ -30,7 +30,7 @@ const ExtractedPersonalFundsExpenditureRecord = ({
     isEmpty(value) ? "input-empty" : "";
 
   return (
-    <div className="expenditure-card">
+    <div className="credit-card-expenditure-card">
       <div className="card-header">
         <span className="vendor-name">
           {record.Name || "Unnamed Vendor"}
@@ -69,6 +69,15 @@ const ExtractedPersonalFundsExpenditureRecord = ({
           />
         </label>
 
+        <label className={isEmpty(record.Category) ? "label-empty" : ""}>
+          Category
+          <input
+            className={fieldClass(record.Category)}
+            value={record.Category || ""}
+            onChange={e => updateField("Category", e.target.value)}
+          />
+        </label>
+
         <label className={isEmpty(record.Transaction_Type) ? "label-empty" : ""}>
           Transaction Type
           <input
@@ -98,4 +107,4 @@ const ExtractedPersonalFundsExpenditureRecord = ({
   );
 };
 
-export default ExtractedPersonalFundsExpenditureRecord;
+export default ExtractedCreditCardExpenditureRecord;

@@ -8,13 +8,11 @@ def geocode_dataset(geo_cache, dataset: dict) -> dict:
         for record in records:
             index+=1
             address = record.get("Address")
-            print(f"Geocoding record {index}/{len(records)}: {address}")
             if address not in geo_cache:
-                print("skipping cache")
                 lat, long = geocoder.geocode(address)
                 geo_cache[address] = lat, long
             else:
-                print("using cache")
+                print("Using cached geocode for address:", address)
                 lat, long = geo_cache[address]
             record["latitude"] = lat
             record["longitude"] = long
@@ -25,13 +23,25 @@ def geocode_dataset(geo_cache, dataset: dict) -> dict:
     dataset["contributions"] = process_records(
         dataset.get("contributions", [])
     )
-
+    print("Geocoding contributions completed.")
     dataset["expenditures"] = process_records(
         dataset.get("expenditures", [])
     )
+    print("Geocoding expenditures completed.")
 
     dataset["personal_funds_expenditures"] = process_records(
         dataset.get("personal_funds_expenditures", [])
     )
+    print("Geocoding personal funds expenditures completed.")
+
+    dataset["in_kind_contributions"] = process_records(
+        dataset.get("in_kind_contributions", [])
+    )
+    print("Geocoding in-kind contributions completed.")
+
+    dataset["credit_card_expenditures"] = process_records(
+        dataset.get("credit_card_expenditures", [])
+    )
+    print("Geocoding credit card expenditures completed.")
 
     return dataset

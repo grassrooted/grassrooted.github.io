@@ -1,6 +1,6 @@
 import React from "react";
 
-const ExtractedPersonalFundsExpenditureRecord = ({
+const ExtractedLoansRecord = ({
   record,
   extractedRecord,
   setFormState
@@ -8,15 +8,15 @@ const ExtractedPersonalFundsExpenditureRecord = ({
 
   const updateField = (field, value) => {
     setFormState(prev => {
-      const updated = prev.personalFundsExpenditures.map(exp =>
-        exp.record_id === record.record_id
-          ? { ...exp, [field]: value }
-          : exp
+      const updated = prev.loans.map(loan =>
+        loan.record_id === record.record_id
+          ? { ...loan, [field]: value }
+          : loan
       );
 
       return {
         ...prev,
-        personalFundsExpenditures: updated
+        loans: updated
       };
     });
   };
@@ -32,8 +32,8 @@ const ExtractedPersonalFundsExpenditureRecord = ({
   return (
     <div className="expenditure-card">
       <div className="card-header">
-        <span className="vendor-name">
-          {record.Name || "Unnamed Vendor"}
+        <span className="lender-name">
+          {record.Name || "Unnamed Lender"}
         </span>
         <span className="amount">
           ${record.Amount || "—"}
@@ -42,7 +42,7 @@ const ExtractedPersonalFundsExpenditureRecord = ({
 
       <div className="card-fields">
         <label className={isEmpty(record.Name) ? "label-empty" : ""}>
-          Payee Name
+          Lender Name
           <input
             className={fieldClass(record.Name)}
             value={record.Name || ""}
@@ -60,12 +60,13 @@ const ExtractedPersonalFundsExpenditureRecord = ({
           />
         </label>
 
-        <label className={isEmpty(record.Description) ? "label-empty" : ""}>
-          Description
+        <label className={isEmpty(record.Interest_Rate) ? "label-empty" : ""}>
+          Interest Rate
           <input
-            className={fieldClass(record.Description)}
-            value={record.Description || ""}
-            onChange={e => updateField("Description", e.target.value)}
+            type="number"
+            className={fieldClass(record.Interest_Rate)}
+            value={record.Interest_Rate || ""}
+            onChange={e => updateField("Interest_Rate", e.target.value)}
           />
         </label>
 
@@ -98,4 +99,4 @@ const ExtractedPersonalFundsExpenditureRecord = ({
   );
 };
 
-export default ExtractedPersonalFundsExpenditureRecord;
+export default ExtractedLoansRecord;

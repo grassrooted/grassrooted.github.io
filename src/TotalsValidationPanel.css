@@ -48,7 +48,7 @@
 
 /* Divider */
 .totals-divider {
-  height: 1px;
+  height: 3px;
   background: rgba(255, 255, 255, 0.08);
   margin: 1.5rem 0;
 }
@@ -68,6 +68,13 @@
   color: #00e676;
   background: rgba(0, 230, 118, 0.08);
   border: 1px solid rgba(0, 230, 118, 0.25);
+}
+
+.unrecorded {
+  color: #708090;
+  background: rgba(112, 128, 144, 0.08);
+  border: 1px solid rgba(112, 128, 144, 0.25);
+
 }
 
 /* Error */
