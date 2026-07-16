@@ -8,7 +8,7 @@ const ExtractedInterestGainedPane = ({
   return (
     <section className="interest-gained-pane">
       <h2 className="section-title">Interest Gained</h2>
-      <div className="interest-gained-grid">
+      <div className="expenditure-grid">
         {formInterestGained.map(record => (
           <ExtractedInterestGainedRecord
             key={record.record_id}

@@ -30,7 +30,7 @@ const ExtractedInterestGainedRecord = ({
     isEmpty(value) ? "input-empty" : "";
 
   return (
-    <div className="loans-card">
+    <div className="expenditure-card">
       <div className="card-header">
         <span className="lender-name">
           {record.Name || "Unnamed Lender"}

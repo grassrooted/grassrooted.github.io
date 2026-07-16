@@ -9,7 +9,6 @@ function CampaignDetail({ extractedMetadata, formState, setFormState }) {
             user_initiated: true
         })
         */
-        console.log("edited")
         setFormState(prev => ({
             ...prev,
             candidate_info: {

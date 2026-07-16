@@ -6,9 +6,9 @@ const ExtractedInvestmentPurchasesPane = ({
   setFormState
 }) => {
   return (
-    <section className="investment-purchases-pane">
+    <section className="expenditure-pane">
       <h2 className="section-title">Investment Purchases</h2>
-      <div className="investment-purchases-grid">
+      <div className="expenditure-grid">
         {formInvestmentPurchases.map(record => (
           <ExtractedInvestmentPurchasesRecord
             key={record.record_id}

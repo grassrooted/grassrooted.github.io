@@ -1,0 +1,50 @@
+[
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002811_20250403_103836.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002811_20250403_103836.pdf",
+        "start": "2025-01-01",
+        "end": "2025-03-24",
+        "first": "Not Found",
+        "last": "Stewart",
+        "Contribution Balance": 21859.58,
+        "Outstanding Loan Totals": 47000.0,
+        "Contribution Total": 25825.0,
+        "Expenditure Total": 14517.79
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002865_20250424_212450.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002865_20250424_212450.pdf",
+        "start": "2025-03-25",
+        "end": "2025-04-23",
+        "first": "Not Found",
+        "last": "Stewart",
+        "Contribution Balance": 22704.03,
+        "Outstanding Loan Totals": 47000.0,
+        "Contribution Total": 12800.0,
+        "Expenditure Total": 11955.55
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002940_20250711_125225.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002940_20250711_125225.pdf",
+        "start": "2025-04-24",
+        "end": "2025-06-30",
+        "first": "Not Found",
+        "last": "Stewart",
+        "Contribution Balance": 22187.34,
+        "Outstanding Loan Totals": 47000.0,
+        "Contribution Total": 2700.0,
+        "Expenditure Total": 3216.69
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000003009_20260706_112458.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000003009_20260706_112458.pdf",
+        "start": "2026-01-01",
+        "end": "2026-06-30",
+        "first": "Not Found",
+        "last": "Stewart",
+        "Contribution Balance": 22287.34,
+        "Outstanding Loan Totals": 47000.0,
+        "Contribution Total": 100.0,
+        "Expenditure Total": 0.0
+    }
+]

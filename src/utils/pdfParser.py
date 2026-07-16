@@ -9,8 +9,168 @@ FIRST_NAME_CONFIG = "Adriana"
 LAST_NAME_CONFIG = "Garcia"
 related_tec_docs_filename = f"{FIRST_NAME_CONFIG}_{LAST_NAME_CONFIG}_2016_2025.txt"
 
+def extract_coh_first_name(table):
+    flat_text = " ".join(str(c) for row in table for c in row if c)
+
+    match = re.search(
+        r"CANDIDATE /OFFICEHOLDERNAME.*?\bFIRST MI\s*Mr\s+(\w+)",
+        flat_text,
+        re.IGNORECASE
+    )
+    return match.group(1).title().strip() if match else "Not Found"
+
+def extract_coh_last_name(table):
+    last_name_row = table[3]
+    for row in table:
+        for cell in row:
+            if cell and "3 CANDIDATE /\nOFFICEHOLDER\nNAME" in cell:
+                last_name_row = row
+    for cell in last_name_row:
+        if cell and "NICKNAME LAST SUFFIX" in cell:
+            return cell.replace("\n", " ").split(" ")[-1].title().strip()
+    return None
+
+def extract_supplemental_first_name(data):
+    flat_text = " ".join(filter(None, [str(item) for sublist in data for item in sublist]))
+    flat_text = flat_text.replace("MI", "")
+    first_name_pattern = r'FIRST\s+([\w]+)'
+    match = re.search(first_name_pattern, flat_text)
+    return match.group(1) if match else None
+
+def extract_supplemental_last_name(data):
+    last_name = None
+    flattened_data = [str(item) for sublist in data for item in sublist if isinstance(item, str)]
+    last_name_pattern = re.compile(r"(NICKNAME LAST SUFFIX|LAST|NICKNAME LAST)\s*.*?\n([A-Za-z]+)")
+
+    for line in flattened_data:
+        match = last_name_pattern.search(line)
+        if match:
+            last_name = match.group(2)
+            break
+    return last_name
+
+def extract_supplemental_report_totals(table):
+    flat_text = " ".join(filter(None, [str(item) for sublist in table for item in sublist])).replace("None", "").replace(" ", "").replace("\n","")
+
+    patterns = {
+        "TOTAL OFFICEHOLDER CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": r"TOTALOFFICEHOLDERCONTRIBUTIONSOF\$50ORLESS.*?\$([\d,]+\.\d{2})",
+        "TOTAL OFFICEHOLDER CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": r"ESOFLOANS\)\$([\d,]+\.\d{2})",
+        "TOTAL OFFICEHOLDER EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED": r"TOTALOFFICEHOLDEREXPENDITURESOF\$100ORLESS.*?\$([\d,]+\.\d{2})",
+        "TOTAL OFFICEHOLDER EXPENDITURES": r"TOTALOFFICEHOLDEREXPENDITURES\$([\d,]+\.\d{2})",
+        "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": r"TOTALPOLITICALCONTRIBUTIONSOF\$50ORLESS.*?\$([\d,]+\.\d{2})",
+        "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": r"TOTALPOLITICALCONTRIBUTIONS\(OTHERTHANPLEDGES,LOANS,ORGUARANTEESOFLOANS\)\$([\d,]+\.\d{2})",
+        "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": r"TOTALPOLITICALEXPENDITURESOF\$100ORLESS.*?\$([\d,]+\.\d{2})",
+        "TOTAL POLITICAL EXPENDITURES": r"TOTALPOLITICALEXPENDITURES\$([\d,]+\.\d{2})"
+    }
+
+    # Extract and store values in a dictionary
+    results = {}
+
+    for header, pattern in patterns.items():
+        match = re.search(pattern, flat_text)
+        if match:
+            # Extract and clean the value
+            value = match.group(1).replace(",", "").strip()
+            results[header] = float(value)
+        else:
+            results[header] = 0.00
+
+    return results
+
+
+def extract_coh_unitemized_reported_totals(table):
+    reported_totals = {}
+    text = " ".join(str(item) for row in table for item in row if item).replace("\n", " ")
+
+    if "TOTAL POLITICAL CONTRIBUTIONS MAINTAINED AS OF THE LAST DAY OF REPORTING PERIOD $" in text:
+        contributions_maintained = text.split(" TOTAL POLITICAL CONTRIBUTIONS MAINTAINED AS OF THE LAST DAY OF REPORTING PERIOD $ ")[-1].split(" ")[0].replace(",", "")
+        reported_totals["Contribution Balance"] = float(contributions_maintained)
+    if "TOTAL PRINCIPAL AMOUNT OF ALL OUTSTANDING LOANS AS OF THE LAST DAY OF THE REPORTING PERIOD $" in text:
+        loans_outstanding = text.split(" TOTAL PRINCIPAL AMOUNT OF ALL OUTSTANDING LOANS AS OF THE LAST DAY OF THE REPORTING PERIOD $ ")[-1].split(" ")[0].replace(",", "")
+        reported_totals["Outstanding Loan Totals"] = float(loans_outstanding)
+    if "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)" in text:
+        contributions_total = text.split("TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS) $ ")[-1].split(" ")[0].replace(",", "")
+        reported_totals["Contribution Total"] = float(contributions_total)
+    if "TOTAL POLITICAL EXPENDITURES" in text:
+        expenditure_total = text.split("TOTAL POLITICAL EXPENDITURES $ ")[-1].split(" ")[0].replace(",", "")
+        reported_totals["Expenditure Total"] = float(expenditure_total)
+    return reported_totals
+
+def extract_supplemental_period_covered(table):
+    try:
+        flat_text = " ".join(filter(None, [str(item) for sublist in table for item in sublist])).replace("None", "").replace(" ", "").replace("\n","")
+
+        pattern_start = r"PERIOD/COVERED.*?(\d{1,2}/\d{1,2}/\d{4})"
+        pattern_end = r"\s*THROUGH\s*(\d{1,2}/\d{1,2}/\d{4})"
+
+        match_start = re.search(pattern_start, flat_text, re.IGNORECASE).group(1)
+        match_end = re.search(pattern_end, flat_text, re.IGNORECASE).group(1)
+
+        if match_start and match_end:
+            start_date = match_start
+            end_date = match_end
+
+            start_date = datetime.strptime(start_date, "%m/%d/%Y").strftime("%Y-%m-%d")
+            end_date = datetime.strptime(end_date, "%m/%d/%Y").strftime("%Y-%m-%d")
+            return start_date, end_date
+        else:
+            return None  # Return None if no match is found
+    except Exception as e:
+        print(f"Error extracting period covered: {e}")
+        return None
+
+def extract_coh_period_covered(table):
+    """
+    Extract reporting period from the C/OH cover sheet.
+
+    Returns:
+        "YYYY-MM-DD_YYYY-MM-DD"
+        or
+        "None_None"
+    """
+
+    DATE_PATTERN = re.compile(r"(\d{2})\s+(\d{2})\s+(\d{4})")
+    try:
+        for i, row in enumerate(table):
+
+            # Flatten the row into one searchable string
+            row_text = " ".join(
+                str(cell) for cell in row if cell
+            )
+
+            normalized = " ".join(row_text.split()).upper()
+
+            if "PERIOD COVERED" not in normalized:
+                continue
+
+            # Sometimes the dates are on the next row
+            search_text = row_text
+
+            if i + 1 < len(table):
+                next_row = " ".join(
+                    str(cell)
+                    for cell in table[i + 1]
+                    if cell
+                )
+                search_text += " " + next_row
+
+            matches = DATE_PATTERN.findall(search_text)
+
+            if len(matches) >= 2:
+
+                start = matches[0]
+                end = matches[1]
+
+                start_date = f"{start[2]}-{start[0]}-{start[1]}"
+                end_date = f"{end[2]}-{end[0]}-{end[1]}"
+
+                return [start_date, end_date]
+    except Exception as e:
+        # print(f"Error extracting period covered: {e}")
+        return ["None", "None"]
+    return ["None", "None"]
+
 def extract_transaction_type(flat_text, defaultType):
-        print(f"Extracting transaction type from text: {flat_text}")
         if "Officeholder Funds for Officeholder Expenditures" in flat_text:
             transaction_type = "Officeholder Funds for Officeholder Expenditures"
         elif "Campaign Funds for Campaign Expenditures" in flat_text:
@@ -187,96 +347,14 @@ def extract_finance_data_from_table(pdf_path):
         match = re.search(pattern, flat_text)
         return match.group(1).strip() if match else "Not Found"
 
-    def extract_first_name(flat_text):
-        match = re.search(
-            r"CANDIDATE /OFFICEHOLDERNAME.*?\bFIRST MI\s*Mr\s+(\w+)",
-            flat_text,
-            re.IGNORECASE
-        )
-        return match.group(1).title().strip() if match else "Not Found"
-
-    def extract_last_name(table):
-        last_name_row = table[3]
-        for row in table:
-            for cell in row:
-                if cell and "3 CANDIDATE /\nOFFICEHOLDER\nNAME" in cell:
-                    last_name_row = row
-        for cell in last_name_row:
-            if cell and "NICKNAME LAST SUFFIX" in cell:
-                return cell.replace("\n", " ").split(" ")[-1].title().strip()
-        return None
-
-    def extract_unitemized_reported_totals(table):
-        reported_totals = {}
-        text = " ".join(str(item) for row in table for item in row if item).replace("\n", " ")
-
-        if "TOTAL POLITICAL CONTRIBUTIONS MAINTAINED AS OF THE LAST DAY OF REPORTING PERIOD $" in text:
-            contributions_maintained = text.split(" TOTAL POLITICAL CONTRIBUTIONS MAINTAINED AS OF THE LAST DAY OF REPORTING PERIOD $ ")[-1].split(" ")[0].replace(",", "")
-            reported_totals["Contribution Balance"] = contributions_maintained
-        elif "TOTAL PRINCIPAL AMOUNT OF ALL OUTSTANDING LOANS AS OF THE LAST DAY OF THE REPORTING PERIOD $" in text:
-            loans_outstanding = text.split(" TOTAL PRINCIPAL AMOUNT OF ALL OUTSTANDING LOANS AS OF THE LAST DAY OF THE REPORTING PERIOD $ ")[-1].split(" ")[0].replace(",", "")
-            reported_totals["Outstanding Loan Totals"] = loans_outstanding
-        return reported_totals
-
-    def extract_period_covered(table):
-        """
-        Extract reporting period from the C/OH cover sheet.
-
-        Returns:
-            "YYYY-MM-DD_YYYY-MM-DD"
-            or
-            "None_None"
-        """
-
-        DATE_PATTERN = re.compile(r"(\d{2})\s+(\d{2})\s+(\d{4})")
-        try:
-            for i, row in enumerate(table):
-
-                # Flatten the row into one searchable string
-                row_text = " ".join(
-                    str(cell) for cell in row if cell
-                )
-
-                normalized = " ".join(row_text.split()).upper()
-
-                if "PERIOD COVERED" not in normalized:
-                    continue
-
-                # Sometimes the dates are on the next row
-                search_text = row_text
-
-                if i + 1 < len(table):
-                    next_row = " ".join(
-                        str(cell)
-                        for cell in table[i + 1]
-                        if cell
-                    )
-                    search_text += " " + next_row
-
-                matches = DATE_PATTERN.findall(search_text)
-
-                if len(matches) >= 2:
-
-                    start = matches[0]
-                    end = matches[1]
-
-                    start_date = f"{start[2]}-{start[0]}-{start[1]}"
-                    end_date = f"{end[2]}-{end[0]}-{end[1]}"
-
-                    return [start_date, end_date]
-        except Exception as e:
-            # print(f"Error extracting period covered: {e}")
-            return ["None", "None"]
-        return ["None", "None"]
-
     def parse_header_page(table):
         flat_text = " ".join(str(c) for row in table for c in row if c)
-        start, end = extract_period_covered(table)
+        start, end = extract_coh_period_covered(table)
 
         return {
             "candidate_info": {
-                "first_name": extract_first_name(flat_text),
-                "last_name": extract_last_name(table),
+                "first_name": extract_coh_first_name(table),
+                "last_name": extract_coh_last_name(table),
                 "office_sought": extract_office(flat_text),
                 "period_start": start,
                 "period_end": end
@@ -377,7 +455,7 @@ def extract_finance_data_from_table(pdf_path):
 
             # SUMMARY PAGE
             elif page_num == 1:
-                totals = extract_unitemized_reported_totals(tables[0])
+                totals = extract_coh_unitemized_reported_totals(tables[0])
                 data["candidate_info"]["report_totals"] = totals
 
                 end = data["candidate_info"].get("period_end", "unknown")
@@ -528,85 +606,16 @@ def extract_supplemental_finance_data_from_table(pdf_path):
             return office_sought
         else:
             return "Not Found"
-    
-    def extract_first_name(data):
-        flat_text = " ".join(filter(None, [str(item) for sublist in data for item in sublist]))
-        flat_text = flat_text.replace("MI", "")
-        first_name_pattern = r'FIRST\s+([\w]+)'
-        match = re.search(first_name_pattern, flat_text)
-        return match.group(1) if match else None
-
-    def extract_last_name(data):
-        last_name = None
-        flattened_data = [str(item) for sublist in data for item in sublist if isinstance(item, str)]
-        last_name_pattern = re.compile(r"(NICKNAME LAST SUFFIX|LAST|NICKNAME LAST)\s*.*?\n([A-Za-z]+)")
-
-        for line in flattened_data:
-            match = last_name_pattern.search(line)
-            if match:
-                last_name = match.group(2)
-                break
-        
-        return last_name
-    
-    # Function to extract financial data
-    def extract_financial_data(flat_text):
-        patterns = {
-            "TOTAL OFFICEHOLDER CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": r"TOTALOFFICEHOLDERCONTRIBUTIONSOF\$50ORLESS.*?\$([\d,]+\.\d{2})",
-            "TOTAL OFFICEHOLDER CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": r"ESOFLOANS\)\$([\d,]+\.\d{2})",
-            "TOTAL OFFICEHOLDER EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED": r"TOTALOFFICEHOLDEREXPENDITURESOF\$100ORLESS.*?\$([\d,]+\.\d{2})",
-            "TOTAL OFFICEHOLDER EXPENDITURES": r"TOTALOFFICEHOLDEREXPENDITURES\$([\d,]+\.\d{2})",
-            "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": r"TOTALPOLITICALCONTRIBUTIONSOF\$50ORLESS.*?\$([\d,]+\.\d{2})",
-            "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": r"TOTALPOLITICALCONTRIBUTIONS\(OTHERTHANPLEDGES,LOANS,ORGUARANTEESOFLOANS\)\$([\d,]+\.\d{2})",
-            "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": r"TOTALPOLITICALEXPENDITURESOF\$100ORLESS.*?\$([\d,]+\.\d{2})",
-            "TOTAL POLITICAL EXPENDITURES": r"TOTALPOLITICALEXPENDITURES\$([\d,]+\.\d{2})"
-        }
-
-        # Extract and store values in a dictionary
-        results = {}
-
-        for header, pattern in patterns.items():
-            match = re.search(pattern, flat_text)
-            if match:
-                # Extract and clean the value
-                value = match.group(1).replace(",", "").strip()
-                results[header] = float(value)
-            else:
-                results[header] = 0.00
-
-        return results
-
-    def extract_period_covered(flattened_text):
-        try:
-            pattern_start = r"PERIOD/COVERED.*?(\d{1,2}/\d{1,2}/\d{4})"
-            pattern_end = r"\s*THROUGH\s*(\d{1,2}/\d{1,2}/\d{4})"
-
-            match_start = re.search(pattern_start, flattened_text, re.IGNORECASE).group(1)
-            match_end = re.search(pattern_end, flattened_text, re.IGNORECASE).group(1)
-
-            if match_start and match_end:
-                start_date = match_start
-                end_date = match_end
-
-                start_date = datetime.strptime(start_date, "%m/%d/%Y").strftime("%Y-%m-%d")
-                end_date = datetime.strptime(end_date, "%m/%d/%Y").strftime("%Y-%m-%d")
-                return start_date, end_date
-            else:
-                return None  # Return None if no match is found
-        except Exception as e:
-            print(f"Error extracting period covered: {e}")
-            return None
-
 
     def parse_header_page(table):
         header = {}
         flat_text = " ".join(filter(None, [str(item) for sublist in table for item in sublist])).replace("None", "").replace(" ", "").replace("\n","")
-        start, end = extract_period_covered(flat_text)
+        start, end = extract_supplemental_period_covered(table)
         header["candidate_info"] = {
-            "first_name": extract_first_name(table),
-            "last_name": extract_last_name(table),
+            "first_name": extract_supplemental_first_name(table),
+            "last_name": extract_supplemental_last_name(table),
             "office_sought": extract_office(flat_text),
-            "report_totals" : extract_financial_data(flat_text),
+            "report_totals" : extract_supplemental_report_totals(table),
             "period_start": start,
             "period_end": end
         }
@@ -840,7 +849,6 @@ def extract_supplemental_finance_data_from_table(pdf_path):
             print(f"Error parsing investment record: {e}")
     def parse_loan_record(table, page_num):
         try:
-            print(table)
             tokens = []
             for row in table:
                 for cell in row:
@@ -860,8 +868,6 @@ def extract_supplemental_finance_data_from_table(pdf_path):
             transaction_type = extract_transaction_type(raw_tokens, "Loan")
             interest_rate = table[1][-1].split("\n")[-1] if len(table) > 1 and table[1][-1] else None
             cleaned_interest_rate = float(re.sub(r'[^0-9.]', '', interest_rate)) if interest_rate else None
-            print(f"Cleaned Interest Rate: {cleaned_interest_rate}\nInterest Rate: {interest_rate}")
-            print(f"Table: {table[1][-1]}")
             if transaction_date and name and address and amount:
                 return {
                     "Transaction_Date": transaction_date,
@@ -881,6 +887,15 @@ def extract_supplemental_finance_data_from_table(pdf_path):
 
     def parse_expenditure_record(record, page_num):
         try:
+            tokens = []
+            for row in record:
+                for cell in row:
+                    if cell:
+                        tokens.extend(cell.split("\n"))
+
+            tokens = [t.strip() for t in tokens if t.strip()]
+
+            raw_tokens = " ".join(tokens)
             # Extract date and payee name
             date_and_payee = record[0][0].split("\n")
             date = date_and_payee[1]
@@ -890,7 +905,7 @@ def extract_supplemental_finance_data_from_table(pdf_path):
 
             # Extract amount and transaction type
             amount_data = record[1][0]
-            transaction_type = " ".join(amount_data.split("\n")[2:])
+            transaction_type = extract_transaction_type(raw_tokens, "Expenditure")
             
             # Match the monetary value (handles both formats)
             match = re.search(r'\d+(?:,\d{3})*(?:\.\d{2})', amount_data)
@@ -901,7 +916,7 @@ def extract_supplemental_finance_data_from_table(pdf_path):
 
             # Extract category and description
             category_data = record[2][1].split("\n")
-            category = category_data[1] if len(category_data) > 1 else None
+            category = " ".join(category_data[1:]) if len(category_data) > 1 else None
             description = record[2][2].split("\n")[-1] if record[2][2] else None
 
             # Return the parsed record

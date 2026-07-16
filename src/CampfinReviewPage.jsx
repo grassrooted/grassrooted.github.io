@@ -166,7 +166,7 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     ).toFixed(2);
   }, [formState.interest_gained]);
 
-  const investmentPurchasesTotal = useMemo(() => {
+  const investmentPurchasesSum = useMemo(() => {
     return formState.investment_purchases.reduce(
       (total, i) => total + parseMoney(i.Amount),
       0
@@ -252,7 +252,7 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     nearlyEqual(loansSum, officialLoansTotal) &&
     nearlyEqual(creditCardExpenditureSum, officialCreditCardExpenditureTotal) &&
     nearlyEqual(interestGainedSum, officialInterestGainedTotal) &&
-    nearlyEqual(investmentPurchasesTotal, officialInvestmentPurchasesTotal);
+    nearlyEqual(investmentPurchasesSum, officialInvestmentPurchasesTotal);
 
 
   return (
@@ -313,7 +313,7 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
         loansSum={loansSum}
         creditCardExpenditureSum={0}
         interestGainedSum={interestGainedSum}
-        investmentPurchasesTotal={investmentPurchasesTotal}
+        investmentPurchasesSum={investmentPurchasesSum}
         officialContributionTotal={officialContributionTotal}
         officialExpenditureTotal={officialExpenditureTotal}
         officialPersonalFundsExpenditureTotal={officialPersonalFundsExpenditureTotal}

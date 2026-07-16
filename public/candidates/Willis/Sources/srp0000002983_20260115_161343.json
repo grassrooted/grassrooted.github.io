@@ -1,12 +1,23 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-13T21:23:12.044Z",
+    "verification_timestamp": "2026-07-15T16:49:59.975Z",
     "parse_version": "v1.0.0",
+    "validation_override": false,
+    "override_reason": "",
     "total_contributions": 6,
     "total_expenditures": 3,
     "total_personal_funds_expenditures": 23,
+    "total_in_kind_contributions": 0,
+    "total_loans": 0,
+    "total_credit_card_expenditures": 1,
+    "total_interest_gained": 0,
+    "total_investment_purchases": 0,
+    "total_non_political_expenditures_made_from_political_contributions": 0,
+    "total_payments_to_candidate_business": 0,
+    "total_pledged_contributions": 0,
+    "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "024c5e34c23bdfb824d4ace9667787c798217807e74637cf8d16f2ba7356193a"
+    "dataset_hash": "bd5f2fd001026a8f9ceac164b1ad9e61506fd1bcfd1bd63a5303324ba0934ede"
   },
   "candidate_info": {
     "first_name": "Gay",
@@ -431,9 +442,9 @@
       "Schedule": "G",
       "Page": 11,
       "Source": "srp0000002983_20260115_161343.pdf",
-      "latitude": 32.81,
-      "longitude": -96.8,
-      "record_id": "a7c1b579972928ed98b0efb470977b97b3d704f9b2df0093fbfed33cd0ee3e22"
+      "latitude": 32.8,
+      "longitude": -96.82,
+      "record_id": "ded12ea507a65723acb538365cf5401373d130b8cda2daaf85f8442b1b8f7fc8"
     },
     {
       "Transaction_Date": "2025-10-11",
@@ -492,5 +503,29 @@
       "record_id": "5c73fb6818b533a31c5899819be598b5bad4d4e01efcd701fb01f065bedf5770"
     }
   ],
+  "in_kind_contributions": [],
+  "loans": [],
+  "credit_card_expenditures": [
+    {
+      "Transaction_Date": "2025-12-19",
+      "Name": "Intuit Mailchimp",
+      "Amount": 479.7,
+      "Category": "Advertising Expense",
+      "Description": "Advertising Expense",
+      "Transaction_Type": "Officeholder Funds for Campaign Expenditures",
+      "Source": "srp0000002983_20260115_161343.pdf",
+      "Schedule": "F4",
+      "Page": 4,
+      "latitude": 33.77,
+      "longitude": -84.37,
+      "record_id": "2d7015a49b79d2a992ad4d8462b5f961c0102a7e70a9bdf664dfe780d544b515"
+    }
+  ],
+  "interest_gained": [],
+  "investment_purchases": [],
+  "non_political_expenditures_made_from_political_contributions": [],
+  "payments_to_candidate_business": [],
+  "pledged_contributions": [],
+  "unpaid_incurred_obligations": [],
   "edit_log": []
 }

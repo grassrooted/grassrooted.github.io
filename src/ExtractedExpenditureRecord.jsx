@@ -78,6 +78,15 @@ const ExtractedExpenditureRecord = ({
           />
         </label>
 
+        <label className={isEmpty(record.Transaction_Type) ? "label-empty" : ""}>
+          Transaction Type
+          <input
+            className={fieldClass(record.Transaction_Type)}
+            value={record.Transaction_Type || ""}
+            onChange={e => updateField("Transaction_Type", e.target.value)}
+          />
+        </label>
+
         <label
           className={
             isEmpty(record.Transaction_Date) ? "label-empty" : ""

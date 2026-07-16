@@ -30,7 +30,7 @@ const ExtractedCreditCardExpenditureRecord = ({
     isEmpty(value) ? "input-empty" : "";
 
   return (
-    <div className="credit-card-expenditure-card">
+    <div className="expenditure-card">
       <div className="card-header">
         <span className="vendor-name">
           {record.Name || "Unnamed Vendor"}

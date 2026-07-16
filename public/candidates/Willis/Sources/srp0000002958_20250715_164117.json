@@ -1,14 +1,23 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-13T22:33:06.034Z",
+    "verification_timestamp": "2026-07-15T16:57:43.005Z",
     "parse_version": "v1.0.0",
     "validation_override": true,
-    "override_reason": "Reported expenditure total calculated incorrectly. Confirmed the amounts in each record, and their calculated sum.",
+    "override_reason": "Monetary expenditures reported $0.03 more than was calculated.",
     "total_contributions": 23,
     "total_expenditures": 38,
     "total_personal_funds_expenditures": 24,
+    "total_in_kind_contributions": 0,
+    "total_loans": 0,
+    "total_credit_card_expenditures": 0,
+    "total_interest_gained": 0,
+    "total_investment_purchases": 0,
+    "total_non_political_expenditures_made_from_political_contributions": 0,
+    "total_payments_to_candidate_business": 0,
+    "total_pledged_contributions": 0,
+    "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "266db4c68ad2c08aad5d1a51b8086cfb119118ee6e27f83600e8c857a05abae0"
+    "dataset_hash": "5c3090975517851c22ebdcf3ae052f55a97d93863b1c187baf6a0b3af8eb3795"
   },
   "candidate_info": {
     "first_name": "Gay",
@@ -1236,5 +1245,14 @@
       "record_id": "b7586f9f2641fd603ff12c89d32219e67020618154b95a317f750682ad0ad6ed"
     }
   ],
+  "in_kind_contributions": [],
+  "loans": [],
+  "credit_card_expenditures": [],
+  "interest_gained": [],
+  "investment_purchases": [],
+  "non_political_expenditures_made_from_political_contributions": [],
+  "payments_to_candidate_business": [],
+  "pledged_contributions": [],
+  "unpaid_incurred_obligations": [],
   "edit_log": []
 }

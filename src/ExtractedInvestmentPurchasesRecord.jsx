@@ -30,7 +30,7 @@ const ExtractedInvestmentPurchasesRecord = ({
     isEmpty(value) ? "input-empty" : "";
 
   return (
-    <div className="investment-purchases-card">
+    <div className="expenditure-card">
       <div className="card-header">
         <span className="lender-name">
           {record.Name || "Unnamed Investment"}

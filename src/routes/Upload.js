@@ -24,39 +24,38 @@ function Upload() {
     
         setLoading(true);
         try {
+            console.log("sending coh request")
+
             const cohResponse = await fetch("http://localhost:8000/extractCOH", {
-            method: "POST",
-            body: cohFormData
-            });
-            console.log("sent coh request")
-            const supplementalResponse = await fetch("http://localhost:8000/extractSupplemental", {
                 method: "POST",
-                body: supplementalFormData
-            })
-        console.log("sent supplemental request")
+                body: cohFormData
+            });
             const cohData = await cohResponse.json();
 
-            const supplementalData = await supplementalResponse.json()
+            if (supplementalFile){
+                console.log("sending supplemental request")
 
-            if (supplementalData){
-                const cohReportTotals = cohData["candidate_info"]["report_totals"]
-                const supplementalReportTotals = supplementalData["candidate_info"]["report_totals"]
+                const supplementalResponse = await fetch("http://localhost:8000/extractSupplemental", {
+                    method: "POST",
+                    body: supplementalFormData
+                })
+
+                const supplementalData = await supplementalResponse.json()
+
+                const cohReportTotals = cohData.candidate_info.report_totals
+                const supplementalReportTotals = supplementalData.candidate_info.report_totals
 
                 const combinedReportTotals = {...cohReportTotals, ...supplementalReportTotals}
                 supplementalData["candidate_info"]["report_totals"] = combinedReportTotals
 
-                if (supplementalData["candidate_info"]["office_sought"] == "Not Found"){
-                    supplementalData["candidate_info"]["office_sought"] = cohData["candidate_info"]["office_sought"]
+                if (supplementalData.candidate_info.office_sought === "Not Found"){
+                    supplementalData.candidate_info.office_sought = cohData.candidate_info.office_sought
                 }
                 setParsedData(supplementalData);
             }
             else{
                 setParsedData(cohData);
             }
-
-            console.log(cohData);
-            console.log(supplementalData);
-
         } catch (err) {
             console.error("Upload failed", err);
         } finally {
