@@ -3,6 +3,7 @@ import "./TotalsValidationPanel.css";
 
 const TotalsValidationPanel = ({
   contributionSum = 0,
+  inKindContributionSum = 0,
   expenditureSum = 0,
   personalFundsExpenditureSum = 0,
   loansSum = 0,
@@ -28,6 +29,11 @@ const TotalsValidationPanel = ({
     officialContributionTotal,
     contributionSum
   );
+
+  const inKindContributionMatch = nearlyEqual(
+    officialInKindContributionsTotal,
+    inKindContributionSum
+  )
 
   const expendituresMatch = nearlyEqual(
     officialExpenditureTotal,
@@ -93,6 +99,30 @@ const TotalsValidationPanel = ({
           }`}
         >
           {contributionsMatch ? "✓ Totals Match" : "✗ Totals Do Not Match"}
+        </div>
+      </div>
+
+      <div className="totals-divider" />
+
+      <div className="totals-section">
+        <h4 className="section-title">In Kind Contributions</h4>
+
+        <div className="totals-row">
+          <span>Reported</span>
+          <strong>{formatCurrency(officialInKindContributionsTotal)}</strong>
+        </div>
+
+        <div className="totals-row">
+          <span>Calculated</span>
+          <strong>{formatCurrency(inKindContributionSum)}</strong>
+        </div>
+
+        <div
+          className={`status ${
+            inKindContributionMatch ? "success" : "error"
+          }`}
+        >
+          {inKindContributionMatch ? "✓ Totals Match" : "✗ Totals Do Not Match"}
         </div>
       </div>
 
@@ -238,22 +268,6 @@ const TotalsValidationPanel = ({
           }`}
         >
           {investmentPurchasesMatch ? "✓ Totals Match" : "✗ Totals Do Not Match"}
-        </div>
-      </div>
-
-      <div className="totals-divider" />
-
-      <div className="totals-section">
-        <h4 className="section-title">In-Kind Contributions</h4>
-
-
-        <div className="totals-row">
-            <span>Reported</span>
-            <strong>{formatCurrency(officialInKindContributionsTotal)}</strong>
-        </div>
-
-        <div className="status unrecorded">
-          Unrecorded Records
         </div>
       </div>
 

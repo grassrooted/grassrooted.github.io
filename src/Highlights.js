@@ -56,9 +56,7 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
 
     const avg_contribution = total_contributions/contributions.length
 
-    const in_city_sum = contributions
-        .filter(item => (item[profile.contribution_fields.Address].includes(profile.city) || (profile.contribution_fields.City_State_Zip ? item[profile.contribution_fields.City_State_Zip].includes(profile.city) : false)))
-        .reduce((total, item) => total + item[profile.contribution_fields.Amount], 0);
+    const in_city_sum = 0
 
     let outside_city_sum = Math.round((total_contributions || 0) - (in_city_sum || 0));
 

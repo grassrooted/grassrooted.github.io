@@ -4,7 +4,12 @@ import 'tabulator-tables/dist/css/tabulator.min.css';
 
 const aggregateDataByName = (profile, data) => {
     return data.reduce((acc, contribution) => {
-        const normalizedName = contribution[profile.contribution_fields.Donor].toLowerCase();
+        const normalizedName = contribution[profile.contribution_fields.Donor]
+            .toLowerCase()
+            .replace("mr", "")
+            .replace("mrs", "")
+            .replace("ms","")
+            .replace(".", "")
         if (!acc[normalizedName]) {
             acc[normalizedName] = {
                 Amount: 0,

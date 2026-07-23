@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import CampaignDetail from "./CampaignDetail";
 import ExtractedContributionPane from "./ExtractedContributionPane";
+import ExtractedInKindContributionPane from "./ExtractedInKindContributionPane";
 import ExtractedExpenditurePane from "./ExtractedExpenditurePane";
 import ExtractedPersonalFundsExpenditurePane from "./ExtractedPersonalFundsExpenditurePane";
 import ExtractedLoansPane from "./ExtractedLoansPane";
@@ -21,16 +22,21 @@ const REPORT_LOANS_TOTAL_HEADER = "Total Itemized Reported Loans";
 const REPORT_CREDIT_CARD_EXPENDITURE_TOTAL_HEADER = "Total Itemized Reported Credit Card Expenditures";
 const REPORT_INTEREST_GAINED_TOTAL_HEADER = "Total Itemized Reported Interest, Credits, Gains, Refunds, and Contributions Returned to Filer";
 const REPORT_INVESTMENT_TOTAL_HEADER = "Total Itemized Reported Purchase of Investments Made From Political Contributions";
-const REPORT_IN_KIND_CONTRIBUTION_TOTAL_HEADER = "Total Itemized Reported In Kind Contributions";
 const REPORT_NON_POLITICAL_EXPENDITURES_MADE_FROM_POLITICAL_CONTRIBUTIONS = "Total Itemized Reported Non-Political Expenditures Made from Political Contributions";
 const REPORT_PAYMENTS_TO_CANDIDATE_BUSINESS_TOTAL_HEADER = "Total Itemized Reported Payments Made From Political Contributions to a Business of the Candidate/Officeholder";
 const REPORT_PLEDGED_CONTRIBUTIONS_TOTAL_HEADER = "Total Itemized Reported Pledged Contributions";
 const REPORT_UNPAID_INCURRED_OBLIGATIONS_TOTAL_HEADER = "Total Itemized Reported Unpaid Incurred Obligations";
+const REPORT_IN_KIND_CONTRIBUTIONS_TOTAL_HEADER = "Total Itemized Reported In Kind Contributions"
 
 function hydrateFormState(parsedData) {
   const contributionsWithIds = parsedData.contributions.map((c) => ({
     ...c,
     record_id: generateRecordId(c, "contribution")
+  }));
+
+  const inKindContributionsWithIds = parsedData.in_kind_contributions.map((c) => ({
+    ...c,
+    record_id: generateRecordId(c, "in_kind_contribution")
   }));
 
   const expendituresWithIds = (parsedData.expenditures || []).map((e) => ({
@@ -76,13 +82,13 @@ function hydrateFormState(parsedData) {
       ...parsedData.candidate_info
     },
     contributions: contributionsWithIds,
+    in_kind_contributions: inKindContributionsWithIds,
     expenditures: expendituresWithIds,
     personal_funds_expenditures: personalFundsExpendituresWithIds,
     loans: loansWithIds,
     credit_card_expenditures: creditCardExpendituresWithIds,
     interest_gained: interestGainedWithIds,
     investment_purchases: investmentWithIds,
-    in_kind_contributions: [],
     non_political_expenditures_made_from_political_contributions: [],
     payments_to_candidate_business: [],
     pledged_contributions: [],
@@ -101,7 +107,7 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     enabled: false,
     reason: ""
   });
-
+  console.log(parsedData)
 
   const parseMoney = (value) => {
     if (!value) return 0;
@@ -129,6 +135,12 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     ).toFixed(2);
   }, [formState.contributions]) - officialUnitemizedContributionTotal;
 
+  const inKindContributionSum = useMemo(() => {
+    return formState.in_kind_contributions.reduce(
+      (total, c) => total + parseMoney(c.Amount),
+      0
+    ).toFixed(2);
+  }, [formState.in_kind_contributions]);
 
   const expenditureSum = useMemo(() => {
     return formState.expenditures.reduce(
@@ -179,6 +191,12 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     ]
   );
 
+  const officialInKindContributionTotal = parseMoney(
+    extractedData.candidate_info.report_totals?.[
+      REPORT_IN_KIND_CONTRIBUTIONS_TOTAL_HEADER
+    ]
+  );
+
   const officialExpenditureTotal = parseMoney(
     extractedData.candidate_info.report_totals?.[
       REPORT_EXPENDITURE_TOTAL_HEADER
@@ -217,7 +235,7 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
 
   const officialInKindContributionsTotal = parseMoney(
     extractedData.candidate_info.report_totals?.[
-      REPORT_IN_KIND_CONTRIBUTION_TOTAL_HEADER
+      REPORT_IN_KIND_CONTRIBUTIONS_TOTAL_HEADER
     ]
   );
 
@@ -252,7 +270,8 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     nearlyEqual(loansSum, officialLoansTotal) &&
     nearlyEqual(creditCardExpenditureSum, officialCreditCardExpenditureTotal) &&
     nearlyEqual(interestGainedSum, officialInterestGainedTotal) &&
-    nearlyEqual(investmentPurchasesSum, officialInvestmentPurchasesTotal);
+    nearlyEqual(investmentPurchasesSum, officialInvestmentPurchasesTotal) &&
+    nearlyEqual(inKindContributionSum, officialInKindContributionsTotal);
 
 
   return (
@@ -267,6 +286,12 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
       <ExtractedContributionPane
         extractedContributions={extractedData.contributions}
         formContributions={formState.contributions}
+        setFormState={setFormState}
+      />
+
+      <ExtractedInKindContributionPane
+        extractedInKindContributions={extractedData.in_kind_contributions}
+        formInKindContributions={formState.in_kind_contributions}
         setFormState={setFormState}
       />
 
@@ -308,6 +333,7 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
 
       <TotalsValidationPanel
         contributionSum={contributionSum}
+        inKindContributionSum={inKindContributionSum}
         expenditureSum={expenditureSum}
         personalFundsExpenditureSum={personalFundsExpenditureSum}
         loansSum={loansSum}

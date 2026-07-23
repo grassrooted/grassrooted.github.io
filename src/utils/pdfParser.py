@@ -632,10 +632,15 @@ def extract_supplemental_finance_data_from_table(pdf_path):
 
             donor_name_and_address = row[1].split("\n")
             donor_name = donor_name_and_address[1]
-            address = donor_name_and_address[-1]
 
-            amount = float(row[-1].split("\n")[-1])
+            row_str = " ".join(str(x) for x in row if x not in (None, ""))
 
+            amount_data = row_str.split("contribution ($) ")[-1]
+            match = re.search(r'\d+(?:,\d{3})*(?:\.\d{2})', amount_data)
+            amount = round(float(match.group().replace(",", "")),2) if match else None
+
+            address_data = row_str.split("Zip Code\n")[-1]
+            address = address_data.split("\n")[0]
             occupation = parseOccupation(next_row)
             employer = parseEmployer(next_row)
 
@@ -646,7 +651,7 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                     transaction_type = "Campaign Contribution"
                 elif officeholder_contributions_total == 0 and campaign_contributions_total != 0:
                     transaction_type = "Officeholder Contribution"
-                
+            
             if date and donor_name and address and amount:
                 return {
                     "Transaction_Date": date,
@@ -662,7 +667,7 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                 }
             return None
         except Exception as e:
-            # print(e)
+            print(e)
             return None
 
     def extract_amount_and_description(text):
@@ -688,7 +693,18 @@ def extract_supplemental_finance_data_from_table(pdf_path):
 
     def parse_in_kind_contribution(table):
         try:
+            tokens = []
+            for row in table:
+                for cell in row:
+                    if cell:
+                        tokens.extend(cell.split("\n"))
+
+            tokens = [t.strip() for t in tokens if t.strip()]
+
+            raw_tokens = " ".join(tokens)
             results = []  # Initialize as a list to store the parsed records
+
+            print(f"In Kind Table: {table}")
             for row in table:
                 # Initialize fields as None
                 date, name, address, amount, description_line = None, None, None, None, None
@@ -696,7 +712,8 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                 # Extract Date
                 if row[0] and "Date" in row[0]:
                     date = row[0].split("\n")[1].strip()
-                    date =  datetime.strptime(date, "%m/%d/%Y").strftime("%Y-%m-%d"),
+                    date =  datetime.strptime(date, "%m/%d/%Y").strftime("%Y-%m-%d")
+                    print(f"Extracted Date: {date}")
 
 
                 # Extract Contributor Name and Address
@@ -709,15 +726,19 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                 if row[-1] and "Amount of" in row[-1]:
                     lines = " ".join(row[-1].split("\n")).replace("○", "")  # Clean up text
                     amount, description_line = extract_amount_and_description(lines)
+                    description_line = description_line.replace("|", "").strip()
+
+                transaction_type = extract_transaction_type(raw_tokens, "Credit Card Expenditure")
 
                 # Append to results if all fields are non-None
                 if date and name and address and amount and description_line:
                     results.append({
-                        "Date": date,
+                        "Transaction_Date": date,
                         "Name": name,
                         "Address": address,
                         "Amount": amount,
                         "Description": description_line,
+                        "Transaction_Type": transaction_type,
                         "Source" : source_filename
                     })
 
@@ -953,9 +974,10 @@ def extract_supplemental_finance_data_from_table(pdf_path):
             for table in tables:
                 if "A1" in page_title:
                     for i in range(len(table)-1):
-                        record = parse_contribution_record(table[i], table[i+1], page_num)
-                        if record:
-                            data["contributions"].append(record)
+                        if table[i] and "contributor" in str(table[i]):
+                            record = parse_contribution_record(table[i], table[i+1], page_num)
+                            if record:
+                                data["contributions"].append(record)
 
                 elif "F1" in page_title:
                     # Extract expenditure records

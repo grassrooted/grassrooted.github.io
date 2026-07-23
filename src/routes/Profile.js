@@ -125,17 +125,6 @@ function Profile() {
     if (error) return <div>{error}</div>;
     if (!profile || !electionCycles.length || !selectedDateRange) return <div>Preparing data...</div>;
 
-
-    const geocodedData2 = [
-        { lat: 32.74, lng: -96.83, amount: 50 },
-        { lat: 32.84, lng: -96.70, amount: 250 },
-        { lat: 32.75, lng: -96.82, amount: 50 },
-        { lat: 32.75, lng: -96.83, amount: 100 },
-        { lat: 32.87, lng: -96.76, amount: 200 },
-        { lat: 32.90, lng: -96.78, amount: 250 },
-        { lat: 32.91, lng: -96.89, amount: 1000 },
-        { lat: 32.78, lng: -96.83, amount: 250 },
-      ];
     return (
         <div id="profile-page">
 
@@ -220,7 +209,7 @@ function Profile() {
                     </button>
                 )}
 
-                <HeatmapMap points={geocodedData2} />
+                <HeatmapMap points={profile.contributions} />
             </div>
 
 

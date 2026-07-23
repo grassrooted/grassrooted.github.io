@@ -1,42 +1,101 @@
-// HeatmapMap.js
-import React from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import HeatmapLayer from './HeatmapLayer';
+// HeatmapMap.jsx
+import React, { useMemo } from "react";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
-import { useMap } from "react-leaflet";
+
+import HeatmapLayer from "./HeatmapLayer";
+import { aggregateContributions } from "./aggregateRecords";
+
 
 function ResizeFix() {
   const map = useMap();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       map.invalidateSize();
     }, 300);
-  });
+
+    return () => clearTimeout(timer);
+  }, [map]);
 
   return null;
 }
 
+
 function HeatmapMap({ points }) {
+
+  /*
+    Convert raw donations:
+
+    [
+      {
+        latitude,
+        longitude,
+        Amount
+      }
+    ]
+
+    into aggregated cells:
+
+    [
+      {
+        latitude,
+        longitude,
+        totalAmount,
+        donorCount
+      }
+    ]
+  */
+  const aggregatedPoints = useMemo(() => {
+    if (!points || points.length === 0) {
+      return [];
+    }
+
+    return aggregateContributions(points, {
+      cellSize: 0.005
+    });
+
+  }, [points]);
+
+
   return (
-    <div style={{ height: '100%'}}>
+    <div
+      style={{
+        height: "100%",
+        width: "100%"
+      }}
+    >
+
       <MapContainer
-        center={[32.7767, -96.7970]} // Dallas, TX
+        center={[32.7767, -96.7970]}
         zoom={11}
-        style={{ height: '100%'}}
+        style={{
+          height: "100%",
+          width: "100%"
+        }}
       >
+
         <ResizeFix />
 
+
         <TileLayer
-          attribution='&copy; OpenStreetMap &copy; Carto'
+          attribution="&copy; OpenStreetMap &copy; Carto"
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         />
 
-        <HeatmapLayer points={points} />
+
+        <HeatmapLayer
+          points={aggregatedPoints}
+          valueField="totalAmount"
+        />
+
+
       </MapContainer>
+
     </div>
   );
 }
+
 
 export default HeatmapMap;

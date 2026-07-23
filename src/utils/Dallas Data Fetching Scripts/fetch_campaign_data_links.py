@@ -9,8 +9,8 @@ import time, re, os, pdfplumber, sys, json
     Output
         - Pairs of unique COH/Supplemental links for parsing
 """
-search_first_name_query = "Chad"
-search_last_name_query = "West"
+search_first_name_query = "Jaime"
+search_last_name_query = "Resendez"
 start_year = "2025"
 end_year = "2026"
 

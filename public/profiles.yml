@@ -1,12 +1,12 @@
 - name: "Chad West"
   id: "ChadWest"
-  path_to_contributions_data: "/candidates/West/Data/chad_west_contributions_expenditures.json"
+  path_to_contributions_data: "/candidates/West/Sources"
   path_to_headshot_photo: "/candidates/West/Visuals/West_headshot.jpg"
-  path_to_maps:
-    - "/candidates/West/Visuals/May 5, 2017 - May 4, 2019.jpg"
-    - "/candidates/West/Visuals/May 5, 2019 - May 4, 2021.jpg"
-    - "/candidates/West/Visuals/May 5, 2021 - May 4, 2023.jpg"
-    - "/candidates/West/Visuals/May 5, 2023 - May 4, 2025.jpg"
+  sourceNames:
+    - "srp0000002841_20250403_151837.json"
+    - "srp0000002904_20250425_144224.json"
+    - "srp0000002904_20250425_144224.json"
+    - "srp0000003022_20260714_151616.json"
   first_election: "2019"
   next_election: "2025"
   district: 1

@@ -1,0 +1,42 @@
+[
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002824_20250403_143948.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002824_20250403_143948.pdf",
+        "start": "2025-01-01",
+        "end": "2025-03-24",
+        "first": "Not Found",
+        "last": "Johnson",
+        "Contribution Balance": 0.0,
+        "Outstanding Loan Totals": 0.0,
+        "Contribution Total": 66440.0,
+        "Expenditure Total": 46023.29
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002873_20250425_160423.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002873_20250425_160423.pdf",
+        "start": "2025-03-25",
+        "end": "2025-04-23",
+        "first": "Not Found",
+        "last": "Johnson",
+        "Contribution Balance": 13664.43,
+        "Outstanding Loan Totals": 0.0,
+        "Contribution Total": 35850.0,
+        "Expenditure Total": 27911.05
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002968_20250715_162229.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002968_20250715_162229.pdf",
+        "start": "2025-04-24",
+        "end": "2025-06-30",
+        "first": "Maxie",
+        "last": "Johnson",
+        "TOTAL OFFICEHOLDER CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0.0,
+        "TOTAL OFFICEHOLDER CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 0.0,
+        "TOTAL OFFICEHOLDER EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED": 0.0,
+        "TOTAL OFFICEHOLDER EXPENDITURES": 0.0,
+        "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0.0,
+        "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 14450.0,
+        "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0.0,
+        "TOTAL POLITICAL EXPENDITURES": 24545.88
+    }
+]
