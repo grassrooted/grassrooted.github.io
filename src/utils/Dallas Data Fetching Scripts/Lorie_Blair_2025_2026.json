@@ -1,0 +1,70 @@
+[
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002840_20250403_143145.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002840_20250403_143145.pdf",
+        "start": "2025-01-01",
+        "end": "2025-04-02",
+        "first": "Not Found",
+        "last": "Blair",
+        "Contribution Balance": 0.0,
+        "Outstanding Loan Totals": 0.0,
+        "Contribution Total": 50477.0,
+        "Expenditure Total": 28938.93
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002879_20250423_221331.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002879_20250423_221331.pdf",
+        "start": "2025-04-03",
+        "end": "2025-04-23",
+        "first": "Not Found",
+        "last": "Blair",
+        "Contribution Balance": 0.0,
+        "Outstanding Loan Totals": 0.0,
+        "Contribution Total": 12775.0,
+        "Expenditure Total": 13449.18
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002938_20250531_144321.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002938_20250531_144321.pdf",
+        "start": "2025-04-24",
+        "end": "2025-05-28",
+        "first": "Not Found",
+        "last": "Blair",
+        "Contribution Balance": 0.0,
+        "Outstanding Loan Totals": 0.0,
+        "Contribution Total": 46120.0,
+        "Expenditure Total": 28689.56
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002961_20250715_192625.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002961_20250715_192625.pdf",
+        "start": "2025-05-30",
+        "end": "2025-06-30",
+        "first": "Lorie",
+        "last": "Blair",
+        "TOTAL OFFICEHOLDER CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0.0,
+        "TOTAL OFFICEHOLDER CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 0.0,
+        "TOTAL OFFICEHOLDER EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED": 0.0,
+        "TOTAL OFFICEHOLDER EXPENDITURES": 0.0,
+        "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0.0,
+        "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 20200.0,
+        "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0.0,
+        "TOTAL POLITICAL EXPENDITURES": 36952.01
+    },
+    {
+        "srp": "https://campfin.dallascityhall.com/FinalReports/srp0000002991_20260115_120002.pdf",
+        "tec": "https://campfin.dallascityhall.com/FinalReports/tec0000002991_20260115_115939.pdf",
+        "start": "2025-07-01",
+        "end": "2025-12-31",
+        "first": "Lorie",
+        "last": "Blair",
+        "TOTAL OFFICEHOLDER CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0.0,
+        "TOTAL OFFICEHOLDER CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 0.0,
+        "TOTAL OFFICEHOLDER EXPENDITURES OF $100 OR LESS, UNLESS ITEMIZED": 0.0,
+        "TOTAL OFFICEHOLDER EXPENDITURES": 0.0,
+        "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0.0,
+        "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 6600.0,
+        "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0.0,
+        "TOTAL POLITICAL EXPENDITURES": 13444.81
+    }
+]

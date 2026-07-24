@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T19:12:37.184Z",
+    "verification_timestamp": "2026-07-24T16:11:50.547Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -17,7 +17,7 @@
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "5976afdc8889ec1fb0fe6d5cb08f24c2985bb8afd8acc15f8e6af8ce240711c6"
+    "dataset_hash": "c5c0d0c6e843db9a0f282653cf58e8360b0c9c248ab43bd36eab2302c44640bf"
   },
   "candidate_info": {
     "first_name": "Kathy",
@@ -26,7 +26,10 @@
     "period_start": "2025-01-01",
     "period_end": "2025-03-24",
     "report_totals": {
-      "Contribution Balance": "21859.58",
+      "Contribution Balance": 21859.58,
+      "Outstanding Loan Totals": 47000,
+      "Contribution Total": 25825,
+      "Expenditure Total": 14517.79,
       "Total Itemized Reported Contributions": 25825,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,

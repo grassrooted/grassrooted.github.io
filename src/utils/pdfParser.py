@@ -60,7 +60,8 @@ def extract_supplemental_report_totals(table):
         "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": r"TOTALPOLITICALCONTRIBUTIONSOF\$50ORLESS.*?\$([\d,]+\.\d{2})",
         "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": r"TOTALPOLITICALCONTRIBUTIONS\(OTHERTHANPLEDGES,LOANS,ORGUARANTEESOFLOANS\)\$([\d,]+\.\d{2})",
         "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": r"TOTALPOLITICALEXPENDITURESOF\$100ORLESS.*?\$([\d,]+\.\d{2})",
-        "TOTAL POLITICAL EXPENDITURES": r"TOTALPOLITICALEXPENDITURES\$([\d,]+\.\d{2})"
+        "TOTAL POLITICAL EXPENDITURES": r"TOTALPOLITICALEXPENDITURES\$([\d,]+\.\d{2})",
+        "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": r"TOTALDOLLARAMOUNTOFOFFICEHOLDERCONTRIBUTIONSUSEDFOR\$([\d,]+\.\d{2})"
     }
 
     # Extract and store values in a dictionary
@@ -641,6 +642,11 @@ def extract_supplemental_finance_data_from_table(pdf_path):
 
             address_data = row_str.split("Zip Code\n")[-1]
             address = address_data.split("\n")[0]
+
+            if "7 Amount of" in address:
+                address = address.split("7 Amount of")[0]
+            elif "Amount of" in address:
+                address = address.split("Amount of")[0]
             occupation = parseOccupation(next_row)
             employer = parseEmployer(next_row)
 
@@ -651,8 +657,9 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                     transaction_type = "Campaign Contribution"
                 elif officeholder_contributions_total == 0 and campaign_contributions_total != 0:
                     transaction_type = "Officeholder Contribution"
-            
+
             if date and donor_name and address and amount:
+                print(address)
                 return {
                     "Transaction_Date": date,
                     "Name": donor_name,
