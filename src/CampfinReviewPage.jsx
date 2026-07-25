@@ -98,6 +98,137 @@ function hydrateFormState(parsedData) {
 
 
 function CampaignReviewPage({ parsedData, uploadedFile }) {
+  const EMPTY_RECORDS = {
+    contributions: () => ({
+      record_id: generateRecordId({}, "contribution"),
+      Transaction_Date: "",
+      Name: "",
+      latitude: "",
+      longitude: "",
+      Occupation: "",
+      Employer: "",
+      Amount: "",
+      Transaction_Type: "",
+      Source : uploadedFile,
+      Schedule: "A1",
+      Page : ""
+    }),
+
+    in_kind_contributions: () => ({
+      record_id: generateRecordId({}, "contribution"),
+      Transaction_Date: "",
+      Name: "",
+      latitude: "",
+      longitude: "",
+      Description: "",
+      Amount: "",
+      Transaction_Type: "",
+      Source : uploadedFile,
+      Schedule: "A2",
+      Page : ""
+    }),
+
+    expenditures: () => ({
+      record_id: generateRecordId({}, "contribution"),
+      Transaction_Date: "",
+      Name: "",
+      latitude: "",
+      longitude: "",
+      Category: "",
+      Description: "",
+      Amount: "",
+      Transaction_Type: "",
+      Source : uploadedFile,
+      Schedule: "F1",
+      Page : ""
+    }),
+
+    loans: () => ({
+      record_id: generateRecordId({}, "contribution"),
+      Transaction_Date: "",
+      Name: "",
+      latitude: "",
+      longitude: "",
+      Interest_Rate: "",
+      Amount: "",
+      Transaction_Type: "",
+      Source : uploadedFile,
+      Schedule: "E",
+      Page : ""
+    }),
+
+    personal_funds_expenditures: () => ({
+      record_id: generateRecordId({}, "contribution"),
+      Transaction_Date: "",
+      Name: "",
+      latitude: "",
+      longitude: "",
+      Category: "",
+      Description: "",
+      Amount: "",
+      Transaction_Type: "",
+      Source : uploadedFile,
+      Schedule: "G",
+      Page : ""
+    }),
+
+    credit_card_expenditures: () => ({
+      record_id: generateRecordId({}, "contribution"),
+      Transaction_Date: "",
+      Name: "",
+      latitude: "",
+      longitude: "",
+      Category: "",
+      Description: "",
+      Amount: "",
+      Transaction_Type: "",
+      Source : uploadedFile,
+      Schedule: "F4",
+      Page : ""
+    }),
+
+    interest_gained: () => ({
+      record_id: generateRecordId({}, "contribution"),
+      Transaction_Date: "",
+      Name: "",
+      latitude: "",
+      longitude: "",
+      Description: "",
+      Amount: "",
+      Transaction_Type: "",
+      Source : uploadedFile,
+      Schedule: "K",
+      Page : ""
+    }),
+
+    investment_purchases: () => ({
+      record_id: generateRecordId({}, "contribution"),
+      Transaction_Date: "",
+      Name: "",
+      latitude: "",
+      longitude: "",
+      Description: "",
+      Amount: "",
+      Transaction_Type: "",
+      Source : uploadedFile,
+      Schedule: "F3",
+      Page : ""
+    })
+  };
+
+  const addRecord = (datasetName) => {
+    const createRecord = EMPTY_RECORDS[datasetName];
+
+    if (!createRecord) return;
+
+    setFormState(prev => ({
+      ...prev,
+      [datasetName]: [
+        ...prev[datasetName],
+        createRecord()
+      ]
+    }));
+  };
   const hydratedData = hydrateFormState(parsedData);
 
   const [extractedData] = useState(hydratedData);
@@ -287,48 +418,58 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
         extractedContributions={extractedData.contributions}
         formContributions={formState.contributions}
         setFormState={setFormState}
+        onAddRecord={() => addRecord("contributions")}
+
       />
 
       <ExtractedInKindContributionPane
         extractedInKindContributions={extractedData.in_kind_contributions}
         formInKindContributions={formState.in_kind_contributions}
         setFormState={setFormState}
+        onAddRecord={() => addRecord("in_kind_contributions")}
+
       />
 
       <ExtractedExpenditurePane
         extractedExpenditures={extractedData.expenditures}
         formExpenditures={formState.expenditures}
         setFormState={setFormState}
+        onAddRecord={() => addRecord("expenditures")}
       />
 
       <ExtractedPersonalFundsExpenditurePane
         extractedPersonalFundsExpenditures={extractedData.personal_funds_expenditures}
         formPersonalFundsExpenditures={formState.personal_funds_expenditures}
         setFormState={setFormState}
+        onAddRecord={() => addRecord("personal_funds_expenditures")}
       />
       
       <ExtractedLoansPane
         extractedLoans={extractedData.loans}
         formLoans={formState.loans}
         setFormState={setFormState}
+        onAddRecord={() => addRecord("loans")}
       />
 
       <ExtractedCreditCardExpenditurePane
         extractedCreditCardExpenditures={extractedData.credit_card_expenditures}
         formCreditCardExpenditures={formState.credit_card_expenditures}
         setFormState={setFormState}
+        onAddRecord={() => addRecord("credit_card_expenditures")}
       />
 
       <ExtractedInterestGainedPane
         extractedInterestGained={extractedData.interest_gained}
         formInterestGained={formState.interest_gained}
         setFormState={setFormState}
+        onAddRecord={() => addRecord("interest_gained")}
       />
 
       <ExtractedInvestmentPurchasesPane
         extractedInvestmentPurchases={extractedData.investment_purchases}
         formInvestmentPurchases={formState.investment_purchases}
         setFormState={setFormState}
+        onAddRecord={() => addRecord("investment_purchases")}
       />
 
       <TotalsValidationPanel

@@ -746,6 +746,7 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                         "Amount": amount,
                         "Description": description_line,
                         "Transaction_Type": transaction_type,
+                        "Schedule": "A2",
                         "Source" : source_filename
                     })
 

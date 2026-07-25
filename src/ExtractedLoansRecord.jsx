@@ -1,102 +1,118 @@
 import React from "react";
 
-const ExtractedLoansRecord = ({
+const FLOAT_FIELDS = new Set([
+  "Amount",
+  "latitude",
+  "longitude",
+  "Interest_Rate"
+]);
+
+const DATE_FIELDS = new Set([
+  "Transaction_Date"
+]);
+
+const HIDDEN_FIELDS = new Set([
+  "record_id"
+]);
+
+const prettyLabel = (field) =>
+  field.replace(/_/g, " ");
+
+const ExtractedLoanRecord = ({
   record,
-  extractedRecord,
+  index,
   setFormState
 }) => {
 
   const updateField = (field, value) => {
     setFormState(prev => {
-      const updated = prev.loans.map(loan =>
-        loan.record_id === record.record_id
-          ? { ...loan, [field]: value }
-          : loan
-      );
+      const updated = [...prev.loan];
+
+      updated[index] = {
+        ...updated[index],
+        [field]: value
+      };
 
       return {
         ...prev,
-        loans: updated
+        loan: updated
       };
     });
   };
 
-  const isEmpty = (value) =>
+  const isEmpty = value =>
     value === undefined ||
     value === null ||
     value === "";
 
-  const fieldClass = (value) =>
-    isEmpty(value) ? "input-empty" : "";
+  const fieldClass = value =>
+    isEmpty(value)
+      ? "input-empty"
+      : "";
 
+  const orderedFields = Object.entries(record).sort(([a], [b]) => {
+    if (a === "Source") return 1;
+    if (b === "Source") return -1;
+    return 0;
+    });
   return (
     <div className="expenditure-card">
+
       <div className="card-header">
-        <span className="lender-name">
+        <span className="donor-name">
           {record.Name || "Unnamed Lender"}
         </span>
+
         <span className="amount">
           ${record.Amount || "—"}
         </span>
       </div>
 
       <div className="card-fields">
-        <label className={isEmpty(record.Name) ? "label-empty" : ""}>
-          Lender Name
-          <input
-            className={fieldClass(record.Name)}
-            value={record.Name || ""}
-            onChange={e => updateField("Name", e.target.value)}
-          />
-        </label>
 
-        <label className={isEmpty(record.Amount) ? "label-empty" : ""}>
-          Amount
-          <input
-            type="number"
-            className={fieldClass(record.Amount)}
-            value={record.Amount || ""}
-            onChange={e => updateField("Amount", e.target.value)}
-          />
-        </label>
+        {Object.entries(record)
+          .filter(([field]) => !HIDDEN_FIELDS.has(field))
+          .map(([field, value]) => {
 
-        <label className={isEmpty(record.Interest_Rate) ? "label-empty" : ""}>
-          Interest Rate
-          <input
-            type="number"
-            className={fieldClass(record.Interest_Rate)}
-            value={record.Interest_Rate || ""}
-            onChange={e => updateField("Interest_Rate", e.target.value)}
-          />
-        </label>
+            let inputType = "text";
 
-        <label className={isEmpty(record.Transaction_Type) ? "label-empty" : ""}>
-          Transaction Type
-          <input
-            className={fieldClass(record.Transaction_Type)}
-            value={record.Transaction_Type || ""}
-            onChange={e => updateField("Transaction_Type", e.target.value)}
-          />
-        </label>
+            if (DATE_FIELDS.has(field))
+              inputType = "date";
 
-        <label
-          className={
-            isEmpty(record.Transaction_Date) ? "label-empty" : ""
-          }
-        >
-          Transaction Date
-          <input
-            type="date"
-            className={fieldClass(record.Transaction_Date)}
-            value={record.Transaction_Date || ""}
-            onChange={e =>
-              updateField("Transaction_Date", e.target.value)
-            }
-          />
-        </label>
+            else if (FLOAT_FIELDS.has(field))
+              inputType = "number";
+
+            return (
+              <label
+                key={field}
+                className={isEmpty(value) ? "label-empty" : ""}
+              >
+
+                {prettyLabel(field)}
+
+                <input
+                  type={inputType}
+                  step={
+                    FLOAT_FIELDS.has(field)
+                      ? "any"
+                      : undefined
+                  }
+                  className={fieldClass(value)}
+                  value={value ?? ""}
+                  onChange={e =>
+                    updateField(field, e.target.value)
+                  }
+                />
+
+              </label>
+            );
+
+          })}
+
       </div>
+
     </div>
   );
 };
 
-export default ExtractedLoansRecord;
+export default ExtractedLoanRecord;

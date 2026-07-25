@@ -15314,5 +15314,33 @@
     "9509 Shady Valley Dr. Dallas, TX 75238": [
         32.89,
         -96.72
+    ],
+    "retired": [
+        37.37,
+        -122.01
+    ],
+    "self": [
+        36.4,
+        -93.11
+    ],
+    "Kessler Collins": [
+        null,
+        null
+    ],
+    "homemaker": [
+        32.72,
+        -97.06
+    ],
+    "805 Sedgwick Dr Dallas, TX 75231": [
+        32.88,
+        -96.74
+    ],
+    "7040 Teakwood Dr Dallas, TX 75240": [
+        32.93,
+        -96.78
+    ],
+    "1108 Lavaca Street Austin, TX 78701": [
+        30.27,
+        -97.74
     ]
 }

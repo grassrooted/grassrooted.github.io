@@ -3,7 +3,8 @@ import ExtractedInKindContributionRecord from "./ExtractedInKindContributionReco
 const ExtractedInKindContributionPane = ({
   extractedInKindContributions,
   formInKindContributions,
-  setFormState
+  setFormState,
+  onAddRecord
 }) => {
   return (
     <section className="expenditure-pane">
@@ -21,6 +22,15 @@ const ExtractedInKindContributionPane = ({
             setFormState={setFormState}
           />
         ))}
+      </div>
+
+      <div className="pane-header">
+        <button
+            type="button"
+            onClick={onAddRecord}
+        >
+            + Add Record
+        </button>
       </div>
     </section>
   );

@@ -3,7 +3,8 @@ import ExtractedPersonalFundsExpenditureRecord from "./ExtractedPersonalFundsExp
 const ExtractedPersonalFundsExpenditurePane = ({
   extractedPersonalFundsExpenditures,
   formPersonalFundsExpenditures,
-  setFormState
+  setFormState,
+  onAddRecord
 }) => {
   return (
     <section className="expenditure-pane">
@@ -21,6 +22,15 @@ const ExtractedPersonalFundsExpenditurePane = ({
             setFormState={setFormState}
           />
         ))}
+      </div>
+
+      <div className="pane-header">
+        <button
+            type="button"
+            onClick={onAddRecord}
+        >
+            + Add Record
+        </button>
       </div>
     </section>
   );

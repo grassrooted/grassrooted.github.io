@@ -3,7 +3,8 @@ import ExtractedInterestGainedRecord from "./ExtractedInterestGainedRecord";
 const ExtractedInterestGainedPane = ({
   extractedInterestGained,
   formInterestGained,
-  setFormState
+  setFormState,
+  onAddRecord
 }) => {
   return (
     <section className="interest-gained-pane">
@@ -21,6 +22,15 @@ const ExtractedInterestGainedPane = ({
             setFormState={setFormState}
           />
         ))}
+      </div>
+
+      <div className="pane-header">
+        <button
+            type="button"
+            onClick={onAddRecord}
+        >
+            + Add Record
+        </button>
       </div>
     </section>
   );

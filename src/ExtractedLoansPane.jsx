@@ -3,7 +3,8 @@ import ExtractedLoansRecord from "./ExtractedLoansRecord";
 const ExtractedLoansPane = ({
   extractedLoans,
   formLoans,
-  setFormState
+  setFormState,
+  onAddRecord
 }) => {
   return (
     <section className="expenditure-pane">
@@ -21,6 +22,15 @@ const ExtractedLoansPane = ({
             setFormState={setFormState}
           />
         ))}
+      </div>
+
+      <div className="pane-header">
+        <button
+            type="button"
+            onClick={onAddRecord}
+        >
+            + Add Record
+        </button>
       </div>
     </section>
   );
