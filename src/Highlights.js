@@ -56,14 +56,6 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
 
     const avg_contribution = total_contributions/contributions.length
 
-    const in_city_sum = 0
-
-    let outside_city_sum = Math.round((total_contributions || 0) - (in_city_sum || 0));
-
-    let outside_city_percentage = total_contributions 
-        ? Math.round((outside_city_sum / total_contributions) * 100) 
-        : 0;
-
     let totalExcessContributions = calculateExcessContributions(
             aggregated_data,
             selectedDateRange.start,
@@ -83,11 +75,6 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
             <h2>Highlights</h2>
             <h4><i>Showing contributions from {selectedDateRange.start.toLocaleDateString()} to {selectedDateRange.end.toLocaleDateString()}</i></h4>
             <div className="box-container">
-                <div className="box-wrapper">
-                    <div id="ExternalSupport">{outside_city_percentage}%</div>
-                    <div className="box-title">EXTERNAL DONATIONS </div>
-                    <div className="box-subtitle">Non-{profile.city} Contributions</div>
-                </div>
 
                 <div className="box-wrapper">
                     <div id="TotalContributions">${total_contributions.toLocaleString()}</div>
