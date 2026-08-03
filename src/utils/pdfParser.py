@@ -186,6 +186,43 @@ def extract_transaction_type(flat_text, defaultType):
             transaction_type = defaultType
         return transaction_type
 
+def parse_loan_record(table, page_num, source_filename):
+    try:
+        tokens = []
+        for row in table:
+            for cell in row:
+                if cell:
+                    tokens.extend(cell.split("\n"))
+
+        tokens = [t.strip() for t in tokens if t.strip()]
+
+        raw_tokens = " ".join(tokens)
+
+        transaction_date = table[0][0].split("\n")[-1]
+        transaction_date = datetime.strptime(transaction_date, "%m/%d/%Y").strftime("%Y-%m-%d")
+        name = table[0][1].split("\n")[1]
+        address = table[0][1].split("\n")[-1]
+        amount = table[0][3].split("\n")[1].strip()
+        amount = float(amount.replace(",", "")) if amount else None
+        transaction_type = extract_transaction_type(raw_tokens, "Loan")
+        interest_rate = table[1][-1].split("\n")[-1] if len(table) > 1 and table[1][-1] else None
+        cleaned_interest_rate = float(re.sub(r'[^0-9.]', '', interest_rate)) if interest_rate else None
+        if transaction_date and name and address and amount:
+            return {
+                "Transaction_Date": transaction_date,
+                "Name": name,   
+                "Address": address,
+                "Amount": amount,
+                "Interest_Rate": cleaned_interest_rate,
+                "Transaction_Type": transaction_type,
+                "Source" : source_filename,
+                "Schedule": "E",
+                "Page" : page_num
+            }
+        return None
+    except Exception as e:
+        print(f"Error parsing loan record: {e}")
+
 # ---------------- NEW: SCHEDULE G ----------------
 def parse_schedule_g_record(table, page_num, pdf_path):
     try:
@@ -337,6 +374,7 @@ def extract_finance_data_from_table(pdf_path):
         "candidate_info": {},
         "contributions": [],
         "expenditures": [],
+        "loans": [],
         "in_kind_contributions": [],
         # NEW COLLECTION
         "personal_funds_expenditures": []
@@ -374,6 +412,7 @@ def extract_finance_data_from_table(pdf_path):
             .strip()
 
     def parse_contribution_record(row, next_row, page_num):
+        donor_name = ""
         try:
             date = row[0].split("\n")[1].strip()
             donor_name = row[1].split("\n")[1].strip()
@@ -398,6 +437,19 @@ def extract_finance_data_from_table(pdf_path):
                 "Page": page_num
             }
         except:
+            if donor_name:
+                return {
+                "Transaction_Date": "",
+                "Name": donor_name,
+                "Amount": "",
+                "Address": "",
+                "Occupation": "",
+                "Employer": "",
+                "Transaction_Type": "Contribution",
+                "Source": pdf_path.split("\\")[-1],
+                "Schedule": "A1",
+                "Page": page_num
+            }
             return None
 
     def sanitize_addr(addr):
@@ -443,6 +495,7 @@ def extract_finance_data_from_table(pdf_path):
     
     # ---------------- PROCESS PDF ----------------
     with pdfplumber.open(pdf_path) as pdf:
+        source_filename = pdf_path.split("\\")[-1]
         for page_num, page in enumerate(pdf.pages):
             tables = page.extract_tables()
             if not tables:
@@ -528,9 +581,16 @@ def extract_finance_data_from_table(pdf_path):
                 if "SCHEDULE G" in page_title:
                     for i in range(len(table)):
                         if table[i] and "Payee name" in str(table[i]):
-                            record = parse_schedule_g_record(table[i:i+3], page_num, pdf_path)
+                            record = parse_schedule_g_record(table[i:i+3], page_num, source_filename)
                             if record:
                                 data["personal_funds_expenditures"].append(record)
+
+                elif "SCHEDULE E" in page_title:
+                    for i in range(len(table)):
+                        if table[i] and "Name of lender" in str(table[i]):
+                            record = parse_loan_record(table[i:i+5], page_num, source_filename)
+                            if record:
+                                data["loans"].append(record)
 
                 elif "F1" in page_title:
                     for i in range(len(table)-4):
@@ -876,43 +936,6 @@ def extract_supplemental_finance_data_from_table(pdf_path):
             return None
         except Exception as e:
             print(f"Error parsing investment record: {e}")
-    def parse_loan_record(table, page_num):
-        try:
-            tokens = []
-            for row in table:
-                for cell in row:
-                    if cell:
-                        tokens.extend(cell.split("\n"))
-
-            tokens = [t.strip() for t in tokens if t.strip()]
-
-            raw_tokens = " ".join(tokens)
-
-            transaction_date = table[0][0].split("\n")[-1]
-            transaction_date = datetime.strptime(transaction_date, "%m/%d/%Y").strftime("%Y-%m-%d")
-            name = table[0][1].split("\n")[1]
-            address = table[0][1].split("\n")[-1]
-            amount = table[0][3].split("\n")[1].strip()
-            amount = float(amount.replace(",", "")) if amount else None
-            transaction_type = extract_transaction_type(raw_tokens, "Loan")
-            interest_rate = table[1][-1].split("\n")[-1] if len(table) > 1 and table[1][-1] else None
-            cleaned_interest_rate = float(re.sub(r'[^0-9.]', '', interest_rate)) if interest_rate else None
-            if transaction_date and name and address and amount:
-                return {
-                    "Transaction_Date": transaction_date,
-                    "Name": name,   
-                    "Address": address,
-                    "Amount": amount,
-                    "Interest_Rate": cleaned_interest_rate,
-                    "Transaction_Type": transaction_type,
-                    "Source" : source_filename,
-                    "Schedule": "E",
-                    "Page" : page_num
-                }
-            return None
-        except Exception as e:
-            print(f"Error parsing loan record: {e}")
-
 
     def parse_expenditure_record(record, page_num):
         try:
@@ -1011,20 +1034,20 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                 elif "SCHEDULE E" in page_title:
                     for i in range(len(table)):
                         if table[i] and "Name of lender" in str(table[i]):
-                            record = parse_loan_record(table[i:i+5], page_num)
+                            record = parse_loan_record(table[i:i+5], page_num, source_filename)
                             if record:
                                 data["loans"].append(record)
                 elif "SCHEDULE G" in page_title:
                     for i in range(len(table)):
                         if table[i] and "Payee name" in str(table[i]):
-                            record = parse_schedule_g_record(table[i:i+3], page_num, pdf_path)
+                            record = parse_schedule_g_record(table[i:i+3], page_num, source_filename)
                             if record:
                                 data["personal_funds_expenditures"].append(record)
 
                 elif "SCHEDULE F3" in page_title:
                     for i in range(len(table)):
                         if table[i] and "Name of person" in str(table[i]):
-                            record = parse_investment_record(table[i:i+4], page_num, pdf_path)
+                            record = parse_investment_record(table[i:i+4], page_num, source_filename)
                             if record:
                                 data["investment_purchases"].append(record)
 
@@ -1038,7 +1061,7 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                 elif "SCHEDULE F4" in page_title:
                     for i in range(len(table)):
                         if table[i] and "Payee name" in str(table[i]):
-                            record = parse_credit_card_record(table[i:i+4], page_num, pdf_path)
+                            record = parse_credit_card_record(table[i:i+4], page_num, source_filename)
                             if record:
                                 data["credit_card_expenditures"].append(record)
 

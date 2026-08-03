@@ -24,6 +24,12 @@ def geocode_dataset(geo_cache, dataset: dict) -> dict:
         dataset.get("contributions", [])
     )
     print("Geocoding contributions completed.")
+
+    dataset["loans"] = process_records(
+        dataset.get("loans", [])
+    )
+    print("Geocoding loans completed.")
+
     dataset["expenditures"] = process_records(
         dataset.get("expenditures", [])
     )

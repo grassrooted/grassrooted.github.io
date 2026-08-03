@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T18:00:15.869Z",
+    "verification_timestamp": "2026-07-25T23:31:20.022Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -16,15 +16,18 @@
     "total_payments_to_candidate_business": 0,
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
-    "total_edits": 0,
-    "dataset_hash": "0bedfdce7c8c9958e030975c2c8367c9d789fc8e4974178af26d65b43884021f"
+    "total_edits": 8,
+    "dataset_hash": "581d23d2730868af39b0736391c70698fa596c3c92147467aa0e7f854a060b02"
   },
   "candidate_info": {
     "first_name": "William",
-    "last_name": "Roth",
+    "last_name": "Bill",
     "office_sought": "Council District 11",
     "report_totals": {
-      "Contribution Balance": "40573.94",
+      "Contribution Balance": 40573.94,
+      "Outstanding Loan Totals": 201000,
+      "Contribution Total": 8959.7,
+      "Expenditure Total": 6467.6,
       "Total Itemized Reported Contributions": 8959.7,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 8959.7,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 6467.6
+      "TOTAL POLITICAL EXPENDITURES": 6467.6,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 0
     },
     "period_start": "2025-07-01",
     "period_end": "2025-12-31"
@@ -74,9 +78,9 @@
       "Source": "srp0000002975_20260105_110459.pdf",
       "Schedule": "A1",
       "Page": 1,
-      "latitude": 32.87,
-      "longitude": -96.79,
-      "record_id": "e804a8a7a446f15235f4f7e044a2b262d82f43fb2ea5d315fe15de67e85c9e18"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "30784c1a667c5124081b7800d283d970bd22e833b271a0911ab39faabc7e6e28"
     },
     {
       "Transaction_Date": "2025-08-01",
@@ -88,9 +92,9 @@
       "Source": "srp0000002975_20260105_110459.pdf",
       "Schedule": "A1",
       "Page": 1,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "e0828df76e251130ea7a8674a3cf775b4bc4851d373cfb5901cb6385bbce9afe"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "0902e3a342890c760a81bb58fd5ebff24d303d587191495d36d9d5183643dd45"
     },
     {
       "Transaction_Date": "2025-08-01",
@@ -116,9 +120,9 @@
       "Source": "srp0000002975_20260105_110459.pdf",
       "Schedule": "A1",
       "Page": 2,
-      "latitude": 32.83,
-      "longitude": -96.76,
-      "record_id": "d6bcbbf3d315c1d0fa1f7749c72581e9c9cd611ac173f23755291bd2158533e4"
+      "latitude": "32.83",
+      "longitude": "-96.76",
+      "record_id": "fc7ccd631260e4de027aee1e7e58b432057d7aef64e3f40fcb5c27b200d7ac2f"
     },
     {
       "Transaction_Date": "2025-08-01",
@@ -158,9 +162,9 @@
       "Source": "srp0000002975_20260105_110459.pdf",
       "Schedule": "A1",
       "Page": 2,
-      "latitude": 32.86,
-      "longitude": -96.79,
-      "record_id": "9a400a58d8a184cf04fb895e28a9a9bc004c273adb7bc7a9d78151f350ed0317"
+      "latitude": "32.87",
+      "longitude": "-96.79",
+      "record_id": "409984ef12976903af944ae6966ac1d1aab13107b52678c7dd99940ea0e512fe"
     },
     {
       "Transaction_Date": "2025-08-01",
@@ -186,9 +190,9 @@
       "Source": "srp0000002975_20260105_110459.pdf",
       "Schedule": "A1",
       "Page": 3,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "16e0114b83bfe51dd4c68c2d3344d2d436573a51373a0556764f6f72b2c351f6"
+      "latitude": "32.8",
+      "longitude": "-96.82",
+      "record_id": "acf68bd0d6607c5978a6020ead0134547ca81bc790cb56e8a26cd082e88b8ba2"
     },
     {
       "Transaction_Date": "2025-08-27",
@@ -242,9 +246,9 @@
       "Source": "srp0000002975_20260105_110459.pdf",
       "Schedule": "A1",
       "Page": 4,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "d1add1e9ed6b5f60f05d5e1a4e1730c6768515f429f22559f4637529b6744eb5"
+      "latitude": "32.79",
+      "longitude": "-96.8",
+      "record_id": "b86e323373879665a748cf5afb320713c97e0b8a96039327cc81b2286a1ac89e"
     }
   ],
   "expenditures": [
@@ -280,7 +284,7 @@
       "Transaction_Date": "2025-08-04",
       "Name": "Catalyst Advisors Group, LLC",
       "Amount": 5000,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Consulting Expense",
       "Description": "consulting fee",
       "Source": "srp0000002975_20260105_110459.pdf",
@@ -288,7 +292,7 @@
       "Page": 6,
       "latitude": 30.27,
       "longitude": -97.74,
-      "record_id": "0968843f2664f413a90d87181710b8498b68f3372f30f01aaf8048af1433ae55"
+      "record_id": "118a3957304597d748867d2e741f722b0731a398f110ddb5bff71d470449d4c4"
     },
     {
       "Transaction_Date": "2025-08-12",
@@ -322,7 +326,7 @@
       "Transaction_Date": "2025-12-15",
       "Name": "FedEx",
       "Amount": 24.65,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Accounting/Banking",
       "Description": "shipping",
       "Source": "srp0000002975_20260105_110459.pdf",
@@ -330,7 +334,7 @@
       "Page": 7,
       "latitude": 38.25,
       "longitude": -122.06,
-      "record_id": "66b4d6061dae1b438e818a630f7b1fc9eaacfa07370b575aa16b68ab8d707be2"
+      "record_id": "ea0fb724cc62b3ac3c14abc7a2bb76cd26ddcb61d83b840e6f2797f90e6b0e0b"
     },
     {
       "Transaction_Date": "2025-12-18",
@@ -357,5 +361,78 @@
   "payments_to_candidate_business": [],
   "pledged_contributions": [],
   "unpaid_incurred_obligations": [],
-  "edit_log": []
+  "edit_log": [
+    {
+      "record_id": "fc7ccd631260e4de027aee1e7e58b432057d7aef64e3f40fcb5c27b200d7ac2f",
+      "record_type": "contribution",
+      "field": "latitude",
+      "original_value": null,
+      "updated_value": "32.83",
+      "timestamp": "2026-07-25T23:31:20.022Z",
+      "editor": "local-admin"
+    },
+    {
+      "record_id": "fc7ccd631260e4de027aee1e7e58b432057d7aef64e3f40fcb5c27b200d7ac2f",
+      "record_type": "contribution",
+      "field": "longitude",
+      "original_value": null,
+      "updated_value": "-96.76",
+      "timestamp": "2026-07-25T23:31:20.022Z",
+      "editor": "local-admin"
+    },
+    {
+      "record_id": "409984ef12976903af944ae6966ac1d1aab13107b52678c7dd99940ea0e512fe",
+      "record_type": "contribution",
+      "field": "latitude",
+      "original_value": null,
+      "updated_value": "32.87",
+      "timestamp": "2026-07-25T23:31:20.022Z",
+      "editor": "local-admin"
+    },
+    {
+      "record_id": "409984ef12976903af944ae6966ac1d1aab13107b52678c7dd99940ea0e512fe",
+      "record_type": "contribution",
+      "field": "longitude",
+      "original_value": null,
+      "updated_value": "-96.79",
+      "timestamp": "2026-07-25T23:31:20.022Z",
+      "editor": "local-admin"
+    },
+    {
+      "record_id": "acf68bd0d6607c5978a6020ead0134547ca81bc790cb56e8a26cd082e88b8ba2",
+      "record_type": "contribution",
+      "field": "latitude",
+      "original_value": null,
+      "updated_value": "32.8",
+      "timestamp": "2026-07-25T23:31:20.022Z",
+      "editor": "local-admin"
+    },
+    {
+      "record_id": "acf68bd0d6607c5978a6020ead0134547ca81bc790cb56e8a26cd082e88b8ba2",
+      "record_type": "contribution",
+      "field": "longitude",
+      "original_value": null,
+      "updated_value": "-96.82",
+      "timestamp": "2026-07-25T23:31:20.022Z",
+      "editor": "local-admin"
+    },
+    {
+      "record_id": "b86e323373879665a748cf5afb320713c97e0b8a96039327cc81b2286a1ac89e",
+      "record_type": "contribution",
+      "field": "latitude",
+      "original_value": null,
+      "updated_value": "32.79",
+      "timestamp": "2026-07-25T23:31:20.022Z",
+      "editor": "local-admin"
+    },
+    {
+      "record_id": "b86e323373879665a748cf5afb320713c97e0b8a96039327cc81b2286a1ac89e",
+      "record_type": "contribution",
+      "field": "longitude",
+      "original_value": null,
+      "updated_value": "-96.8",
+      "timestamp": "2026-07-25T23:31:20.022Z",
+      "editor": "local-admin"
+    }
+  ]
 }
