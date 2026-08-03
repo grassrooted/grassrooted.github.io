@@ -1,193 +1,258 @@
-/* ============================================
-   financial records – Data Ledger
-   Grassrooted Dark Civic Theme
-============================================ */
+/* ==========================================
+   Financial Records
+   Grassrooted Dark Theme
+========================================== */
 
-/* Outer Wrapper */
+/* ---------- Wrapper ---------- */
+
 #financial-records-wrapper {
-    margin: 2rem auto;
-    padding: 1.75rem;
-    max-width: 1200px;
-  
-    background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
-    border-radius: 14px;
-    border: 1px solid rgba(0, 255, 163, 0.08);
-  
-    box-shadow:
-      0 0 0 1px rgba(0, 255, 163, 0.03),
-      0 14px 35px rgba(0, 0, 0, 0.6);
-  
     display: flex;
     flex-direction: column;
-  }
-  
-  /* Section Headings */
-  #financial-records-wrapper h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #f3f4f6;
-    margin-bottom: 0.5rem;
-  }
-  
-  #financial-records-wrapper h4 {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-bottom: 1.25rem;
-  }
-  
-  #financial-records-wrapper i {
-    color: #9ca3af;
-  }
-  
-  /* Download Button */
-  #financial-records-wrapper button {
-    align-self: flex-start;
-  
-    background: #111827;
-    color: #f3f4f6;
-  
-    border: 1px solid rgba(0, 255, 163, 0.2);
-    border-radius: 8px;
-  
-    padding: 0.6rem 1rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-  
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  #financial-records-wrapper button:hover {
-    border-color: #00ffa3;
-    box-shadow: 0 0 0 3px rgba(0, 255, 163, 0.12);
-  }
-  
-  /* ============================================
-     TABULATOR OVERRIDES
-  ============================================ */
-  
-  .tabulator {
-    background-color: #111827;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-radius: 10px;
-    color: #e6edf3;
-    font-size: 0.9rem;
-  }
-  
-  /* Header */
-  .tabulator .tabulator-header {
-    background-color: #0f172a;
-    border-bottom: 1px solid rgba(0, 255, 163, 0.15);
-  }
-  
-  .tabulator .tabulator-col {
-    background-color: #0f172a !important;
-    color: #94a3b8;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    border-right: 1px solid rgba(255, 255, 255, 0.04);
-  }
-  
-  /* Header Hover */
-  .tabulator .tabulator-col:hover {
-    background-color: rgba(0, 255, 163, 0.05);
-  }
-  
-  /* Rows */
-  .tabulator-row {
-    background-color: #111827 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    transition: background 0.15s ease;
-  }
-
-  .tabulator .tabulator-row {
-    background-color: #111 
-  }
-
-  .tabulator .tabulator-row:nth-child(even) {
-    background-color: #0f1b2a !important;
-  }
-  
-  
-  .tabulator-row:hover {
-    background-color: rgba(0, 255, 163, 0.05);
-  }
-  
-  /* Cells */
-  .tabulator-cell {
-    padding: 0.75rem 1rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.03);
-    color: white;
-  }
-  
-  /* Money Column Highlight (Optional Enhancement) */
-  .tabulator-cell[tabulator-field="Amount"] {
-    font-weight: 600;
-    color: #00ffa3;
-  }
-  
-  /* Scrollbar */
-  .tabulator .tabulator-tableholder {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,255,163,0.3) transparent;
-  }
-  
-  /* Header Filters */
-  .tabulator input {
-    background-color: #111827;
-    border: 1px solid rgba(0, 255, 163, 0.15);
-    color: #f3f4f6;
-    border-radius: 6px;
-    padding: 4px 6px;
-  }
-  
-  .tabulator input:focus {
-    outline: none;
-    border-color: #00ffa3;
-    box-shadow: 0 0 0 2px rgba(0, 255, 163, 0.15);
-  }
-
-  #financial-tabs {
-    display: flex;
     gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  #financial-tabs button {
+
+    margin: 2rem auto;
+    padding: 1.5rem;
+
+    width: 100%;
+    max-width: 1400px;
+
+    background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
+    border: 1px solid rgba(0,255,163,.08);
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 0 1px rgba(0,255,163,.03),
+        0 14px 35px rgba(0,0,0,.55);
+}
+
+#financial-records-wrapper h2 {
+    margin: 0;
+    color: #f3f4f6;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* ==========================================
+   Schedule Tabs
+========================================== */
+
+#financial-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: .5rem;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding-bottom: .25rem;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,255,163,.25) transparent;
+}
+
+#financial-tabs::-webkit-scrollbar {
+    height: 8px;
+}
+
+#financial-tabs::-webkit-scrollbar-thumb {
+    background: rgba(0,255,163,.25);
+    border-radius: 10px;
+}
+
+#financial-tabs button {
+
+    flex: 0 0 auto;
+
+    padding: .55rem 1rem;
+
+    border-radius: 8px;
+    border: 1px solid rgba(0,255,163,.15);
+
     background: #111827;
     color: #94a3b8;
-    border: 1px solid rgba(0, 255, 163, 0.15);
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+
     cursor: pointer;
+
+    white-space: nowrap;
+
     font-weight: 600;
-    transition: all 0.2s ease;
-  }
-  
-  #financial-tabs button.active {
-    background: rgba(0, 255, 163, 0.08);
+    font-size: .9rem;
+
+    transition:
+        background .15s,
+        border-color .15s,
+        color .15s,
+        transform .15s;
+}
+
+#financial-tabs button:hover {
+
+    border-color: #00ffa3;
+    color: white;
+
+    transform: translateY(-1px);
+}
+
+#financial-tabs button.active {
+
+    background: rgba(0,255,163,.08);
     border-color: #00ffa3;
     color: #00ffa3;
-  }
-  
-  #financial-tabs button:hover {
+
+    box-shadow: 0 0 12px rgba(0,255,163,.12);
+}
+
+/* ==========================================
+   Tabulator
+========================================== */
+
+.tabulator {
+
+    background: #111827;
+    color: #e5e7eb;
+
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 10px;
+
+    font-size: .9rem;
+}
+
+/* Header */
+
+.tabulator .tabulator-header {
+
+    background: #0f172a;
+    border-bottom: 1px solid rgba(0,255,163,.15);
+}
+
+.tabulator .tabulator-col {
+
+    background: #0f172a !important;
+
+    color: #94a3b8;
+
+    text-transform: uppercase;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+
+    border-right: 1px solid rgba(255,255,255,.04);
+}
+
+.tabulator .tabulator-col:hover {
+    background: rgba(0,255,163,.05) !important;
+}
+
+/* Header Filters */
+
+.tabulator input {
+
+    width: 100%;
+
+    padding: .35rem .45rem;
+
+    border-radius: 6px;
+    border: 1px solid rgba(0,255,163,.15);
+
+    background: #111827;
+    color: white;
+}
+
+.tabulator input:focus {
+
+    outline: none;
+
     border-color: #00ffa3;
-  }
-  
-  
-  /* Responsive */
-  @media (max-width: 768px) {
+
+    box-shadow: 0 0 0 2px rgba(0,255,163,.15);
+}
+
+/* Rows */
+
+.tabulator-row {
+
+    background: #111827 !important;
+
+    border-bottom: 1px solid rgba(255,255,255,.04);
+
+    transition: background .15s;
+}
+
+.tabulator-row:nth-child(even) {
+
+    background: #0f1b2a !important;
+}
+
+.tabulator-row:hover {
+    color: black;
+    background: rgba(0,255,163,.05) !important;
+}
+
+/* Cells */
+
+.tabulator-cell {
+
+    padding: .75rem .9rem;
+
+    border-right: 1px solid rgba(255,255,255,.03);
+
+    color: white;
+}
+
+/* Amount column */
+
+.tabulator-cell[tabulator-field="Amount"] {
+
+    color: #00ffa3;
+    font-weight: 600;
+}
+
+/* Scrollbar */
+
+.tabulator .tabulator-tableholder {
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,255,163,.3) transparent;
+}
+
+/* Hovered row */
+.tabulator .tabulator-row:hover .tabulator-cell {
+    background: #1f4f5f !important;
+}
+
+/* Hovered editable cell / selected cell */
+.tabulator .tabulator-row:hover .tabulator-cell * {
+    background: #1f4f5f !important;
+}
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 768px) {
+
     #financial-records-wrapper {
-      padding: 1rem;
+
+        padding: 1rem;
     }
-  
+
+    #financial-tabs {
+
+        gap: .4rem;
+    }
+
+    #financial-tabs button {
+
+        font-size: .8rem;
+        padding: .45rem .8rem;
+    }
+
     .tabulator {
-      font-size: 0.8rem;
+
+        font-size: .8rem;
     }
-  
+
     .tabulator-cell {
-      padding: 0.6rem 0.75rem;
+
+        padding: .6rem;
     }
-  }
-  
+}

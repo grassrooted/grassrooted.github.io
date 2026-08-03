@@ -10,10 +10,73 @@ function parseLocalDate(dateString) {
 function FinancialRecordsTable({
     profile,
     selectedDateRange,
-    contribution_data,
-    expenditure_data,
-    }) {
-    const [activeTab, setActiveTab] = useState("contributions");
+    schedules,
+}) {
+    const scheduleNames = Object.keys(schedules).filter(
+    (schedule) =>
+        Array.isArray(schedules[schedule]) &&
+        schedules[schedule].length > 0
+    );
+
+    const [activeTab, setActiveTab] = useState(
+        scheduleNames[0] ?? ""
+    );
+
+    const buildColumns = (data) => {
+        if (!data.length) return [];
+
+        // Get every field found in the dataset
+        const fields = new Set();
+
+        data.forEach((record) => {
+            Object.keys(record).forEach((field) => fields.add(field));
+        });
+
+        const columns = [];
+
+                const preferredOrder = [
+            "Name",
+            "Amount",
+            "Transaction_Date",
+            "Category",
+            "Description",
+            "Recipient",
+            "Address",
+            "City_State_Zip",
+            "Transaction_Type",
+            "Source",
+        ];
+
+        const orderedFields = [
+            ...preferredOrder.filter(field => fields.has(field)),
+            ...[...fields].filter(field => !preferredOrder.includes(field)),
+        ];
+
+        for (const field of orderedFields) {
+
+            const column = {
+                title: field
+                    .replace(/_/g, " ")
+                    .replace(/\b\w/g, c => c.toUpperCase()),
+                field,
+                headerFilter: true,
+            };
+
+            if (field === "Amount") {
+                column.formatter = "money";
+            }
+
+            if (field === "Transaction_Date") {
+                column.sorter = (a, b) => a - b;
+                column.formatter = (cell) =>
+                    cell.getValue()?.toLocaleDateString("en-US");
+            }
+
+            columns.push(column);
+        }
+
+        return columns;
+    };
 
     useEffect(() => {
         const tableElement = document.getElementById("financial-records-table");
@@ -21,17 +84,18 @@ function FinancialRecordsTable({
 
         let table;
 
-        const preprocessContributionData = (data) =>
-        data.map((record) => ({
-            ...record,
-            ["Transaction_Date"]: parseLocalDate(record.Transaction_Date),
-        }));
+        const preprocessData = (data) =>
+            data.map((record) => {
+                const processed = { ...record };
 
-        const preprocessExpenditureData = (data) =>
-        data.map((record) => ({
-            ...record,
-            ["Transaction_Date"]: parseLocalDate(record.Transaction_Date),
-        }));
+                if (processed.Transaction_Date) {
+                    processed.Transaction_Date = parseLocalDate(
+                        processed.Transaction_Date
+                    );
+                }
+
+                return processed;
+            });
 
         const filterDataByDate = (data, field) => {
         if (selectedDateRange === "all") return data;
@@ -45,107 +109,31 @@ function FinancialRecordsTable({
         let tableData = [];
         let columns = [];
 
-        if (activeTab === "contributions") {
-        const processed = preprocessContributionData(contribution_data);
+        const rawData = schedules[activeTab] ?? [];
+
+        const processed = preprocessData(rawData);
+
         tableData = filterDataByDate(
             processed,
             "Transaction_Date"
         );
 
-        columns = [
-            { 
-                title: "Donor", 
-                field: "Name", 
-                headerFilter: true 
-            },
-            {
-                title: "Amount ($)",
-                field: "Amount",
-                formatter: "money",
-                headerFilter: true,
-            },
-            {
-                title: "Date",
-                field: "Transaction_Date",
-                sorter: (a, b) => {
-                    const dateA = a instanceof Date ? a : new Date(a);
-                    const dateB = b instanceof Date ? b : new Date(b);
-                    return dateA - dateB;
-                  },
-                formatter: (cell) =>
-                    cell.getValue()?.toLocaleDateString("en-US"),
-            },
-            {
-                title: "Source",
-                field: "Source",
-                headerFilter: true,
-            }
-        ];
-        }
-
-        if (activeTab === "expenditures") {
-          const processed = preprocessExpenditureData(expenditure_data);
-          tableData = filterDataByDate(processed, "Transaction_Date");
-
-          columns = [
-              { 
-                  title: "Vendor", 
-                  field: "Name", 
-                  headerFilter: true },
-              {
-                  title: "Amount ($)",
-                  field: "Amount",
-                  formatter: "money",
-                  headerFilter: true,
-              },
-              {
-                  title: "Candidate",
-                  field: "Recipient",
-              },
-              { 
-                  title: "Category", 
-                  field: "Category", 
-                  headerFilter: true 
-              },
-              { 
-                  title: "Description", 
-                  field: "Description", 
-                  headerFilter: true 
-              },
-              {
-                  title: "Transaction Type",
-                  field: "Transaction_Type",
-                  headerFilter: true
-              },
-              {
-                title: "Date",
-                field: "Transaction_Date",
-                sorter: (a, b) => {
-                    const dateA = a instanceof Date ? a : new Date(a);
-                    const dateB = b instanceof Date ? b : new Date(b);
-                    return dateA - dateB;
-                  },
-                formatter: (cell) =>
-                    cell.getValue()?.toLocaleDateString("en-US"),
-              }, 
-            ];}
-
+        columns = buildColumns(tableData);
+        
         table = new Tabulator(tableElement, {
-        data: tableData,
-        layout: "fitDataFill",
-        columns,
-        renderHorizontal: "virtual",
-        autoResize: true,
-        rowStyles: false,
+            data: tableData,
+            layout: "fitDataFill",
+            columns,
+            renderHorizontal: "virtual",
+            autoResize: true,
+            rowStyles: false,
         });
 
         return () => table.destroy();
     }, [
         activeTab,
-        contribution_data,
-        expenditure_data,
+        schedules,
         selectedDateRange,
-        profile,
     ]);
 
   return (
@@ -154,19 +142,21 @@ function FinancialRecordsTable({
 
       {/* Tabs */}
       <div id="financial-tabs">
-        <button
-          className={activeTab === "contributions" ? "active" : ""}
-          onClick={() => setActiveTab("contributions")}
-        >
-          Contributions
-        </button>
-
-        <button
-          className={activeTab === "expenditures" ? "active" : ""}
-          onClick={() => setActiveTab("expenditures")}
-        >
-          Expenditures
-        </button>
+        {scheduleNames.map((schedule) => (
+            <button
+                key={schedule}
+                className={
+                    activeTab === schedule
+                        ? "active"
+                        : ""
+                }
+                onClick={() => setActiveTab(schedule)}
+            >
+                {schedule
+                    .replace(/_/g, " ")
+                    .replace(/\b\w/g, (c) => c.toUpperCase())}
+            </button>
+        ))}
       </div>
 
       <div

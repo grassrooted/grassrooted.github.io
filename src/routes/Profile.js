@@ -188,12 +188,34 @@ function Profile() {
                 <DonationList
                     expenditure_data={profile.expenditures} />
 
-                <FinancialRecordsTable 
+                <FinancialRecordsTable
                     profile={profile}
                     selectedDateRange={selectedDateRange}
-                    contribution_data={profile.contributions}
-                    expenditure_data={profile.expenditures}
-                    />
+                    schedules={{
+                        contributions: 
+                            profile.contributions,
+                        expenditures: 
+                            profile.expenditures,
+                        in_kind_contributions: 
+                            profile.in_kind_contributions,
+                        loans: 
+                            profile.loans,
+                        credit_card_expenditures: 
+                            profile.credit_card_expenditures,
+                        interest_gained: 
+                            profile.interest_gained,
+                        investment_purchases: 
+                            profile.investment_purchases,
+                        non_political_expenditures_made_from_political_contributions:
+                            profile.non_political_expenditures_made_from_political_contributions,
+                        payments_to_candidate_business:
+                            profile.payments_to_candidate_business,
+                        pledged_contributions:
+                            profile.pledged_contributions,
+                        unpaid_incurred_obligations:
+                            profile.unpaid_incurred_obligations,
+                    }}
+                />
             </div>
 
             <div
