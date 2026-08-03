@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T17:35:41.705Z",
+    "verification_timestamp": "2026-08-03T18:12:09.466Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -16,15 +16,18 @@
     "total_payments_to_candidate_business": 0,
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
-    "total_edits": 4,
-    "dataset_hash": "debf70ebce5b4daba0c1341a396605f050b9039f0fbb2667b751b393ee374451"
+    "total_edits": 0,
+    "dataset_hash": "65918614373c9aaf472dbcec475c103d5a581fe2cde1b6249637a1950398b41a"
   },
   "candidate_info": {
     "first_name": "Paul",
     "last_name": "RIdley",
     "office_sought": "Council District 14",
     "report_totals": {
-      "Contribution Balance": "103090.56",
+      "Contribution Balance": 103090.56,
+      "Outstanding Loan Totals": 0,
+      "Contribution Total": 24706.72,
+      "Expenditure Total": 344.23,
       "Total Itemized Reported Contributions": 24706.72,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 24706.72,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 301.41
+      "TOTAL POLITICAL EXPENDITURES": 301.41,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 0
     },
     "period_start": "2025-04-03",
     "period_end": "2025-06-30"
@@ -67,24 +71,24 @@
     {
       "Transaction_Date": "2025-04-03",
       "Name": "Greg Estell",
-      "Occupation": "Not employed",
+      "Occupation": "",
       "Employer": "",
       "Amount": 500,
-      "Transaction_Type": "Campaign Contribution",
+      "Transaction_Type": "Campaign Contribution Not employed",
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 1,
-      "latitude": 37.37,
-      "longitude": -122.01,
-      "record_id": "7e57219e22f24739db3b3868e7470bf4b25d1142fc7e6400ce727157fcf932d5"
+      "latitude": 32.86,
+      "longitude": -96.71,
+      "record_id": "390d2aa11967b9e3c3fc1a77d319900e2400d39a615d9335f0efcbd40ef20fe6"
     },
     {
       "Transaction_Date": "2025-04-03",
       "Name": "Jacqueline Lowe",
-      "Occupation": "Retired",
+      "Occupation": "",
       "Employer": "",
       "Amount": 100,
-      "Transaction_Type": "Campaign Contribution",
+      "Transaction_Type": "Campaign Contribution Retired",
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 1,
@@ -256,9 +260,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 4,
-      "latitude": 32.83,
-      "longitude": -96.46,
-      "record_id": "8bc6e476473d763c705f0558e56db305cc62363b913cbd4613f842ee720ee34a"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "48ba2848e3e85cf3308288d415b9960f4fa4d60ac92edfcb5e2fb39d585ef7ac"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -284,9 +288,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 5,
-      "latitude": 40.8,
-      "longitude": -73.57,
-      "record_id": "35b544cc95cf48fe57581d71323248323310cdfc69c02f14051705f7d449cce4"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "76bfbe34e6e73cad012f7a616b3eb7873eabc61f17b4230c5443bfc5fc4c6156"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -298,9 +302,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 5,
-      "latitude": 29.77,
-      "longitude": -95.51,
-      "record_id": "41b572896dfdd5b5b518f85a1ffae2059ec95d945df40157f32f525d3f3d542b"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "1ad65d3e68cfad7008c6af92bb3a25253acfa73376bb1f15eccb58f2409eab02"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -326,9 +330,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 5,
-      "latitude": 32.86,
-      "longitude": -96.79,
-      "record_id": "c2a116caea56aaec70d360092d16dde33d125d495395799a687ef674eb0f7438"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "fdba4de4dc9029d43fd1c77780a9e9ae8757ce4e33cefb3d9792fba49871bf7b"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -438,9 +442,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 7,
-      "latitude": 32.8,
-      "longitude": -96.82,
-      "record_id": "3a711323214523ddb81342a6ffc9bc716760309346fdf9c24a2a57e536c096ef"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "e64c90726ddbe3d05df73c2f86f0326f5a1636569b6c61ca46bdd67a65724bdc"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -466,9 +470,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 8,
-      "latitude": 32.99,
-      "longitude": -96.73,
-      "record_id": "1a5e89602d447e3631be45aecac56b677b9ebc52a08773ce7455e5975e26bcc4"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "efab53af1154f4db57b8c22f94057220034e10e05f3143953eeeb4b1d42280ae"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -480,9 +484,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 8,
-      "latitude": 32.9,
-      "longitude": -96.78,
-      "record_id": "8713a1903f4a12bbdda81a1df442ee861c5d390d86cbf990baad83ec20c9ac73"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "76bd954182a4267699d843b8dc22be81a49f9bd7b86592bea90dc4e4363c6c64"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -494,9 +498,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 8,
-      "latitude": 32.84,
-      "longitude": -96.81,
-      "record_id": "5f29c8057a3907192dfe9e2f23a7e03604c4fc97541b572bbaad591f97dc93d5"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "9d426900273262e02de5884a4a9662732547563dd2d57b9367793d7a925a4ca9"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -508,9 +512,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 9,
-      "latitude": 33.11,
-      "longitude": -96.92,
-      "record_id": "a506029a5926e4a75478366e9eaa82591b83d016cd781d5c91520d3f43366c2d"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "0300ae7d9ad9de09352e5fe7dc7c57d86f47b8db929f4b6e7a6705664ca10baf"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -620,9 +624,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 11,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "0f6d731f377e4e3981de0c30818a1837df760cc856b6e9a68448b45708c732f6"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "d7a779b54396564b5a52e4ac6104c3dda53e4328d1ebd3105f141b5077a0e88a"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -956,9 +960,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 17,
-      "latitude": 32.75,
-      "longitude": -96.84,
-      "record_id": "9c3021178d04566d605648508a14c7a391ce9b4f316189f9a04d21028bff681d"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "f90bcdff29aa5d920582c4142b71cdd4bf330e60512ba530986241f3224ee326"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -1068,9 +1072,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 19,
-      "latitude": 32.84,
-      "longitude": -96.79,
-      "record_id": "c01fb73f72ae25ca0b0086426b95a4866aef27f4973578555983e65b0bd42c92"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "a5e01ec63c69ea2b8cb41b8790c8add065ca8fdb4e5a2622bf2e6306ebac638a"
     },
     {
       "Transaction_Date": "2025-04-03",
@@ -1138,9 +1142,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 20,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "5f5a08f3d6f5584354d740c95c65de1bfe380aa0fc11b11b86bb4dda57edd934"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "63c55fb039b3c25623c1387a9d8d0c59d55babdd160db734b039043b48a95852"
     },
     {
       "Transaction_Date": "2025-04-23",
@@ -1194,9 +1198,9 @@
       "Source": "srp0000002943_20250704_082450.pdf",
       "Schedule": "A1",
       "Page": 21,
-      "latitude": 32.87,
-      "longitude": -96.87,
-      "record_id": "a94082a2777ec65cbc2e73883099d9914ec2cfdb26ae55cb66695daedf5a225d"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "e432bb777705a9ccb03c534385745692d213c1401e17843781cdc01c9b78f6c2"
     },
     {
       "Transaction_Date": "2025-05-03",
@@ -1316,7 +1320,7 @@
       "Transaction_Date": "2025-06-30",
       "Name": "Square up",
       "Amount": 31.05,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Fees",
       "Description": "processing fees",
       "Source": "srp0000002943_20250704_082450.pdf",
@@ -1324,7 +1328,7 @@
       "Page": 23,
       "latitude": 37.78,
       "longitude": -122.41,
-      "record_id": "ab8c1080c0a0a756e380ae172ce9422c55e54777f4c2d8d20414681bd7e4cede"
+      "record_id": "e8f28a1e3aa7eff2b730598eca1688e2f6268c5e5e6e0a798a52d26c2296fb94"
     },
     {
       "Transaction_Date": "2025-06-30",
@@ -1425,42 +1429,5 @@
   "payments_to_candidate_business": [],
   "pledged_contributions": [],
   "unpaid_incurred_obligations": [],
-  "edit_log": [
-    {
-      "record_id": "7e57219e22f24739db3b3868e7470bf4b25d1142fc7e6400ce727157fcf932d5",
-      "record_type": "contribution",
-      "field": "Occupation",
-      "original_value": "",
-      "updated_value": "Not employed",
-      "timestamp": "2026-07-15T17:35:41.705Z",
-      "editor": "local-admin"
-    },
-    {
-      "record_id": "7e57219e22f24739db3b3868e7470bf4b25d1142fc7e6400ce727157fcf932d5",
-      "record_type": "contribution",
-      "field": "Transaction_Type",
-      "original_value": "Campaign Contribution Not employed",
-      "updated_value": "Campaign Contribution",
-      "timestamp": "2026-07-15T17:35:41.705Z",
-      "editor": "local-admin"
-    },
-    {
-      "record_id": "12464560dc125718de441f66cec324545b6b359fcf77804e0e4841f744632125",
-      "record_type": "contribution",
-      "field": "Occupation",
-      "original_value": "",
-      "updated_value": "Retired",
-      "timestamp": "2026-07-15T17:35:41.705Z",
-      "editor": "local-admin"
-    },
-    {
-      "record_id": "12464560dc125718de441f66cec324545b6b359fcf77804e0e4841f744632125",
-      "record_type": "contribution",
-      "field": "Transaction_Type",
-      "original_value": "Campaign Contribution Retired",
-      "updated_value": "Campaign Contribution",
-      "timestamp": "2026-07-15T17:35:41.705Z",
-      "editor": "local-admin"
-    }
-  ]
+  "edit_log": []
 }

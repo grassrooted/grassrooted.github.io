@@ -8,7 +8,7 @@
     - "srp0000002904_20250425_144224.json"
     - "srp0000003022_20260714_151616.json"
   first_election: "2019"
-  next_election: "2025"
+  next_election: "2027"
   district: 1
   city: "Dallas"
   election_status: "in-office"
@@ -33,7 +33,7 @@
     - "/candidates/Moreno/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Moreno/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2021"
-  next_election: "2025"
+  next_election: "2027"
   district: 2
   city: "Dallas"
   election_status: "in-office"
@@ -57,7 +57,7 @@
     - "/candidates/Gracey/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Gracey/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2023"
-  next_election: "2025"
+  next_election: "2027"
   district: 3
   city: "Dallas"
   election_status: "in-office"
@@ -83,7 +83,7 @@
     - "/candidates/Arnold/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Arnold/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2019"
-  next_election: "2025"
+  next_election: "2027"
   district: 4
   city: "Dallas"
   election_status: "in-office"
@@ -101,15 +101,16 @@
     Address: "Address"
 - name:  "Jaime Resendez"
   id: "JaimeResendez"
-  path_to_contributions_data: "/candidates/Resendez/Data/Jaime_Resendez_contributions_expenditures.json"
+  path_to_contributions_data: "/candidates/Resendez/Sources"
   path_to_headshot_photo: "/candidates/Resendez/Visuals/Resendez_headshot.jpeg"
-  path_to_maps:
-    - "/candidates/Resendez/Visuals/May 5, 2017 - May 4, 2019.jpg"
-    - "/candidates/Resendez/Visuals/May 5, 2019 - May 4, 2021.jpg"
-    - "/candidates/Resendez/Visuals/May 5, 2021 - May 4, 2023.jpg"
-    - "/candidates/Resendez/Visuals/May 5, 2023 - May 4, 2025.jpg"
+  sourceNames:
+    - "srp0000002831_20250402_151824.json"
+    - "srp0000002886_20250425_182850.json"
+    - "srp0000002956_20250715_135444.json"
+    - "srp0000003019_20260714_120154.json"
+    - "srp0000002998_20260115_163046.json"
   first_election: "2021"
-  next_election: "2025"
+  next_election: "2027"
   district: 5
   city: "Dallas"
   election_status: "in-office"
@@ -135,7 +136,7 @@
     - "/candidates/Narvaez/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Narvaez/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2017"
-  next_election: "2025"
+  next_election: "2027"
   district: 6
   city: "Dallas"
   election_status: "in-office"
@@ -161,7 +162,7 @@
     - "/candidates/Bazaldua/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Bazaldua/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2019"
-  next_election: "2025"
+  next_election: "2027"
   district: 7
   city: "Dallas"
   election_status: "in-office"
@@ -187,7 +188,7 @@
     - "/candidates/Ridley/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Atkins/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2017"
-  next_election: "2025"
+  next_election: "2027"
   district: 8
   city: "Dallas"
   election_status: "in-office"
@@ -213,7 +214,7 @@
     - "/candidates/Blackmon/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Blackmon/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2021"
-  next_election: "2025"
+  next_election: "2027"
   district: 9
   city: "Dallas"
   election_status: "in-office"
@@ -237,7 +238,7 @@
     - "/candidates/Stewart/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Stewart/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2023"
-  next_election: "2025"
+  next_election: "2027"
   district: 10
   city: "Dallas"
   election_status: "in-office"
@@ -262,7 +263,7 @@
     - "/candidates/Schultz/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Schultz/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2021"
-  next_election: "2025"
+  next_election: "2027"
   district: 11
   city: "Dallas"
   election_status: "in-office"
@@ -288,7 +289,7 @@
     - "/candidates/Mendelsohn/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Mendelsohn/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2017"
-  next_election: "2025"
+  next_election: "2027"
   district: 12
   city: "Dallas"
   election_status: "in-office"
@@ -313,7 +314,7 @@
     - "/candidates/Willis/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Willis/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2021"
-  next_election: "2025"
+  next_election: "2027"
   district: 13
   city: "Dallas"
   election_status: "in-office"
@@ -338,7 +339,7 @@
     - "/candidates/Ridley/Visuals/May 5, 2021 - May 4, 2023.jpg"
     - "/candidates/Ridley/Visuals/May 5, 2023 - May 4, 2025.jpg"
   first_election: "2021"
-  next_election: "2025"
+  next_election: "2027"
   district: 14
   city: "Dallas"
   election_status: "in-office"

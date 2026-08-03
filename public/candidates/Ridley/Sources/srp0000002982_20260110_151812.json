@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T17:19:51.828Z",
+    "verification_timestamp": "2026-08-03T18:08:35.466Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -17,14 +17,17 @@
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "31ada86315e555948797f6e67b2f210aad02f360ff974529ebe7dab114cc85e2"
+    "dataset_hash": "16dc7780bbfbb78818e32ea8e65b524142b54b71a8d48d062396f8624b78cae5"
   },
   "candidate_info": {
     "first_name": "Paul",
     "last_name": "Ridley",
     "office_sought": "Council District 14",
     "report_totals": {
-      "Contribution Balance": "105222.28",
+      "Contribution Balance": 105222.28,
+      "Outstanding Loan Totals": 0,
+      "Contribution Total": 603.48,
+      "Expenditure Total": 498.48,
       "Total Itemized Reported Contributions": 603.48,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 603.48,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 498.48
+      "TOTAL POLITICAL EXPENDITURES": 498.48,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 0
     },
     "period_start": "2025-07-01",
     "period_end": "2025-12-31"
@@ -74,9 +78,9 @@
       "Source": "srp0000002982_20260110_151812.pdf",
       "Schedule": "A1",
       "Page": 1,
-      "latitude": 32.78,
-      "longitude": -96.8,
-      "record_id": "709b5b28304afd4226befaf0d7e134cd26e80dfd8825cacac53ed6229c6e7e28"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "026b1212df2eb0ab560f8caa1060b0bb3e3872b9125824b3892ede817b401dd4"
     }
   ],
   "expenditures": [
@@ -112,15 +116,15 @@
       "Transaction_Date": "2025-11-18",
       "Name": "Michael Orozco Campaign",
       "Amount": 100,
-      "Transaction_Type": "Campaign Expenditures",
-      "Category": "Contributions/Donations Made By",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
+      "Category": "Contributions/Donations Made By Candidate/Officeholder/Political Committee",
       "Description": "contribute to another candidate",
       "Source": "srp0000002982_20260110_151812.pdf",
       "Schedule": "F1",
       "Page": 2,
       "latitude": 32.78,
       "longitude": -96.81,
-      "record_id": "42c6c24f46202a76c4610e0a9c08fc50cc941ee0119ddb0997e77806dd994be2"
+      "record_id": "98781393050fbd73f32c562d919960e3fa83a3c0dad0b390febe2439683878ea"
     },
     {
       "Transaction_Date": "2025-09-06",

@@ -18574,5 +18574,633 @@
     "3986 Cedar Bayou Dr Dallas, TX 75244 ": [
         32.91,
         -96.85
+    ],
+    "600 N. Brookside Dr. Dallas, TX 75214 ": [
+        32.81,
+        -96.75
+    ],
+    "1845 Woodall Rodgers Suite 1700 Dallas, TX 75202 ": [
+        null,
+        null
+    ],
+    "17300 Dallas Parkway Dallas, TX 75248 ": [
+        32.99,
+        -96.83
+    ],
+    "3231 Basil Court Dallas, TX 75204 ": [
+        32.79,
+        -96.79
+    ],
+    "5108 Victor Dallas, TX 75214 ": [
+        32.8,
+        -96.76
+    ],
+    "3510 Turtle Creek Dallas, TX 75219 ": [
+        32.81,
+        -96.8
+    ],
+    "3601 Turtle Creek Dallas, TX 75219 ": [
+        32.81,
+        -96.8
+    ],
+    "3115 Sale St Dallas, TX 75219 ": [
+        32.81,
+        -96.81
+    ],
+    "4606 Christopher Pl Dallas, TX 75204 ": [
+        32.82,
+        -96.8
+    ],
+    "2502 Live Oak Dallas, TX 75204 ": [
+        32.79,
+        -96.79
+    ],
+    "6220 Worth Dallas, TX 75214 ": [
+        32.81,
+        -96.75
+    ],
+    "2502 Live Oak Dallas, TX 75214 ": [
+        32.79,
+        -96.79
+    ],
+    "1517 Caddo Dallas, TX 75204 ": [
+        32.8,
+        -96.78
+    ],
+    "7014 Coronado Dallas, TX 75214 ": [
+        32.81,
+        -96.74
+    ],
+    "4000 ROCK CREEK Dallas, TX 75204 ": [
+        32.82,
+        -96.8
+    ],
+    "5 Lazee Trail Houston, TX 77024 ": [
+        null,
+        null
+    ],
+    "3223 Lakenheath Pl Dallas, TX 75204 ": [
+        32.79,
+        -96.79
+    ],
+    "4045 Bryn Mawr Dallas, TX 75225 ": [
+        32.86,
+        -96.8
+    ],
+    "2525 N Pearl St Dallas, TX 75201 ": [
+        32.79,
+        -96.8
+    ],
+    "3412 Harvard Dallas, TX 75205 ": [
+        32.83,
+        -96.79
+    ],
+    "4612 Watauga Dallas, TX 75209 ": [
+        32.86,
+        -96.83
+    ],
+    "137 Duane New York, NY 10013 ": [
+        40.72,
+        -74.01
+    ],
+    "4700 Preston Rd Dallas, TX 75205 ": [
+        32.83,
+        -96.8
+    ],
+    "7035 Coronado Ave Dallas, TX 75214 ": [
+        32.81,
+        -96.74
+    ],
+    "3615 Gillespie Dallas, TX 75219 ": [
+        32.81,
+        -96.81
+    ],
+    "3310 Fairmount Dallas, TX 75201 ": [
+        32.8,
+        -96.81
+    ],
+    "4936 Junius Dallas, TX 75214 ": [
+        32.8,
+        -96.77
+    ],
+    "6509 Malcolm Dr Dallas, TX 75214 ": [
+        32.83,
+        -96.75
+    ],
+    "4251 Irving Avene Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "5514 Swiss Ave Dallas, TX 75214 ": [
+        32.81,
+        -96.76
+    ],
+    "4014 Stonebridge Dallas, TX 75204 ": [
+        32.82,
+        -96.8
+    ],
+    "3401 Lee Parkway Dallas, TX 75219 ": [
+        32.81,
+        -96.8
+    ],
+    "3001 Sale St Dallas, TX 75219 ": [
+        32.81,
+        -96.81
+    ],
+    "6234 Oram Dallas, TX 75214 ": [
+        32.81,
+        -96.76
+    ],
+    "3209 Colgate Dallas, TX 75225 ": [
+        32.86,
+        -96.78
+    ],
+    "6906 Casa Loma Ave Dallas, TX 75214 ": [
+        32.81,
+        -96.74
+    ],
+    "5345 Mercedes Dallas, TX 75206 ": [
+        32.83,
+        -96.78
+    ],
+    "3105 San Jacinto Dallas, TX 57520 ": [
+        32.79,
+        -96.79
+    ],
+    "911 St Joseph Dallas, TX 75204 ": [
+        32.79,
+        -96.78
+    ],
+    "2603 Fairmount Dallas, TX 75201 ": [
+        32.8,
+        -96.8
+    ],
+    "5703 Goliad Dallas, TX 75206 ": [
+        32.82,
+        -96.77
+    ],
+    "3910 Stonebridge Dallas, TX 75204 ": [
+        32.82,
+        -96.8
+    ],
+    "4039 Gilbert Ave Dallas, TX 75219 ": [
+        32.82,
+        -96.81
+    ],
+    "612 N Henderson Dallas, TX 75214 ": [
+        32.8,
+        -96.76
+    ],
+    "2801 Turtle Creek Dallas, TX 75219 ": [
+        32.8,
+        -96.81
+    ],
+    "6016 Oram Dallas, TX 75206 ": [
+        32.81,
+        -96.76
+    ],
+    "4010 White Swan Garland, TX 75044 ": [
+        32.95,
+        -96.66
+    ],
+    "4137 Hawthorne Ave Dallas, TX 75219 ": [
+        32.82,
+        -96.81
+    ],
+    "7238 Heathermore Dallas, TX 75248 ": [
+        32.97,
+        -96.78
+    ],
+    "3318 Knight Dallas, TX 75219 ": [
+        32.81,
+        -96.81
+    ],
+    "607 W Caney Dallas, TX 75208 ": [
+        null,
+        null
+    ],
+    "3883 Turtle Creek Dallas, TX 75219 ": [
+        32.81,
+        -96.8
+    ],
+    "6923 Sante Fe Dallas, TX 75223 ": [
+        32.96,
+        -96.57
+    ],
+    "6950 La Vista Dallas, TX 75214 ": [
+        32.81,
+        -96.74
+    ],
+    "4427 Glenwich Dallas, TX 75205 ": [
+        null,
+        null
+    ],
+    "6004 Bryan Parkway Dallas, TX 75206 ": [
+        32.81,
+        -96.76
+    ],
+    "3030 McKinney Dallas, TX 75204 ": [
+        32.8,
+        -96.8
+    ],
+    "6234 Reiger Ave Dallas, TX 75214 ": [
+        32.81,
+        -96.75
+    ],
+    "3508 Haynie Ave Dallas, TX 75205 ": [
+        32.85,
+        -96.79
+    ],
+    "P.O. Box 191466 Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "2300 Leonard St Dallas, TX 75201 ": [
+        32.79,
+        -96.8
+    ],
+    "12824 Midway Rd Dallas, TX 75244 ": [
+        32.92,
+        -96.84
+    ],
+    "7001 Hammond Dallas, TX 75223 ": [
+        32.81,
+        -96.74
+    ],
+    "1100 Meredith Lane Plano, TX 75093 ": [
+        33.01,
+        -96.82
+    ],
+    "854 Creekside Dr Lewisville, TX 75067 ": [
+        33.03,
+        -97.0
+    ],
+    "2500 McKinney Dallas, TX 75201 ": [
+        32.8,
+        -96.8
+    ],
+    "7000 San Mateo Dallas, TX 75223 ": [
+        32.81,
+        -96.74
+    ],
+    "6918 Patricia Ave Dallas, TX 75223 ": [
+        32.81,
+        -96.74
+    ],
+    "4611 Travis Suite 3 Dallas, TX 75205 ": [
+        null,
+        null
+    ],
+    "6504 Bailey Rd. Sachse, TX 75048 ": [
+        32.98,
+        -96.58
+    ],
+    "3310 Fairmount Suite 17F Dallas, TX 75201 ": [
+        null,
+        null
+    ],
+    "1523 Abrams Rd. Dallas, TX 75214 ": [
+        32.81,
+        -96.75
+    ],
+    "6114 Bryan Parkway Dallas, TX 75206 ": [
+        32.81,
+        -96.76
+    ],
+    "6312 Bryan Parkway Dallas, TX 75214 ": [
+        32.81,
+        -96.76
+    ],
+    "2325 Centurion Ct. Dallas, TX 75204 ": [
+        null,
+        null
+    ],
+    "3030 McKinney Ave. Suite 105 Dallas, TX 75204 ": [
+        null,
+        null
+    ],
+    "156 Amberwood Dr Coppell, TX 75019 ": [
+        32.97,
+        -97.0
+    ],
+    "2727 Routh Dallas, TX 75201 ": [
+        32.8,
+        -96.8
+    ],
+    "5215 Homer St. Dallas, TX 75206 ": [
+        32.82,
+        -96.78
+    ],
+    "6125 Martel Ave Dallas, TX 75214 ": [
+        32.83,
+        -96.76
+    ],
+    "6049 Bryan Parkway Dallas, TX 75206 ": [
+        32.81,
+        -96.76
+    ],
+    "4437 Cole Aven Dallas, TX 75205 ": [
+        null,
+        null
+    ],
+    "5415 Ursula Dallas, TX 75229 ": [
+        32.89,
+        -96.81
+    ],
+    "5603 Willis Ave Dallas, TX 75206 ": [
+        32.82,
+        -96.77
+    ],
+    "6334 Belmont Dallas, TX 75214 ": [
+        32.82,
+        -96.75
+    ],
+    "6219 Prospect Avenue Dallas, TX 75214 ": [
+        32.82,
+        -96.76
+    ],
+    "8185 San Leandro Dallas, TX 75218 ": [
+        32.81,
+        -96.72
+    ],
+    "2512 Thomas Ave Dallas, TX 75201 ": [
+        32.79,
+        -96.8
+    ],
+    "11615 High Forest Dr. Dallas, TX 75230 ": [
+        32.91,
+        -96.79
+    ],
+    "5518 Merrimac Dallas, TX 75206 ": [
+        32.83,
+        -96.77
+    ],
+    "P.O. Box 710215 Dallas, TX 75271 ": [
+        null,
+        null
+    ],
+    "3317 Prescott Ave Dallas, TX 75219 ": [
+        32.82,
+        -96.82
+    ],
+    "4241 Lorraine Ave Dallas, TX 75206 ": [
+        32.83,
+        -96.81
+    ],
+    "2346 Douglas Dallas, TX 75219 ": [
+        32.81,
+        -96.82
+    ],
+    "5837 Victor Dallas, TX 75214 ": [
+        32.81,
+        -96.75
+    ],
+    "8246 Forest Hills Dallas, TX 75218 ": [
+        32.81,
+        -96.72
+    ],
+    "3535 Gillespie St. Suite 702 Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "710 Cordova Dallas, TX 75223 ": [
+        32.8,
+        -96.74
+    ],
+    "5901 Palo Pinto Dr. Dallas, TX 75206 ": [
+        null,
+        null
+    ],
+    "5901 Belmont Dallas, TX 75206 ": [
+        32.82,
+        -96.77
+    ],
+    "3525 Turtle Creek Suite 21D Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "306 S. Glasgow St. Dallas, TX 75214 ": [
+        null,
+        null
+    ],
+    "3615 Gillespie St. Suite G Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "5915 Swiss Ave Dallas, TX 75214 ": [
+        32.81,
+        -96.76
+    ],
+    "3939 Buena Vista Suite E Dallas, TX 75204 ": [
+        null,
+        null
+    ],
+    "6241 Martel Ave Dallas, TX 75214 ": [
+        32.83,
+        -96.76
+    ],
+    "7027 E Grand Ave Dallas, TX 75223 ": [
+        32.8,
+        -96.74
+    ],
+    "715 Parkmont Dallas, TX 75214 ": [
+        32.8,
+        -96.76
+    ],
+    "6038 Bryan Parkway Dallas, TX 75206 ": [
+        32.81,
+        -96.76
+    ],
+    "3001 Sale St Suite 409 Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "8522 Stable Glen Dallas, TX 75243 ": [
+        32.9,
+        -96.74
+    ],
+    "4822 Swiss Dallas, TX 75204 ": [
+        32.8,
+        -96.77
+    ],
+    "1512 Commerce Suite 712 Dallas, TX 75201 ": [
+        null,
+        null
+    ],
+    "800 Ross Suite 5109 Dallas, TX 75202 ": [
+        null,
+        null
+    ],
+    "2519 Thomas Dallas, TX 75201 ": [
+        32.79,
+        -96.8
+    ],
+    "5635 Anita Dallas, TX 75206 ": [
+        32.83,
+        -96.77
+    ],
+    "4205 Glenwood Dallas, TX 75205 ": [
+        32.82,
+        -96.8
+    ],
+    "6234 Prospect Dallas, TX 75214 ": [
+        32.81,
+        -96.76
+    ],
+    "622 Blair Blvd Dallas, TX 75223 ": [
+        32.81,
+        -96.74
+    ],
+    "6243 McCommas Blvd Dallas, TX 75214 ": [
+        32.83,
+        -96.76
+    ],
+    "400 N Ervay Suite 328 Dallas, TX 75201 ": [
+        null,
+        null
+    ],
+    "6169 Woodcrest Dallas, TX 75214 ": [
+        32.84,
+        -96.76
+    ],
+    "3525 Turtle Creek Suite 8A Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "5011 Reiger Dallas, TX 75214 ": [
+        32.8,
+        -96.76
+    ],
+    "5928 Marquita Ave Dallas, TX 75206 ": [
+        32.83,
+        -96.76
+    ],
+    "5909 Richmond Dallas, TX 75206 ": [
+        32.82,
+        -96.77
+    ],
+    "3909 Stonebridge Dallas, TX 75204 ": [
+        32.82,
+        -96.8
+    ],
+    "3909 Stonebridge DALLAS, TX 75204 ": [
+        32.82,
+        -96.8
+    ],
+    "2905 Welborn Dallas, TX 75219 ": [
+        32.81,
+        -96.81
+    ],
+    "3925 Stonebridge Dallas, TX 75204 ": [
+        32.82,
+        -96.8
+    ],
+    "3310 Fairmount Suite 11F Dallas, TX 75201 ": [
+        null,
+        null
+    ],
+    "506 Monte Vista Suite 4920 Dallas, TX 75223 ": [
+        null,
+        null
+    ],
+    "17 Turtle Creek Bend Dallas, TX 75204 ": [
+        32.82,
+        -96.8
+    ],
+    "5807 Bryan Parkway Dallas, TX 75206 ": [
+        32.81,
+        -96.77
+    ],
+    "3510 Turtle Creek Blvd Suite 4A Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "411 Bondstone Dallas, TX 75218 ": [
+        32.86,
+        -96.71
+    ],
+    "4951 Victor Dallas, TX 75214 ": [
+        32.8,
+        -96.76
+    ],
+    "5326 Junius Dallas, TX 75214 ": [
+        32.8,
+        -96.76
+    ],
+    "1003 Valencia Dallas, TX 75223 ": [
+        32.8,
+        -96.74
+    ],
+    "5346 Longview Dallas, TX 75206 ": [
+        32.83,
+        -96.78
+    ],
+    "2217 Clark St Suite H Dallas, TX 75204 ": [
+        null,
+        null
+    ],
+    "4932 Junius Dallas, TX 75214 ": [
+        32.8,
+        -96.77
+    ],
+    "3834 Bowser Dallas, TX 75219 ": [
+        32.81,
+        -96.81
+    ],
+    "3210 Carlisle Dallas, TX 75204 ": [
+        32.81,
+        -96.8
+    ],
+    "5311 Mercedes Dallas, TX 75206 ": [
+        32.83,
+        -96.78
+    ],
+    "5408 Swiss Ave Dallas, TX 75214 ": [
+        32.81,
+        -96.77
+    ],
+    "3030 McKinney Suite 506 Dallas, TX 75204 ": [
+        null,
+        null
+    ],
+    "P.O. Box 883329 Steamboat Springs, CO 80488 ": [
+        null,
+        null
+    ],
+    "3030 McKinney Suite 201 Dallas, TX 75204 ": [
+        null,
+        null
+    ],
+    "6006 Vanderbilt Dallas, TX 75206 ": [
+        32.82,
+        -96.76
+    ],
+    "1722 Routh Suite 770 Dallas, TX 75201 ": [
+        null,
+        null
+    ],
+    "6106 Tremont Dallas, TX 75214 ": [
+        32.81,
+        -96.75
+    ],
+    "3510 Turtle Creek Suite 18C Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "1304 Forest Hills Ct Southlake, TX 76092 ": [
+        32.94,
+        -97.13
+    ],
+    "2905 Welb Dallas, TX 75219 ": [
+        null,
+        null
+    ],
+    "3030 McKinney Suite 2105 Dallas, TX 75204 ": [
+        32.79,
+        -96.8
+    ],
+    "P.O. Box 140810 Dallas, TX 75214 ": [
+        null,
+        null
     ]
 }

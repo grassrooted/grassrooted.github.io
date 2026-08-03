@@ -3,6 +3,10 @@ import { TabulatorFull as Tabulator } from "tabulator-tables";
 import "tabulator-tables/dist/css/tabulator.min.css";
 import "./FinancialRecordsTable.css";
 
+function parseLocalDate(dateString) {
+    const [year, month, day] = dateString.split("-").map(Number);
+    return new Date(year, month - 1, day);
+}
 function FinancialRecordsTable({
     profile,
     selectedDateRange,
@@ -20,15 +24,13 @@ function FinancialRecordsTable({
         const preprocessContributionData = (data) =>
         data.map((record) => ({
             ...record,
-            [profile.contribution_fields.Transaction_Date]: new Date(
-            record[profile.contribution_fields.Transaction_Date]
-            ),
+            ["Transaction_Date"]: parseLocalDate(record.Transaction_Date),
         }));
 
         const preprocessExpenditureData = (data) =>
         data.map((record) => ({
             ...record,
-            Transaction_Date: new Date(record.Transaction_Date),
+            ["Transaction_Date"]: parseLocalDate(record.Transaction_Date),
         }));
 
         const filterDataByDate = (data, field) => {
@@ -47,27 +49,24 @@ function FinancialRecordsTable({
         const processed = preprocessContributionData(contribution_data);
         tableData = filterDataByDate(
             processed,
-            profile.contribution_fields.Transaction_Date
+            "Transaction_Date"
         );
 
         columns = [
             { 
                 title: "Donor", 
                 field: "Name", 
-                headerFilter: true },
+                headerFilter: true 
+            },
             {
                 title: "Amount ($)",
-                field: profile.contribution_fields.Amount,
+                field: "Amount",
                 formatter: "money",
                 headerFilter: true,
             },
             {
-                title: "Candidate",
-                field: profile.contribution_fields.Recipient,
-            },
-            {
                 title: "Date",
-                field: profile.contribution_fields.Transaction_Date,
+                field: "Transaction_Date",
                 sorter: (a, b) => {
                     const dateA = a instanceof Date ? a : new Date(a);
                     const dateB = b instanceof Date ? b : new Date(b);
@@ -76,6 +75,11 @@ function FinancialRecordsTable({
                 formatter: (cell) =>
                     cell.getValue()?.toLocaleDateString("en-US"),
             },
+            {
+                title: "Source",
+                field: "Source",
+                headerFilter: true,
+            }
         ];
         }
 

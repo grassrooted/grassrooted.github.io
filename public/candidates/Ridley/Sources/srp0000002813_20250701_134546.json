@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T17:49:01.644Z",
+    "verification_timestamp": "2026-08-03T18:17:21.450Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -17,14 +17,17 @@
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "73f830543b0d5debaa89d62dd5e4a3050a59eb42651373a8dda810958ba3064f"
+    "dataset_hash": "b386df8ab0af660b0ec22f7d3cd93fcb4cae43874cbf6458523b7be5cee2ce21"
   },
   "candidate_info": {
     "first_name": "Paul",
     "last_name": "RIdley",
     "office_sought": "Council District 14",
     "report_totals": {
-      "Contribution Balance": "94552.60",
+      "Contribution Balance": 94552.6,
+      "Outstanding Loan Totals": 0,
+      "Contribution Total": 34670.38,
+      "Expenditure Total": 62487.31,
       "Total Itemized Reported Contributions": 34670.38,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 31470.38,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 62487.31
+      "TOTAL POLITICAL EXPENDITURES": 62487.31,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 0
     },
     "period_start": "2025-01-01",
     "period_end": "2025-04-02"
@@ -88,9 +92,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 1,
-      "latitude": 32.84,
-      "longitude": -96.79,
-      "record_id": "c2caa67e54b1d95eb888d4a17eb7357441d885666b4edcd82a81c45f883307d0"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "d26fc063089f3f9a4e6606ea6a1ea1b4913c5f78d65d145efbe0c06e9e0226f5"
     },
     {
       "Transaction_Date": "2025-02-10",
@@ -116,9 +120,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 2,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "8c2207417387d7402234a4b9a293848bcc502490c7e77b07a6d91bd2c9050822"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "55440db4a83e69431ca682ff8add22b89193347b8713dc13f99288f9eb281001"
     },
     {
       "Transaction_Date": "2025-02-11",
@@ -130,9 +134,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 2,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "9a473cebcedea07b94b2e9a9c3691ccaf06396c20763dda212e4896ab9ead49d"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "67ed60b6dff1061218033844c64399d5edce929e948259a5efcbb212d53ce679"
     },
     {
       "Transaction_Date": "2025-02-11",
@@ -186,9 +190,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 3,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "435a06c6e5896556f6945744591358f7b15bf38ac292bc4fda40ea6f3a1de5ca"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "2e4824655d3ee76c9878938d03c8dd1771c8a19603649babd0371cb75007f315"
     },
     {
       "Transaction_Date": "2025-02-11",
@@ -200,9 +204,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 3,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "3c7838574cef6bf64ca67a52b968f5cc0d99d92497566ca6af9819c2fe6b8580"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "a3e3d83d7dece736832dc5063845d71170d35620752ab17e15e9b84e7eebf490"
     },
     {
       "Transaction_Date": "2025-02-11",
@@ -242,9 +246,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 4,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "d6bdc008f91c93d4123d2ec7747988563fe14749d69f016c8eb4fb9c7bc3effe"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "0b1aebe2891c442188258529dc73e395f6954dd5f2d0c46bcbf6e3a3c5cd6107"
     },
     {
       "Transaction_Date": "2025-02-11",
@@ -298,9 +302,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 5,
-      "latitude": 32.84,
-      "longitude": -96.79,
-      "record_id": "6fa4c9af921472c0fb7a93d771d3a22058f8cb4850d438333ca7457e7d01ff1a"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "00abf633c47ca385c3198d7f6206026f9464970d8d429b9ba0b3e478ebfbafcb"
     },
     {
       "Transaction_Date": "2025-02-11",
@@ -564,9 +568,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 10,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "8a55072980dec6671be233585db5fe99e3138a37cc7e50372ec2a4098a733624"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "a03e69b0767bd76d088a395fe7c2255f872a9e426f04c852fb630c3afe1f837c"
     },
     {
       "Transaction_Date": "2025-01-24",
@@ -592,9 +596,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 10,
-      "latitude": 32.83,
-      "longitude": -96.77,
-      "record_id": "44c2e18f90549e4fae04294b76761ede32a6865086770df2e7f089422f9a8534"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "9aaa6d0b3b444ccfab4600f36dee4e1a3d6f139a5496bdc9f6e486fe4a03c19f"
     },
     {
       "Transaction_Date": "2025-01-24",
@@ -620,9 +624,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 11,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "633b542fb1b975121163d229a1480e1e4c0f72300242b597466ef2e0fd03596b"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "e9db969cdb66cf2e3685687424d5a86e912adb1386d2830408b33aa54b8a69de"
     },
     {
       "Transaction_Date": "2025-01-24",
@@ -634,9 +638,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 11,
-      "latitude": 32.83,
-      "longitude": -96.75,
-      "record_id": "24a6bb27d4391b8aace9a4164c0f86a6852eb5584cd7620bd0850069642e12f8"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "31957b93a5662422696f058fca963e1b12e81153f37864858b1d5153256a43cc"
     },
     {
       "Transaction_Date": "2025-01-24",
@@ -648,9 +652,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 11,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "8d46b2a476a31cd98134581fe036bc8e966956973a0a10a0d6300a85639d2ae0"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "5e857dadb354fed4332792efd39cc2ec0907f702b734c6952677d5d1e6d792b3"
     },
     {
       "Transaction_Date": "2025-01-24",
@@ -676,9 +680,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 12,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "ffcee1dff66bdb08435d222c724df68a0154a445bbd6bcde2eeb5c48a8710cc0"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "c94ae06386772bb2bdfd377e9ac8e833e41dd72d7cbe9bd5a6954f868577f7b5"
     },
     {
       "Transaction_Date": "2025-01-24",
@@ -760,9 +764,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 13,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "fba25770b98bc6449aadc75af1240716e3b3ccddbd6cbc3dfed589175cc75edc"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "8fc6d2574048826ce6354062a7227b0b799c61fdc572a50db98ea71049f31bfc"
     },
     {
       "Transaction_Date": "2025-01-27",
@@ -802,9 +806,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 14,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "30cd9be372d42f339c70acaedfbc78c7812ce347141ee9f8a265d6cd34d2b82c"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "fd2ce6e05cbd2c857072c16875c5400c248b9370908c2b49bbeb5fe7a080d501"
     },
     {
       "Transaction_Date": "2025-01-27",
@@ -816,9 +820,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 14,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "44630eb4a786e56ff9dd9c3156273f8843ee73011d2afe0ae94eae2a45a8cb8e"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "04a5eca65b710148a09c50829431f19bfe840b8f5525f49d4a50a6ba6e3a66f9"
     },
     {
       "Transaction_Date": "2025-01-27",
@@ -830,9 +834,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 14,
-      "latitude": 32.78,
-      "longitude": -96.8,
-      "record_id": "801256e43e296d691dd6d05dab92c99bad5c4dffad1f83092899d27503af08be"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "7b7da1fef31f489f0fb5931e4e78ec3dfc52c596864e7c04cfc5c939feed9ed2"
     },
     {
       "Transaction_Date": "2025-01-28",
@@ -928,9 +932,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 16,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "78170920b732a292f81693108d242fe1da6722c25d64b9b85022430d2a980142"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "49c19393e8aefb800e78a3bee492202cf388956b247ce62f0e3a365a17f81619"
     },
     {
       "Transaction_Date": "2025-01-30",
@@ -956,9 +960,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 17,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "c1dd309f811790e465f4ad9ebf93925fed410a55563339cba4b631d877eb65ff"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "97aefd0b8cab09003575c849b503ee8323071e207185b9c341b24f9bc3f6ceff"
     },
     {
       "Transaction_Date": "2025-01-31",
@@ -1082,9 +1086,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 19,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "2bc8458ea605131a642d514a3f7026c4b94874d47130fed4900c28aafbf078bd"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "25b545dcf42b3764653d5a1064f1214b1928316f13a008e73d3f3cf82063a813"
     },
     {
       "Transaction_Date": "2025-02-04",
@@ -1096,9 +1100,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 19,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "9586709cfb70a7f53ecd8e465e14c372d2d9e2b1baef665ef5041cf2ca70f5e6"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "f4e34489b4be017e0d5ec69475f08b8fcfe7502c8b0c596420edd4c8bbb848cd"
     },
     {
       "Transaction_Date": "2025-02-05",
@@ -1110,9 +1114,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 19,
-      "latitude": 32.79,
-      "longitude": -96.75,
-      "record_id": "38d107e7150934fad6928452c8d8145a42406a42394ad6693c628db8b23d0b55"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "88b2e570894007b908496bbb9b4c6d23dbbb516d0a52017f8905253ee3a40305"
     },
     {
       "Transaction_Date": "2025-02-07",
@@ -1152,9 +1156,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 20,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "1a01a2255883898489d2132a5434026d4df0b80948a2b2687d13624f5106098a"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "0ef6225ef870afa7ae6367021a50cc1941ca8f166b2f0ef05f70cf21531bf669"
     },
     {
       "Transaction_Date": "2025-02-10",
@@ -1236,9 +1240,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 22,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "4f1a63125de7e973d757fa98d6190abfc5e77eebf56263e3cf5942196324aca8"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "d3f61095253837f56d0486254efa99c639f6f469e528a9bb44377b6104a388a0"
     },
     {
       "Transaction_Date": "2025-02-10",
@@ -1334,9 +1338,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 23,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "4e852bdd2661726476567730b673f28147b214818c086164b6149ef5ac068bc3"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "24ad73f34a82cfa94ab0a902e155677bc89c6dc263c7221d901e495aeba168fd"
     },
     {
       "Transaction_Date": "2025-02-13",
@@ -1348,9 +1352,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 24,
-      "latitude": 40.49,
-      "longitude": -106.88,
-      "record_id": "a4a0bf725b68091753968f8577746dfd5f9feebbed6807ec27e338e0ea0f68a4"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "ffe04cb2aa97f9f39a6c484f334afa2ee1918cf0c677d91c0d7c76fe0edf3200"
     },
     {
       "Transaction_Date": "2025-02-14",
@@ -1362,9 +1366,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 24,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "7cf2af25566313b16ab7e12e5f929640620c882d31c7c3da58cef2ea5a238486"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "dad22127551029e47ccf7780052796dece86c92d6b36a14f5def83a7396c8f9a"
     },
     {
       "Transaction_Date": "2025-02-18",
@@ -1404,9 +1408,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 25,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "3f626d0cec06fb06d0d2f3b607185008a19ffc961e38b6171d4cb229f3cf5bc9"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "95522e3eb39616abb711bfadfb2c56065a68257d3a17bea1ebbd80f3f7dee8b5"
     },
     {
       "Transaction_Date": "2025-02-24",
@@ -1432,9 +1436,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 25,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "5af3f9c9618ac7ec55953b37453364c8597ca6fe972902239227dac6519dc53c"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "8515dedfcc925e74c29f32026da9e85cfa2409df23500f9a90b1c057e4524d16"
     },
     {
       "Transaction_Date": "2025-03-14",
@@ -1460,9 +1464,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 26,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "988954dcf9b9b38e5c9fde2f8f95db636a59d14db362752211aa07bafe5ca2a9"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "de170462f97605908871a9373718340678985750bd507d327a7c4e6e65149e55"
     },
     {
       "Transaction_Date": "2025-03-24",
@@ -1474,9 +1478,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 26,
-      "latitude": 32.97,
-      "longitude": -97.11,
-      "record_id": "7c10471e0deed1d7d269f5b8d9837af55030779d11eb6e4ad667f74580f45c10"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "1b4f85b1fa94e0bf540b1a1965620d0b8a53d0cb20af6fd2c428f877b829fe94"
     },
     {
       "Transaction_Date": "2025-03-24",
@@ -1502,9 +1506,9 @@
       "Source": "srp0000002813_20250701_134546.pdf",
       "Schedule": "A1",
       "Page": 26,
-      "latitude": 32.83,
-      "longitude": -96.75,
-      "record_id": "f4cf94bbf67a228345a75ae2c17fb1855d1fbbaa400111fe78a35ed095f92898"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "0b6fc7e4d24cc4f08bf41a2bb97832aa5ca2c727583af0208c98c0bcc364a815"
     }
   ],
   "expenditures": [
@@ -1540,7 +1544,7 @@
       "Transaction_Date": "2025-01-12",
       "Name": "Square Space Workspace Square Space",
       "Amount": 77.94,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Advertising Expense",
       "Description": "Fee",
       "Source": "srp0000002813_20250701_134546.pdf",
@@ -1548,7 +1552,7 @@
       "Page": 28,
       "latitude": 40.73,
       "longitude": -74,
-      "record_id": "9a601a6773cac73dd0083ff061c77cd82b064ac997d62c32268c71649bcd35ff"
+      "record_id": "63882b59609082a9abd9f152ac7bfb6a2968ed3fab883119a43c594c3d7cb360"
     },
     {
       "Transaction_Date": "2025-01-20",
@@ -1582,7 +1586,7 @@
       "Transaction_Date": "2025-03-08",
       "Name": "Democracy Toolbox Democracy Toolbox",
       "Amount": 120,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Loan Repayment/Reimbursement",
       "Description": "Deposit for Kickoff event",
       "Source": "srp0000002813_20250701_134546.pdf",
@@ -1590,7 +1594,7 @@
       "Page": 29,
       "latitude": 33.22,
       "longitude": -96.67,
-      "record_id": "368e18da18215f1fc119a5c442c8c0f6038edab22ce962453784d2c0331dc8c6"
+      "record_id": "a34543233e565bfda2abc5b5741d095143fbfa00f1a494908f808c351917703e"
     },
     {
       "Transaction_Date": "2025-03-08",
@@ -1624,7 +1628,7 @@
       "Transaction_Date": "2025-01-31",
       "Name": "Reilly Echols Printing Reilly Echols Printing",
       "Amount": 1355.05,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Printing Expense",
       "Description": "Printing",
       "Source": "srp0000002813_20250701_134546.pdf",
@@ -1632,7 +1636,7 @@
       "Page": 30,
       "latitude": 32.82,
       "longitude": -96.6,
-      "record_id": "fd344b903a921e74998a7d530361688631badccbba80da224fac2d330367b4d9"
+      "record_id": "6955aacaf6725e67bd0081b312c832052c02e3d2621144215df37d1491cd65ac"
     },
     {
       "Transaction_Date": "2025-02-24",
@@ -1666,7 +1670,7 @@
       "Transaction_Date": "2025-04-02",
       "Name": "Square Up Square UP",
       "Amount": 820.1,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Solicitation/Fundraising Expense",
       "Description": "Fee",
       "Source": "srp0000002813_20250701_134546.pdf",
@@ -1674,7 +1678,7 @@
       "Page": 31,
       "latitude": 37.78,
       "longitude": -122.41,
-      "record_id": "142f672d4fa7bc49f6a6f8177a772fe7d47bb6ec493620a7ccddd91f2579c757"
+      "record_id": "5b9da110bbde85f182e5d748ad76e2845fa540a8f319360b61f601ff558abe97"
     },
     {
       "Transaction_Date": "2025-03-18",
