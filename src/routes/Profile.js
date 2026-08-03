@@ -32,13 +32,7 @@ const aggregateDataByName = (data, profile) => {
         }
         acc[normalizedName].Amount += contribution[profile.contribution_fields.Amount];
         acc[normalizedName].children.push({
-            Amount: contribution[profile.contribution_fields.Amount],
-            Campaign: contribution[profile.contribution_fields.Recipient],
-            TransactionDate: contribution[profile.contribution_fields.Transaction_Date],
-            Latitude: contribution[profile.contribution_fields.Latitude],
-            Longitude: contribution[[profile.contribution_fields.Longitude]],
-            Name: contribution[profile.contribution_fields.Donor],
-            Address: contribution[profile.contribution_fields.Address]
+            ...contribution
         });
         return acc;
     }, {});

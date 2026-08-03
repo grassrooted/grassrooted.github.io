@@ -9,7 +9,6 @@ function HeatmapLayer({ points }) {
 
   useEffect(() => {
     if (!map) return;
-    console.log(points[0])
     const config = {
         radius: 0.01,
         blur: 0.85,

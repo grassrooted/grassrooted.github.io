@@ -5,9 +5,7 @@ export function aggregateContributions(points, options = {}) {
     const cellSize = options.cellSize || 0.005;
 
     const grid = {};
-
-    console.log(points)
-
+    
     points.forEach(point => {
 
         const lat = Number(point.latitude);
