@@ -478,14 +478,14 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
         expenditureSum={expenditureSum}
         personalFundsExpenditureSum={personalFundsExpenditureSum}
         loansSum={loansSum}
-        creditCardExpenditureSum={0}
+        creditCardExpenditureSum={creditCardExpenditureSum}
         interestGainedSum={interestGainedSum}
         investmentPurchasesSum={investmentPurchasesSum}
         officialContributionTotal={officialContributionTotal}
         officialExpenditureTotal={officialExpenditureTotal}
         officialPersonalFundsExpenditureTotal={officialPersonalFundsExpenditureTotal}
         officialLoansTotal={officialLoansTotal}
-        officialCreditCardExpenditureTotal={0}
+        officialCreditCardExpenditureTotal={officialCreditCardExpenditureTotal}
         officialInterestGainedTotal={officialInterestGainedTotal}
         officialInvestmentPurchasesTotal={officialInvestmentPurchasesTotal}
         officialInKindContributionsTotal={officialInKindContributionsTotal}

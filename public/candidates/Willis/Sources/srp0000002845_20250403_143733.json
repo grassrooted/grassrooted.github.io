@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T17:12:16.614Z",
+    "verification_timestamp": "2026-08-03T16:31:41.345Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -17,14 +17,17 @@
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "d8beecfb6fcb6c248b7537798a2d12446c2c9633b8ce9a05e7aa341b6a850b8b"
+    "dataset_hash": "df4619a83259a2568635d9e2ffb7950707217bc6f560096dc95bdaa416927d09"
   },
   "candidate_info": {
     "first_name": "Gay",
     "last_name": "Willis",
     "office_sought": "Council District 13",
     "report_totals": {
-      "Contribution Balance": "0.00",
+      "Contribution Balance": 0,
+      "Outstanding Loan Totals": 0,
+      "Contribution Total": 41800,
+      "Expenditure Total": 31896.92,
       "Total Itemized Reported Contributions": 41800,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 41680,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 22541.62
+      "TOTAL POLITICAL EXPENDITURES": 22541.62,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 0
     },
     "period_start": "2025-01-01",
     "period_end": "2025-04-24"
@@ -480,9 +484,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 8,
-      "latitude": 32.87,
-      "longitude": -96.79,
-      "record_id": "3fde641099f9351df8d54ba908cb8b3e5468d2a6ad7fc9ee9ce69e80e7d1787e"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "7809b920bb571127dcc2a9210a7c4e7ec5701f23376971a1ec08ec89c315ddc5"
     },
     {
       "Transaction_Date": "2025-03-20",
@@ -564,9 +568,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 10,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "32fd206dcaa18854431acd5ddcb692a5cb8c98c0312b61c9f10b8eb5ccff04fe"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "de2a5f73eac404a2fb162c09ddf5da570681106f602928e03f6d39491b1d722d"
     },
     {
       "Transaction_Date": "2025-03-08",
@@ -606,9 +610,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 10,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "604fbdfd7658f80cf9122b42e6909d2d4a185c9efff531a5830f025d754240b0"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "42a079ac9c591659de2a493b2a138da15ba1c93e2bb81e236d69277512575ebc"
     },
     {
       "Transaction_Date": "2025-03-05",
@@ -662,9 +666,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 11,
-      "latitude": 32.67,
-      "longitude": -96.84,
-      "record_id": "bc5b8b4eac0c1d3c7c41318fff4d66a9527691a4604f8955831ca5574b5f0c2c"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "83f6416d1dfcc8f3150d95b44f54e2ac517fe54622095e2af3ee82618b8114a5"
     },
     {
       "Transaction_Date": "2025-02-19",
@@ -732,9 +736,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 13,
-      "latitude": 32.9,
-      "longitude": -96.8,
-      "record_id": "ef345a5bed680889154142dfb7b0acb12d87b1a208700c6764479899750d75f7"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "3d0373e7f24fee547bc688176a649afe4e41b8215daea87cb8aecaac4420deec"
     },
     {
       "Transaction_Date": "2025-02-14",
@@ -914,9 +918,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 16,
-      "latitude": 32.95,
-      "longitude": -96.84,
-      "record_id": "9a4626a2e55aa8b8fb71fcd76349d40852f7e4c956bf437893801069fc50fd05"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "a5d7cd51f22fac4cbcd976b4a029d527a22c664bc66be617e54bcef872c511ca"
     },
     {
       "Transaction_Date": "2025-01-16",
@@ -970,9 +974,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 17,
-      "latitude": 32.87,
-      "longitude": -96.76,
-      "record_id": "bd5a8f6b49c0bedb3ecf10b4c296b04604865ae7d7ea1be5993ea0d16df57251"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "50efed04c82f85ab5b34cfbe67c53f3966cb369fef79bb47be8b41824e84c47c"
     },
     {
       "Transaction_Date": "2025-01-14",
@@ -1012,9 +1016,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 18,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "60d36fa56a4d4d1fe3d18012942044f0d04aab97d2fd8d8c017633b58a4471f9"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "5e71a1fedb02ce9845b33d1d851925bdc6a31e81314ff984a7597843bb6b0909"
     },
     {
       "Transaction_Date": "2025-01-13",
@@ -1040,9 +1044,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 18,
-      "latitude": 32.83,
-      "longitude": -96.75,
-      "record_id": "701c1661b1a2de6267dd706698248488e8d2588e1dfbeddbd81b82e355f85cb7"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "fb149270a83a97ff2294276f8de4939f75793d1072d16f8ccc8169b0857f84d7"
     },
     {
       "Transaction_Date": "2025-01-12",
@@ -1180,9 +1184,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 21,
-      "latitude": 32.84,
-      "longitude": -96.83,
-      "record_id": "d6682d672f367792f6a74a60a07b2abc1e38f05fc42741980f41f6868b10e6ad"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "b0d939e832db8f653557eaf24b187980605fd9cdfbca40451e84da1c27d65859"
     },
     {
       "Transaction_Date": "2025-01-04",
@@ -1194,9 +1198,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 21,
-      "latitude": 32.87,
-      "longitude": -96.79,
-      "record_id": "25c5d016c7561f12e1a702b34aa33ccbb5d0e5144fd7b115b98c3db62fa22275"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "b901faf798e6f158a098415ab0dc014d26163bb3e9571c62cf44b934491b9a3e"
     },
     {
       "Transaction_Date": "2025-01-03",
@@ -1236,9 +1240,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 22,
-      "latitude": 32.87,
-      "longitude": -96.79,
-      "record_id": "4dd6e4ec43645ea97972516bb182d7e8bdad4b746ab5608f299faa8a7edb4989"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "d5890b7e880ad00586130ca930c9ecb58fe3df3de2fb1e93271940afba43f791"
     },
     {
       "Transaction_Date": "2025-01-13",
@@ -1250,9 +1254,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 22,
-      "latitude": 32.87,
-      "longitude": -96.79,
-      "record_id": "8e542e9561cfc984c93b16f9d8f80857bed1dd90fbe2e55f5c10df741419e3c0"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "85acce0e574ebe346a5da7e4e00b213e5dd2e83c6917259aeb5d4dbc17f0ab59"
     },
     {
       "Transaction_Date": "2025-01-16",
@@ -1278,9 +1282,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 22,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "3903950c62a718819417eecc31957b43b2c8f02e14acd0695479c12d69f4e4b7"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "408aed05d1b2d092611eb9db93526af25cab0bea2b0fc65774464fce318e9479"
     },
     {
       "Transaction_Date": "2025-01-03",
@@ -1348,9 +1352,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 24,
-      "latitude": 46.24,
-      "longitude": -115.63,
-      "record_id": "29b2c56fdc80c714b522622d4691babcd2014e8eed1b08ede494b068be0ef270"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "9ff085796c2f62875aaf5d2ab2acdd9967ae943cee1404b3646556723e7c04e0"
     },
     {
       "Transaction_Date": "2025-01-16",
@@ -1362,9 +1366,9 @@
       "Source": "srp0000002845_20250403_143733.pdf",
       "Schedule": "A1",
       "Page": 24,
-      "latitude": 32.97,
-      "longitude": -96.79,
-      "record_id": "57b22b261a38f1df3f2829bdaea91f6c72615a5c71885647cb652d831de88f14"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "30e989d321d648a885dc65f9f1ce2e7793db2292ad7e189cb858239b4845b75e"
     },
     {
       "Transaction_Date": "2025-01-16",
@@ -1624,7 +1628,7 @@
       "Transaction_Date": "2025-01-26",
       "Name": "Jacob Social Source",
       "Amount": 2600,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Advertising Expense",
       "Description": "Advertising consulting",
       "Source": "srp0000002845_20250403_143733.pdf",
@@ -1632,7 +1636,7 @@
       "Page": 29,
       "latitude": 32.91,
       "longitude": -96.86,
-      "record_id": "32118a973e02b289108bfb40071982f6c0bb9cf1ee337f91a1de29344f35c439"
+      "record_id": "52d3c5f35093b06cb6ca50a3a5d8deb841c617b3740685df9df0da4104daabbc"
     },
     {
       "Transaction_Date": "2025-01-25",
@@ -1666,7 +1670,7 @@
       "Transaction_Date": "2025-01-18",
       "Name": "Gay Willis",
       "Amount": 2068.4,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Food/Beverage Expense",
       "Description": "Campaign food/beverage",
       "Source": "srp0000002845_20250403_143733.pdf",
@@ -1674,7 +1678,7 @@
       "Page": 30,
       "latitude": 32.92,
       "longitude": -96.83,
-      "record_id": "400fff2333b74a2ce639c6437223873d11f7e5cc7e1a1a5d74e9a12c12726680"
+      "record_id": "45833a077873aa4917cd01c4b90bac4b6da97db2f24c15fe8c266e94ad8b80b7"
     },
     {
       "Transaction_Date": "2025-01-16",
@@ -1708,7 +1712,7 @@
       "Transaction_Date": "2025-02-28",
       "Name": "David Morrison",
       "Amount": 90,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Salaries/Wages/Contract Labor",
       "Description": "Contract Labor",
       "Source": "srp0000002845_20250403_143733.pdf",
@@ -1716,7 +1720,7 @@
       "Page": 31,
       "latitude": 32.95,
       "longitude": -96.71,
-      "record_id": "3eaf70db96acb15c63e4d992498dacee52c9813983559e56c72bbe33cfef5adb"
+      "record_id": "9e5d158eff21f10a27af880509ebba23b8da9b754be0615211a8673fdab7fc83"
     }
   ],
   "personal_funds_expenditures": [

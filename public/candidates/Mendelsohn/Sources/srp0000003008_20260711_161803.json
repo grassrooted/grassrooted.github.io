@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T18:34:31.225Z",
+    "verification_timestamp": "2026-08-03T16:20:03.059Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -17,14 +17,17 @@
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "7c1674b12982bfcad23222cf10cef87cead544a0df9d8fc6f3e352fab7dcc42d"
+    "dataset_hash": "32b5b1605d9d4db98bdcae61bef45dea27e04989f91060708b53aded2732e4fa"
   },
   "candidate_info": {
     "first_name": "Cara",
     "last_name": "Mendelsohn",
     "office_sought": "Council District 12",
     "report_totals": {
-      "Contribution Balance": "52749.20",
+      "Contribution Balance": 52749.2,
+      "Outstanding Loan Totals": 0,
+      "Contribution Total": 100,
+      "Expenditure Total": 3661.69,
       "Total Itemized Reported Contributions": 100,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 0,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 0
+      "TOTAL POLITICAL EXPENDITURES": 0,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 0
     },
     "period_start": "2026-01-01",
     "period_end": "2026-06-30"
@@ -98,7 +102,7 @@
       "Transaction_Date": "2026-03-16",
       "Name": "Constant Contact",
       "Amount": 184.41,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Advertising Expense",
       "Description": "emails",
       "Source": "srp0000003008_20260711_161803.pdf",
@@ -106,7 +110,7 @@
       "Page": 2,
       "latitude": 42.39,
       "longitude": -71.25,
-      "record_id": "953f51e37b663a55c73e7f8d60447b341f79103cb1806df6563c00825c9d0323"
+      "record_id": "b7df9eb667fb4c7b8f0bac4998a2476ff91ce2cdf5747ce8298b54087f1933ec"
     },
     {
       "Transaction_Date": "2026-04-16",
@@ -140,7 +144,7 @@
       "Transaction_Date": "2026-06-15",
       "Name": "Constant Contact",
       "Amount": 184.41,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Advertising Expense",
       "Description": "emails",
       "Source": "srp0000003008_20260711_161803.pdf",
@@ -148,7 +152,7 @@
       "Page": 3,
       "latitude": 42.39,
       "longitude": -71.25,
-      "record_id": "17db11c4cb16c740f1c8fe5e501a844743aab7f7d071651504462ac9400b5dff"
+      "record_id": "875cde6ba4cd6d6809ac49b127645a65637041b017b3ad46b0f0010b91ac7308"
     },
     {
       "Transaction_Date": "2026-03-02",
@@ -182,7 +186,7 @@
       "Transaction_Date": "2026-03-06",
       "Name": "Wix.com Inc.",
       "Amount": 181.86,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Advertising Expense",
       "Description": "website",
       "Source": "srp0000003008_20260711_161803.pdf",
@@ -190,7 +194,7 @@
       "Page": 4,
       "latitude": null,
       "longitude": null,
-      "record_id": "fb152286fe82aa1e83a0b7d8331d99e834d3fd7f54d9ff0dbd164396c21fb09b"
+      "record_id": "6eadc0b56168de98fdd6b2128a35808367452205399342d7c4133a6afda81538"
     },
     {
       "Transaction_Date": "2026-03-12",
@@ -224,15 +228,15 @@
       "Transaction_Date": "2026-03-20",
       "Name": "American Institute for Architects - Dallas Chapter",
       "Amount": 173.7,
-      "Transaction_Type": "Officeholder Expenditures",
-      "Category": "Contributions/Donations Made By",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
+      "Category": "Contributions/Donations Made By Candidate/Officeholder/Political Committee",
       "Description": "donation for Save Dallas City Hall",
       "Source": "srp0000003008_20260711_161803.pdf",
       "Schedule": "F1",
       "Page": 5,
       "latitude": 32.78,
       "longitude": -96.8,
-      "record_id": "7c3c2dd8d59ed8e2cf99c405b8ac56fcd2f158465935f53c01b15432e70f3604"
+      "record_id": "ee9fddb2ea3e40b740c49473e1da4a047b9e80b24285b94e4f439e7e6cd9cabb"
     }
   ],
   "personal_funds_expenditures": [

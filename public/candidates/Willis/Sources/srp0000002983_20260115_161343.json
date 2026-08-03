@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T16:49:59.975Z",
+    "verification_timestamp": "2026-08-03T18:01:37.140Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -16,15 +16,18 @@
     "total_payments_to_candidate_business": 0,
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
-    "total_edits": 0,
-    "dataset_hash": "bd5f2fd001026a8f9ceac164b1ad9e61506fd1bcfd1bd63a5303324ba0934ede"
+    "total_edits": 1,
+    "dataset_hash": "d80d8ae538767aecba3f1384083106cf0b154256ed11178cc787e7d3654857f4"
   },
   "candidate_info": {
     "first_name": "Gay",
     "last_name": "Willis",
     "office_sought": "Council District 13",
     "report_totals": {
-      "Contribution Balance": "37326.28",
+      "Contribution Balance": 37326.28,
+      "Outstanding Loan Totals": 0,
+      "Contribution Total": 1450,
+      "Expenditure Total": 7295.83,
       "Total Itemized Reported Contributions": 1450,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 950,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 2665.21
+      "TOTAL POLITICAL EXPENDITURES": 2665.21,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 0
     },
     "period_start": "2025-07-16",
     "period_end": "2025-12-31"
@@ -52,7 +56,7 @@
   "contributions": [
     {
       "Transaction_Date": "2025-11-24",
-      "Name": "Geoff Aklinski Geoff Aklinski",
+      "Name": "Geoff Aklinski",
       "Occupation": "",
       "Employer": "",
       "Amount": 100,
@@ -102,9 +106,9 @@
       "Source": "srp0000002983_20260115_161343.pdf",
       "Schedule": "A1",
       "Page": 1,
-      "latitude": 32.79,
-      "longitude": -96.8,
-      "record_id": "3230e89277132ae700c13eb56411aee282918aff20d5dd327fbf5c8cdeb8ecda"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "a49e763e8eb94a688ba7329449277e3250ac560d5f82507f9102f444fb9ed57e"
     },
     {
       "Transaction_Date": "2025-11-18",
@@ -168,7 +172,7 @@
       "Transaction_Date": "2025-11-01",
       "Name": "Gay Willis",
       "Amount": 1710,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Loan Repayment/Reimbursement",
       "Description": "Reimbursement/Storage",
       "Source": "srp0000002983_20260115_161343.pdf",
@@ -176,7 +180,7 @@
       "Page": 3,
       "latitude": 32.92,
       "longitude": -96.83,
-      "record_id": "9f02fe9099e9dcfa1fa170f5e1dfc1a9dd4afa57cf4014b10a7ff6ad958c41f2"
+      "record_id": "219eadf7ce1bee64d7b3388d9f5d2960b40444521ea5abdac8aebff0efc9be3c"
     }
   ],
   "personal_funds_expenditures": [
@@ -527,5 +531,15 @@
   "payments_to_candidate_business": [],
   "pledged_contributions": [],
   "unpaid_incurred_obligations": [],
-  "edit_log": []
+  "edit_log": [
+    {
+      "record_id": "b266a56e10c2b2f3853ad2b3eeb2b80d118cc02ac68a185f1c3fed9c30648228",
+      "record_type": "contribution",
+      "field": "Name",
+      "original_value": "Geoff Aklinski Geoff Aklinski",
+      "updated_value": "Geoff Aklinski",
+      "timestamp": "2026-08-03T18:01:37.139Z",
+      "editor": "local-admin"
+    }
+  ]
 }

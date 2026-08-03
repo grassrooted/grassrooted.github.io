@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T18:43:47.620Z",
+    "verification_timestamp": "2026-08-03T16:16:02.416Z",
     "parse_version": "v1.0.0",
     "validation_override": false,
     "override_reason": "",
@@ -17,14 +17,17 @@
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "a4983cb078e617c8b85f8e840d0230ae82069eac729314372aaae7b2fe1f1c8a"
+    "dataset_hash": "acb1de9d0b25844744075e66c9fbc1a188d3d42f0892b77988b0cca5fcd927c4"
   },
   "candidate_info": {
     "first_name": "Cara",
     "last_name": "Mendelsohn",
     "office_sought": "Council District 12",
     "report_totals": {
-      "Contribution Balance": "55022.43",
+      "Contribution Balance": 55022.43,
+      "Outstanding Loan Totals": 0,
+      "Contribution Total": 200,
+      "Expenditure Total": 7048.02,
       "Total Itemized Reported Contributions": 200,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 200,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 32.24
+      "TOTAL POLITICAL EXPENDITURES": 32.24,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 3730.83
     },
     "period_start": "2025-07-01",
     "period_end": "2025-12-31"
@@ -98,7 +102,7 @@
       "Transaction_Date": "2025-07-15",
       "Name": "Constant Contact",
       "Amount": 184.41,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Advertising Expense",
       "Description": "emails",
       "Source": "srp0000002978_20260115_054458.pdf",
@@ -106,7 +110,7 @@
       "Page": 2,
       "latitude": 42.39,
       "longitude": -71.25,
-      "record_id": "5b96d6606383029a195b51e5315e26381070d4057182462801724778c82f933c"
+      "record_id": "bbebd2f88ada6c5fff0e7027eb430246bbc6fcae6df94e7dc9ef96419e99f7a6"
     },
     {
       "Transaction_Date": "2025-07-29",
@@ -140,7 +144,7 @@
       "Transaction_Date": "2025-09-15",
       "Name": "Constant Contact",
       "Amount": 184.41,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Advertising Expense",
       "Description": "emails",
       "Source": "srp0000002978_20260115_054458.pdf",
@@ -148,7 +152,7 @@
       "Page": 3,
       "latitude": 42.39,
       "longitude": -71.25,
-      "record_id": "0e013c637997b31ac6fc35143273191f919f6b6353d50f1b651cd808cb949739"
+      "record_id": "8a93ba0d36a84a872bb1e528c3a1f42b38f563c0a7719a54960f0b4cf9adb57c"
     },
     {
       "Transaction_Date": "2025-10-15",
@@ -182,7 +186,7 @@
       "Transaction_Date": "2025-10-15",
       "Name": "Constant Contact",
       "Amount": 184.41,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Advertising Expense",
       "Description": "emails",
       "Source": "srp0000002978_20260115_054458.pdf",
@@ -190,7 +194,7 @@
       "Page": 4,
       "latitude": 42.39,
       "longitude": -71.25,
-      "record_id": "4db76590a4719bfd796fd7bfd8ee4ccd25850f0921715b7816327e280a776832"
+      "record_id": "45d3f761621fe2ea98caeb6cc643be2a3d4dccf446f0342a8fc91e0f17984166"
     },
     {
       "Transaction_Date": "2025-11-15",
@@ -224,7 +228,7 @@
       "Transaction_Date": "2025-12-15",
       "Name": "Constant Contact",
       "Amount": 184.41,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Advertising Expense",
       "Description": "emails",
       "Source": "srp0000002978_20260115_054458.pdf",
@@ -232,7 +236,7 @@
       "Page": 5,
       "latitude": 42.39,
       "longitude": -71.25,
-      "record_id": "a766d1c7562cb67578156fc49042f2930aaf777b654c51a20bcaaeb7021e1f10"
+      "record_id": "cdea7e3073426b1a250fff51e4c6e60e552e46db95355cc2a3bc4956843a1b37"
     },
     {
       "Transaction_Date": "2025-12-29",
@@ -266,7 +270,7 @@
       "Transaction_Date": "2025-12-31",
       "Name": "Wix.com Inc.",
       "Amount": 43.02,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Advertising Expense",
       "Description": "website",
       "Source": "srp0000002978_20260115_054458.pdf",
@@ -274,7 +278,7 @@
       "Page": 6,
       "latitude": null,
       "longitude": null,
-      "record_id": "b63e7be247d246c796daa7f38832986de33c8591b41d92689b01b7430fe7ccc3"
+      "record_id": "32aeff405bf704b9c92516a8c57e50f1abaa08c2140078b3b4046edfcf14bc46"
     }
   ],
   "personal_funds_expenditures": [

@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "verification_timestamp": "2026-07-15T16:57:43.005Z",
+    "verification_timestamp": "2026-08-03T17:58:31.482Z",
     "parse_version": "v1.0.0",
     "validation_override": true,
-    "override_reason": "Monetary expenditures reported $0.03 more than was calculated.",
+    "override_reason": "Reported expenditures are $0.03 higher than calculated total.",
     "total_contributions": 23,
     "total_expenditures": 38,
     "total_personal_funds_expenditures": 24,
@@ -17,14 +17,17 @@
     "total_pledged_contributions": 0,
     "total_unpaid_incurred_obligations": 0,
     "total_edits": 0,
-    "dataset_hash": "5c3090975517851c22ebdcf3ae052f55a97d93863b1c187baf6a0b3af8eb3795"
+    "dataset_hash": "ea5962e3c95683c706c77961698211a26f8634832b3f012cbb33b21dc579a0e6"
   },
   "candidate_info": {
     "first_name": "Gay",
     "last_name": "Willis",
     "office_sought": "Council District 13",
     "report_totals": {
-      "Contribution Balance": "0.00",
+      "Contribution Balance": 0,
+      "Outstanding Loan Totals": 0,
+      "Contribution Total": 13900,
+      "Expenditure Total": 213193.71,
       "Total Itemized Reported Contributions": 13900,
       "Total Itemized Reported In Kind Contributions": 0,
       "Total Itemized Reported Pledged Contributions": 0,
@@ -44,7 +47,8 @@
       "TOTAL POLITICAL CONTRIBUTIONS OF $50 OR LESS (OTHER THAN PLEDGES LOANS, OR GUARANTEES OF LOANS), UNLESS ITEMIZED": 0,
       "TOTAL POLITICAL CONTRIBUTIONS (OTHER THAN PLEDGES, LOANS, OR GUARANTEES OF LOANS)": 13900,
       "TOTAL POLITICAL EXPENDITURES OF $100 OR LESS UNLESS ITEMIZED": 0,
-      "TOTAL POLITICAL EXPENDITURES": 140523
+      "TOTAL POLITICAL EXPENDITURES": 140523,
+      "TOTAL DOLLAR AMOUNT OF OFFICEHOLDER CONTRIBUTIONS USED FOR CAMPAIGN EXPENDITURES DURING THE REPORTING PERIOD": 0
     },
     "period_start": "2025-04-24",
     "period_end": "2025-06-30"
@@ -74,9 +78,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 1,
-      "latitude": 33.14,
-      "longitude": -97.17,
-      "record_id": "17eeeed4cf97436857c477482b45b5234397e9f5613e15fda86b90d109a03d9b"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "da99be5500941866b01477b446aa4a33eb493656e08fa674f261c3ec5e7a1e08"
     },
     {
       "Transaction_Date": "2025-04-30",
@@ -116,9 +120,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 2,
-      "latitude": 32.83,
-      "longitude": -96.77,
-      "record_id": "5c983ea208fc41976ee1daee9763631e563f47acfaaf4c59eda869d3f8123116"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "98f94d63aa0b29568479f75f26af98388bfc3b49d4bc0dd5476f89b9ebaeac35"
     },
     {
       "Transaction_Date": "2025-04-28",
@@ -130,9 +134,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 2,
-      "latitude": 32.87,
-      "longitude": -96.79,
-      "record_id": "8c6412a9faac1bd53b8973447cb00d0e77f16c9ed257c657152fb321d6187c1e"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "129927627c7373d21d6b86614f83aa543d3414d8cd15f16a5c1197045ea34c62"
     },
     {
       "Transaction_Date": "2025-04-28",
@@ -144,9 +148,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 2,
-      "latitude": 32.84,
-      "longitude": -96.79,
-      "record_id": "544647fa6f70b63003adc09b93524e12b2c301e3430f2921a5f7eb7a57450de5"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "4982333f32d00364a6fea6d0fe0154780d77dee246ccd4b7befcd89eb3af498c"
     },
     {
       "Transaction_Date": "2025-04-26",
@@ -186,9 +190,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 3,
-      "latitude": 32.8,
-      "longitude": -96.79,
-      "record_id": "814237bcd83f9d2d844815e4e6d3fbb999512e803e9838998bae25c336ad3bf8"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "e47a08605971be7a709a0dc5b251e2d5ddc1990334276f7982545fe630a4e18e"
     },
     {
       "Transaction_Date": "2025-04-25",
@@ -200,9 +204,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 3,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "d936e23290604e349fbaa3a256c382d35b4e5c1565ba7ca64eaebcf506e1ccc9"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "1f50039a88adbc6a917b622de19107a074a7dde5d1c1e5c49fc67641c5858c1b"
     },
     {
       "Transaction_Date": "2025-04-25",
@@ -214,9 +218,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 3,
-      "latitude": 32.87,
-      "longitude": -96.79,
-      "record_id": "0aecc1ad9d9c3e1558e69789b104dcf4ce2e62cc0fc089a116ec7c63a91378a1"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "086c486b6ed422a27b026a70186c3df95ca31918dc4024352b06c946fbac048d"
     },
     {
       "Transaction_Date": "2025-04-25",
@@ -228,9 +232,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 4,
-      "latitude": 32.92,
-      "longitude": -96.88,
-      "record_id": "ce44c5da8cba70d4607e2e6712bf7d6f8cd8f037e58ed421676cf41503973abc"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "ff9177fcb3c9a83ddd90dd972a40d65c9b949608b59db984cd4f4b1ff1551985"
     },
     {
       "Transaction_Date": "2025-04-25",
@@ -256,9 +260,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 4,
-      "latitude": 32.87,
-      "longitude": -96.87,
-      "record_id": "01b35a13e6a189e770199b3bdba884e258894b4da59a6c822484e2a46f4af3c2"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "caad858338d50a4d7945dffd7e066af7f17f15f64761e3bcaebcaafcb7699f41"
     },
     {
       "Transaction_Date": "2025-04-25",
@@ -270,9 +274,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 4,
-      "latitude": 32.92,
-      "longitude": -96.84,
-      "record_id": "a5621ddd69c9d923589b3169ad79e75f3b9135a261b834268b8efb9e647a38dc"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "21fefdd9319a3d17a3aaa2fdd2f3dded3e51f948d5bad4494ca0b5160cd60dad"
     },
     {
       "Transaction_Date": "2025-04-25",
@@ -312,9 +316,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 5,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "d32065dcc5204c92a203a30b430df4cb87f4868639ecdb60c6db061d682ecad9"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "ff6b3de0af3c108ecf04582358b2311ebf1c0d1923031e27798e2f74254c53c0"
     },
     {
       "Transaction_Date": "2025-06-06",
@@ -368,9 +372,9 @@
       "Source": "srp0000002958_20250715_164117.pdf",
       "Schedule": "A1",
       "Page": 6,
-      "latitude": 32.81,
-      "longitude": -96.81,
-      "record_id": "afd85e305cba997925a093bf7bf62c1fd043e2b9208c9fcc4691ac072cf5809d"
+      "latitude": null,
+      "longitude": null,
+      "record_id": "f99870389b50af703d99d7f3ac4d3a0805a211c478b55e5f3872ad085725b001"
     }
   ],
   "expenditures": [
@@ -406,7 +410,7 @@
       "Transaction_Date": "2025-05-01",
       "Name": "Hilton",
       "Amount": 16.01,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Food/Beverage Expense",
       "Description": "Food/Beverage Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -414,7 +418,7 @@
       "Page": 7,
       "latitude": 32.8,
       "longitude": -96.83,
-      "record_id": "4209294addbe7b14b4899b25e36072f11a7b344d3434f95bf987670cdf49ce7e"
+      "record_id": "d492f31ec722eb266cd4075697fcd572fe4c772a91290914ca872e231c5ec5a1"
     },
     {
       "Transaction_Date": "2025-05-02",
@@ -448,7 +452,7 @@
       "Transaction_Date": "2025-05-03",
       "Name": "Tom Thumb",
       "Amount": 28.23,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Food/Beverage Expense",
       "Description": "Food/Beverage Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -456,7 +460,7 @@
       "Page": 8,
       "latitude": 32.91,
       "longitude": -96.85,
-      "record_id": "12b6bdfa121f494cf462713038ed331c4ce74397542d4db86e5dd1d984daee2b"
+      "record_id": "a8518047c749104435de817e6092e708f794e39cd75e77991b6104bcdfaf7465"
     },
     {
       "Transaction_Date": "2025-05-03",
@@ -490,7 +494,7 @@
       "Transaction_Date": "2025-04-24",
       "Name": "Thirsty Lion",
       "Amount": 125.25,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Event Expense",
       "Description": "Event Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -498,7 +502,7 @@
       "Page": 9,
       "latitude": 32.78,
       "longitude": -96.8,
-      "record_id": "da13519465eb2c6375ff440e18e1aa73aab7aca1f7b2e109c087b3734c8f0371"
+      "record_id": "01ddc28a7a830d6b46ee6a165aa0f0830c2c6df71e11952a1dcbb8a2af3ea857"
     },
     {
       "Transaction_Date": "2025-05-03",
@@ -532,7 +536,7 @@
       "Transaction_Date": "2025-06-09",
       "Name": "Claremont",
       "Amount": 24.64,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Food/Beverage Expense",
       "Description": "Food/Beverage Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -540,7 +544,7 @@
       "Page": 10,
       "latitude": 32.87,
       "longitude": -96.87,
-      "record_id": "f3f8451bf5b746f7465fa47a0386540440c5c213d3b02251c569392b2752c0bf"
+      "record_id": "db4a5d24537b6dca15bd55801e8ce31cd6c54a28e9175f780662fe16400e74fa"
     },
     {
       "Transaction_Date": "2025-05-15",
@@ -574,7 +578,7 @@
       "Transaction_Date": "2025-06-05",
       "Name": "Saint Austin",
       "Amount": 33.26,
-      "Transaction_Type": "Officeholder Expenditures",
+      "Transaction_Type": "Officeholder Funds for Officeholder Expenditures",
       "Category": "Gift/Awards/Memorials Expense",
       "Description": "Gift/Awards/Memorials Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -582,7 +586,7 @@
       "Page": 11,
       "latitude": 32.78,
       "longitude": -96.8,
-      "record_id": "2672031af037f4035d9384a5bc459eb09ddac93fd0b58e7794cf93542cd6fe49"
+      "record_id": "dfe08f4e382d71c929e9453ca51ae5b4bdc094ee70d329f2f21ec77f8d95e84b"
     },
     {
       "Transaction_Date": "2025-06-10",
@@ -616,7 +620,7 @@
       "Transaction_Date": "2025-06-23",
       "Name": "Junkluggers",
       "Amount": 190.53,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Office/Overhead/Rental Expense",
       "Description": "Office/Overhead/Rental Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -624,7 +628,7 @@
       "Page": 12,
       "latitude": 32.89,
       "longitude": -96.68,
-      "record_id": "52e8ecf1ebe6c056cc84b81f008fe261e8cced399efce2e6caf7be2455b7a518"
+      "record_id": "c3e6c0c49d715589bab2016e963d8476fef1c7800f6ff6eb2d3d76bfeeae54bd"
     },
     {
       "Transaction_Date": "2025-06-02",
@@ -658,7 +662,7 @@
       "Transaction_Date": "2025-06-25",
       "Name": "Mailchimp",
       "Amount": 309.9,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Fees",
       "Description": "Fees",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -666,7 +670,7 @@
       "Page": 13,
       "latitude": 33.77,
       "longitude": -84.38,
-      "record_id": "c3ab83603949d5776c21370ddeec788944c5d9381a3b81d842c0ab3fb39c8bf3"
+      "record_id": "e6d318b32e114f390f82a6848fedfafe8700946675abfc726485a355c4b4327b"
     },
     {
       "Transaction_Date": "2025-06-30",
@@ -700,7 +704,7 @@
       "Transaction_Date": "2025-05-22",
       "Name": "Jacob Social Source",
       "Amount": 5344.49,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Consulting Expense",
       "Description": "Consulting Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -708,7 +712,7 @@
       "Page": 14,
       "latitude": 32.91,
       "longitude": -96.86,
-      "record_id": "5625c07b433705f374c5dc25098ca0fb477bcb60bfe1d896ebf02cba0400edfc"
+      "record_id": "42450413733a989b7a5633956a0fea8962737d867f5c8776d8473c979c564ecd"
     },
     {
       "Transaction_Date": "2025-05-20",
@@ -742,7 +746,7 @@
       "Transaction_Date": "2025-05-10",
       "Name": "Steve Marlin",
       "Amount": 100,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Event Expense",
       "Description": "Event Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -750,7 +754,7 @@
       "Page": 15,
       "latitude": 32.88,
       "longitude": -96.85,
-      "record_id": "1087872034660aa77d68279159e5158d3174b6c85672abd8e9015c0b6a6e0629"
+      "record_id": "1104f8f180b7ff4e1324287e648a21c2bcfb5045aa7c5b2af257604e2ca73105"
     },
     {
       "Transaction_Date": "2025-05-02",
@@ -784,7 +788,7 @@
       "Transaction_Date": "2025-04-25",
       "Name": "Graphics Management",
       "Amount": 12555.08,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Advertising Expense",
       "Description": "Advertising Expense",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -792,7 +796,7 @@
       "Page": 16,
       "latitude": 32.89,
       "longitude": -96.74,
-      "record_id": "105b3e1ed93a6662ab3b786b63894f0ca24376d5c7894df095a7687437b2e520"
+      "record_id": "0f7ff1da8ee8244803f1c4d6982ee0c6f8ad148248bda664e8699ceb272c8004"
     },
     {
       "Transaction_Date": "2025-06-15",
@@ -826,7 +830,7 @@
       "Transaction_Date": "2025-06-13",
       "Name": "Gay Willis",
       "Amount": 1887.98,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Credit Card Payment",
       "Description": "Credit Card Payment Reimbursement",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -834,7 +838,7 @@
       "Page": 17,
       "latitude": 32.92,
       "longitude": -96.83,
-      "record_id": "41d45e7bcea74eccf2678384daf3b3c853b656406b1a961c8887bdd6334ed52c"
+      "record_id": "2368b85ab0ead4c765be08121696ca83e9ef4c94323f9b1b48d238a8bcf4ae8f"
     },
     {
       "Transaction_Date": "2025-05-20",
@@ -868,7 +872,7 @@
       "Transaction_Date": "2025-05-02",
       "Name": "Gay Willis",
       "Amount": 20079.74,
-      "Transaction_Type": "Campaign Expenditures",
+      "Transaction_Type": "Campaign Funds for Campaign Expenditures",
       "Category": "Credit Card Payment",
       "Description": "Credit Card Payment Reimbursement",
       "Source": "srp0000002958_20250715_164117.pdf",
@@ -876,7 +880,7 @@
       "Page": 18,
       "latitude": 32.92,
       "longitude": -96.83,
-      "record_id": "f71afc0a9264c0f9a522503548f8b4a063395674c4a04e004c7aa51afa8c59b9"
+      "record_id": "7611259df022e2a8f4dd85f3bbbc4497226430c72e99672a2836c907165acae2"
     },
     {
       "Transaction_Date": "2025-05-02",
