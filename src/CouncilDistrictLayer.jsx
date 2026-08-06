@@ -42,6 +42,7 @@ function CouncilDistrictLayer({
             data={geojson}
             style={style}
             onEachFeature={onEachFeature}
+            interactive={false}
         />
     );
 }
