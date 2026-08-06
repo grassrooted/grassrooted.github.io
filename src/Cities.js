@@ -21,19 +21,31 @@ export async function getCities(query) {
 
 
 export async function getCityProfiles(cityId) {
-  const profiles = await getProfiles()
-  const city_profiles = profiles.filter(profile => profile.city.replace(/\s+/g, '') === cityId)
-  const bulk_data = await Promise.all(
-    city_profiles.map(async (profile) => {
-      try {
-        return await getProfile(profile.id)
-      } catch (error) {
-        console.error(`Failed to load data for ${profile.name}`)
-        return null
-      }
-    })
-  ).then(results => results.filter(result => result !== null));
+    const profiles = await getProfiles();
 
-  return bulk_data
+    const city_profiles = profiles.filter(
+        profile => profile.city.replace(/\s+/g, '') === cityId
+    );
+
+    const bulk_data = await Promise.all(
+        city_profiles.map(async (profile) => {
+            try {
+                const data = await getProfile(profile.id);
+
+                return {
+                    ...data,
+
+                    // Preserve YAML profile
+                    yaml_profile: profile
+                };
+
+            } catch (error) {
+                console.error(`Failed to load data for ${profile.name}`);
+                return null;
+            }
+        })
+    );
+
+    return bulk_data.filter(result => result !== null);
 }
 

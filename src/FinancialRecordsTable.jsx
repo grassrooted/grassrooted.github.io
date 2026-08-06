@@ -25,16 +25,27 @@ function FinancialRecordsTable({
     const buildColumns = (data) => {
         if (!data.length) return [];
 
-        // Get every field found in the dataset
-        const fields = new Set();
+    const hiddenFields = new Set([
+        "latitude",
+        "longitude",
+        "record_id",
+        "Schedule",
+        "recipient_id"
+    ]);
 
-        data.forEach((record) => {
-            Object.keys(record).forEach((field) => fields.add(field));
+    const fields = new Set();
+
+    data.forEach((record) => {
+        Object.keys(record).forEach((field) => {
+            if (!hiddenFields.has(field)) {
+                fields.add(field);
+            }
         });
+    });
 
         const columns = [];
 
-                const preferredOrder = [
+        const preferredOrder = [
             "Name",
             "Amount",
             "Transaction_Date",

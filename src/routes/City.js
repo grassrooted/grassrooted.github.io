@@ -10,6 +10,7 @@ import PACFundingBarChart from '../PACFundingBarChart';
 import FinancialRecordsTable from '../FinancialRecordsTable';
 
 const generateElectionCycles = (profiles) => {
+    console.log(profiles)
     const earliestFirstElection = Math.min(
         ...profiles.map(profile => parseInt(profile.first_election, 10))
     );
@@ -38,8 +39,6 @@ const generateElectionCycles = (profiles) => {
 
     return electionCycles;
 };
-
-
 
 function City() {
     const { cityId } = useParams();
@@ -81,29 +80,31 @@ function City() {
         }
     }, [electionCycles]);
 
-    // Flatten contributions
-    const allContributions = useMemo(() => {
-        return cityProfileData
-            ? cityProfileData.flatMap(profile =>
-                  profile.contributions.map(contribution => ({
-                      profileName: profile.name,
-                      ...contribution,
-                  }))
-              )
-            : [];
-    }, [cityProfileData]);
+    const flattenSchedule = (profiles, scheduleName) =>
+        (profiles ?? []).flatMap(profile =>
+            (profile[scheduleName] ?? []).map(record => ({
+                ...record,
+                Recipient: profile.name,
+                recipient_id: profile.id,
+            }))
+        );
 
-    // Flatten expenditures
-    const allExpenditures = useMemo(() => {
-        return cityProfileData
-            ? cityProfileData.flatMap(profile =>
-                    profile.expenditures.map(expenditure => ({
-                        profileName: profile.name,
-                        ...expenditure,
-                    }))
-                )
-            : [];
-    }, [cityProfileData]);
+
+    const citySchedules = useMemo(() => ({
+        contributions: flattenSchedule(cityProfileData, "contributions"),
+        expenditures: flattenSchedule(cityProfileData, "expenditures"),
+        loans: flattenSchedule(cityProfileData, "loans"),
+        in_kind_contributions: flattenSchedule(cityProfileData, "in_kind_contributions"),
+        credit_card_expenditures: flattenSchedule(cityProfileData, "credit_card_expenditures"),
+        investment_purchases: flattenSchedule(cityProfileData, "investment_purchases"),
+        personal_funds_expenditures: flattenSchedule(cityProfileData, "personal_funds_expenditures"),
+        interest_gained: flattenSchedule(cityProfileData, "interest_gained"),
+        non_political_expenditures_made_from_political_contributions: flattenSchedule(cityProfileData, "non_political_expenditures_made_from_political_contributions"),
+        payments_to_candidate_business: flattenSchedule(cityProfileData, "payments_to_candidate_business"),
+        pledged_contributions: flattenSchedule(cityProfileData, "pledged_contributions"),
+        unpaid_incurred_obligations: flattenSchedule(cityProfileData, "unpaid_incurred_obligations"),
+    }), [cityProfileData]);
+          
 
     // Handle loading and error states
     if (loading) return <div>Loading...</div>;
@@ -128,17 +129,16 @@ function City() {
                 selectedDateRange={selectedDateRange} />
 
             <PACFundingBarChart 
-                allContributions={allContributions} />
+                allContributions={citySchedules.contributions} />
 
             <ProfileStream 
                 cityId={cityId}
                 cityProfileData={cityProfileData} />
 
             <FinancialRecordsTable
-                profile={cityProfileData?.[0]}
+                profile={cityProfileData?.[0]?.yaml_profile}
                 selectedDateRange={selectedDateRange}
-                contribution_data={allContributions}
-                expenditure_data={allExpenditures}
+                schedules={citySchedules}
             />
         </div>
     );
