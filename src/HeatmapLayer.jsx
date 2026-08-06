@@ -1,59 +1,68 @@
 // HeatmapLayer.js
-import { useEffect, useRef } from 'react';
-import { useMap } from 'react-leaflet';
-import HeatmapOverlay from 'leaflet-heatmap';
 
-function HeatmapLayer({ points }) {
-  const map = useMap();
-  const heatmapRef = useRef();
+import { useEffect, useRef } from "react";
+import { useMap } from "react-leaflet";
+import HeatmapOverlay from "leaflet-heatmap";
 
-  useEffect(() => {
-    if (!map) return;
-    const config = {
-        radius: 0.01,
-        blur: 0.85,
+const HEATMAP_CONFIG = {
+    radius: 0.01,
+    blur: 0.85,
 
-        maxOpacity: 0.8,
-        minOpacity: 0.15,
+    maxOpacity: 0.8,
+    minOpacity: 0.15,
 
-        scaleRadius: true,
-        useLocalExtrema: false,
+    scaleRadius: true,
+    useLocalExtrema: true,
 
-        latField: "latitude",
-        lngField: "longitude",
-        valueField: "totalAmount",
+    latField: "latitude",
+    lngField: "longitude",
+    valueField: "totalAmount",
 
-        gradient: {
-            0.20: "#2c7bb6",
-            0.40: "#00a6ca",
-            0.60: "#00cc66",
-            0.80: "#ffcc00",
-            1.00: "#d7191c"
-        }
-    };
+    gradient: {
+        0.20: "#2c7bb6",
+        0.40: "#00a6ca",
+        0.60: "#00cc66",
+        0.80: "#ffcc00",
+        1.00: "#d7191c",
+    },
+};
 
-    heatmapRef.current = new HeatmapOverlay(config);
-    heatmapRef.current.addTo(map);
+function HeatmapLayer({ points = [] }) {
+    const map = useMap();
+    const heatmapRef = useRef(null);
 
-    const max = Math.max(
-    ...points
-        .map(p => Number(p.totalAmount))
-        .filter(Number.isFinite)
-    );
-    console.log(max)
-    heatmapRef.current.setData({
-      max: max,
-      data: points,
-    });
+    // Create heatmap layer once
+    useEffect(() => {
+        if (!map) return;
 
-    return () => {
-      if (heatmapRef.current) {
-        heatmapRef.current.remove();
-      }
-    };
-  }, [map, points]);
+        const heatmap = new HeatmapOverlay(HEATMAP_CONFIG);
+        heatmap.addTo(map);
 
-  return null; // This component adds layers to the map, not UI
+        heatmapRef.current = heatmap;
+
+        return () => {
+            heatmap.remove();
+            heatmapRef.current = null;
+        };
+    }, [map]);
+
+    // Update heatmap data whenever points change
+    useEffect(() => {
+        if (!heatmapRef.current) return;
+
+        const values = points
+            .map(({ totalAmount }) => Number(totalAmount))
+            .filter(Number.isFinite);
+
+        const maxValue = values.length ? Math.max(...values) : 0;
+
+        heatmapRef.current.setData({
+            max: maxValue,
+            data: points,
+        });
+    }, [points]);
+
+    return null;
 }
 
 export default HeatmapLayer;

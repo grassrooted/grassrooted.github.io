@@ -19,6 +19,27 @@ export async function getCities(query) {
   }  
 }
 
+export async function getCityConfig(query) {
+  try {
+    const response = await fetch(`${process.env.PUBLIC_URL}/cities.yml`);
+    const yamlText = await response.text();
+
+    let cities = yaml.load(yamlText);
+
+    if (!cities) cities = [];
+
+    if (query) {
+      cities = matchSorter(cities, query, { keys: ["name"] });
+    }
+
+    return cities.sort(sortBy("name"))[0] || null;
+
+  } catch (error) {
+    console.error('Error fetching or parsing YAML file:', error);
+    return null;
+  }
+}
+
 
 export async function getCityProfiles(cityId) {
     const profiles = await getProfiles();

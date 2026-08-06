@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 import HeatmapLayer from "./HeatmapLayer";
 import { aggregateContributions } from "./aggregateRecords";
-
+import CouncilDistrictLayer from "./CouncilDistrictLayer";
 
 function ResizeFix() {
   const map = useMap();
@@ -23,30 +23,9 @@ function ResizeFix() {
 }
 
 
-function HeatmapMap({ points }) {
+function HeatmapMap({ districtGeoJSON, points, highlightedDistrict }) {
 
-  /*
-    Convert raw donations:
-
-    [
-      {
-        latitude,
-        longitude,
-        Amount
-      }
-    ]
-
-    into aggregated cells:
-
-    [
-      {
-        latitude,
-        longitude,
-        totalAmount,
-        donorCount
-      }
-    ]
-  */
+  console.log(districtGeoJSON)
   const aggregatedPoints = useMemo(() => {
     if (!points || points.length === 0) {
       return [];
@@ -88,6 +67,11 @@ function HeatmapMap({ points }) {
         <HeatmapLayer
           points={aggregatedPoints}
           valueField="totalAmount"
+        />
+
+        <CouncilDistrictLayer 
+          geojson={districtGeoJSON}
+          highlightedDistrict={highlightedDistrict}
         />
 
 

@@ -17,6 +17,7 @@ import DonorVolunteerLineGraph from '../DonorVolunteerLineGraph';
 import DonorOccupationPieChart from '../DonorOccupationPieChart';
 import HeatmapMap from '../HeatmapMap';
 import FinancialRecordsTable from '../FinancialRecordsTable';
+import {getCityConfig} from '../Cities';
 
 const aggregateDataByName = (data, profile) => {
     return data.reduce((acc, contribution) => {
@@ -68,6 +69,37 @@ function Profile() {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [mapMinimized, setMapMinimized] = useState(false);
+
+    
+    const [districtGeoJSON, setDistrictGeoJSON] = useState(null);
+
+
+    const [cityProfileData, setCityProfileData] = useState(null);
+
+    // Fetch city profile data
+    useEffect(() => {
+        if (!profile) return;
+
+        const fetchCityData = async () => {
+            try {
+                const data = await getCityConfig(profile.city);
+                setCityProfileData(data);
+            } catch (err) {
+                setError("Failed to load city data.");
+            }
+        };
+
+        fetchCityData();
+    }, [profile]);
+
+    useEffect(() => {
+        if (!cityProfileData?.district_geojson) return;
+
+        fetch(cityProfileData.district_geojson)
+            .then(r => r.json())
+            .then(setDistrictGeoJSON)
+            .catch(console.error);
+    }, [cityProfileData]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -225,7 +257,7 @@ function Profile() {
                     </button>
                 )}
 
-                <HeatmapMap points={profile.contributions} />
+                <HeatmapMap districtGeoJSON={districtGeoJSON} points={profile.contributions} highlightedDistrict={profile.district}/>
             </div>
 
 
