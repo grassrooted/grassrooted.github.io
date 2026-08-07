@@ -117,7 +117,7 @@ function CumulativeContributionsTimeline({ cityProfileData, selectedDateRange })
             },
             title: {
               display: true,
-              text: "Cumulative Contributions ($)",
+              text: "Contributions ($)",
               color: "#cbd5e1",
             },
           },

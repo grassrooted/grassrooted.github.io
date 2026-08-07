@@ -12,16 +12,3 @@
     south: 32.620678
     east: -96.464477
     west: -97.040443
-- name: "San Antonio"
-  id: "SanAntonio"
-  election_cycle_years: 2
-  individual_limit: 500
-  pac_limit: 500
-  data_source: "https://webapp1.sanantonio.gov/campfinsearch/search.aspx"
-  find_my_district: "https://www.sanantonio.gov/Council/Find-My-Council-Member"
-  cover_photo: "/cities/san-antonio.jpg"
-  city_bounds:
-    north: 29.6866
-    south: 29.1872
-    east: -98.2927
-    west: -98.8055g

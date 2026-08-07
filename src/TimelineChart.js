@@ -32,7 +32,7 @@ function TimelineChart({ profile, contribution_data, expenditure_data }) {
     const data = {
         datasets: [
             {
-                label: 'Cumulative Contributions ($)',
+                label: 'Contributions ($)',
                 data: cumulativeContributions,
                 backgroundColor: GRASSROOTED_VIZ_PALETTE[0],
                 borderColor: GRASSROOTED_VIZ_PALETTE[0],
@@ -41,7 +41,7 @@ function TimelineChart({ profile, contribution_data, expenditure_data }) {
                 fill: false
             },
             {
-                label: 'Cumulative Expenditures ($)',
+                label: 'Expenditures ($)',
                 data: cumulativeExpenditures,
                 backgroundColor: GRASSROOTED_VIZ_PALETTE[4],
                 borderColor: GRASSROOTED_VIZ_PALETTE[4],
