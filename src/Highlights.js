@@ -93,6 +93,14 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
                 </div>
 
                 <div className="box-wrapper">
+                    <div id="ContributionBalance">{contributionBalance.toLocaleString('en-US', {
+                        style: 'currency',
+                        currency: 'USD',})}
+                    </div>
+                    <div className="box-title">REPORTED CASH ON HAND</div>
+                </div>
+
+                <div className="box-wrapper">
                     <div id="AboveLimitSupport">${totalExcessContributions.toLocaleString()}</div>
                     <div className="box-title">ABOVE-LIMIT DONATIONS</div>
                     <div className="box-subtitle">${profile.individual_limit} Limit for Individuals <br></br> ${profile.pac_limit} Limit for PACs</div>
