@@ -322,12 +322,6 @@ function CampaignReviewPage({ parsedData, uploadedFile }) {
     ]
   );
 
-  const officialInKindContributionTotal = parseMoney(
-    extractedData.candidate_info.report_totals?.[
-      REPORT_IN_KIND_CONTRIBUTIONS_TOTAL_HEADER
-    ]
-  );
-
   const officialExpenditureTotal = parseMoney(
     extractedData.candidate_info.report_totals?.[
       REPORT_EXPENDITURE_TOTAL_HEADER

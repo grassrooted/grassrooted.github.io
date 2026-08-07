@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { GeoJSON } from "react-leaflet";
 
 function CouncilDistrictLayer({

@@ -56,7 +56,7 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
     total_contributions=Math.round(total_contributions)
 
     const avg_contribution = total_contributions/contributions.length
-
+    console.log(profile)
     let totalExcessContributions = calculateExcessContributions(
             aggregated_data,
             selectedDateRange.start,
@@ -70,6 +70,8 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
     const self_payments = Math.round(expenditures
         .filter(item => (item.Name.toLowerCase().includes(profile.name.toLowerCase())))
         .reduce((total, item) => total + item[profile.contribution_fields.Amount], 0));
+
+    const contributionBalance = Math.round(profile.report_totals["Contribution Balance"])
 
     return (
         <div className="section" id="highlights">

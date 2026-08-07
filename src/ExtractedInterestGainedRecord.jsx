@@ -49,11 +49,6 @@ const ExtractedInterestGainedRecord = ({
       ? "input-empty"
       : "";
 
-  const orderedFields = Object.entries(record).sort(([a], [b]) => {
-    if (a === "Source") return 1;
-    if (b === "Source") return -1;
-    return 0;
-    });
   return (
     <div className="contribution-card">
 

@@ -27,28 +27,53 @@ export async function getProfile(id) {
     }
 
     const aggregate = {
-      contributions: [],
-      expenditures: [],
-      personal_funds_expenditures: [],
-      in_kind_contributions: [],
-      loans: [],
-      credit_card_expenditures: [],
-      interest_gained: [],
-      investment_purchases: [],
-      non_political_expenditures_made_from_political_contributions: [],
-      payments_to_candidate_business: [],
-      pledged_contributions: [],
-      unpaid_incurred_obligations: [],
+        contributions: [],
+        expenditures: [],
+        personal_funds_expenditures: [],
+        in_kind_contributions: [],
+        loans: [],
+        credit_card_expenditures: [],
+        interest_gained: [],
+        investment_purchases: [],
+        non_political_expenditures_made_from_political_contributions: [],
+        payments_to_candidate_business: [],
+        pledged_contributions: [],
+        unpaid_incurred_obligations: [],
     };
+
+    let latestReport = null;
+
+    const processSource = (data) => {
+
+        // Aggregate schedule data
+        Object.keys(aggregate).forEach(field => {
+            if (Array.isArray(data[field])) {
+                aggregate[field].push(...data[field]);
+            }
+        });
+
+        // Track latest report by period_end
+        const periodEnd = data?.candidate_info?.period_end;
+
+        if (periodEnd) {
+            if (
+                !latestReport ||
+                new Date(periodEnd) > 
+                new Date(latestReport.candidate_info.period_end)
+            ) {
+                latestReport = data;
+            }
+        }
+    };
+
 
     try {
 
         //
         // NEW FORMAT
-        // path_to_contributions_data points to a folder.
-        // sourceNames lists the JSON files inside.
+        // Folder containing multiple JSON reports
         //
-        if (profile.sourceNames && profile.sourceNames.length > 0) {
+        if (profile.sourceNames?.length > 0) {
 
             const requests = profile.sourceNames.map(file =>
                 axios.get(
@@ -59,17 +84,14 @@ export async function getProfile(id) {
             const responses = await Promise.all(requests);
 
             responses.forEach(({ data }) => {
-                Object.keys(aggregate).forEach(field => {
-                    if (Array.isArray(data[field])) {
-                        aggregate[field].push(...data[field]);
-                    }
-                });
+                processSource(data);
             });
+
         }
 
         //
         // ORIGINAL FORMAT
-        // path_to_contributions_data points directly to one JSON file.
+        // Single JSON file
         //
         else {
 
@@ -78,23 +100,52 @@ export async function getProfile(id) {
 
             const { data } = await axios.get(jsonFilePath);
 
-            Object.keys(aggregate).forEach(field => {
-                if (Array.isArray(data[field])) {
-                    aggregate[field].push(...data[field]);
-                }
-            });
+            processSource(data);
         }
+
 
         //
         // Remove duplicates
         //
         Object.keys(aggregate).forEach(field => {
             aggregate[field] = Array.from(
-                new Set(aggregate[field].map(JSON.stringify))
+                new Set(
+                    aggregate[field].map(JSON.stringify)
+                )
             ).map(JSON.parse);
         });
 
+
+        //
+        // Attach aggregated data
+        //
         Object.assign(profile, aggregate);
+
+
+        //
+        // Attach latest report totals
+        //
+        if (latestReport?.candidate_info?.report_totals) {
+
+            const totals = latestReport.candidate_info.report_totals;
+
+            profile.report_totals = {
+                ...totals,
+
+                "Contribution Balance":
+                    totals["Contribution Balance"] ?? 0,
+
+                "Outstanding Loan Totals":
+                    totals["Outstanding Loan Totals"] ?? 0
+            };
+
+            //
+            // Preserve which report generated these totals
+            //
+            profile.latest_report_period_end =
+                latestReport.candidate_info.period_end;
+        }
+
 
     } catch (error) {
         console.error("Error fetching profile data:", error);

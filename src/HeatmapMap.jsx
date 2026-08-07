@@ -24,8 +24,6 @@ function ResizeFix() {
 
 
 function HeatmapMap({ districtGeoJSON, points, highlightedDistrict }) {
-
-  console.log(districtGeoJSON)
   const aggregatedPoints = useMemo(() => {
     if (!points || points.length === 0) {
       return [];

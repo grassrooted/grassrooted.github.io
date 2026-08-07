@@ -23,7 +23,7 @@ const ExtractedInKindContributionRecord = ({
   setFormState
 }) => {
 
-  const updateField = (field, value) => {
+const updateField = (field, value) => {
     setFormState(prev => {
       const updated = [...prev.in_kind_contributions];
 
@@ -49,11 +49,6 @@ const ExtractedInKindContributionRecord = ({
       ? "input-empty"
       : "";
 
-  const orderedFields = Object.entries(record).sort(([a], [b]) => {
-    if (a === "Source") return 1;
-    if (b === "Source") return -1;
-    return 0;
-    });
   return (
     <div className="contribution-card">
 
