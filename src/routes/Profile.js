@@ -208,7 +208,9 @@ function Profile() {
                     aggregated_data={aggregatedData}
                     contribution_data={profile.contributions}
                     selectedDateRange={selectedDateRange}
-                    expenditure_data={profile.expenditures}/>
+                    expenditure_data={profile.expenditures}
+                    districtGeoJSON={districtGeoJSON}
+                    highlightedDistrict={profile.district}/>
 
                 {profile.contributions.some(contribution => contribution.Occupation) && (
                     <DonorOccupationPieChart contribution_data={profile.contributions} />

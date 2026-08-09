@@ -1,12 +1,12 @@
 /* ============================================================
    Highlights – Grassrooted Civic Data Interface
    Dark Civic / Campaign Finance Theme
-============================================================ */
+   ============================================================ */
 
 
 /* ============================================================
    Highlights Section
-============================================================ */
+   ============================================================ */
 
 #highlights {
     margin: 1.5rem 0;
@@ -26,12 +26,14 @@
         0 12px 30px rgba(0, 0, 0, 0.6);
 
     color: #f3f4f6;
+
+    box-sizing: border-box;
 }
 
 
 /* ============================================================
    Section Header
-============================================================ */
+   ============================================================ */
 
 #highlights h2 {
     margin: 0 0 0.4rem;
@@ -56,28 +58,50 @@
 
 /* ============================================================
    Highlight Grid
-============================================================ */
+   ============================================================ */
+
+/*
+   Desktop layout:
+
+   ┌──────────────────────┬────────────────────────┐
+   │ Total Contributions  │                        │
+   ├──────────────────────┤                        │
+   │ Average Contribution │                        │
+   ├──────────────────────┤   Geographic Support   │
+   │ Cash on Hand         │                        │
+   ├──────────────────────┤                        │
+   │ Above-Limit          │                        │
+   ├──────────────────────┤                        │
+   │ Self Payments        │                        │
+   └──────────────────────┴────────────────────────┘
+*/
 
 #highlights .box-container {
     display: grid;
 
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(180px, 1fr)
-    );
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    grid-template-rows: repeat(5, auto);
 
     gap: 1rem;
+
+    align-items: stretch;
 }
 
 
 /* ============================================================
    Highlight Cards
-============================================================ */
+   ============================================================ */
 
 #highlights .box-wrapper {
     position: relative;
 
+    min-width: 0;
     min-height: 125px;
+
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
@@ -112,15 +136,117 @@
 
 
 /* ============================================================
+   Geographic Support
+   ============================================================ */
+
+/*
+   Geographic Support gets its own column and spans
+   the complete height of the five standard cards.
+*/
+
+#highlights .geographic-support-box {
+    grid-column: 2;
+    grid-row: 1 / span 5;
+
+    min-width: 0;
+    min-height: 0;
+
+    padding: 1.25rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* Geographic content */
+
+#highlights .geographic-support {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 0.5rem 0;
+}
+
+
+/* Individual geographic statistics */
+
+#highlights .geographic-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 1rem 0.5rem;
+}
+
+#highlights .geographic-stat-value {
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+
+    word-break: break-word;
+}
+
+#highlights .geographic-stat-percent {
+    margin-top: 0.2rem;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+#highlights .geographic-stat-label {
+    margin-top: 0.25rem;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+}
+
+
+/* Geographic dividers */
+
+#highlights .geographic-divider {
+    width: 70%;
+    height: 1px;
+
+    margin: 0.25rem auto;
+
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* Location unavailable */
+
+#highlights .geographic-unavailable {
+    opacity: 0.7;
+}
+
+
+/* Geographic subtitle */
+
+#highlights .geographic-support-box .box-subtitle {
+    margin-top: 0.75rem;
+
+    text-align: center;
+}
+
+
+/* ============================================================
    Primary Data Values
-============================================================ */
+   ============================================================ */
 
 #highlights #TotalContributions,
 #highlights #AverageContributions,
 #highlights #ContributionBalance,
 #highlights #AboveLimitSupport,
 #highlights #SelfPayments {
-
     margin-bottom: 0.45rem;
 
     font-size: 1.45rem;
@@ -130,12 +256,14 @@
     letter-spacing: 0.3px;
 
     color: #00ffa3;
+
+    overflow-wrap: anywhere;
 }
 
 
 /* ============================================================
    Specific Data Emphasis
-============================================================ */
+   ============================================================ */
 
 /* Cash on hand */
 
@@ -148,6 +276,9 @@
 
 #highlights #AboveLimitSupport {
     color: #f59e0b;
+
+    text-shadow:
+        0 0 12px rgba(245, 158, 11, 0.15);
 }
 
 
@@ -160,7 +291,7 @@
 
 /* ============================================================
    Card Titles
-============================================================ */
+   ============================================================ */
 
 #highlights .box-title {
     font-size: 0.7rem;
@@ -177,7 +308,7 @@
 
 /* ============================================================
    Supporting Information
-============================================================ */
+   ============================================================ */
 
 #highlights .box-subtitle {
     margin-top: 0.5rem;
@@ -190,44 +321,75 @@
 
 
 /* ============================================================
-   Above-Limit Warning Indicator
-============================================================ */
+   Specific Card Title Emphasis
+   ============================================================ */
 
-#highlights #AboveLimitSupport + .box-title {
-    color: #cbd5e1;
-}
-
-#highlights #AboveLimitSupport {
-    text-shadow:
-        0 0 12px rgba(245, 158, 11, 0.15);
-}
-
-
-/* ============================================================
-   Self-Payment Indicator
-============================================================ */
-
+#highlights #AboveLimitSupport + .box-title,
 #highlights #SelfPayments + .box-title {
     color: #cbd5e1;
 }
 
+/* Average contribution */
+#highlights #AverageContributions {
+    color: #67e8f9;
+}
+
+/* In-district */
+#highlights .geographic-stat:nth-of-type(1) .geographic-stat-value {
+    color: #4ade80;
+}
+
+#highlights .geographic-stat:nth-of-type(1) .geographic-stat-percent {
+    color: #86efac;
+}
+
+/* Out-of-district */
+#highlights .geographic-stat:nth-of-type(3) .geographic-stat-value {
+    color: #60a5fa;
+}
+
+#highlights .geographic-stat:nth-of-type(3) .geographic-stat-percent {
+    color: #93c5fd;
+}
+
+/* Location unavailable */
+#highlights .geographic-unavailable .geographic-stat-value {
+    color: #94a3b8;
+}
 
 /* ============================================================
-   Responsive – Tablet
-============================================================ */
+   Tablet
+   ============================================================ */
 
 @media (max-width: 900px) {
 
-    #highlights .box-container {
-        grid-template-columns: repeat(2, 1fr);
+    #highlights {
+        padding: 1.25rem;
     }
 
+    #highlights .box-container {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        gap: 0.85rem;
+    }
+
+    #highlights .box-wrapper {
+        min-height: 115px;
+        padding: 1rem;
+    }
+
+    #highlights .geographic-support-box {
+        grid-column: 2;
+        grid-row: 1 / span 5;
+    }
 }
 
 
 /* ============================================================
-   Responsive – Mobile
-============================================================ */
+   Mobile
+   ============================================================ */
 
 @media (max-width: 600px) {
 
@@ -241,18 +403,34 @@
     }
 
     #highlights h4 {
+        margin-bottom: 1rem;
+
         font-size: 0.72rem;
         line-height: 1.4;
     }
 
+    /*
+       Collapse everything to one column.
+       Geographic Support becomes a normal card.
+    */
+
     #highlights .box-container {
         grid-template-columns: 1fr;
+        grid-template-rows: none;
+
         gap: 0.75rem;
     }
 
     #highlights .box-wrapper {
         min-height: 100px;
         padding: 1rem;
+    }
+
+    #highlights .geographic-support-box {
+        grid-column: auto;
+        grid-row: auto;
+
+        min-height: 0;
     }
 
     #highlights #TotalContributions,
@@ -263,12 +441,23 @@
         font-size: 1.3rem;
     }
 
+    #highlights .geographic-stat {
+        padding: 0.8rem 0.5rem;
+    }
+
+    #highlights .geographic-stat-value {
+        font-size: 1.25rem;
+    }
+
+    #highlights .geographic-stat-percent {
+        font-size: 1rem;
+    }
 }
 
 
 /* ============================================================
    Very Small Screens
-============================================================ */
+   ============================================================ */
 
 @media (max-width: 380px) {
 
@@ -288,4 +477,7 @@
         font-size: 1.2rem;
     }
 
+    #highlights .geographic-stat-value {
+        font-size: 1.15rem;
+    }
 }
