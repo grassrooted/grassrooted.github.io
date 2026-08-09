@@ -73,7 +73,7 @@ const SharedDonorsTable = ({
         return results.sort(
             (a, b) => b.percentage - a.percentage
         );
-    }, [profile, profiles, campaignDonors, selectedDateRange]);
+    }, [profile, profiles, campaignDonors]);
 
     const currentDonorCount =
         campaignDonors?.[profile?.id]?.size ?? 0;
