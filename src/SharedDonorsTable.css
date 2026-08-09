@@ -1,0 +1,351 @@
+/* ============================================================
+   Shared Donors Table – Grassrooted Civic Data Interface
+   ============================================================ */
+
+/* ============================================================
+   Main Panel
+   ============================================================ */
+
+.shared-donors-table {
+    width: 100%;
+    margin: 2rem 0;
+    padding: 1.5rem 1.75rem;
+
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        180deg,
+        #0d1420 0%,
+        #0a0f1a 100%
+    );
+
+    border: 1px solid rgba(0, 255, 163, 0.08);
+    border-radius: 14px;
+
+    color: var(--text-primary, #f3f4f6);
+
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 163, 0.03),
+        0 12px 30px rgba(0, 0, 0, 0.6);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.shared-donors-table:hover {
+    border-color: rgba(0, 255, 163, 0.18);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 163, 0.05),
+        0 16px 35px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ============================================================
+   Header
+   ============================================================ */
+
+.shared-donors-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.shared-donors-header h2 {
+    margin: 0;
+
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+
+    color: #e5e7eb;
+}
+
+.shared-donors-description {
+    max-width: 700px;
+
+    margin: 0.45rem 0 0;
+
+    font-size: 0.82rem;
+    line-height: 1.5;
+
+    color: #94a3b8;
+}
+
+.shared-donors-summary {
+    flex-shrink: 0;
+
+    padding: 0.4rem 0.7rem;
+
+    border: 1px solid rgba(0, 255, 163, 0.10);
+    border-radius: 8px;
+
+    background: rgba(0, 255, 163, 0.025);
+
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+
+    color: #94a3b8;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   Table Wrapper
+   ============================================================ */
+
+.shared-donors-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* ============================================================
+   Table
+   ============================================================ */
+
+.shared-donors-table table {
+    width: 100%;
+
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.shared-donors-table th {
+    padding: 0.65rem 0.85rem;
+
+    text-align: left;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+
+    color: #64748b;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.shared-donors-table td {
+    padding: 0.75rem 0.85rem;
+
+    vertical-align: middle;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+}
+
+
+/* ============================================================
+   Column Sizing
+   ============================================================ */
+
+.shared-donors-table th:nth-child(1),
+.shared-donors-table td:nth-child(1) {
+    width: 45%;
+}
+
+.shared-donors-table th:nth-child(2),
+.shared-donors-table td:nth-child(2) {
+    width: 25%;
+}
+
+.shared-donors-table th:nth-child(3),
+.shared-donors-table td:nth-child(3) {
+    width: 30%;
+    text-align: right;
+}
+
+
+/* ============================================================
+   Row Interaction
+   ============================================================ */
+
+.shared-donors-table tbody tr {
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.shared-donors-table tbody tr:hover {
+    background-color: rgba(0, 255, 163, 0.025);
+}
+
+.shared-donors-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ============================================================
+   Candidate Information
+   ============================================================ */
+
+.shared-donor-candidate {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.15rem;
+}
+
+.shared-donor-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    color: #e5e7eb;
+}
+
+.shared-donor-district {
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+
+    color: #64748b;
+}
+
+
+/* ============================================================
+   Headshot
+   ============================================================ */
+
+.shared-donor-headshot {
+    display: block;
+
+    width: 42px;
+    height: 42px;
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 2px solid rgba(0, 255, 163, 0.08);
+    background-color: #111827;
+
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease;
+}
+
+.shared-donors-table tbody tr:hover .shared-donor-headshot {
+    transform: scale(1.04);
+    border-color: rgba(0, 255, 163, 0.25);
+}
+
+.shared-donor-headshot-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+
+    background: #111827;
+
+    color: #64748b;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   Shared Donor Percentage
+   ============================================================ */
+
+.shared-donor-percentage {
+    display: inline-block;
+
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+
+    color: #00ffa3;
+
+    cursor: help;
+
+    transition:
+        text-shadow 160ms ease,
+        opacity 160ms ease;
+}
+
+.shared-donor-percentage:hover {
+    text-shadow: 0 0 12px rgba(0, 255, 163, 0.25);
+}
+
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+
+.shared-donors-empty {
+    padding: 2rem 1rem;
+
+    text-align: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.015);
+
+    color: #64748b;
+
+    font-size: 0.82rem;
+}
+
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+    .shared-donors-table {
+        margin: 1.25rem 0;
+        padding: 1.15rem 1rem;
+    }
+
+    .shared-donors-header {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .shared-donors-summary {
+        white-space: normal;
+    }
+
+    .shared-donors-table th,
+    .shared-donors-table td {
+        padding: 0.65rem 0.45rem;
+    }
+
+    .shared-donors-table th {
+        font-size: 0.65rem;
+    }
+
+    .shared-donor-headshot,
+    .shared-donor-headshot-placeholder {
+        width: 36px;
+        height: 36px;
+    }
+
+    .shared-donor-name {
+        font-size: 0.82rem;
+    }
+
+    .shared-donor-district {
+        font-size: 0.68rem;
+    }
+
+    .shared-donor-percentage {
+        font-size: 0.9rem;
+    }
+}

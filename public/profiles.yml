@@ -79,7 +79,7 @@
 - name:  "Maxie Johnson"
   id: "MaxieJohnson"
   path_to_contributions_data: "/candidates/MaxieJohnson/Sources"
-  path_to_headshot_photo: "/candidates/Arnold/Visuals/carolyn-king-headshot.jpg"
+  path_to_headshot_photo: "/candidates/MaxieJohnson/maxie-johnson.jpg"
   sourceNames:
     - "srp0000002968_20250715_162229.json"
     - "tec0000002824_20250403_143948.json"
@@ -131,7 +131,7 @@
 - name:  "Laura Cadena"
   id: "LauraCadena"
   path_to_contributions_data: "/candidates/LauraCadena/Sources"
-  path_to_headshot_photo: "/candidates/Narvaez/Visuals/Narvaez_headshot.jpeg"
+  path_to_headshot_photo: "/candidates/LauraCadena/laura-cadena.jpg"
   sourceNames:
     - "srp0000002966_20250715_163134.json"
     - "srp0000002993_20260115_145541.json"
@@ -185,7 +185,7 @@
 - name:  "Lorie Blair"
   id: "LorieBlair"
   path_to_contributions_data: "/candidates/LorieBlair/Sources"
-  path_to_headshot_photo: "/candidates/Atkins/Visuals/Atkins_headshot.jpg"
+  path_to_headshot_photo: "/candidates/LorieBlair/lorie-blair.jpg"
   sourceNames:
     - "srp0000002961_20250715_192625.json"
     - "srp0000002991_20260115_120002.json"
@@ -265,7 +265,7 @@
 - name:  "William Roth"
   id: "WilliamRoth"
   path_to_contributions_data: "/candidates/WilliamRoth/Sources"
-  path_to_headshot_photo: "/candidates/Schultz/Visuals/Schultz_headshot.jpeg"
+  path_to_headshot_photo: "/candidates/WilliamRoth/william-roth.jpg"
   sourceNames:
     - "srp0000002939_20250703_172346.json"
     - "srp0000002975_20260105_110459.json"

@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from "react-router-dom";
 import ProfileSnapshot from '../ProfileSnapshot';
-import { getProfile, getProfiles } from '../Profiles';
+import {
+    getProfile,
+    getProfiles,
+    getCampaignDonors,
+    normalizeDonorName
+} from '../Profiles';
 import TimelineChart from '../TimelineChart';
 import MembershipList from '../MembershipList';
 import Highlights from '../Highlights';
@@ -18,20 +23,23 @@ import DonorOccupationPieChart from '../DonorOccupationPieChart';
 import HeatmapMap from '../HeatmapMap';
 import FinancialRecordsTable from '../FinancialRecordsTable';
 import {getCityConfig} from '../Cities';
+import SharedDonorsTable from '../SharedDonorsTable';
+
 
 const aggregateDataByName = (data, profile) => {
     return data.reduce((acc, contribution) => {
-        const normalizedName = contribution[profile.contribution_fields.Donor].toLowerCase();
+        const normalizedName = normalizeDonorName(contribution.Name);
         if (!acc[normalizedName]) {
             acc[normalizedName] = {
                 Amount: 0,
-                Campaign: contribution[profile.contribution_fields.Recipient],
-                Name: contribution[normalizedName],
-                Address: contribution[profile.contribution_fields.Address],
+                Recipient: contribution.Recipient,
+                Name: contribution.Name,
+                latitude: contribution.latitude,
+                longitude: contribution.longitude,
                 children: []
             };
         }
-        acc[normalizedName].Amount += contribution[profile.contribution_fields.Amount];
+        acc[normalizedName].Amount += contribution.Amount;
         acc[normalizedName].children.push({
             ...contribution
         });
@@ -66,15 +74,12 @@ function Profile() {
     const [profiles, setProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [mapMinimized, setMapMinimized] = useState(false);
-
-    
+    const [campaignDonors, setCampaignDonors] = useState({});
     const [districtGeoJSON, setDistrictGeoJSON] = useState(null);
-
-
     const [cityProfileData, setCityProfileData] = useState(null);
+    const [selectedDateRange, setSelectedDateRange] = useState(null);
 
     // Fetch city profile data
     useEffect(() => {
@@ -116,6 +121,7 @@ function Profile() {
             try {
                 const fetchedProfile = await getProfile(profileId);
                 const fetchedProfiles = await getProfiles();
+
                 setProfile(fetchedProfile);
                 setProfiles(fetchedProfiles);
             } catch (err) {
@@ -128,6 +134,35 @@ function Profile() {
         fetchData();
     }, [profileId]);
 
+    useEffect(() => {
+        if (!selectedDateRange || profiles.length === 0) return;
+
+        const fetchDonors = async () => {
+            try {
+                const donorResults = await Promise.all(
+                    profiles.map(async candidate => ({
+                        id: candidate.id,
+                        donors: await getCampaignDonors(
+                            candidate,
+                            selectedDateRange
+                        )
+                    }))
+                );
+
+                const donorMap = donorResults.reduce((acc, result) => {
+                    acc[result.id] = result.donors;
+                    return acc;
+                }, {});
+
+                setCampaignDonors(donorMap);
+            } catch (err) {
+                console.error("Failed to load campaign donors:", err);
+            }
+        };
+
+        fetchDonors();
+    }, [profiles, selectedDateRange]);
+
     const aggregatedData = useMemo(() => {
         return profile ? aggregateDataByName(profile.contributions, profile) : {};
     }, [profile]);
@@ -135,8 +170,6 @@ function Profile() {
     const electionCycles = useMemo(() => {
         return profile ? generateElectionCycles(profile) : [];
     }, [profile]);
-
-    const [selectedDateRange, setSelectedDateRange] = useState(null);
 
     useEffect(() => {
         if (electionCycles.length > 0) {
@@ -185,6 +218,11 @@ function Profile() {
                     profile={profile}
                     contribution_data={profile.contributions}
                     expenditure_data={profile.expenditures}/>
+
+                <SharedDonorsTable
+                    profile={profile}
+                    profiles={profiles}
+                    campaignDonors={campaignDonors} />
 
                 <AggregatedDataTable 
                     profile={profile} 

@@ -1,68 +1,95 @@
 import React, { useState, useRef } from "react";
+import "./DonationList.css";
 
 const DonationList = ({ expenditure_data }) => {
-  const [expanded, setExpanded] = useState(false);
-  const listRef = useRef(null); // Reference to the list container
+    const [expanded, setExpanded] = useState(false);
+    const listRef = useRef(null);
 
-  // Filter expenditure_data where Category or Description contains "Donation"
-  const donationExpenditureData = expenditure_data.filter(
-    (record) =>
-      record.Category?.toLowerCase().includes("donation") ||
-      record.Description?.toLowerCase().includes("donation") ||
-      record.Category?.toLowerCase().includes("donate") ||
-      record.Description?.toLowerCase().includes("donate")
-  );
+    const donationExpenditureData = expenditure_data.filter(
+        (record) =>
+            record.Category?.toLowerCase().includes("donation") ||
+            record.Description?.toLowerCase().includes("donation") ||
+            record.Category?.toLowerCase().includes("donate") ||
+            record.Description?.toLowerCase().includes("donate")
+    );
 
-  // Aggregate total amount per unique Name
-  const donationTotals = donationExpenditureData.reduce((acc, record) => {
-    if (!record.Name) return acc;
-    if (!acc[record.Name]) {
-      acc[record.Name] = 0;
-    }
-    acc[record.Name] += record.Amount || 0;
-    return acc;
-  }, {});
+    const donationTotals = donationExpenditureData.reduce((acc, record) => {
+        if (!record.Name) return acc;
 
-  // Sort the names alphabetically
-  const sortedNames = Object.keys(donationTotals).sort();
+        if (!acc[record.Name]) {
+            acc[record.Name] = 0;
+        }
 
-  // Determine how many items to show
-  const displayedNames = expanded ? sortedNames : sortedNames.slice(0, 10);
+        acc[record.Name] += Number(record.Amount) || 0;
 
-  // Function to handle expanding/collapsing
-  const toggleExpand = () => {
-    if (expanded) {
-      // Scroll back to the list when collapsing
-      listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    setExpanded(!expanded);
-  };
+        return acc;
+    }, {});
 
-  return (
-    <div className="p-4 bg-gray-900 text-white rounded-xl shadow-lg">
-      <h2 ref={listRef} className="text-xl font-bold mb-2">
-        Donation Expenditures
-      </h2>
-      {sortedNames.length > 0 ? (
-        <>
-          <ul className="list-disc pl-5">
-            {displayedNames.map((name, index) => (
-              <li key={index}>{name} - ${donationTotals[name].toFixed(2)}</li>
-            ))}
-          </ul>
-          {sortedNames.length > 10 && (
-            <button
-              className="mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
-              onClick={toggleExpand}>
-              {expanded ? "Show Less" : "Show More"}
-            </button>
-          )}
-        </>
-      ) : (
-        <p>No donation payments found.</p>
-      )}
-    </div>
-  );
+    const sortedNames = Object.keys(donationTotals).sort(
+        (a, b) => donationTotals[b] - donationTotals[a]
+    );
+
+
+    const displayedNames = expanded
+        ? sortedNames
+        : sortedNames.slice(0, 10);
+
+    const toggleExpand = () => {
+        if (expanded) {
+            listRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        setExpanded(!expanded);
+    };
+
+    return (
+        <section
+            className="donation-list"
+            ref={listRef}
+        >
+            <h2 className="donation-list__title">
+                Donation Expenditures
+            </h2>
+
+            {sortedNames.length > 0 ? (
+                <>
+                    <ul className="donation-list__items">
+                        {displayedNames.map((name) => (
+                            <li
+                                key={name}
+                                className="donation-list__item"
+                            >
+                                <span className="donation-list__name">
+                                    {name}
+                                </span>
+
+                                <span className="donation-list__amount">
+                                    ${donationTotals[name].toFixed(2)}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+
+                    {sortedNames.length > 10 && (
+                        <button
+                            type="button"
+                            className="donation-list__toggle"
+                            onClick={toggleExpand}
+                        >
+                            {expanded ? "Show Less" : "Show More"}
+                        </button>
+                    )}
+                </>
+            ) : (
+                <p className="donation-list__empty">
+                    No donation payments found.
+                </p>
+            )}
+        </section>
+    );
 };
 
 export default DonationList;

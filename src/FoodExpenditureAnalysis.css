@@ -1,0 +1,282 @@
+/* ============================================================
+   Food & Beverage Expenditure Analysis
+   Grassrooted Civic Data Theme
+   ============================================================ */
+
+
+/* ==========================
+   Main Panel
+========================== */
+
+.food-expenditure {
+    margin: 1rem 0;
+
+    padding: 1.5rem 1.75rem;
+
+    background: linear-gradient(
+        180deg,
+        #0d1420 0%,
+        #0a0f1a 100%
+    );
+
+    border: 1px solid rgba(0, 255, 163, 0.08);
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 163, 0.03),
+        0 12px 30px rgba(0, 0, 0, 0.6);
+
+    color: #f3f4f6;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.food-expenditure:hover {
+    border-color: rgba(0, 255, 163, 0.18);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 163, 0.05),
+        0 16px 35px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ==========================
+   Section Header
+========================== */
+
+.food-expenditure__title {
+    margin: 0;
+
+    padding-bottom: 0.75rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+
+    color: #94a3b8;
+}
+
+
+/* ==========================
+   Subsection Header
+========================== */
+
+.food-expenditure__subtitle {
+    margin: 1.25rem 0 0.75rem;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    color: #64748b;
+}
+
+
+/* ==========================
+   Vendor List
+========================== */
+
+.food-expenditure__vendors {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.45rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* ==========================
+   Vendor Row
+========================== */
+
+.food-expenditure__vendor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 2.35rem;
+
+    padding: 0.55rem 0.75rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+
+    background: rgba(17, 24, 39, 0.65);
+
+    color: #e5e7eb;
+
+    font-size: 0.9rem;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+}
+
+.food-expenditure__vendor:hover {
+    transform: translateX(2px);
+
+    background: #111827;
+
+    border-color: rgba(0, 255, 163, 0.14);
+}
+
+
+/* ==========================
+   Vendor Name
+========================== */
+
+.food-expenditure__vendor-name {
+    min-width: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-weight: 500;
+}
+
+
+/* ==========================
+   Vendor Amount
+========================== */
+
+.food-expenditure__vendor-amount {
+    flex: 0 0 auto;
+
+    margin-left: 1rem;
+
+    font-weight: 700;
+    letter-spacing: 0.3px;
+
+    color: #00ffa3;
+}
+
+
+/* ==========================
+   Vendor Indicator
+========================== */
+
+.food-expenditure__vendor::before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    flex: 0 0 auto;
+
+    margin-right: 0.7rem;
+
+    border-radius: 50%;
+
+    background: #00ffa3;
+
+    box-shadow:
+        0 0 6px rgba(0, 255, 163, 0.35);
+}
+
+
+/* ==========================
+   Expand / Collapse Button
+========================== */
+
+.food-expenditure__toggle {
+    margin-top: 1rem;
+
+    padding: 0.55rem 0.9rem;
+
+    border: 1px solid rgba(0, 255, 163, 0.15);
+    border-radius: 8px;
+
+    background: #111827;
+
+    color: #94a3b8;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.food-expenditure__toggle:hover {
+    background: #172033;
+
+    border-color: rgba(0, 255, 163, 0.35);
+
+    color: #00ffa3;
+
+    box-shadow:
+        0 0 12px rgba(0, 255, 163, 0.06);
+}
+
+.food-expenditure__toggle:focus-visible {
+    outline: none;
+
+    border-color: #00ffa3;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 255, 163, 0.12);
+}
+
+
+/* ==========================
+   Empty State
+========================== */
+
+.food-expenditure__empty {
+    margin: 0.5rem 0 0;
+
+    padding: 1rem;
+
+    border: 1px dashed rgba(148, 163, 184, 0.15);
+    border-radius: 8px;
+
+    background: rgba(17, 24, 39, 0.45);
+
+    color: #64748b;
+
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 600px) {
+
+    .food-expenditure {
+        margin: 0.75rem 0;
+        padding: 1.25rem;
+    }
+
+    .food-expenditure__vendor {
+        font-size: 0.85rem;
+    }
+
+    .food-expenditure__vendor-name {
+        max-width: 65%;
+    }
+
+}

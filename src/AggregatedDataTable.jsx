@@ -13,7 +13,6 @@ const aggregateDataByName = (profile, data) => {
         if (!acc[normalizedName]) {
             acc[normalizedName] = {
                 Amount: 0,
-                Campaign: contribution[profile.contribution_fields.Recipient],
                 Name: contribution[profile.contribution_fields.Donor],
                 Address: contribution[profile.contribution_fields.Address],
                 children: []
@@ -23,7 +22,6 @@ const aggregateDataByName = (profile, data) => {
         acc[normalizedName].children.push({
             ReportId: contribution.ReportId,
             Amount: contribution[profile.contribution_fields.Amount],
-            Campaign: contribution[profile.contribution_fields.Recipient],
             TransactionDate: contribution[profile.contribution_fields.Transaction_Date],
             Latitude: contribution.Latitude,
             Longitude: contribution.Longitude,
@@ -65,7 +63,6 @@ function AggregatedDataTable({ profile, selectedDateRange, contribution_data }) 
             columns: [
                 { title: "Contributor", field: "Name" },
                 { title: "Amount ($)", field: "Amount", formatter: "money" },
-                { title: "Candidate", field: "Campaign" },
                 { title: "Transaction Date", field: "TransactionDate" },
             ],
             autoResize: true,

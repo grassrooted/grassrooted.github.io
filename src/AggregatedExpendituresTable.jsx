@@ -8,7 +8,6 @@ const aggregateDataByName = (profile, data) => {
         if (!acc[normalizedName]) {
             acc[normalizedName] = {
                 Amount: 0,
-                Campaign: expenditure[profile.contribution_fields.Recipient],
                 Name: expenditure[profile.contribution_fields.Donor],
                 Address: expenditure[profile.contribution_fields.Address],
                 children: []
@@ -18,7 +17,6 @@ const aggregateDataByName = (profile, data) => {
         acc[normalizedName].children.push({
             ReportId: expenditure.ReportId,
             Amount: expenditure[profile.contribution_fields.Amount],
-            Campaign: expenditure[profile.contribution_fields.Recipient],
             TransactionDate: expenditure[profile.contribution_fields.Transaction_Date],
             Latitude: expenditure.Latitude,
             Longitude: expenditure.Longitude,
@@ -60,7 +58,6 @@ function AggregatedExpendituresTable({ profile, expenditure_data, selectedDateRa
             columns: [
                 { title: "Vendor", field: "Name" },
                 { title: "Amount ($)", field: "Amount", formatter: "money" },
-                { title: "Candidate", field: "Campaign" },
                 { title: "Transaction Date", field: "TransactionDate" },
             ],
             autoResize: true,

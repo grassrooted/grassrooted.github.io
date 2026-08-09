@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import "./Highlights.css";
 
 function calculateExcessContributions(contributions, startDate, endDate, limitNonPAC, limitPAC) {
     let excessSum = 0;
@@ -40,7 +41,7 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
 
     const expenditures = useMemo(() => {
         if (selectedDateRange === 'all') {
-            return contribution_data;
+            return expenditure_data;
         }
         const { start, end } = selectedDateRange;
         return expenditure_data.filter(record => {

@@ -3,6 +3,14 @@ import axios from 'axios';
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
+export const normalizeDonorName = (name) => {
+    // Remove mr/ms/mrs prefixes later pls -- dont just use a simple replace!!! you'll end up with "Pi" instead of "Pims"
+    return String(name ?? "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+};
+
 export async function getProfiles(query) {
   try {
     const response = await fetch(`${process.env.PUBLIC_URL}/profiles.yml`);
@@ -152,4 +160,72 @@ export async function getProfile(id) {
     }
 
     return profile;
+}
+
+// Fetch *contributions* for a profile and generate a list of unique donors
+export async function getCampaignDonors(profile, selectedDateRange) {
+    const donors = new Set();
+
+    const processSource = (data) => {
+        if (!Array.isArray(data.contributions)) {
+            return;
+        }
+
+        if (!selectedDateRange?.start || !selectedDateRange?.end) {
+            return donors;
+        }
+
+        data.contributions.forEach(contribution => {
+            const transactionDate = new Date(`${contribution.Transaction_Date}T00:00:00`);            
+
+            if (transactionDate >= selectedDateRange.start && transactionDate <= selectedDateRange.end){
+                    donors.add(normalizeDonorName(contribution.Name));
+            }
+        });
+    };
+
+    try {
+
+        //
+        // NEW FORMAT
+        // Multiple JSON reports
+        //
+        if (profile.sourceNames?.length > 0) {
+
+            const requests = profile.sourceNames.map(file =>
+                axios.get(
+                    `${process.env.PUBLIC_URL}${profile.path_to_contributions_data}/${file}`
+                )
+            );
+
+            const responses = await Promise.all(requests);
+
+            responses.forEach(({ data }) => {
+                processSource(data);
+            });
+
+        }
+
+        //
+        // ORIGINAL FORMAT
+        // Single JSON file
+        //
+        else {
+
+            const jsonFilePath =
+                `${process.env.PUBLIC_URL}${profile.path_to_contributions_data}`;
+
+            const { data } = await axios.get(jsonFilePath);
+
+            processSource(data);
+        }
+
+    } catch (error) {
+        console.error(
+            `Error fetching donors for profile ${profile.id}:`,
+            error
+        );
+    }
+
+    return donors;
 }

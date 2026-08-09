@@ -1,65 +1,108 @@
 import React, { useState, useRef } from "react";
+import "./FoodExpenditureAnalysis.css";
 
 const FoodExpenditureAnalysis = ({ expenditure_data }) => {
-  const [expanded, setExpanded] = useState(false);
-  const listRef = useRef(null);
+    const [expanded, setExpanded] = useState(false);
+    const listRef = useRef(null);
 
-  // Keywords to identify food-related expenses
-  const foodKeywords = ["meals", "food", "beverage", "drinks"];
+    const foodKeywords = [
+        "meals",
+        "food",
+        "beverage",
+        "drinks"
+    ];
 
-  // Filter expenditure_data where Category or Description contains food-related keywords
-  const foodexpenditure_data = expenditure_data.filter((record) =>
-    foodKeywords.some((keyword) =>
-      record.Category?.toLowerCase().includes(keyword) ||
-      record.Description?.toLowerCase().includes(keyword)
-    )
-  );
+    const foodExpenditureData = expenditure_data.filter((record) =>
+        foodKeywords.some((keyword) =>
+            record.Category?.toLowerCase().includes(keyword) ||
+            record.Description?.toLowerCase().includes(keyword)
+        )
+    );
 
-  // Count occurrences and total amount spent at each vendor
-  const vendorStats = foodexpenditure_data.reduce((acc, record) => {
-    if (!record.Name) return acc;
-    if (!acc[record.Name]) {
-      acc[record.Name] = { count: 0, totalAmount: 0 };
-    }
-    acc[record.Name].count += 1;
-    acc[record.Name].totalAmount += record.Amount || 0;
-    return acc;
-  }, {});
+    const vendorStats = foodExpenditureData.reduce((acc, record) => {
+        if (!record.Name) return acc;
 
-  // Filter vendors that have been visited more than once and sort by total amount spent
-  const frequentVendors = Object.entries(vendorStats)
-    .filter(([_, stats]) => stats.count > 1)
-    .sort((a, b) => b[1].totalAmount - a[1].totalAmount);
+        if (!acc[record.Name]) {
+            acc[record.Name] = {
+                count: 0,
+                totalAmount: 0
+            };
+        }
 
-  // Determine how many items to show
-  const displayedVendors = expanded ? frequentVendors : frequentVendors.slice(0, 10);
+        acc[record.Name].count += 1;
+        acc[record.Name].totalAmount += Number(record.Amount) || 0;
 
-  // Function to handle expanding/collapsing
-  const toggleExpand = () => {
-    if (expanded) {
-      listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    setExpanded(!expanded);
-  };
+        return acc;
+    }, {});
 
-  return (
-    <div className="p-4 bg-gray-900 text-white rounded-xl shadow-lg">
-      <h2 className="text-xl font-bold mb-2" ref={listRef}>Food & Beverage Expenditures</h2>
-      <h3 className="text-lg font-semibold mt-4">Frequently Visited Vendors</h3>
-      <ul>
-        {displayedVendors.map(([vendor, stats]) => (
-          <li key={vendor}>{vendor} - ${stats.totalAmount.toFixed(2)}</li>
-        ))}
-      </ul>
-      {frequentVendors.length > 10 && (
-        <button
-          className="mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
-          onClick={toggleExpand}>
-          {expanded ? "Show Less" : "Show More"}
-        </button>
-      )}
-    </div>
-  );
+    const frequentVendors = Object.entries(vendorStats)
+        .filter(([_, stats]) => stats.count > 1)
+        .sort((a, b) => b[1].totalAmount - a[1].totalAmount);
+
+    const displayedVendors = expanded
+        ? frequentVendors
+        : frequentVendors.slice(0, 10);
+
+    const toggleExpand = () => {
+        if (expanded) {
+            listRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        setExpanded(!expanded);
+    };
+
+    return (
+        <section
+            className="food-expenditure"
+            ref={listRef}
+        >
+            <h2 className="food-expenditure__title">
+                Food & Beverage Expenditures
+            </h2>
+
+            <h3 className="food-expenditure__subtitle">
+                Frequently Visited Vendors
+            </h3>
+
+            {displayedVendors.length > 0 ? (
+                <>
+                    <ul className="food-expenditure__vendors">
+                        {displayedVendors.map(([vendor, stats]) => (
+                            <li
+                                key={vendor}
+                                className="food-expenditure__vendor"
+                            >
+                                <span className="food-expenditure__vendor-name">
+                                    {vendor}
+                                </span>
+
+                                <span className="food-expenditure__vendor-amount">
+                                    ${stats.totalAmount.toFixed(2)}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+
+                    {frequentVendors.length > 10 && (
+                        <button
+                            type="button"
+                            className="food-expenditure__toggle"
+                            onClick={toggleExpand}
+                        >
+                            {expanded ? "Show Less" : "Show More"}
+                        </button>
+                    )}
+                </>
+            ) : (
+                <p className="food-expenditure__empty">
+                    No frequently visited food or beverage vendors found.
+                </p>
+            )}
+        </section>
+    );
 };
 
 export default FoodExpenditureAnalysis;
