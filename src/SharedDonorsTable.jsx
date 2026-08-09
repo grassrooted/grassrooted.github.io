@@ -109,7 +109,7 @@ const SharedDonorsTable = ({
                         <thead>
                             <tr>
                                 <th>Councilman</th>
-                                <th>Headshot</th>
+                                <th></th>
                                 <th>Shared Donors</th>
                             </tr>
                         </thead>
