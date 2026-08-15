@@ -196,7 +196,7 @@
     gap: 0.15rem;
 }
 
-.shared-donor-name {
+.shared-donor-name-cell {
     font-size: 0.9rem;
     font-weight: 600;
 
@@ -337,7 +337,7 @@
         height: 36px;
     }
 
-    .shared-donor-name {
+    .shared-donor-name-cell {
         font-size: 0.82rem;
     }
 

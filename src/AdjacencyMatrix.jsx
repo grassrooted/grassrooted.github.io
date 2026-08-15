@@ -5,7 +5,7 @@ const AdjacencyMatrix = ({ allContributions }) => {
   const [allCandidates, setAllCandidates] = useState([]);
 
   useEffect(() => {
-    const candidates = Array.from(new Set(allContributions.map(({ Recipient }) => Recipient)));
+    const candidates = Array.from(new Set(allContributions.map(({ Campaign }) => Campaign)));
     setAllCandidates(candidates);
 
     const candidateIndex = Object.fromEntries(
@@ -16,11 +16,11 @@ const AdjacencyMatrix = ({ allContributions }) => {
 
     const donorMap = new Map();
     allContributions
-      .forEach(({ Name, Recipient }) => {
+      .forEach(({ Name, Campaign }) => {
         if (!donorMap.has(Name)) {
           donorMap.set(Name, new Set());
         }
-        donorMap.get(Name).add(Recipient);
+        donorMap.get(Name).add(Campaign);
       });
 
     donorMap.forEach((recipients) => {

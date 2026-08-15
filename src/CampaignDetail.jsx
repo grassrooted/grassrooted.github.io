@@ -21,7 +21,7 @@ function CampaignDetail({ extractedMetadata, formState, setFormState }) {
     return (
       <div className="document-header">  
         <label>
-          Recipient First Name:
+          Campaign First Name:
           <input
             value={formState.first_name}
             onChange={e => updateField("first_name", e.target.value)}
@@ -29,7 +29,7 @@ function CampaignDetail({ extractedMetadata, formState, setFormState }) {
         </label>
   
         <label>
-          Recipient Last Name:
+          Campaign Last Name:
           <input
             value={formState.last_name}
             onChange={e => updateField("last_name", e.target.value)}

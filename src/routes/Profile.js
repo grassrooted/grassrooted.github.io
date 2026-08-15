@@ -32,7 +32,7 @@ const aggregateDataByName = (data, profile) => {
         if (!acc[normalizedName]) {
             acc[normalizedName] = {
                 Amount: 0,
-                Recipient: contribution.Recipient,
+                Campaign: contribution.Campaign,
                 Name: contribution.Name,
                 latitude: contribution.latitude,
                 longitude: contribution.longitude,

@@ -9,11 +9,11 @@ const processContributions = (allContributions, cityProfileData) => {
   const donorToRecipients = new Map();
   const delimiter = "|||";
 
-  allContributions.forEach(({ Name, Recipient }) => {
+  allContributions.forEach(({ Name, Campaign }) => {
     if (!donorToRecipients.has(Name)) {
       donorToRecipients.set(Name, new Set());
     }
-    donorToRecipients.get(Name).add(Recipient);
+    donorToRecipients.get(Name).add(Campaign);
   });
 
   donorToRecipients.forEach((recipients) => {

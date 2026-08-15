@@ -20,7 +20,7 @@ const PACFundingBarChart = ({ allContributions }) => {
     // Aggregate PAC contributions by recipient
     const recipientPACTotals = useMemo(() => {
         return pacContributions.reduce((acc, contribution) => {
-            const recipient = contribution.Recipient || "Unknown";
+            const recipient = contribution.Campaign || "Unknown";
 
             acc[recipient] = (acc[recipient] || 0) + (contribution.Amount || 0);
 
@@ -33,7 +33,7 @@ const PACFundingBarChart = ({ allContributions }) => {
         const allRecipients = [
             ...new Set(
                 allContributions.map(
-                    (contribution) => contribution.Recipient || "Unknown"
+                    (contribution) => contribution.Campaign || "Unknown"
                 )
             ),
         ];
@@ -63,7 +63,7 @@ const PACFundingBarChart = ({ allContributions }) => {
 
     return (
         <div id="PACFundingBarChartWrapper">
-            <h2>PAC Contributions by Recipient</h2>
+            <h2>PAC Contributions by Campaign</h2>
 
             {sortedRecipients.length > 0 ? (
                 <div className="chart-container">

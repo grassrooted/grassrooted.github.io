@@ -51,7 +51,7 @@ function FinancialRecordsTable({
             "Transaction_Date",
             "Category",
             "Description",
-            "Recipient",
+            "Campaign",
             "Address",
             "City_State_Zip",
             "Transaction_Type",

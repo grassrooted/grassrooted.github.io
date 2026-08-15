@@ -84,7 +84,7 @@ function CrossCampaignDonors({
 
         filteredContributions.forEach(record => {
             const donorName = normalizeName(record.Name);
-            const recipientId = record.recipient_id;
+            const recipientId = record.campaign_id;
 
             if (!donorName || !recipientId) return;
 
@@ -113,12 +113,12 @@ function CrossCampaignDonors({
         const candidateMap = new Map();
 
         filteredContributions.forEach(record => {
-            if (!record.recipient_id) return;
+            if (!record.campaign_id) return;
 
-            if (!candidateMap.has(record.recipient_id)) {
-                candidateMap.set(record.recipient_id, {
-                    id: record.recipient_id,
-                    name: record.Recipient || record.recipient_id,
+            if (!candidateMap.has(record.campaign_id)) {
+                candidateMap.set(record.campaign_id, {
+                    id: record.campaign_id,
+                    name: record.Campaign || record.campaign_id,
                 });
             }
         });

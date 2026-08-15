@@ -119,7 +119,7 @@ const SharedDonorsTable = ({
                                 <tr key={candidate.id}>
                                     <td>
                                         <div className="shared-donor-candidate">
-                                            <span className="shared-donor-name">
+                                            <span className="shared-donor-name-cell">
                                                 {candidate.name}
                                             </span>
 

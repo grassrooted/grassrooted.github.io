@@ -85,8 +85,8 @@ function City() {
         (profiles ?? []).flatMap(profile =>
             (profile[scheduleName] ?? []).map(record => ({
                 ...record,
-                Recipient: profile.name,
-                recipient_id: profile.id,
+                Campaign: profile.name,
+                campaign_id: profile.id,
             }))
         );
 
