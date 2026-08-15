@@ -63,7 +63,7 @@ const PACFundingBarChart = ({ allContributions }) => {
 
     return (
         <div id="PACFundingBarChartWrapper">
-            <h2>PAC Contributions by Campaign</h2>
+            <h2>PAC Contributions</h2>
 
             {sortedRecipients.length > 0 ? (
                 <div className="chart-container">

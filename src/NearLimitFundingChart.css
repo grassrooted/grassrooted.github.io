@@ -1,0 +1,183 @@
+/* ============================================
+   Near-Limit Funding
+   Grassrooted Dark Civic Data Theme
+============================================ */
+
+.near-limit-funding {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+
+    background: linear-gradient(
+        180deg,
+        #0d1420 0%,
+        #0a0f1a 100%
+    );
+
+    border: 1px solid rgba(0, 255, 163, 0.08);
+    border-radius: 14px;
+
+    padding: 1.5rem 1.75rem;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 163, 0.03),
+        0 12px 30px rgba(0, 0, 0, 0.6);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.near-limit-funding:hover {
+    border-color: rgba(0, 255, 163, 0.18);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 163, 0.05),
+        0 16px 35px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ============================================
+   Header
+============================================ */
+/* ============================================
+   Header
+============================================ */
+
+.near-limit-funding-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 1rem;
+
+    text-align: center;
+}
+
+.near-limit-funding-header > div {
+    width: 100%;
+}
+
+.near-limit-funding-header h2 {
+    margin: 0 0 0.45rem;
+
+    color: #e5e7eb;
+
+    font-size: 1.15rem;
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
+}
+
+.near-limit-funding-header p {
+    max-width: 760px;
+    margin: 0 auto;
+
+    color: #94a3b8;
+
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+.near-limit-funding-header strong {
+    color: #cbd5e1;
+    font-weight: 600;
+}
+
+/* ============================================
+   Chart Container
+============================================ */
+
+.near-limit-funding-chart {
+    width: 100%;
+    min-height: 360px;
+
+    margin-top: 0.5rem;
+}
+
+
+/* ============================================
+   Methodology Footer
+============================================ */
+
+.near-limit-funding-methodology {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 0.75rem 1.5rem;
+
+    margin-top: 0.5rem;
+    padding-top: 0.85rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    color: #64748b;
+
+    font-size: 0.7rem;
+    line-height: 1.4;
+}
+
+.near-limit-funding-methodology span {
+    display: inline-flex;
+    align-items: center;
+}
+
+
+/* ============================================
+   Highcharts Tooltip
+============================================ */
+
+.highcharts-tooltip-box {
+    fill: #0f172a;
+    stroke: rgba(0, 255, 163, 0.3);
+}
+
+
+/* ============================================
+   Responsive
+============================================ */
+
+@media (max-width: 768px) {
+
+    .near-limit-funding {
+        margin: 1.5rem 0;
+
+        padding: 1.25rem 1rem;
+
+        border-radius: 12px;
+    }
+
+    .near-limit-funding-header h2 {
+        font-size: 1.05rem;
+    }
+
+    .near-limit-funding-header p {
+        font-size: 0.8rem;
+    }
+
+    .near-limit-funding-chart {
+        min-height: 320px;
+    }
+
+    .near-limit-funding-methodology {
+        flex-direction: column;
+
+        gap: 0.4rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .near-limit-funding {
+        padding: 1rem 0.75rem;
+    }
+
+    .near-limit-funding-chart {
+        min-height: 280px;
+    }
+
+    .near-limit-funding-methodology {
+        font-size: 0.65rem;
+    }
+}

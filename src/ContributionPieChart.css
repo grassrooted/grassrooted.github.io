@@ -1,42 +1,325 @@
-#contribution-pie-chart-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* =========================================================
+   Contribution Pie Chart
+   Grassrooted Dark Civic Data Theme
+   ========================================================= */
 
-  width: 100%;
-  margin: 2rem auto;
-  padding: 2rem;
+.contribution-pie-chart {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 
-  background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
-  border: 1px solid rgba(0, 255, 163, 0.06);
-  border-radius: 12px;
+    background: linear-gradient(
+        180deg,
+        #0d1420 0%,
+        #0a0f1a 100%
+    );
 
-  box-shadow:
-    0 0 0 1px rgba(0, 255, 163, 0.03),
-    0 10px 30px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 255, 163, 0.08);
+    border-radius: 14px;
 
-  box-sizing: border-box;
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 163, 0.03),
+        0 12px 30px rgba(0, 0, 0, 0.6);
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-#funding-summary-pie-chart {
-  width: 100%;
-  max-width: 420px;
-  height: 420px;
+.contribution-pie-chart:hover {
+    border-color: rgba(0, 255, 163, 0.16);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 163, 0.04),
+        0 16px 35px rgba(0, 0, 0, 0.7);
 }
 
 
-/* Mobile Styles */
+/* =========================================================
+   Header
+   ========================================================= */
+
+.contribution-pie-chart-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    padding: 1.4rem 1.5rem 1.15rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contribution-pie-chart-header > div:first-child {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   Kicker
+   ========================================================= */
+
+.contribution-pie-chart-kicker {
+    display: block;
+
+    margin-bottom: 0.4rem;
+
+    color: #00ffa3;
+
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   Title
+   ========================================================= */
+
+.contribution-pie-chart-header h2 {
+    margin: 0;
+
+    color: #e5e7eb;
+
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+}
+
+.contribution-pie-chart-header p {
+    margin: 0.45rem 0 0;
+
+    max-width: 650px;
+
+    color: #64748b;
+
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   Total Funding
+   ========================================================= */
+
+.contribution-pie-chart-total {
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    padding-left: 1rem;
+}
+
+.contribution-pie-chart-total span {
+    margin-bottom: 0.2rem;
+
+    color: #64748b;
+
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.contribution-pie-chart-total strong {
+    color: #00ffa3;
+
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Chart Body
+   ========================================================= */
+
+.contribution-pie-chart-body {
+    position: relative;
+
+    min-height: 430px;
+
+    padding: 0.75rem 1rem 0.5rem;
+}
+
+
+/*
+ * Highcharts sometimes attempts to inherit the surrounding
+ * font. Keep the visualization aligned with the site's
+ * typography without affecting the rest of the page.
+ */
+
+.contribution-pie-chart-body .highcharts-container {
+    font-family: inherit !important;
+}
+
+.contribution-pie-chart-body .highcharts-root {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   Highcharts Legend
+   ========================================================= */
+
+.contribution-pie-chart-body
+.highcharts-legend-item
+text {
+    fill: #cbd5e1 !important;
+
+    font-family: inherit !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
+
+.contribution-pie-chart-body
+.highcharts-legend-item:hover
+text {
+    fill: #ffffff !important;
+}
+
+
+/* =========================================================
+   Highcharts Tooltip
+   ========================================================= */
+
+.contribution-pie-tooltip {
+    min-width: 150px;
+
+    color: #e5e7eb;
+
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.contribution-pie-tooltip strong {
+    color: #f3f4f6;
+
+    font-weight: 600;
+}
+
+.contribution-pie-tooltip span {
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   Date Range / Metadata
+   ========================================================= */
+
+.contribution-pie-chart-meta {
+    padding: 0.7rem 1.5rem 0.85rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.035);
+
+    color: #64748b;
+
+    font-size: 0.68rem;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   Highcharts Credits
+   ========================================================= */
+
+.contribution-pie-chart-body
+.highcharts-credits {
+    display: none;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .contribution-pie-chart-header {
+        gap: 1rem;
+    }
+
+    .contribution-pie-chart-body {
+        min-height: 380px;
+
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .contribution-pie-chart-total strong {
+        font-size: 1rem;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .contribution-pie-chart-header {
+        flex-direction: column;
+    }
+
+    .contribution-pie-chart-total {
+        align-items: flex-start;
+
+        padding-left: 0;
+    }
+
+    .contribution-pie-chart-body {
+        min-height: 350px;
+    }
+}
+
+
 @media (max-width: 480px) {
-  #funding-summary-pie-chart {
-      max-width: 280px;
-  }
 
-  h1 {
-      font-size: 18px;
-  }
+    .contribution-pie-chart {
+        border-radius: 12px;
+    }
 
-  h4 {
-      font-size: 14px;
-      text-align: center;
-  }
+    .contribution-pie-chart-header {
+        padding: 1.15rem 1.15rem 1rem;
+    }
+
+    .contribution-pie-chart-header h2 {
+        font-size: 0.98rem;
+    }
+
+    .contribution-pie-chart-header p {
+        font-size: 0.74rem;
+    }
+
+    .contribution-pie-chart-body {
+        min-height: 320px;
+
+        padding:
+            0.25rem
+            0.25rem
+            0.5rem;
+    }
+
+    .contribution-pie-chart-meta {
+        padding-left: 1.15rem;
+        padding-right: 1.15rem;
+    }
+}
+
+
+/* =========================================================
+   Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .contribution-pie-chart {
+        transition: none;
+    }
 }

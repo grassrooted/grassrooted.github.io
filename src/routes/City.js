@@ -9,6 +9,7 @@ import CumulativeContributionsTimeline from '../CumulativeContributionsTimeline'
 import PACFundingBarChart from '../PACFundingBarChart';
 import FinancialRecordsTable from '../FinancialRecordsTable';
 import CrossCampaignDonors from '../CrossCampaignDonors';
+import NearLimitFundingChart from '../NearLimitFundingChart';
 
 const generateElectionCycles = (profiles) => {
     console.log(profiles)
@@ -131,6 +132,11 @@ function City() {
 
             <PACFundingBarChart 
                 allContributions={citySchedules.contributions} />
+
+            <NearLimitFundingChart
+                contributions={citySchedules.contributions}
+                selectedDateRange={selectedDateRange}
+            />
 
             <CrossCampaignDonors
                 contributions={citySchedules.contributions}

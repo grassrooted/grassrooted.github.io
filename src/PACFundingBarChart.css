@@ -1,75 +1,162 @@
-/* ================================
-   PAC Funding Chart Section
-   Dark Civic Tech – Data Transparency Theme
-================================ */
+/* ============================================
+   PAC Funding Chart
+   Grassrooted Dark Civic Data Theme
+============================================ */
 
-/* Outer Chart Container */
+/* ============================================
+   Outer Chart Container
+============================================ */
+
 .chart-container {
-  flex: 1;                     /* 👈 CRITICAL */
-  width: 100%;
-  display: flex;
-  position: relative;          /* Needed for Chart.js */
+    width: 100%;
+    display: flex;
+    position: relative;
 
-  margin-top: 1rem;
-  min-height: 0;               /* Prevent flex overflow bug */
+    margin: 2rem auto;
 
-  background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
-  border: 1px solid rgba(0, 255, 163, 0.08);
-  border-radius: 12px;
-  box-shadow:
-    0 0 0 1px rgba(0, 255, 163, 0.03),
-    0 10px 30px rgba(0, 0, 0, 0.6);
+    min-height: 0;
+
+    background: linear-gradient(
+        180deg,
+        #0d1420 0%,
+        #0a0f1a 100%
+    );
+
+    border: 1px solid rgba(0, 255, 163, 0.08);
+    border-radius: 14px;
+
+    padding: 1.5rem 1.75rem;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 163, 0.03),
+        0 12px 30px rgba(0, 0, 0, 0.6);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-/* Chart Wrapper */
+
+/* ============================================
+   Hover State
+============================================ */
+
+.chart-container:hover {
+    border-color: rgba(0, 255, 163, 0.18);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 163, 0.05),
+        0 16px 35px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ============================================
+   Chart Wrapper
+============================================ */
+
 #PACFundingBarChartWrapper {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  width: 100%;
-  height: 520px;
-  padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
 
-  background-color: #111827;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 255, 163, 0.06);
+    width: 100%;
+    height: 520px;
 
-  color: #e6edf3;
-  transition: all 0.25s ease;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+
+    color: #e6edf3;
+
+    text-align: center;
 }
 
-/* Subtle hover lift for interactive feel */
-#PACFundingBarChartWrapper:hover {
-  border-color: rgba(0, 255, 163, 0.18);
-  box-shadow: 0 0 20px rgba(0, 255, 163, 0.08);
+
+/* ============================================
+   Section Heading
+============================================ */
+
+#PACFundingBarChartWrapper h2 {
+    margin: 0 0 0.45rem;
+
+    color: #e5e7eb;
+
+    font-size: 1.15rem;
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
 }
 
-/* Data Accent Utility (Optional Reusable Class) */
+#PACFundingBarChartWrapper p {
+    max-width: 760px;
+
+    margin: 0 auto 0.75rem;
+
+    color: #94a3b8;
+
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+
+/* ============================================
+   Data Accent
+============================================ */
+
 .data-accent {
-  color: #00ffa3;
-  font-weight: 600;
+    color: #00ffa3;
+    font-weight: 600;
 }
 
-/* Responsive Adjustments */
+
+/* ============================================
+   Chart Canvas / Highcharts Area
+============================================ */
+
+#PACFundingBarChartWrapper canvas {
+    max-width: 100%;
+}
+
+
+/* ============================================
+   Responsive
+============================================ */
+
 @media (max-width: 768px) {
-  .chart-container {
-    padding: 1rem;
-  }
 
-  #PACFundingBarChartWrapper {
-    height: 460px;
-    padding: 1rem;
-  }
+    .chart-container {
+        margin: 1.5rem 0;
+
+        padding: 1.25rem 1rem;
+
+        border-radius: 12px;
+    }
+
+    #PACFundingBarChartWrapper {
+        height: 460px;
+    }
+
+    #PACFundingBarChartWrapper h2 {
+        font-size: 1.05rem;
+    }
+
+    #PACFundingBarChartWrapper p {
+        font-size: 0.8rem;
+    }
 }
+
 
 @media (max-width: 480px) {
-  .chart-container {
-    padding: 0.5rem;
-    margin: 1rem auto;
-  }
 
-  #PACFundingBarChartWrapper {
-    height: 420px;
-    padding: 0.75rem;
-  }
+    .chart-container {
+        margin: 1rem 0;
+
+        padding: 1rem 0.75rem;
+    }
+
+    #PACFundingBarChartWrapper {
+        height: 420px;
+    }
 }

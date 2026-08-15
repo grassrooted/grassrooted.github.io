@@ -337,7 +337,7 @@ function CrossCampaignDonors({
     if (!candidates.length) {
         return (
             <section className="cross-campaign-donors">
-                <h2>Donors Across Campaigns</h2>
+                <h2>Cross-Campaign Donor Network</h2>
 
                 <p>
                     No councilmember contribution records were found.
