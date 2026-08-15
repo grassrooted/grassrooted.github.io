@@ -1,20 +1,12 @@
 /* ============================================
-   PAC Funding Chart
+   PAC Funding
    Grassrooted Dark Civic Data Theme
 ============================================ */
 
-/* ============================================
-   Outer Chart Container
-============================================ */
-
-.chart-container {
+.pac-funding {
     width: 100%;
-    display: flex;
-    position: relative;
-
+    max-width: 1200px;
     margin: 2rem auto;
-
-    min-height: 0;
 
     background: linear-gradient(
         180deg,
@@ -36,12 +28,7 @@
         box-shadow 0.2s ease;
 }
 
-
-/* ============================================
-   Hover State
-============================================ */
-
-.chart-container:hover {
+.pac-funding:hover {
     border-color: rgba(0, 255, 163, 0.18);
 
     box-shadow:
@@ -51,34 +38,24 @@
 
 
 /* ============================================
-   Chart Wrapper
+   Header
 ============================================ */
 
-#PACFundingBarChartWrapper {
+.pac-funding-header {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    width: 100%;
-    height: 520px;
-
-    padding: 0;
-
-    background: transparent;
-
-    border: none;
-    border-radius: 0;
-
-    color: #e6edf3;
+    margin-bottom: 1rem;
 
     text-align: center;
 }
 
+.pac-funding-header > div {
+    width: 100%;
+}
 
-/* ============================================
-   Section Heading
-============================================ */
-
-#PACFundingBarChartWrapper h2 {
+.pac-funding-header h2 {
     margin: 0 0 0.45rem;
 
     color: #e5e7eb;
@@ -89,10 +66,9 @@
     letter-spacing: 0.2px;
 }
 
-#PACFundingBarChartWrapper p {
+.pac-funding-header p {
     max-width: 760px;
-
-    margin: 0 auto 0.75rem;
+    margin: 0 auto;
 
     color: #94a3b8;
 
@@ -100,23 +76,83 @@
     line-height: 1.55;
 }
 
-
-/* ============================================
-   Data Accent
-============================================ */
-
-.data-accent {
-    color: #00ffa3;
+.pac-funding-header strong {
+    color: #cbd5e1;
     font-weight: 600;
 }
 
 
 /* ============================================
-   Chart Canvas / Highcharts Area
+   Chart Container
 ============================================ */
 
-#PACFundingBarChartWrapper canvas {
-    max-width: 100%;
+.pac-funding-chart {
+    width: 100%;
+    min-height: 360px;
+
+    margin-top: 0.5rem;
+}
+
+
+/* ============================================
+   Campaigns Without PAC Funding
+============================================ */
+
+.pac-funding-no-pac {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 0.75rem 1.5rem;
+
+    margin-top: 0.5rem;
+    padding-top: 0.85rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    color: #64748b;
+
+    font-size: 0.7rem;
+    line-height: 1.4;
+}
+
+.pac-funding-no-pac h3 {
+    width: 100%;
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+
+.pac-funding-no-pac ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 0.4rem 1.5rem;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.pac-funding-no-pac li {
+    display: inline-flex;
+    align-items: center;
+}
+
+
+/* ============================================
+   Highcharts Tooltip
+============================================ */
+
+.highcharts-tooltip-box {
+    fill: #0f172a;
+    stroke: rgba(0, 255, 163, 0.3);
 }
 
 
@@ -126,7 +162,7 @@
 
 @media (max-width: 768px) {
 
-    .chart-container {
+    .pac-funding {
         margin: 1.5rem 0;
 
         padding: 1.25rem 1rem;
@@ -134,29 +170,43 @@
         border-radius: 12px;
     }
 
-    #PACFundingBarChartWrapper {
-        height: 460px;
-    }
-
-    #PACFundingBarChartWrapper h2 {
+    .pac-funding-header h2 {
         font-size: 1.05rem;
     }
 
-    #PACFundingBarChartWrapper p {
+    .pac-funding-header p {
         font-size: 0.8rem;
+    }
+
+    .pac-funding-chart {
+        min-height: 320px;
+    }
+
+    .pac-funding-no-pac {
+        flex-direction: column;
+
+        gap: 0.4rem;
+    }
+
+    .pac-funding-no-pac ul {
+        flex-direction: column;
+
+        gap: 0.4rem;
     }
 }
 
 
 @media (max-width: 480px) {
 
-    .chart-container {
-        margin: 1rem 0;
-
+    .pac-funding {
         padding: 1rem 0.75rem;
     }
 
-    #PACFundingBarChartWrapper {
-        height: 420px;
+    .pac-funding-chart {
+        min-height: 280px;
+    }
+
+    .pac-funding-no-pac {
+        font-size: 0.65rem;
     }
 }
