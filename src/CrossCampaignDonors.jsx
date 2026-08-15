@@ -360,10 +360,19 @@ function CrossCampaignDonors({
                     </p>
                 </div>
 
-                <div className="cross-campaign-metric-control">
-                    <span className="cross-campaign-metric-label">
-                        Measure
-                    </span>
+                <div className="cross-campaign-matrix-toolbar">
+
+                    <div className="cross-campaign-matrix-description">
+                        <span className="cross-campaign-matrix-kicker">
+                            Campaign Overlap
+                        </span>
+
+                        <span className="cross-campaign-matrix-metric">
+                            {overlapMetric === 'donors'
+                                ? 'Shared donor names'
+                                : 'Shared contribution value'}
+                        </span>
+                    </div>
 
                     <div
                         className="cross-campaign-metric-toggle"
@@ -379,7 +388,7 @@ function CrossCampaignDonors({
                             }
                             onClick={() => setOverlapMetric('donors')}
                         >
-                            Shared Donors
+                            Donors
                         </button>
 
                         <button
@@ -393,18 +402,20 @@ function CrossCampaignDonors({
                                 setOverlapMetric('contributions')
                             }
                         >
-                            Shared Contributions
+                            Contributions
                         </button>
                     </div>
+
                 </div>
 
                 <div className="donor-overlap-container">
 
                     <div className="donor-overlap-legend">
+
                         <span>
                             {overlapMetric === 'donors'
-                                ? 'Fewer shared donors'
-                                : 'Lower shared contribution value'}
+                                ? 'Fewer'
+                                : 'Lower'}
                         </span>
 
                         <div className="donor-overlap-legend-scale">
@@ -421,9 +432,10 @@ function CrossCampaignDonors({
 
                         <span>
                             {overlapMetric === 'donors'
-                                ? 'More shared donors'
-                                : 'Higher shared contribution value'}
+                                ? 'More'
+                                : 'Higher'}
                         </span>
+
                     </div>
 
                     <div className="donor-overlap-table-wrapper">
