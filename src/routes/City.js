@@ -8,6 +8,7 @@ import ElectionCycleDropdown from '../ElectionCycleDropdown';
 import CumulativeContributionsTimeline from '../CumulativeContributionsTimeline';
 import PACFundingBarChart from '../PACFundingBarChart';
 import FinancialRecordsTable from '../FinancialRecordsTable';
+import CrossCampaignDonors from '../CrossCampaignDonors';
 
 const generateElectionCycles = (profiles) => {
     console.log(profiles)
@@ -130,6 +131,11 @@ function City() {
 
             <PACFundingBarChart 
                 allContributions={citySchedules.contributions} />
+
+            <CrossCampaignDonors
+                contributions={citySchedules.contributions}
+                selectedDateRange={selectedDateRange}
+            />
 
             <ProfileStream 
                 cityId={cityId}

@@ -1,0 +1,1111 @@
+
+/* =========================================================
+   Cross-Campaign Donors
+   Grassrooted Dark Civic Data Theme
+   ========================================================= */
+
+.cross-campaign-donors {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    padding: 1.5rem 1.75rem;
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        180deg,
+        #0d1420 0%,
+        #0a0f1a 100%
+    );
+
+    border: 1px solid rgba(0, 255, 163, 0.08);
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 163, 0.03),
+        0 12px 30px rgba(0, 0, 0, 0.6);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.cross-campaign-donors:hover {
+    border-color: rgba(0, 255, 163, 0.15);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 163, 0.04),
+        0 16px 35px rgba(0, 0, 0, 0.7);
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.cross-campaign-donors-header {
+    margin-bottom: 1.5rem;
+}
+
+.cross-campaign-donors-header h2 {
+    margin: 0 0 0.6rem;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+
+    color: #94a3b8;
+}
+
+.cross-campaign-donors-header p {
+    max-width: 850px;
+
+    margin: 0.35rem 0;
+
+    color: #cbd5e1;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.cross-campaign-donors-header strong {
+    color: #00ffa3;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.cross-campaign-donors-methodology {
+    margin-top: 0.8rem !important;
+
+    color: #64748b !important;
+
+    font-size: 0.75rem !important;
+    line-height: 1.45 !important;
+}
+
+
+/* =========================================================
+   Matrix Container
+   ========================================================= */
+
+.donor-overlap-container {
+    width: 100%;
+}
+
+
+/* =========================================================
+   Legend
+   ========================================================= */
+
+.donor-overlap-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+
+    color: #64748b;
+
+    font-size: 0.7rem;
+    letter-spacing: 0.25px;
+}
+
+.donor-overlap-legend-scale {
+    display: flex;
+    gap: 2px;
+}
+
+.donor-overlap-legend-cell {
+    width: 18px;
+    height: 18px;
+
+    display: block;
+
+    background: #00ffa3;
+
+    border: 1px solid rgba(0, 255, 163, 0.08);
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   Table Wrapper
+   ========================================================= */
+
+.donor-overlap-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    border: 1px solid rgba(0, 255, 163, 0.07);
+    border-radius: 8px;
+
+    background: #080d15;
+
+    /*
+     * Keeps the scrollbar visually subordinate.
+     */
+    scrollbar-width: thin;
+    scrollbar-color:
+        rgba(0, 255, 163, 0.18)
+        transparent;
+}
+
+.donor-overlap-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.donor-overlap-table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.donor-overlap-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 163, 0.18);
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   Matrix Table
+   ========================================================= */
+
+.donor-overlap-table {
+    border-collapse: separate;
+    border-spacing: 2px;
+
+    width: max-content;
+    min-width: 100%;
+
+    background: #080d15;
+}
+
+
+/* =========================================================
+   Column Labels
+   ========================================================= */
+
+.donor-overlap-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+
+    min-width: 64px;
+    max-width: 64px;
+    height: 125px;
+
+    padding: 0.35rem;
+
+    background: #0d1420;
+
+    border-bottom: 1px solid rgba(0, 255, 163, 0.08);
+
+    color: #94a3b8;
+
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+
+    text-align: left;
+    white-space: normal;
+}
+
+.donor-overlap-table tbody th {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+
+    min-width: 145px;
+    max-width: 145px;
+
+    padding: 0.55rem 0.75rem;
+
+    background: #0d1420;
+
+    border-right: 1px solid rgba(0, 255, 163, 0.08);
+
+    color: #cbd5e1;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    text-align: left;
+    white-space: nowrap;
+}
+
+
+/*
+ * Top-left corner.
+ */
+.donor-overlap-table thead th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 4;
+
+    width: 145px;
+    min-width: 145px;
+    max-width: 145px;
+
+    background: #0d1420;
+
+    writing-mode: horizontal-tb;
+    transform: none;
+}
+
+
+/* =========================================================
+   Matrix Cells
+   ========================================================= */
+
+.donor-overlap-cell {
+    width: 58px;
+    min-width: 58px;
+    height: 52px;
+
+    padding: 0;
+
+    /*
+     * React supplies --overlap-opacity.
+     *
+     * The dark base remains visible even at low values,
+     * while the green accent emerges as overlap increases.
+     */
+    background:
+        rgb(
+            0 255 163 /
+            var(--overlap-opacity)
+        );
+
+    border: 1px solid rgba(0, 255, 163, 0.025);
+
+    text-align: center;
+
+    transition:
+        filter 0.12s ease,
+        transform 0.12s ease,
+        border-color 0.12s ease;
+}
+
+.donor-overlap-cell:hover {
+    filter: brightness(1.12);
+
+    transform: scale(1.04);
+
+    border-color: rgba(0, 255, 163, 0.35);
+
+    box-shadow:
+        0 0 12px rgba(0, 255, 163, 0.12);
+
+    position: relative;
+    z-index: 5;
+}
+
+
+/* =========================================================
+   Cell Button
+   ========================================================= */
+
+.donor-overlap-button {
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #e5e7eb;
+
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        color 0.12s ease,
+        text-shadow 0.12s ease;
+}
+
+.donor-overlap-button:hover {
+    color: #ffffff;
+
+    text-shadow:
+        0 0 8px rgba(0, 255, 163, 0.35);
+}
+
+.donor-overlap-button:focus-visible {
+    outline: 2px solid #00ffa3;
+    outline-offset: -2px;
+}
+
+
+/* =========================================================
+   Diagonal
+   ========================================================= */
+
+.donor-overlap-diagonal {
+    width: 58px;
+    min-width: 58px;
+    height: 52px;
+
+    background: #111827;
+
+    border: 1px solid rgba(255, 255, 255, 0.025);
+
+    color: #475569;
+
+    text-align: center;
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   Selected Pair
+   ========================================================= */
+
+.shared-donor-results {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.shared-donor-results-header {
+    margin-bottom: 1rem;
+}
+
+.shared-donor-results-header h3 {
+    margin: 0 0 0.35rem;
+
+    color: #e5e7eb;
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.shared-donor-results-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 0.8rem;
+}
+
+.shared-donor-results-header strong {
+    color: #00ffa3;
+}
+
+
+/* =========================================================
+   Shared Donor List
+   ========================================================= */
+
+.shared-donor-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
+    gap: 0.4rem;
+}
+
+.shared-donor-name {
+    padding: 0.55rem 0.7rem;
+
+    background: #111827;
+
+    border: 1px solid rgba(0, 255, 163, 0.06);
+    border-radius: 6px;
+
+    color: #cbd5e1;
+
+    font-size: 0.8rem;
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.shared-donor-name:hover {
+    background: #151e2d;
+
+    border-color: rgba(0, 255, 163, 0.15);
+
+    color: #f3f4f6;
+}
+
+
+/* =========================================================
+   Empty / Loading States
+   ========================================================= */
+
+.cross-campaign-donors > p {
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+/* =========================================================
+   Shared Donor Buttons
+   ========================================================= */
+
+.shared-donor-button {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    appearance: none;
+    font: inherit;
+    font-size: 0.82rem;
+    line-height: 1.35;
+
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    padding: 0.65rem 0.75rem;
+
+    cursor: pointer;
+
+    background: #0b111c;
+
+    border: 1px solid rgba(0, 255, 163, 0.06);
+    border-radius: 8px;
+
+    color: #cbd5e1;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.12s ease;
+}
+
+.shared-donor-button:hover {
+    background: #151e2d;
+
+    border-color: rgba(0, 255, 163, 0.22);
+
+    color: #f3f4f6;
+
+    box-shadow:
+        0 0 12px rgba(0, 255, 163, 0.05);
+
+    transform: translateY(-1px);
+}
+
+.shared-donor-button:active {
+    transform: translateY(0);
+}
+
+.shared-donor-button:focus-visible {
+    outline: 2px solid #00ffa3;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   Evidence Modal Backdrop
+   ========================================================= */
+
+.donor-evidence-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.5rem;
+
+    background: rgba(3, 7, 13, 0.78);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    animation: donor-modal-backdrop-in 0.15s ease-out;
+}
+
+
+/* =========================================================
+   Evidence Modal
+   ========================================================= */
+
+.donor-evidence-modal {
+    width: min(900px, 100%);
+
+    max-height: min(850px, calc(100vh - 3rem));
+
+    display: flex;
+    flex-direction: column;
+
+    background: linear-gradient(
+        180deg,
+        #0d1420 0%,
+        #0a0f1a 100%
+    );
+
+    border: 1px solid rgba(0, 255, 163, 0.12);
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 163, 0.025),
+        0 20px 60px rgba(0, 0, 0, 0.75),
+        0 0 35px rgba(0, 255, 163, 0.04);
+
+    overflow: hidden;
+
+    animation: donor-modal-in 0.18s ease-out;
+}
+
+
+/* =========================================================
+   Modal Header
+   ========================================================= */
+
+.donor-evidence-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 1.5rem;
+
+    padding: 1.35rem 1.5rem 1.15rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(17, 24, 39, 0.65),
+            rgba(13, 20, 32, 0.4)
+        );
+}
+
+.donor-evidence-kicker {
+    display: block;
+
+    margin-bottom: 0.4rem;
+
+    color: #00ffa3;
+
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.donor-evidence-modal-header h2 {
+    margin: 0;
+
+    color: #f3f4f6;
+
+    font-size: 1.15rem;
+    font-weight: 650;
+    letter-spacing: 0.1px;
+}
+
+.donor-evidence-modal-header p {
+    margin: 0.4rem 0 0;
+
+    color: #64748b;
+
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
+.donor-evidence-modal-header strong {
+    color: #cbd5e1;
+}
+
+
+/* =========================================================
+   Close Button
+   ========================================================= */
+
+.donor-evidence-close {
+    flex: 0 0 auto;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 7px;
+
+    background: #111827;
+
+    color: #64748b;
+
+    font-size: 1.35rem;
+    font-weight: 300;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.donor-evidence-close:hover {
+    background: #182233;
+
+    border-color: rgba(0, 255, 163, 0.18);
+
+    color: #00ffa3;
+}
+
+.donor-evidence-close:focus-visible {
+    outline: 2px solid #00ffa3;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   Modal Body
+   ========================================================= */
+
+.donor-evidence-modal-body {
+    overflow-y: auto;
+
+    padding: 1.25rem 1.5rem 1.5rem;
+
+    scrollbar-width: thin;
+    scrollbar-color:
+        rgba(0, 255, 163, 0.18)
+        transparent;
+}
+
+.donor-evidence-modal-body::-webkit-scrollbar {
+    width: 7px;
+}
+
+.donor-evidence-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.donor-evidence-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 163, 0.18);
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   Candidate Evidence Sections
+   ========================================================= */
+
+.donor-evidence-candidate {
+    margin-bottom: 1.5rem;
+}
+
+.donor-evidence-candidate:last-child {
+    margin-bottom: 0;
+}
+
+.donor-evidence-candidate-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.6rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.donor-evidence-candidate-header h3 {
+    margin: 0;
+
+    color: #e5e7eb;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.donor-evidence-candidate-header span {
+    color: #64748b;
+
+    font-size: 0.7rem;
+}
+
+
+/* =========================================================
+   Individual Contribution Record
+   ========================================================= */
+
+.donor-evidence-record {
+    margin-bottom: 0.65rem;
+    padding: 1rem;
+
+    background: #0b111c;
+
+    border: 1px solid rgba(0, 255, 163, 0.06);
+    border-radius: 9px;
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.donor-evidence-record:last-child {
+    margin-bottom: 0;
+}
+
+.donor-evidence-record:hover {
+    background: #0d1522;
+
+    border-color: rgba(0, 255, 163, 0.11);
+}
+
+
+/* =========================================================
+   Record Fields
+   ========================================================= */
+
+.donor-evidence-record-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(100px, 0.8fr)
+        minmax(100px, 0.7fr)
+        minmax(160px, 1.2fr)
+        minmax(150px, 1fr);
+
+    gap: 0.85rem;
+}
+
+.donor-evidence-record-grid > div {
+    min-width: 0;
+}
+
+.donor-evidence-record-grid span,
+.donor-evidence-source span {
+    display: block;
+
+    margin-bottom: 0.3rem;
+
+    color: #64748b;
+
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.55px;
+    text-transform: uppercase;
+}
+
+.donor-evidence-record-grid strong {
+    display: block;
+
+    overflow: hidden;
+
+    color: #cbd5e1;
+
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.donor-evidence-record-grid .donor-evidence-amount {
+    color: #00ffa3;
+
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   Record Metadata
+   ========================================================= */
+
+.donor-evidence-record-meta {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 0.75rem;
+
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.035);
+
+    color: #475569;
+
+    font-size: 0.65rem;
+}
+
+.donor-evidence-record-meta span {
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   Source
+   ========================================================= */
+
+.donor-evidence-source {
+    margin-top: 0.65rem;
+    padding: 0.6rem 0.7rem;
+
+    background: #080d15;
+
+    border: 1px solid rgba(255, 255, 255, 0.035);
+    border-radius: 6px;
+}
+
+.donor-evidence-source strong {
+    display: block;
+
+    overflow-wrap: anywhere;
+
+    color: #94a3b8;
+
+    font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+
+    font-size: 0.68rem;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   Modal Animations
+   ========================================================= */
+
+@keyframes donor-modal-backdrop-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes donor-modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   Responsive Modal
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .donor-evidence-modal-backdrop {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+    .donor-evidence-modal {
+        width: 100%;
+
+        max-height: calc(100vh - 1rem);
+
+        border-bottom: none;
+
+        border-radius:
+            14px 14px 0 0;
+    }
+
+    .donor-evidence-modal-header {
+        padding: 1.15rem 1.15rem 1rem;
+    }
+
+    .donor-evidence-modal-body {
+        padding: 1rem 1.15rem 1.25rem;
+    }
+
+    .donor-evidence-record-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .donor-evidence-modal {
+        max-height: calc(100vh - 0.5rem);
+    }
+
+    .donor-evidence-modal-header h2 {
+        font-size: 1rem;
+    }
+
+    .donor-evidence-record {
+        padding: 0.85rem;
+    }
+
+    .donor-evidence-record-grid {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+    }
+
+    .donor-evidence-record-meta {
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+}
+
+
+/* =========================================================
+   Accessibility / Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .donor-evidence-modal-backdrop,
+    .donor-evidence-modal {
+        animation: none;
+    }
+
+    .shared-donor-button,
+    .donor-evidence-record,
+    .donor-evidence-close {
+        transition: none;
+    }
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .cross-campaign-donors {
+        padding: 1.25rem;
+    }
+
+    .donor-overlap-table thead th {
+        min-width: 58px;
+        max-width: 58px;
+        height: 110px;
+
+        font-size: 0.65rem;
+    }
+
+    .donor-overlap-table tbody th {
+        min-width: 125px;
+        max-width: 125px;
+
+        font-size: 0.7rem;
+    }
+
+    .donor-overlap-table thead th:first-child {
+        width: 125px;
+        min-width: 125px;
+        max-width: 125px;
+    }
+
+    .donor-overlap-cell,
+    .donor-overlap-diagonal {
+        width: 48px;
+        min-width: 48px;
+        height: 46px;
+    }
+
+    .donor-overlap-button {
+        font-size: 0.73rem;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .cross-campaign-donors {
+        margin: 1rem 0 2rem;
+
+        padding: 1rem;
+
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+    }
+
+    .cross-campaign-donors-header h2 {
+        font-size: 0.9rem;
+    }
+
+    .cross-campaign-donors-header p {
+        font-size: 0.82rem;
+    }
+
+    .donor-overlap-legend {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        margin-bottom: 0.5rem;
+    }
+
+    .donor-overlap-table thead th {
+        min-width: 52px;
+        max-width: 52px;
+
+        height: 92px;
+    }
+
+    .donor-overlap-table tbody th {
+        min-width: 110px;
+        max-width: 110px;
+
+        padding: 0.45rem;
+
+        font-size: 0.66rem;
+    }
+
+    .donor-overlap-table thead th:first-child {
+        width: 110px;
+        min-width: 110px;
+        max-width: 110px;
+    }
+
+    .donor-overlap-cell,
+    .donor-overlap-diagonal {
+        width: 42px;
+        min-width: 42px;
+        height: 42px;
+    }
+
+    .donor-overlap-button {
+        font-size: 0.68rem;
+    }
+
+    .shared-donor-list {
+        grid-template-columns: 1fr;
+    }
+}
