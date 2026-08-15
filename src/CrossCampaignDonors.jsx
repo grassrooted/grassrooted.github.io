@@ -1,15 +1,7 @@
 
 import React, { useMemo, useState } from 'react';
 import './CrossCampaignDonors.css';
-
-function normalizeName(name) {
-    if (!name) return '';
-
-    return name
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, ' ');
-}
+import {normalizeDonorName } from './Profiles';
 
 function formatDate(dateString) {
     if (!dateString) return '—';
@@ -83,7 +75,7 @@ function CrossCampaignDonors({
         const map = new Map();
 
         filteredContributions.forEach(record => {
-            const donorName = normalizeName(record.Name);
+            const donorName = normalizeDonorName(record.Name);
             const recipientId = record.campaign_id;
 
             if (!donorName || !recipientId) return;
