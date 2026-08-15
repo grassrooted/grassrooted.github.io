@@ -50,6 +50,7 @@ function CrossCampaignDonors({
 }) {
     const [selectedPair, setSelectedPair] = useState(null);
     const [selectedDonor, setSelectedDonor] = useState(null);
+    const [overlapMetric, setOverlapMetric] = useState('donors');
 
     /*
      * Filter contributions to the election cycle selected
@@ -151,25 +152,50 @@ function CrossCampaignDonors({
                     const candidateA = ids[i];
                     const candidateB = ids[j];
 
+                    const recordsA =
+                        recordsByCandidate.get(candidateA) || [];
+
+                    const recordsB =
+                        recordsByCandidate.get(candidateB) || [];
+
+                    let value;
+
+                    if (overlapMetric === 'donors') {
+                        value = 1;
+                    } else {
+                        const amountA = recordsA.reduce(
+                            (sum, record) =>
+                                sum + (Number(record.Amount) || 0),
+                            0
+                        );
+
+                        const amountB = recordsB.reduce(
+                            (sum, record) =>
+                                sum + (Number(record.Amount) || 0),
+                            0
+                        );
+
+                        value = amountA + amountB;
+                    }
+
                     const keyAB = `${candidateA}|${candidateB}`;
                     const keyBA = `${candidateB}|${candidateA}`;
 
                     matrix.set(
                         keyAB,
-                        (matrix.get(keyAB) ?? 0) + 1
+                        (matrix.get(keyAB) ?? 0) + value
                     );
 
                     matrix.set(
                         keyBA,
-                        (matrix.get(keyBA) ?? 0) + 1
+                        (matrix.get(keyBA) ?? 0) + value
                     );
                 }
             }
         });
 
         return matrix;
-    }, [candidates, donorRecords]);
-
+    }, [candidates, donorRecords, overlapMetric]);
     /*
      * Total number of donor names appearing across
      * multiple campaigns.
@@ -342,10 +368,52 @@ function CrossCampaignDonors({
                     </p>
                 </div>
 
+                <div className="cross-campaign-metric-control">
+                    <span className="cross-campaign-metric-label">
+                        Measure
+                    </span>
+
+                    <div
+                        className="cross-campaign-metric-toggle"
+                        role="group"
+                        aria-label="Cross-campaign overlap metric"
+                    >
+                        <button
+                            type="button"
+                            className={
+                                overlapMetric === 'donors'
+                                    ? 'active'
+                                    : ''
+                            }
+                            onClick={() => setOverlapMetric('donors')}
+                        >
+                            Shared Donors
+                        </button>
+
+                        <button
+                            type="button"
+                            className={
+                                overlapMetric === 'contributions'
+                                    ? 'active'
+                                    : ''
+                            }
+                            onClick={() =>
+                                setOverlapMetric('contributions')
+                            }
+                        >
+                            Shared Contributions
+                        </button>
+                    </div>
+                </div>
+
                 <div className="donor-overlap-container">
 
                     <div className="donor-overlap-legend">
-                        <span>Fewer shared names</span>
+                        <span>
+                            {overlapMetric === 'donors'
+                                ? 'Fewer shared donors'
+                                : 'Lower shared contribution value'}
+                        </span>
 
                         <div className="donor-overlap-legend-scale">
                             {[0.15, 0.35, 0.55, 0.75, 1].map(
@@ -359,7 +427,11 @@ function CrossCampaignDonors({
                             )}
                         </div>
 
-                        <span>More shared names</span>
+                        <span>
+                            {overlapMetric === 'donors'
+                                ? 'More shared donors'
+                                : 'Higher shared contribution value'}
+                        </span>
                     </div>
 
                     <div className="donor-overlap-table-wrapper">
@@ -419,7 +491,13 @@ function CrossCampaignDonors({
                                                             0.12 +
                                                             intensity * 0.88,
                                                     }}
-                                                    title={`${overlap.toLocaleString()} shared donor names`}
+                                                    title={
+                                                        overlapMetric === 'donors'
+                                                            ? `${overlap.toLocaleString()} shared donor names`
+                                                            : `$${overlap.toLocaleString('en-US', {
+                                                                maximumFractionDigits: 2,
+                                                            })} in shared contributions`
+                                                    }
                                                 >
                                                     <button
                                                         type="button"
@@ -431,7 +509,11 @@ function CrossCampaignDonors({
                                                             )
                                                         }
                                                     >
-                                                        {overlap.toLocaleString()}
+                                                        {overlapMetric === 'donors'
+                                                            ? overlap.toLocaleString()
+                                                            : `$${overlap.toLocaleString('en-US', {
+                                                                maximumFractionDigits: 0,
+                                                            })}`}
                                                     </button>
                                                 </td>
                                             );
@@ -454,10 +536,9 @@ function CrossCampaignDonors({
                             </h3>
 
                             <p>
-                                <strong>
-                                    {selectedPair.sharedDonors.length.toLocaleString()}
-                                </strong>{' '}
-                                shared donor names
+                                {overlapMetric === 'donors'
+                                ? 'Number of donor names appearing in both campaigns during the selected election cycle.'
+                                : 'Cumulative contributions made by donor names appearing in both campaigns during the selected election cycle.'}
                             </p>
                         </div>
 
