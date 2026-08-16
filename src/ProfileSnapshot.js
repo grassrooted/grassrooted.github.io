@@ -1,19 +1,50 @@
-import React from 'react';
-import './ProfileSnapshot.css';
-
+import React from "react";
+import "./ProfileSnapshot.css";
 
 function ProfileSnapshot({ profile }) {
-  return (
-    <div className="profileSnapshot">
-          <h1>{profile.name}</h1>
-          <img className="profile-headshot" src={`${process.env.PUBLIC_URL}${profile.path_to_headshot_photo}`} alt={`${profile.name} headshot`} />
-          <h3 className='profile-district-header'>Council District {profile.district}</h3>
-          <span className='row-span'>
-            <p id="first-election-wrapper">First Election <br></br><strong>{profile.first_election}</strong> </p>
-            <p id="next-election-wrapper">Next Election <br></br><strong>{profile.next_election}</strong></p>
-          </span>
-    </div>
-  );
+    return (
+        <article className="profileSnapshot">
+
+            <h2 className="profile-snapshot-name">
+                {profile.name}
+            </h2>
+
+            <img
+                className="profile-headshot"
+                src={`${process.env.PUBLIC_URL}${profile.path_to_headshot_photo}`}
+                alt={`${profile.name} headshot`}
+            />
+
+            <div className="profile-district">
+                Council District {profile.district}
+            </div>
+
+            <div className="profile-election-info">
+
+                <div className="profile-election">
+                    <span className="profile-election-label">
+                        First Election
+                    </span>
+
+                    <strong>
+                        {profile.first_election}
+                    </strong>
+                </div>
+
+                <div className="profile-election profile-election-next">
+                    <span className="profile-election-label">
+                        Next Election
+                    </span>
+
+                    <strong>
+                        {profile.next_election}
+                    </strong>
+                </div>
+
+            </div>
+
+        </article>
+    );
 }
 
 export default ProfileSnapshot;
