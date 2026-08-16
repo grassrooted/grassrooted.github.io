@@ -6,7 +6,8 @@
 
 .cross-campaign-donors {
     width: 100%;
-    margin: 2rem 0 3rem;
+    max-width: 1200px;
+    margin: 2rem auto;
     padding: 1.5rem 1.75rem;
     box-sizing: border-box;
 

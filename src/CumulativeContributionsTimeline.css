@@ -13,8 +13,10 @@
     align-items: center;
   
     width: 100%;
+    max-width: 1200px;
+
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 1.5rem 1.75rem;
   
     background: linear-gradient(180deg, #0d1420 0%, #0a0f1a 100%);
     border: 1px solid rgba(0, 255, 163, 0.06);
@@ -23,11 +25,6 @@
       0 10px 30px rgba(0, 0, 0, 0.6);
     border-radius: var(--radius);
     box-sizing: border-box;
-  }
-  
-  /* Optional: slight separation between multiple graphs */
-  #timeline-graph-container + #timeline-graph-container {
-    margin-top: 3rem;
   }
   
   /* ==========================
