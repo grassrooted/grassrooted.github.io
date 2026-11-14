@@ -82,7 +82,6 @@ def extract_supplemental_report_totals(table):
 def extract_coh_unitemized_reported_totals(table):
     reported_totals = {}
     text = " ".join(str(item) for row in table for item in row if item).replace("\n", " ")
-
     if "TOTAL POLITICAL CONTRIBUTIONS MAINTAINED AS OF THE LAST DAY OF REPORTING PERIOD $" in text:
         contributions_maintained = text.split(" TOTAL POLITICAL CONTRIBUTIONS MAINTAINED AS OF THE LAST DAY OF REPORTING PERIOD $ ")[-1].split(" ")[0].replace(",", "")
         reported_totals["Contribution Balance"] = float(contributions_maintained)
@@ -186,6 +185,57 @@ def extract_transaction_type(flat_text, defaultType):
             transaction_type = defaultType
         return transaction_type
 
+def parse_in_kind_contribution(table, source_filename):
+    try:
+        tokens = []
+        for row in table:
+            for cell in row:
+                if cell:
+                    tokens.extend(cell.split("\n"))
+
+        tokens = [t.strip() for t in tokens if t.strip()]
+
+        raw_tokens = " ".join(tokens)
+
+        date, name, address, amount, description_line = None, None, None, None, None
+
+        date = table[0][0].split("\n")[-1].strip()
+        date =  datetime.strptime(date, "%m/%d/%Y").strftime("%Y-%m-%d")
+
+
+        name = table[0][1].split("\n")[-1]
+        address = " ".join(table[1][1].split("\n")[1:])
+
+        amount_description_line = table[0][3].split("description")[-1].split("\n")
+        amount = amount_description_line[1].split(" ")[0]
+        description = " ".join(amount_description_line[1].split(" ")[1:])
+        amount = float(amount.replace("$", "").replace(",", "")) if amount else None
+        description = description.strip() if description else None
+
+        # print(f"Extracted Name: {name}\n Address: {address}\n Amount: {amount}\n Description: {description}")
+
+        transaction_type = extract_transaction_type(raw_tokens, "In-Kind Contribution")
+        occupation = table[2][0].split("\n")[-1].strip()
+        employer = table[2][2].split("\n")[-1].strip()
+
+        if date and name and address and amount and description:
+            return {
+                "Transaction_Date": date,
+                "Name": name,
+                "Address": address,
+                "Occupation": occupation,
+                "Employer": employer,
+                "Amount": amount,
+                "Description": description,
+                "Transaction_Type": transaction_type,
+                "Schedule": "A2",
+                "Source" : source_filename
+            }
+        return None
+    except Exception as e:
+        print(f"Error parsing in-kind contribution: {e}")
+        return None
+
 def parse_loan_record(table, page_num, source_filename):
     try:
         tokens = []
@@ -198,15 +248,24 @@ def parse_loan_record(table, page_num, source_filename):
 
         raw_tokens = " ".join(tokens)
 
+        print(f"Loan Record: {raw_tokens}")
+        print(f"Loan TABLE: {table}")
+
         transaction_date = table[0][0].split("\n")[-1]
         transaction_date = datetime.strptime(transaction_date, "%m/%d/%Y").strftime("%Y-%m-%d")
+        print(transaction_date)
         name = table[0][1].split("\n")[1]
+        print(name)
         address = table[0][1].split("\n")[-1]
+        print(address)
         amount = table[0][3].split("\n")[1].strip()
         amount = float(amount.replace(",", "")) if amount else None
+        print(amount)
         transaction_type = extract_transaction_type(raw_tokens, "Loan")
+        print(transaction_type)
         interest_rate = table[1][-1].split("\n")[-1] if len(table) > 1 and table[1][-1] else None
         cleaned_interest_rate = float(re.sub(r'[^0-9.]', '', interest_rate)) if interest_rate else None
+        print(cleaned_interest_rate)
         if transaction_date and name and address and amount:
             return {
                 "Transaction_Date": transaction_date,
@@ -402,28 +461,28 @@ def extract_finance_data_from_table(pdf_path):
 
     # ---------------- A1 / CONTRIBUTIONS ----------------
     def parse_con_address(row):
-        return row[-3].split("\n")[-1]\
+        return row[-3]\
             .replace("Contributor address", "")\
             .replace("City", "")\
             .replace("State","")\
             .replace("Zip Code", "")\
             .replace(";","")\
-            .replace("6","")\
+            .replace("\n", " ")\
             .strip()
 
-    def parse_contribution_record(row, next_row, page_num):
+    def parse_contribution_record(row, next_row, next_next_row, page_num):
         donor_name = ""
         try:
+
             date = row[0].split("\n")[1].strip()
             donor_name = row[1].split("\n")[1].strip()
-
-            amount = float(row[-1].split("\n")[-1].replace(",", "").strip())
-
-            address = parse_con_address(row)
-
-            occupation = parseOccupation(next_row)
-            employer = parseEmployer(next_row)
-
+            amount = float(row[-1].split("\n")[-1]
+                        .replace(",", "")
+                        .replace("$", "")
+                        .strip())
+            address = parse_con_address(next_row)
+            occupation = parseOccupation(next_next_row)
+            employer = parseEmployer(next_next_row)
             return {
                 "Transaction_Date": datetime.strptime(date, "%m/%d/%Y").strftime("%Y-%m-%d"),
                 "Name": donor_name,
@@ -461,6 +520,13 @@ def extract_finance_data_from_table(pdf_path):
                 .replace(";","")\
                 .replace("6","")\
                 .strip()
+
+    def isFloat(value):
+        try:
+            float(value)
+            return True
+        except ValueError:
+            return False
 
     def sanitize_exp_description(description):
         return description.replace("(b)", "")\
@@ -534,50 +600,48 @@ def extract_finance_data_from_table(pdf_path):
                     })
 
             # ITEMIZED TOTALS PAGE
-            elif page_num == 2:
+            elif "SUBTOTALS" in page_title:
                 for p in tables:
                     for row in p:
                         for cell in row:
                             if cell and "SCHEDULE A1" in cell:
-                                itemized_contrib_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Contributions"] = itemized_contrib_total
+                                itemized_contrib_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Contributions"] = float(itemized_contrib_total) if isFloat(itemized_contrib_total) else 0.0
                             elif cell and "SCHEDULE A2" in cell:
-                                itemized_in_kind_contribution_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported In Kind Contributions"] = itemized_in_kind_contribution_total
+                                itemized_in_kind_contribution_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported In Kind Contributions"] = float(itemized_in_kind_contribution_total) if isFloat(itemized_in_kind_contribution_total) else 0.0
                             elif cell and "SCHEDULE B" in cell:
-                                itemized_pledged_contributions = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Pledged Contributions"] = itemized_pledged_contributions
+                                itemized_pledged_contributions = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Pledged Contributions"] = float(itemized_pledged_contributions) if isFloat(itemized_pledged_contributions) else 0.0
                             elif cell and "SCHEDULE E" in cell:
-                                itemized_loans_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Loans"] = itemized_loans_total
+                                itemized_loans_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Loans"] = float(itemized_loans_total) if isFloat(itemized_loans_total) else 0.0
                             elif cell and "SCHEDULE F1" in cell:
-                                itemized_expend_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Expenditures"] = itemized_expend_total
+                                itemized_expend_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Expenditures"] = float(itemized_expend_total) if isFloat(itemized_expend_total) else 0.0
                             elif cell and "SCHEDULE F2" in cell:
-                                itemized_unpaid_incurred_obligations_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Unpaid Incurred Obligations"] = itemized_unpaid_incurred_obligations_total
+                                itemized_unpaid_incurred_obligations_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Unpaid Incurred Obligations"] = float(itemized_unpaid_incurred_obligations_total) if isFloat(itemized_unpaid_incurred_obligations_total) else 0.0
                             elif cell and "SCHEDULE F3" in cell:
-                                itemized_purchase_of_investments_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Purchase of Investments Made From Political Contributions"] = itemized_purchase_of_investments_total
+                                itemized_purchase_of_investments_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Purchase of Investments Made From Political Contributions"] = float(itemized_purchase_of_investments_total) if isFloat(itemized_purchase_of_investments_total) else 0.0
                             elif cell and "SCHEDULE F4" in cell:
-                                itemized_credit_card_expenditures_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Credit Card Expenditures"] = itemized_credit_card_expenditures_total
+                                itemized_credit_card_expenditures_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Credit Card Expenditures"] = float(itemized_credit_card_expenditures_total) if isFloat(itemized_credit_card_expenditures_total) else 0.0
                             elif cell and "SCHEDULE G" in cell:
-                                itemized_personal_funds_expenditures_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Expenditures Made From Personal Funds"] = itemized_personal_funds_expenditures_total
+                                itemized_personal_funds_expenditures_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Expenditures Made From Personal Funds"] = float(itemized_personal_funds_expenditures_total) if isFloat(itemized_personal_funds_expenditures_total) else 0.0
                             elif cell and "SCHEDULE H" in cell:
-                                itemized_payments_to_business_of_candidate_officeholder_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Payments Made From Political Contributions to a Business of the Candidate/Officeholder"] = itemized_payments_to_business_of_candidate_officeholder_total
+                                itemized_payments_to_business_of_candidate_officeholder_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Payments Made From Political Contributions to a Business of the Candidate/Officeholder"] = float(itemized_payments_to_business_of_candidate_officeholder_total) if isFloat(itemized_payments_to_business_of_candidate_officeholder_total) else 0.0
                             elif cell and "SCHEDULE I" in cell:
-                                itemized_non_political_expenditures_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Non-Political Expenditures Made from Political Contributions"] = itemized_non_political_expenditures_total
+                                itemized_non_political_expenditures_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Non-Political Expenditures Made from Political Contributions"] = float(itemized_non_political_expenditures_total) if isFloat(itemized_non_political_expenditures_total) else 0.0
                             elif cell and "SCHEDULE K" in cell:
-                                itemized_interest_credits_gains_refunds_contributions_returned_to_filer_total = float(row[-1].replace("$","").replace(",",""))
-                                data["candidate_info"]["report_totals"]["Total Itemized Reported Interest, Credits, Gains, Refunds, and Contributions Returned to Filer"] = itemized_interest_credits_gains_refunds_contributions_returned_to_filer_total
-
+                                itemized_interest_credits_gains_refunds_contributions_returned_to_filer_total = row[-1].replace("$","").replace(",","").strip()
+                                data["candidate_info"]["report_totals"]["Total Itemized Reported Interest, Credits, Gains, Refunds, and Contributions Returned to Filer"] = float(itemized_interest_credits_gains_refunds_contributions_returned_to_filer_total) if isFloat(itemized_interest_credits_gains_refunds_contributions_returned_to_filer_total) else 0.0
             # ---------------- SCHEDULE ROUTING ----------------
             for table in tables:
-
                 if "SCHEDULE G" in page_title:
                     for i in range(len(table)):
                         if table[i] and "Payee name" in str(table[i]):
@@ -585,7 +649,8 @@ def extract_finance_data_from_table(pdf_path):
                             if record:
                                 data["personal_funds_expenditures"].append(record)
 
-                elif "SCHEDULE E" in page_title:
+                elif "SCHEDULE E" in page_title or "Schedule E" in page_title or "LOANS" in page_title:
+                    print("Parsing loans")
                     for i in range(len(table)):
                         if table[i] and "Name of lender" in str(table[i]):
                             record = parse_loan_record(table[i:i+5], page_num, source_filename)
@@ -600,10 +665,17 @@ def extract_finance_data_from_table(pdf_path):
                                 data["expenditures"].append(rec)
 
                 elif "A1" in page_title:
-                    for i in range(len(table)-1):
-                        rec = parse_contribution_record(table[i], table[i+1], page_num)
+                    for i in range(len(table)-2):
+                        rec = parse_contribution_record(table[i], table[i+1], table[i+2], page_num)
                         if rec:
                             data["contributions"].append(rec)
+
+                elif "A2" in page_title:
+                    for i in range(len(table)):
+                        if table[i] and "Full name" in str(table[i]):
+                            in_kind_contribution = parse_in_kind_contribution(table[i:i+6], source_filename)
+                            if in_kind_contribution:
+                                data["in_kind_contributions"].append(in_kind_contribution)
     return data
 
 
@@ -719,7 +791,6 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                     transaction_type = "Officeholder Contribution"
 
             if date and donor_name and address and amount:
-                print(address)
                 return {
                     "Transaction_Date": date,
                     "Name": donor_name,
@@ -736,85 +807,6 @@ def extract_supplemental_finance_data_from_table(pdf_path):
         except Exception as e:
             print(e)
             return None
-
-    def extract_amount_and_description(text):
-        try:
-            # Pattern to extract the first number after "description"
-            amount_pattern = r"description\s*([\d,]+\.\d{2})"
-            amount_match = re.search(amount_pattern, text)
-            amount = float(amount_match.group(1)) if amount_match else None
-
-            # Pattern to extract the text following the number until "Check if travel outside of Texas"
-            if amount_match:
-                description_pattern = rf"{re.escape(amount_match.group(1))}\s+(.*?)\s+Check if travel outside of Texas"
-                description_match = re.search(description_pattern, text)
-                description = description_match.group(1).strip() if description_match else None
-            else:
-                description = None
-
-            return amount, description
-        except Exception as e:
-            print(f"Error in extract_amount_and_description: {e}")
-            return None, None
-
-
-    def parse_in_kind_contribution(table):
-        try:
-            tokens = []
-            for row in table:
-                for cell in row:
-                    if cell:
-                        tokens.extend(cell.split("\n"))
-
-            tokens = [t.strip() for t in tokens if t.strip()]
-
-            raw_tokens = " ".join(tokens)
-            results = []  # Initialize as a list to store the parsed records
-
-            print(f"In Kind Table: {table}")
-            for row in table:
-                # Initialize fields as None
-                date, name, address, amount, description_line = None, None, None, None, None
-
-                # Extract Date
-                if row[0] and "Date" in row[0]:
-                    date = row[0].split("\n")[1].strip()
-                    date =  datetime.strptime(date, "%m/%d/%Y").strftime("%Y-%m-%d")
-                    print(f"Extracted Date: {date}")
-
-
-                # Extract Contributor Name and Address
-                if row[1] and "Full name of contributor" in row[1]:
-                    lines = row[1].split("\n")
-                    name = lines[1].strip()  # Extract Name
-                    address = lines[-1].strip()  # Extract Address
-
-                # Extract Amount and In-kind Contribution Description
-                if row[-1] and "Amount of" in row[-1]:
-                    lines = " ".join(row[-1].split("\n")).replace("○", "")  # Clean up text
-                    amount, description_line = extract_amount_and_description(lines)
-                    description_line = description_line.replace("|", "").strip()
-
-                transaction_type = extract_transaction_type(raw_tokens, "Credit Card Expenditure")
-
-                # Append to results if all fields are non-None
-                if date and name and address and amount and description_line:
-                    results.append({
-                        "Transaction_Date": date,
-                        "Name": name,
-                        "Address": address,
-                        "Amount": amount,
-                        "Description": description_line,
-                        "Transaction_Type": transaction_type,
-                        "Schedule": "A2",
-                        "Source" : source_filename
-                    })
-
-            return results
-
-        except Exception as e:
-            #print(f"Error parsing table: {e}")
-            return results
 
     def parse_credit_card_record(table, page_num, pdf_path):
         try:
@@ -1028,7 +1020,7 @@ def extract_supplemental_finance_data_from_table(pdf_path):
                                 data["expenditures"].append(expenditure_record)
                     
                 elif "A2" in page_title:
-                    in_kind_contribution = parse_in_kind_contribution(table)
+                    in_kind_contribution = parse_in_kind_contribution(table, source_filename)
                     if in_kind_contribution:
                         data["in_kind_contributions"].extend(in_kind_contribution)
                 elif "SCHEDULE E" in page_title:

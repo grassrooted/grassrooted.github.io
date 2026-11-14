@@ -57,8 +57,8 @@ function HeatmapMap({ districtGeoJSON, points, highlightedDistrict }) {
 
 
         <TileLayer
-          attribution="&copy; OpenStreetMap &copy; Carto"
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          attribution="&copy; OpenStreetMap &copy; CARTO"
+          url={`https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${process.env.REACT_APP_CARTO_API_KEY}`}
         />
 
 

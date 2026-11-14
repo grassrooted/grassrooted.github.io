@@ -19202,5 +19202,361 @@
     "P.O. Box 140810 Dallas, TX 75214 ": [
         null,
         null
+    ],
+    "3001 S Congress Ave Austin, TX 78704-425": [
+        30.23,
+        -97.75
+    ],
+    "PO Box 87 Austin, TX 7877": [
+        null,
+        null
+    ],
+    "7801 Blossom Dr Fort Worth, TX 7133-7911": [
+        null,
+        null
+    ],
+    "552 Longmount Cv Liberty Hill, TX 7842-2519": [
+        null,
+        null
+    ],
+    "8911 North Capital of Texas Hwy. Ste. 4200 Austin, TX 78759": [
+        30.4,
+        -97.75
+    ],
+    "70 Jetta Ct Austin, TX 78753-2118": [
+        30.39,
+        -97.68
+    ],
+    "711 W 2th St Apt 0 Austin, TX 78705-4478": [
+        30.29,
+        -97.74
+    ],
+    "2725 Dulce Ln Unit 224 Austin, TX 78704-440": [
+        null,
+        null
+    ],
+    "1914 Patton Ln Austin, TX 78723": [
+        30.32,
+        -97.69
+    ],
+    "3101 Davis Ln Apt 5801 Austin, TX 78748-5028": [
+        30.16,
+        -97.83
+    ],
+    "1700 Resaca Blvd Austin, TX 78738-5378": [
+        30.32,
+        -97.97
+    ],
+    "03 Post Oak Cir Cedar Park, TX 7813-228": [
+        30.51,
+        -97.85
+    ],
+    "327 Congress Ave. Suite 100 Austin, TX 78701": [
+        30.27,
+        -97.74
+    ],
+    "100 AMPHITHEATRE Pkwy Mountain View, CA 94043": [
+        37.42,
+        -122.08
+    ],
+    "8003 S I-35 Austin, TX 78744": [
+        30.19,
+        -97.73
+    ],
+    "PO Box 80532 Cincinnati, OH 45280-532": [
+        null,
+        null
+    ],
+    "232 Marine Way Mountain View, CA 94043": [
+        37.43,
+        -122.1
+    ],
+    "108 Powell Rd Smithville, TX 78957-572": [
+        null,
+        null
+    ],
+    "PO Box 90591 Austin, TX 78709": [
+        null,
+        null
+    ],
+    "908 Robertson St Austin, TX 78703-4730": [
+        30.28,
+        -97.76
+    ],
+    "2819 Rio Grande St Apt 10 Austin, TX 78705-398": [
+        null,
+        null
+    ],
+    "341 Kissman Dr Austin, TX 78728-3558": [
+        30.45,
+        -97.68
+    ],
+    "917 Langston Dr Austin, TX 78723-2219": [
+        30.32,
+        -97.67
+    ],
+    "1318 Westmoor Dr Austin, TX 78723-3137": [
+        30.31,
+        -97.7
+    ],
+    "1102 Gemini Dr Austin, TX 78758-4129": [
+        30.39,
+        -97.69
+    ],
+    "55 15th St. NW, Suite 50 Washington, DC 20005": [
+        38.9,
+        -77.03
+    ],
+    "907 WEST FIFTH STREET Ste 101 Austin, TX 78703": [
+        30.29,
+        -97.77
+    ],
+    "2141 East Broadway Rd., Suite 202 Tempe, AZ 85282": [
+        33.4,
+        -111.93
+    ],
+    "4409 Duval St Austin, TX 78751-3944": [
+        30.31,
+        -97.72
+    ],
+    "198 S. Coast Hwy, Suite 1800 Laguna Beach, CA 9251": [
+        null,
+        null
+    ],
+    "303 Terrace Dr Austin, TX 78704-3548": [
+        30.24,
+        -97.75
+    ],
+    "13742 Harper St. Santa Ana, CA 92703": [
+        33.76,
+        -117.91
+    ],
+    "131 Village Path Castroville, TX 78009-502": [
+        29.36,
+        -98.87
+    ],
+    "PO Box 0074  of Industry, CA 9171": [
+        null,
+        null
+    ],
+    "PO Box 301074 Austin, TX 78703": [
+        30.29,
+        -97.77
+    ],
+    "25 Valley View Dr Round Rock, TX 784-9750": [
+        null,
+        null
+    ],
+    "3108 95th St Lubbock, TX 79423-4008": [
+        33.51,
+        -101.88
+    ],
+    "301 FM 1327 Creedmoor, TX 7810-985": [
+        30.11,
+        -97.77
+    ],
+    "2515 Elmont Dr Apt 222 Austin, TX 78741-0053": [
+        30.23,
+        -97.72
+    ],
+    "500 Elmwood Pl Austin, TX 78705-3142": [
+        30.29,
+        -97.73
+    ],
+    "12701 Whitewater Dr. Minnetonka, MN 55343": [
+        44.9,
+        -93.44
+    ],
+    "92 E Dean Keeton St Austin, TX 78705-3307": [
+        30.29,
+        -97.74
+    ],
+    "4117 Guadalupe St. Austin, TX 78751": [
+        30.31,
+        -97.74
+    ],
+    "6     1101 Grove Blvd Apt 703 Austin, TX 78741": [
+        30.23,
+        -97.72
+    ],
+    "5900 Highland Hills Ter Austin, TX 78731": [
+        30.34,
+        -97.76
+    ],
+    "4207 Farhills Dr Austin, TX 78731": [
+        30.36,
+        -97.77
+    ],
+    "803 Pressler St Austin, TX 78703": [
+        30.28,
+        -97.76
+    ],
+    "6     6107 Twin Ledge Dr Austin, TX 78731": [
+        30.35,
+        -97.77
+    ],
+    "9225 Camelback Dr Austin, TX 78733": [
+        30.33,
+        -97.87
+    ],
+    "1143 Poquito St Austin, TX 78702": [
+        30.27,
+        -97.72
+    ],
+    "4701 Hilwin Cir Austin, TX 78756": [
+        30.32,
+        -97.75
+    ],
+    "203 W Mockingbird Ln Austin, TX 78745": [
+        30.21,
+        -97.78
+    ],
+    "6     1621 Enfield Rd Apt A Austin, TX 78703": [
+        30.29,
+        -97.77
+    ],
+    "PO Box 50168 Austin, TX 78763": [
+        null,
+        null
+    ],
+    "22 Tiburon Dr The Hills, TX 78738": [
+        30.34,
+        -97.98
+    ],
+    "6     6916 Larue Belle Cv Austin, TX 78739": [
+        30.18,
+        -97.89
+    ],
+    "402 Cherry Hill Dr Austin, TX 78704": [
+        30.23,
+        -97.76
+    ],
+    "3815 Menchaca Rd Austin, TX 78704": [
+        30.23,
+        -97.78
+    ],
+    "4801 Interlachen Ln Austin, TX 78747": [
+        30.14,
+        -97.78
+    ],
+    "6     814 Stark St Austin, TX 78756": [
+        30.33,
+        -97.73
+    ],
+    "3900 Verano Dr Austin, TX 78735": [
+        30.26,
+        -97.87
+    ],
+    "4108 N Lamar Blvd Austin, TX 78756": [
+        30.31,
+        -97.74
+    ],
+    "800 Embassy Dr Austin, TX 78702": [
+        30.27,
+        -97.73
+    ],
+    "3682 Lost Creek Blvd Austin, TX 78735": [
+        30.28,
+        -97.84
+    ],
+    "6     3682 Lost Creek Blvd Austin, TX 78735": [
+        30.26,
+        -97.87
+    ],
+    "2305 Barton Creek Blvd Unit 47 Austin, TX 78735": [
+        30.26,
+        -97.87
+    ],
+    "4101 Paint Rock Dr Austin, TX 78731": [
+        30.37,
+        -97.76
+    ],
+    "7217 Chimney Cors Austin, TX 78731": [
+        30.36,
+        -97.76
+    ],
+    "703 Laurel Valley Rd West Lake Hills, TX 78746": [
+        30.29,
+        -97.81
+    ],
+    "6     703 Laurel Valley Rd West Lake Hills, TX 78746": [
+        30.29,
+        -97.81
+    ],
+    "2612 Perseverance Dr Apt 2112 Austin, TX 78731": [
+        30.35,
+        -97.77
+    ],
+    "1000 N Lamar Blvd Ste 410 Austin, TX 78703": [
+        30.29,
+        -97.77
+    ],
+    "373 King Arthur Ct Austin, TX 78746": [
+        30.3,
+        -97.81
+    ],
+    "5607 Shoal Creek Blvd Austin, TX 78756": [
+        30.33,
+        -97.75
+    ],
+    "6     3005 S Lamar Blvd Ste D109 Austin, TX 78704": [
+        30.24,
+        -97.76
+    ],
+    "807 Congress Ave Austin, TX 78701": [
+        30.27,
+        -97.74
+    ],
+    "2901 Oakhurst Ave Austin, TX 78703": [
+        30.3,
+        -97.75
+    ],
+    "10805 Callanish Park Dr Austin, TX 78750": [
+        30.43,
+        -97.79
+    ],
+    "1406 Greenwood Ave Austin, TX 78721": [
+        30.28,
+        -97.7
+    ],
+    "6     5808 Balcones Dr Ste 200 Austin, TX 78731": [
+        30.35,
+        -97.77
+    ],
+    "5808 Balcones Dr Ste 200 Austin, TX 78731": [
+        30.35,
+        -97.77
+    ],
+    "809 Bouldin Ave Austin, TX 78704": [
+        30.26,
+        -97.76
+    ],
+    "4810 Shoal Creek Blvd Austin, TX 78756": [
+        30.32,
+        -97.74
+    ],
+    "4719 Unity Cir Austin, TX 78731": [
+        30.32,
+        -97.75
+    ],
+    "6     360 Nueces St Apt 2609 Austin, TX 78701": [
+        30.27,
+        -97.74
+    ],
+    "47000 W Guadalupe St Apt A107 Austin, TX 78751": [
+        30.31,
+        -97.72
+    ],
+    "8307 Hickory Creek Dr Austin, TX 78735": [
+        30.26,
+        -97.87
+    ],
+    "907 Lee Dr Leander, TX 78641": [
+        30.57,
+        -97.87
+    ],
+    "7617 Journeyville Dr Austin, TX 78735": [
+        30.25,
+        -97.88
     ]
 }
