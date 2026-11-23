@@ -38,39 +38,13 @@ function formatAmount(amount) {
 
 function CrossCampaignDonors({
     contributions = [],
-    selectedDateRange,
 }) {
     const [selectedPair, setSelectedPair] = useState(null);
     const [selectedDonor, setSelectedDonor] = useState(null);
     const [overlapMetric, setOverlapMetric] = useState('donors');
 
-    /*
-     * Filter contributions to the election cycle selected
-     * on the city page.
-     */
-    const filteredContributions = useMemo(() => {
-        if (!selectedDateRange) return [];
+    const filteredContributions = contributions;
 
-        const start = selectedDateRange.start.getTime();
-        const end = selectedDateRange.end.getTime();
-
-        return contributions.filter(record => {
-            if (!record.Transaction_Date) return false;
-
-            const date = new Date(record.Transaction_Date);
-
-            if (Number.isNaN(date.getTime())) return false;
-
-            const time = date.getTime();
-
-            return time >= start && time <= end;
-        });
-    }, [contributions, selectedDateRange]);
-
-    /*
-     * Map normalized donor names to their ORIGINAL records,
-     * grouped by candidate.
-     */
     const donorRecords = useMemo(() => {
         const map = new Map();
 
@@ -98,9 +72,6 @@ function CrossCampaignDonors({
         return map;
     }, [filteredContributions]);
 
-    /*
-     * Candidates represented in the selected period.
-     */
     const candidates = useMemo(() => {
         const candidateMap = new Map();
 
@@ -119,9 +90,6 @@ function CrossCampaignDonors({
             .sort((a, b) => a.name.localeCompare(b.name));
     }, [filteredContributions]);
 
-    /*
-     * Build candidate overlap matrix.
-     */
     const overlapMatrix = useMemo(() => {
         const matrix = new Map();
 
@@ -198,9 +166,6 @@ function CrossCampaignDonors({
             .length;
     }, [donorRecords]);
 
-    /*
-     * Maximum overlap value used for heatmap intensity.
-     */
     const maxOverlap = useMemo(() => {
         let max = 0;
 
@@ -213,10 +178,6 @@ function CrossCampaignDonors({
         return max;
     }, [overlapMatrix]);
 
-    /*
-     * Retrieve shared donors and preserve their original
-     * records for both candidates.
-     */
     const getSharedDonors = (candidateA, candidateB) => {
         const sharedDonors = [];
 
@@ -244,9 +205,6 @@ function CrossCampaignDonors({
         );
     };
 
-    /*
-     * Select a campaign pair.
-     */
     const handleCellClick = (candidateA, candidateB) => {
         if (candidateA.id === candidateB.id) return;
 
@@ -262,32 +220,20 @@ function CrossCampaignDonors({
         });
     };
 
-    /*
-     * Open the evidence modal for a specific donor.
-     */
     const handleDonorClick = donor => {
         setSelectedDonor(donor);
     };
 
-    /*
-     * Close the evidence modal.
-     */
     const closeDonorModal = () => {
         setSelectedDonor(null);
     };
 
-    /*
-     * Close modal when clicking the backdrop.
-     */
     const handleModalBackdropClick = event => {
         if (event.target === event.currentTarget) {
             closeDonorModal();
         }
     };
 
-    /*
-     * Escape key support.
-     */
     React.useEffect(() => {
         if (!selectedDonor) return;
 

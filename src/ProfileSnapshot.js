@@ -27,7 +27,7 @@ function ProfileSnapshot({ profile }) {
                     </span>
 
                     <strong>
-                        {profile.first_election}
+                        {profile.electionDates.at(0)}
                     </strong>
                 </div>
 
@@ -37,7 +37,7 @@ function ProfileSnapshot({ profile }) {
                     </span>
 
                     <strong>
-                        {profile.next_election}
+                        {profile.electionDates.at(-1)}
                     </strong>
                 </div>
 

@@ -4,43 +4,11 @@ import { useOutletContext, useParams } from "react-router-dom";
 import ProfileStream from '../ProfileStream';
 import Header from '../Header';
 import { getCityProfiles } from "../Cities";
-import ElectionCycleDropdown from '../ElectionCycleDropdown';
 import CumulativeContributionsTimeline from '../CumulativeContributionsTimeline';
 import PACFundingBarChart from '../PACFundingBarChart';
 import FinancialRecordsTable from '../FinancialRecordsTable';
 import CrossCampaignDonors from '../CrossCampaignDonors';
 import NearLimitFundingChart from '../NearLimitFundingChart';
-
-const generateElectionCycles = (profiles) => {
-    console.log(profiles)
-    const earliestFirstElection = Math.min(
-        ...profiles.map(profile => parseInt(profile.first_election, 10))
-    );
-    const latestNextElection = Math.max(
-        ...profiles.map(profile => parseInt(profile.next_election, 10))
-    );
-
-    const smallestCycleYears = Math.min(
-        ...profiles.map(profile => profile.election_cycle_years)
-    );
-
-    const electionCycles = [];
-    let year = earliestFirstElection - smallestCycleYears;
-    const [month, day] = profiles[0].election_date.split('-').map(Number);
-    const election_cycle_years = profiles[0].election_cycle_years;
-
-    while (year < latestNextElection) {
-        const startDate = new Date(year, month - 1, day);
-        const endDate = new Date(year + election_cycle_years, month - 1, day - 1);
-        electionCycles.push({
-            start: startDate,
-            end: endDate,
-        });
-        year += election_cycle_years;
-    }
-
-    return electionCycles;
-};
 
 function City() {
     const { cityId } = useParams();
@@ -49,9 +17,7 @@ function City() {
     const [cityProfileData, setCityProfileData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedDateRange, setSelectedDateRange] = useState(null);
 
-    // Fetch city profile data
     useEffect(() => {
         const fetchCityData = async () => {
             try {
@@ -66,21 +32,6 @@ function City() {
 
         fetchCityData();
     }, [cityId]);
-
-    // Generate election cycles using useMemo
-    const electionCycles = useMemo(() => {
-        return cityProfileData ? generateElectionCycles(cityProfileData) : [];
-    }, [cityProfileData]);
-
-    // Set selected date range once election cycles are available
-    useEffect(() => {
-        if (electionCycles.length > 0) {
-            setSelectedDateRange({
-                start: electionCycles[0].start,
-                end: electionCycles[electionCycles.length - 1].end,
-            });
-        }
-    }, [electionCycles]);
 
     const flattenSchedule = (profiles, scheduleName) =>
         (profiles ?? []).flatMap(profile =>
@@ -111,36 +62,25 @@ function City() {
     // Handle loading and error states
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
-    if (!electionCycles.length || !selectedDateRange) {
-        return <div>Preparing data...</div>;
-    }
+    
     return (
         <div>
             <div id="city-header">
                 <Header city={city_config.name} profile={city_config} />
-                
-                <ElectionCycleDropdown
-                    electionCycles={electionCycles}
-                    selectedDateRange={selectedDateRange}
-                    setSelectedDateRange={setSelectedDateRange}
-                />
             </div>
             
             <CumulativeContributionsTimeline
-                cityProfileData={cityProfileData}
-                selectedDateRange={selectedDateRange} />
+                cityProfileData={cityProfileData} />
 
             <PACFundingBarChart 
                 allContributions={citySchedules.contributions} />
 
             <NearLimitFundingChart
                 contributions={citySchedules.contributions}
-                selectedDateRange={selectedDateRange}
             />
 
             <CrossCampaignDonors
                 contributions={citySchedules.contributions}
-                selectedDateRange={selectedDateRange}
             />
 
             <ProfileStream 
@@ -149,7 +89,6 @@ function City() {
 
             <FinancialRecordsTable
                 profile={cityProfileData?.[0]?.yaml_profile}
-                selectedDateRange={selectedDateRange}
                 schedules={citySchedules}
             />
         </div>

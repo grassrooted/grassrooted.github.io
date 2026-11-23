@@ -6,12 +6,9 @@ import "./NearLimitFundingChart.css";
 const INDIVIDUAL_LIMIT = 1000;
 const PAC_LIMIT = 2500;
 
-const INDIVIDUAL_THRESHOLD = INDIVIDUAL_LIMIT * 0.75; // $750
-const PAC_THRESHOLD = PAC_LIMIT * 0.80; // $2,000
+const INDIVIDUAL_THRESHOLD = INDIVIDUAL_LIMIT * 0.9;
+const PAC_THRESHOLD = PAC_LIMIT * 0.9;
 
-/*
- * Determine whether a contributor is a PAC / committee.
- */
 function isPAC(name = "") {
     const normalized = name.toUpperCase();
 
@@ -24,9 +21,6 @@ function isPAC(name = "") {
     );
 }
 
-/*
- * Calculate near-limit funding for each campaign.
- */
 function calculateCampaignFunding(contributions) {
     const campaigns = new Map();
 
@@ -41,22 +35,12 @@ function calculateCampaignFunding(contributions) {
 
         const donorName = record.Name || "";
 
-        /*
-         * PACs and individuals have different thresholds.
-         */
         const pac = isPAC(donorName);
 
         const threshold = pac
             ? PAC_THRESHOLD
             : INDIVIDUAL_THRESHOLD;
 
-        /*
-         * Ignore self-funding.
-         *
-         * campaign_id is the campaign identifier, while
-         * Campaign / Recipient represents the candidate name
-         * depending on how the city schedules were flattened.
-         */
         const recipientName =
             record.Campaign ||
             "";
@@ -107,46 +91,10 @@ function calculateCampaignFunding(contributions) {
 }
 
 function NearLimitFundingChart({
-    contributions = [],
-    selectedDateRange,
+    contributions = []
 }) {
-    /*
-     * Filter to the city-level election cycle.
-     */
-    const filteredContributions = useMemo(() => {
-        if (!selectedDateRange) {
-            return contributions;
-        }
+    const filteredContributions = contributions;
 
-        const { start, end } = selectedDateRange;
-
-        if (!start || !end) {
-            return contributions;
-        }
-
-        const startTime = start.getTime();
-        const endTime = end.getTime();
-
-        return contributions.filter(record => {
-            if (!record.Transaction_Date) {
-                return false;
-            }
-
-            const date = new Date(record.Transaction_Date);
-
-            if (Number.isNaN(date.getTime())) {
-                return false;
-            }
-
-            const time = date.getTime();
-
-            return time >= startTime && time <= endTime;
-        });
-    }, [contributions, selectedDateRange]);
-
-    /*
-     * Calculate campaign-level near-limit funding.
-     */
     const campaignData = useMemo(
         () => calculateCampaignFunding(filteredContributions),
         [filteredContributions]
@@ -336,8 +284,8 @@ function NearLimitFundingChart({
                     <p>
                         Percentage of each campaign's contribution
                         funding coming from individual contributions
-                        of <strong>$750+</strong> or PAC/committee
-                        contributions of <strong>$2,000+</strong>.
+                        of <strong>$900+</strong> or PAC/committee
+                        contributions of <strong>$2,250+</strong>.
                     </p>
                 </div>
             </div>
@@ -351,11 +299,11 @@ function NearLimitFundingChart({
 
             <div className="near-limit-funding-methodology">
                 <span>
-                    Individual threshold: $750 (75% of $1,000 limit)
+                    Individual threshold: $900 (90% of $1,000 limit)
                 </span>
 
                 <span>
-                    PAC/committee threshold: $2,000 (80% of $2,500 limit)
+                    PAC/committee threshold: $2,250 (90% of $2,500 limit)
                 </span>
             </div>
         </section>

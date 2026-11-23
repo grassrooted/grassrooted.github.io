@@ -9,7 +9,6 @@ function parseLocalDate(dateString) {
 }
 function FinancialRecordsTable({
     profile,
-    selectedDateRange,
     schedules,
 }) {
     const scheduleNames = Object.keys(schedules).filter(
@@ -108,15 +107,6 @@ function FinancialRecordsTable({
                 return processed;
             });
 
-        const filterDataByDate = (data, field) => {
-        if (selectedDateRange === "all") return data;
-        const { start, end } = selectedDateRange;
-        return data.filter((record) => {
-            const date = record[field];
-            return date >= start && date <= end;
-        });
-        };
-
         let tableData = [];
         let columns = [];
 
@@ -124,10 +114,7 @@ function FinancialRecordsTable({
 
         const processed = preprocessData(rawData);
 
-        tableData = filterDataByDate(
-            processed,
-            "Transaction_Date"
-        );
+        tableData = processed;
 
         columns = buildColumns(tableData);
         
@@ -144,7 +131,6 @@ function FinancialRecordsTable({
     }, [
         activeTab,
         schedules,
-        selectedDateRange,
     ]);
 
   return (

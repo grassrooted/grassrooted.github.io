@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import './CumulativeContributionsTimeline.css';
 
-function CumulativeContributionsTimeline({ cityProfileData, selectedDateRange }) {
+function CumulativeContributionsTimeline({ cityProfileData }) {
     const chartData = useMemo(() => {
         const civicColorPalette = [
           "#00FFA3", // primary accent green
@@ -17,12 +17,7 @@ function CumulativeContributionsTimeline({ cityProfileData, selectedDateRange })
         ];
         const datasets = cityProfileData.map((profile, index) => {
             const contributions = profile.contributions || [];
-            const filteredContributions = selectedDateRange === 'all'
-                ? contributions
-                : contributions.filter(contribution => {
-                    const contributionDate = new Date(contribution[profile.contribution_fields.Transaction_Date]);
-                    return contributionDate >= selectedDateRange.start && contributionDate <= selectedDateRange.end;
-                });
+            const filteredContributions = contributions;
 
             const cumulativeData = [];
             let cumulativeSum = 0;
@@ -53,7 +48,7 @@ function CumulativeContributionsTimeline({ cityProfileData, selectedDateRange })
         return {
             datasets,
         };
-    }, [cityProfileData, selectedDateRange]);
+    }, [cityProfileData]);
 
     const options = {
         responsive: true,

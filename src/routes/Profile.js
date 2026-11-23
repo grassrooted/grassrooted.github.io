@@ -47,22 +47,33 @@ const aggregateDataByName = (data, profile) => {
     }, {});
 };
 
-const generateElectionCycles = (profile) => {
-    const { first_election, next_election, election_date, election_cycle_years } = profile;
+
+export function generateElectionCycles(profile) {
+    const {
+        election_cycle_years,
+        electionDates = []
+    } = profile;
 
     const electionCycles = [];
-    let year = parseInt(first_election, 10) - election_cycle_years;
-    const nextElectionYear = parseInt(next_election, 10);
-    const [month, day] = election_date.split('-').map(Number);
 
-    while (year < nextElectionYear) {
-        const startDate = new Date(year, month - 1, day);
-        const endDate = new Date(year + election_cycle_years, month - 1, day - 1);
-        electionCycles.push({
-            start: startDate,
-            end: endDate,
-        });
-        year += election_cycle_years;
+    const parsedElectionDates = electionDates.map(date => {
+        const [year, month, day] = date.split('-').map(Number);
+        return new Date(year, month - 1, day);
+    });
+
+    const firstElection = new Date(parsedElectionDates.at(0));
+    firstElection.setFullYear(firstElection.getFullYear() - election_cycle_years);
+
+    const inclusiveElectionDates = [firstElection, ...parsedElectionDates];
+
+    for (let i = 0; i < inclusiveElectionDates.length - 1; i++) {
+        const d = inclusiveElectionDates[i];
+        const start = new Date(d);
+        start.setDate(start.getDate() + 1);
+
+        const end = inclusiveElectionDates[i + 1];
+
+        electionCycles.push({ start, end });
     }
 
     return electionCycles;
