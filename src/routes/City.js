@@ -68,8 +68,9 @@ function City() {
             <div id="city-header">
                 <Header city={city_config.name} profile={city_config} />
             </div>
-            
-            <CumulativeContributionsTimeline
+
+            <ProfileStream 
+                cityId={cityId}
                 cityProfileData={cityProfileData} />
 
             <PACFundingBarChart 
@@ -83,8 +84,7 @@ function City() {
                 contributions={citySchedules.contributions}
             />
 
-            <ProfileStream 
-                cityId={cityId}
+            <CumulativeContributionsTimeline
                 cityProfileData={cityProfileData} />
 
             <FinancialRecordsTable
