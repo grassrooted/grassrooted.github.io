@@ -216,6 +216,7 @@ function Profile() {
 
                 <Highlights 
                     profile={profile}
+                    electionCycles={electionCycles}
                     aggregated_data={aggregatedData}
                     contribution_data={profile.contributions}
                     selectedDateRange={selectedDateRange}

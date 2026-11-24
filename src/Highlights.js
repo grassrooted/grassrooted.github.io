@@ -3,33 +3,76 @@ import "./Highlights.css";
 import { point } from "@turf/helpers";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 
-function calculateExcessContributions(contributions, startDate, endDate, limitNonPAC, limitPAC) {
-    let excessSum = 0;
-    Object.keys(contributions).forEach(true_name => {
-        let total_contributed = 0
-        const name = true_name;
-        const limit = name.includes('pac') ? limitPAC : limitNonPAC;
 
-        contributions[true_name].children.forEach(child => {
-            const isodatestring = child.Transaction_Date.replace(" ","T")
-            const transactionDate = new Date(isodatestring);
-            const donorName = child.Name;
-            const transactionType = (child.Transaction_Type || "").toLowerCase();
-            if (transactionDate >= startDate && transactionDate <= endDate && !donorName.includes("City of Austin") && !(transactionType.includes("officeholder"))) {
-                const amount = child.Amount;
-                total_contributed += amount
+/*
+    Calculates the total amount of contributions that exceed the limit (pac or individual) for a campaign.
+    Considers:
+        - Multiple donations from the same donor
+        - Multiple election cycles
+        - Officeholder vs. Campaign Accounts (Officeholder transactions excluded)
+*/
+function calculateExcessContributions(
+    contributions,
+    startDate,
+    endDate,
+    limitNonPAC,
+    limitPAC,
+    electionCycles
+) {
+    let excessSum = 0;
+
+    electionCycles.forEach(cycle => {
+        const cycleStart = new Date(Math.max(
+            startDate.getTime(),
+            cycle.start.getTime()
+        ));
+
+        const cycleEnd = new Date(Math.min(
+            endDate.getTime(),
+            cycle.end.getTime()
+        ));
+
+        if (cycleStart > cycleEnd) return;
+
+        Object.keys(contributions).forEach(true_name => {
+            const donor = contributions[true_name];
+
+            let total_contributed = 0;
+
+            const limit = true_name.includes('pac')
+                ? limitPAC
+                : limitNonPAC;
+
+            donor.children.forEach(child => {
+                const transactionDate = new Date(
+                    child.Transaction_Date.replace(" ", "T")
+                );
+
+                const donorName = child.Name;
+                const transactionType =
+                    (child.Transaction_Type || "").toLowerCase();
+
+                if (
+                    transactionDate >= cycleStart &&
+                    transactionDate <= cycleEnd &&
+                    !donorName.includes("City of Austin") &&
+                    !transactionType.includes("officeholder")
+                ) {
+                    total_contributed += Number(child.Amount) || 0;
+                }
+            });
+
+            if (total_contributed > limit) {
+                excessSum += total_contributed - limit;
             }
         });
-
-        if (total_contributed > limit) {
-            excessSum += (total_contributed - limit);
-        }
     });
 
     return excessSum;
 }
 
-function Highlights({profile, aggregated_data, contribution_data, selectedDateRange, expenditure_data, districtGeoJSON, highlightedDistrict }) {
+
+function Highlights({profile, electionCycles, aggregated_data, contribution_data, selectedDateRange, expenditure_data, districtGeoJSON, highlightedDistrict }) {
     const contributions = useMemo(() => {
         if (selectedDateRange === 'all') {
             return contribution_data;
@@ -59,14 +102,15 @@ function Highlights({profile, aggregated_data, contribution_data, selectedDateRa
     total_contributions=Math.round(total_contributions)
 
     const avg_contribution = total_contributions/contributions.length
-    console.log(profile)
+    console.log(electionCycles)
     let totalExcessContributions = calculateExcessContributions(
-            aggregated_data,
-            selectedDateRange.start,
-            selectedDateRange.end,
-            profile.individual_limit,
-            profile.pac_limit
-        )
+        aggregated_data,
+        selectedDateRange.start,
+        selectedDateRange.end,
+        profile.individual_limit,
+        profile.pac_limit,
+        electionCycles
+    );
 
     totalExcessContributions = Math.round(totalExcessContributions)
     
