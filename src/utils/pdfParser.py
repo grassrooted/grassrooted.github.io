@@ -461,7 +461,7 @@ def extract_finance_data_from_table(pdf_path):
 
     # ---------------- A1 / CONTRIBUTIONS ----------------
     def parse_con_address(row):
-        return row[-3]\
+        return row[-3].split("\n")[-1]\
             .replace("Contributor address", "")\
             .replace("City", "")\
             .replace("State","")\
@@ -473,16 +473,17 @@ def extract_finance_data_from_table(pdf_path):
     def parse_contribution_record(row, next_row, next_next_row, page_num):
         donor_name = ""
         try:
-
+            print("first row: ", row)
+            print("next row", next_row)
+            print("next next row", next_next_row)
             date = row[0].split("\n")[1].strip()
             donor_name = row[1].split("\n")[1].strip()
-            amount = float(row[-1].split("\n")[-1]
-                        .replace(",", "")
-                        .replace("$", "")
-                        .strip())
-            address = parse_con_address(next_row)
-            occupation = parseOccupation(next_next_row)
-            employer = parseEmployer(next_next_row)
+            amount = float(row[-1].split("\n")[-1].replace(",", "").strip())
+
+            address = parse_con_address(row)
+
+            occupation = parseOccupation(next_row)
+            employer = parseEmployer(next_row)
             return {
                 "Transaction_Date": datetime.strptime(date, "%m/%d/%Y").strftime("%Y-%m-%d"),
                 "Name": donor_name,
@@ -530,7 +531,10 @@ def extract_finance_data_from_table(pdf_path):
 
     def sanitize_exp_description(description):
         return description.replace("(b)", "")\
-                .replace("Description", "")
+                .replace("Description", "")\
+                .replace("Check if Austin, TX, officeholder living expense", "")\
+                .replace("Check if travel outside of Texas. Complete Schedule T", "")\
+                .strip()
     # ---------------- F1 EXPENDITURES ----------------
     def parse_expenditure_record(record, page_num):
         try:

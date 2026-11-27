@@ -9,10 +9,10 @@ import time, re, os, pdfplumber, sys, json
     Output
         - Pairs of unique COH/Supplemental links for parsing
 """
-search_first_name_query = "Paul"
-search_last_name_query = "Ridley"
-start_year = "2025"
-end_year = "2026"
+search_first_name_query = "Chad"
+search_last_name_query = "West"
+start_year = "2019"
+end_year = "2024"
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
